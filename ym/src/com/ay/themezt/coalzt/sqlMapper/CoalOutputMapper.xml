@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="CoalOutput">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_COAL_OUTPUT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_COAL_OUTPUT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_COAL_OUTPUT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_COAL_OUTPUT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_COAL_OUTPUT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_COAL_OUTPUT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="unitGroup"> TB_COAL_OUTPUT.UNIT_GROUP like '%'+#unitGroup#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="monthPlan"> TB_COAL_OUTPUT.MONTH_PLAN like '%'+#monthPlan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dailyPlan"> TB_COAL_OUTPUT.DAILY_PLAN like '%'+#dailyPlan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dailyOutput"> TB_COAL_OUTPUT.DAILY_OUTPUT like '%'+#dailyOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dailyExceedLoss"> TB_COAL_OUTPUT.DAILY_EXCEED_LOSS like '%'+#dailyExceedLoss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="monthCumulatePlan"> TB_COAL_OUTPUT.MONTH_CUMULATE_PLAN like '%'+#monthCumulatePlan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="monthCumulateOutput"> TB_COAL_OUTPUT.MONTH_CUMULATE_OUTPUT like '%'+#monthCumulateOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="monthCumulateExceedLoss"> TB_COAL_OUTPUT.MONTH_CUMULATE_EXCEED_LOSS like '%'+#monthCumulateExceedLoss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yearCumulatePlan"> TB_COAL_OUTPUT.YEAR_CUMULATE_PLAN like '%'+#yearCumulatePlan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yearCumulateOutput"> TB_COAL_OUTPUT.YEAR_CUMULATE_OUTPUT like '%'+#yearCumulateOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yearCumulateExceedLoss"> TB_COAL_OUTPUT.YEAR_CUMULATE_EXCEED_LOSS like '%'+#yearCumulateExceedLoss#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	
+	<resultMap class="com.ay.themezt.coalzt.pojo.CoalOutGraph" id="sumLine">
+			<result property="y" column="y"/>
+			<result property="e" column="e"/>
+			<result property="s" column="s"/>
+			<result property="s" column="s"/>
+			<result property="si" column="si"/>
+			<result property="w" column="w"/>
+			<result property="l" column="l"/>
+			<result property="q" column="q"/>
+			<result property="b" column="b"/>
+			<result property="j" column="j"/>
+			<result property="shi" column="shi"/>
+			<result property="sy" column="sy"/>
+			<result property="se" column="se"/>
+			<result property="monthPlan" column="monthPlan"/>
+		</resultMap>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.themezt.coalzt.pojo.CoalOutput">
+  		INSERT INTO TB_COAL_OUTPUT(
+				
+				UNIT_GROUP,
+				MONTH_PLAN,
+				DAILY_PLAN,
+				DAILY_OUTPUT,
+				DAILY_EXCEED_LOSS,
+				MONTH_CUMULATE_PLAN,
+				MONTH_CUMULATE_OUTPUT,
+				MONTH_CUMULATE_EXCEED_LOSS,
+				YEAR_CUMULATE_PLAN,
+				YEAR_CUMULATE_OUTPUT,
+				YEAR_CUMULATE_EXCEED_LOSS,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#unitGroup#,
+				#monthPlan#,
+				#dailyPlan#,
+				#dailyOutput#,
+				#dailyExceedLoss#,
+				#monthCumulatePlan#,
+				#monthCumulateOutput#,
+				#monthCumulateExceedLoss#,
+				#yearCumulatePlan#,
+				#yearCumulateOutput#,
+				#yearCumulateExceedLoss#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_COAL_OUTPUT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.themezt.coalzt.pojo.CoalOutput" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_COAL_OUTPUT.UNIT_GROUP AS unitGroup,
+			dbo.FN_codeToText(TB_COAL_OUTPUT.UNIT_GROUP) AS unitGroupText,
+			TB_COAL_OUTPUT.MONTH_PLAN AS monthPlan,
+			TB_COAL_OUTPUT.DAILY_PLAN AS dailyPlan,
+			TB_COAL_OUTPUT.DAILY_OUTPUT AS dailyOutput,
+			TB_COAL_OUTPUT.DAILY_EXCEED_LOSS AS dailyExceedLoss,
+			TB_COAL_OUTPUT.MONTH_CUMULATE_PLAN AS monthCumulatePlan,
+			TB_COAL_OUTPUT.MONTH_CUMULATE_OUTPUT AS monthCumulateOutput,
+			TB_COAL_OUTPUT.MONTH_CUMULATE_EXCEED_LOSS AS monthCumulateExceedLoss,
+			TB_COAL_OUTPUT.YEAR_CUMULATE_PLAN AS yearCumulatePlan,
+			TB_COAL_OUTPUT.YEAR_CUMULATE_OUTPUT AS yearCumulateOutput,
+			TB_COAL_OUTPUT.YEAR_CUMULATE_EXCEED_LOSS AS yearCumulateExceedLoss,
+			
+			TB_COAL_OUTPUT.ID AS id,
+			TB_COAL_OUTPUT.STATUS AS status,
+			TB_COAL_OUTPUT.CREATED AS created,
+			TB_COAL_OUTPUT.CREATE_TIME AS createTime,
+			TB_COAL_OUTPUT.UPDATED AS updated,
+			TB_COAL_OUTPUT.UPDATE_TIME as updateTime
+		from
+		TB_COAL_OUTPUT
+  		where 
+ 	 		TB_COAL_OUTPUT.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.themezt.coalzt.pojo.CoalOutput">
+		UPDATE TB_COAL_OUTPUT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="unitGroup"> UNIT_GROUP=#unitGroup#</isNotEmpty>
+			<isNotEmpty prepend="," property="monthPlan"> MONTH_PLAN=#monthPlan#</isNotEmpty>
+			<isNotEmpty prepend="," property="dailyPlan"> DAILY_PLAN=#dailyPlan#</isNotEmpty>
+			<isNotEmpty prepend="," property="dailyOutput"> DAILY_OUTPUT=#dailyOutput#</isNotEmpty>
+			<isNotEmpty prepend="," property="dailyExceedLoss"> DAILY_EXCEED_LOSS=#dailyExceedLoss#</isNotEmpty>
+			<isNotEmpty prepend="," property="monthCumulatePlan"> MONTH_CUMULATE_PLAN=#monthCumulatePlan#</isNotEmpty>
+			<isNotEmpty prepend="," property="monthCumulateOutput"> MONTH_CUMULATE_OUTPUT=#monthCumulateOutput#</isNotEmpty>
+			<isNotEmpty prepend="," property="monthCumulateExceedLoss"> MONTH_CUMULATE_EXCEED_LOSS=#monthCumulateExceedLoss#</isNotEmpty>
+			<isNotEmpty prepend="," property="yearCumulatePlan"> YEAR_CUMULATE_PLAN=#yearCumulatePlan#</isNotEmpty>
+			<isNotEmpty prepend="," property="yearCumulateOutput"> YEAR_CUMULATE_OUTPUT=#yearCumulateOutput#</isNotEmpty>
+			<isNotEmpty prepend="," property="yearCumulateExceedLoss"> YEAR_CUMULATE_EXCEED_LOSS=#yearCumulateExceedLoss#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.themezt.coalzt.pojo.CoalOutput" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_COAL_OUTPUT.UNIT_GROUP AS unitGroup,
+			dbo.FN_codeToText(TB_COAL_OUTPUT.UNIT_GROUP) AS unitGroupText,
+			TB_COAL_OUTPUT.MONTH_PLAN AS monthPlan,
+			TB_COAL_OUTPUT.DAILY_PLAN AS dailyPlan,
+			TB_COAL_OUTPUT.DAILY_OUTPUT AS dailyOutput,
+			TB_COAL_OUTPUT.DAILY_EXCEED_LOSS AS dailyExceedLoss,
+			TB_COAL_OUTPUT.MONTH_CUMULATE_PLAN AS monthCumulatePlan,
+			TB_COAL_OUTPUT.MONTH_CUMULATE_OUTPUT AS monthCumulateOutput,
+			TB_COAL_OUTPUT.MONTH_CUMULATE_EXCEED_LOSS AS monthCumulateExceedLoss,
+			TB_COAL_OUTPUT.YEAR_CUMULATE_PLAN AS yearCumulatePlan,
+			TB_COAL_OUTPUT.YEAR_CUMULATE_OUTPUT AS yearCumulateOutput,
+			TB_COAL_OUTPUT.YEAR_CUMULATE_EXCEED_LOSS AS yearCumulateExceedLoss,
+			
+			TB_COAL_OUTPUT.ID AS id,
+			TB_COAL_OUTPUT.STATUS AS status,
+			TB_COAL_OUTPUT.CREATED AS created,
+			TB_COAL_OUTPUT.CREATE_TIME AS createTime,
+			TB_COAL_OUTPUT.UPDATED AS updated,
+			TB_COAL_OUTPUT.UPDATE_TIME AS updateTime
+		FROM
+			TB_COAL_OUTPUT
+		WHERE
+			TB_COAL_OUTPUT.STATUS = '1'
+		<include refid="CoalOutput.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(TB_COAL_OUTPUT.MONTH_PLAN) 
+		FROM
+			TB_COAL_OUTPUT
+		WHERE
+			TB_COAL_OUTPUT.STATUS = '1' 
+		<include refid="CoalOutput.mapWhereClause"/>
+	</select>
+	<select id="coalOut" resultMap ="sumLine" parameterClass="java.lang.String">
+	SELECT     
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '01' THEN dailyOutput ELSE 0 END) AS y,
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '02' THEN dailyOutput ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '03' THEN dailyOutput ELSE 0 END )AS s,
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '04' THEN dailyOutput ELSE 0 END) AS si, 
+			max( CASE SUBSTRING(monthPlan, 6, 2) WHEN '05' THEN dailyOutput ELSE 0 END )AS w,
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '06' THEN dailyOutput ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '07' THEN dailyOutput ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '08' THEN dailyOutput ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '09' THEN dailyOutput ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '10' THEN dailyOutput ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '11' THEN dailyOutput  ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(monthPlan, 6, 2) WHEN '12' THEN dailyOutput  ELSE 0 END) AS se,
+		   	SUBSTRING(monthPlan, 1, 4) AS monthPlan
+		from (
+		select sum(cast(DAILY_OUTPUT as int)) as dailyOutput,
+		SUBSTRING(MONTH_PLAN, 1, 7) as monthPlan from TB_COAL_OUTPUT where MONTH_PLAN like '%'+#month#+'%' and STATUS = '1'
+		group by SUBSTRING(MONTH_PLAN, 1, 7)
+		) 
+		as t where monthPlan like '%'+#month#+'%'  GROUP BY SUBSTRING(monthPlan, 1, 4) 
+	</select>
+</sqlMap>

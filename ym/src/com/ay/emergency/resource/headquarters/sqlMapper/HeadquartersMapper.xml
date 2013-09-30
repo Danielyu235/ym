@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Headquarters">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_HEADQUARTERS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_HEADQUARTERS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_HEADQUARTERS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_HEADQUARTERS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_HEADQUARTERS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_HEADQUARTERS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="name"> TB_HEADQUARTERS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="address"> TB_HEADQUARTERS.ADDRESS like '%'+#address#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="phoneNumber"> TB_HEADQUARTERS.PHONE_NUMBER like '%'+#phoneNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="personincharge"> TB_HEADQUARTERS.PERSONINCHARGE like '%'+#personincharge#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="chargePhoneNumber"> TB_HEADQUARTERS.CHARGE_PHONE_NUMBER like '%'+#chargePhoneNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="type"> TB_HEADQUARTERS.TYPE like '%'+#type#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.resource.headquarters.pojo.Headquarters">
+  		INSERT INTO TB_HEADQUARTERS(
+				
+				NAME,
+				ADDRESS,
+				PHONE_NUMBER,
+				PERSONINCHARGE,
+				CHARGE_PHONE_NUMBER,
+				TYPE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#name#,
+				#address#,
+				#phoneNumber#,
+				#personincharge#,
+				#chargePhoneNumber#,
+				#type#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM TB_HEADQUARTERS  
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.resource.headquarters.pojo.Headquarters" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_HEADQUARTERS.NAME AS name,
+			TB_HEADQUARTERS.ADDRESS AS address,
+			TB_HEADQUARTERS.PHONE_NUMBER AS phoneNumber,
+			TB_HEADQUARTERS.PERSONINCHARGE AS personincharge,
+			TB_HEADQUARTERS.CHARGE_PHONE_NUMBER AS chargePhoneNumber,
+			dbo.FN_codeToText(TB_HEADQUARTERS.TYPE) AS type,
+			
+			TB_HEADQUARTERS.ID AS id,
+			TB_HEADQUARTERS.STATUS AS status,
+			TB_HEADQUARTERS.CREATED AS created,
+			TB_HEADQUARTERS.CREATE_TIME AS createTime,
+			TB_HEADQUARTERS.UPDATED AS updated,
+			TB_HEADQUARTERS.UPDATE_TIME as updateTime
+		from
+		TB_HEADQUARTERS
+  		where 
+ 	 		TB_HEADQUARTERS.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.resource.headquarters.pojo.Headquarters">
+		UPDATE TB_HEADQUARTERS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="address"> ADDRESS=#address#</isNotEmpty>
+			<isNotEmpty prepend="," property="phoneNumber"> PHONE_NUMBER=#phoneNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="personincharge"> PERSONINCHARGE=#personincharge#</isNotEmpty>
+			<isNotEmpty prepend="," property="chargePhoneNumber"> CHARGE_PHONE_NUMBER=#chargePhoneNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="type"> TYPE=#type#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.resource.headquarters.pojo.Headquarters" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_HEADQUARTERS.NAME AS name,
+			TB_HEADQUARTERS.ADDRESS AS address,
+			TB_HEADQUARTERS.PHONE_NUMBER AS phoneNumber,
+			TB_HEADQUARTERS.PERSONINCHARGE AS personincharge,
+			TB_HEADQUARTERS.CHARGE_PHONE_NUMBER AS chargePhoneNumber,
+			TB_HEADQUARTERS.TYPE AS type,
+			
+			TB_HEADQUARTERS.ID AS id,
+			TB_HEADQUARTERS.STATUS AS status,
+			TB_HEADQUARTERS.CREATED AS created,
+			TB_HEADQUARTERS.CREATE_TIME AS createTime,
+			TB_HEADQUARTERS.UPDATED AS updated,
+			TB_HEADQUARTERS.UPDATE_TIME AS updateTime
+		FROM
+			TB_HEADQUARTERS
+		WHERE
+			TB_HEADQUARTERS.STATUS = '1'
+		<include refid="Headquarters.mapWhereClause"/>
+		or TB_HEADQUARTERS.type =''
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_HEADQUARTERS
+		WHERE
+			TB_HEADQUARTERS.STATUS = '1' 
+		<include refid="Headquarters.mapWhereClause"/>
+	</select>
+	
+	
+	
+	<select id="findPerson" resultClass="com.ay.emergency.resource.headquarters.pojo.Hperson" parameterClass="java.util.Map">
+ 		SELECT			
+			TB_H_PERSON.CATEGORY as category,
+			TB_H_PERSON.NAME as name,
+			TB_H_PERSON.PHONENUMBER as phoneNumber,
+			TB_H_PERSON.HID as hid,
+			
+			TB_H_PERSON.ID AS id,
+			TB_H_PERSON.STATUS AS status,
+			TB_H_PERSON.CREATED AS created,
+			TB_H_PERSON.CREATE_TIME AS createTime,
+			TB_H_PERSON.UPDATED AS updated,
+			TB_H_PERSON.UPDATE_TIME AS updateTime
+		FROM
+			TB_H_PERSON
+		WHERE
+			TB_H_PERSON.STATUS = '1' AND TB_H_PERSON.HID = #hid#
+		
+	</select>
+
+	<select id="countPerson" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_H_PERSON
+		WHERE
+			TB_H_PERSON.STATUS = '1'
+		<include refid="Headquarters.mapWhereClause"/>
+	</select>
+	
+	<delete id="deletePerson" parameterClass="java.lang.String">
+		UPDATE TB_H_PERSON SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#
+ 	 </delete>
+ 	 
+ 	 <insert id="insertPerson" parameterClass="com.ay.emergency.resource.headquarters.pojo.Hperson">
+  		INSERT INTO TB_H_PERSON(
+				
+				CATEGORY,
+				NAME,
+				PHONENUMBER,
+				HID,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#category#,
+				#name#,
+				#phoneNumber#,
+				#hid#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	
+	<update id="updatePerson" parameterClass="com.ay.emergency.resource.headquarters.pojo.Hperson">
+		UPDATE TB_H_PERSON 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="name"> CATEGORY=#category#</isNotEmpty>
+			<isNotEmpty prepend="," property="address"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="phoneNumber"> PHONENUMBER=#phoneNumber#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+</sqlMap>

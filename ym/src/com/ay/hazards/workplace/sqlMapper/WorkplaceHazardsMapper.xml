@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_HAZHARDS_WORKPLACE-->
+<sqlMap namespace="TbHazhardsWorkplace">
+	<resultMap class="com.ay.hazards.workplace.pojo.WorkplaceHazards" id="wph">
+		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="created" column="created"/>
+		<result property="createTime" column="createTime"/>
+		<result property="dwdm" column="dwdm"/>
+		<result property="corpName" column="corpName"/>
+		<result property="updated" column="updated"/>
+		<result property="updateTime" column="updateTime"/>
+		<result property="dymc" column="dymc"/>
+		<result property="gdzczz" column="gdzczz"/>
+		<result property="jtwz" column="jtwz"/>
+		<result property="schjgnq" column="schjgnq"/>
+		<result property="zdmj" column="zdmj"/>
+		<result property="zcdbrs" column="zcdbrs"/>
+		<result property="list" column="id" select="materials.findByPid"/>
+	</resultMap>
+	<!-- add Condition TB_HAZHARDS_WORKPLACE-->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="dymc"> DYMC like '%'+#dymc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdzczz"> GDZCZZ like'%'+#gdzczz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jtwz"> JTWZ like'%'+ #jtwz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="schjgnq"> SCHJGNQ like '%'+#schjgnq#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zdmj"> ZDMJ like '%'+#zdmj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zcdbrs"> ZCDBRS like '%'+#zcdbrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_ENTERPRISE.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.workplace.pojo.WorkplaceHazards">
+  		insert into  TB_HAZHARDS_WORKPLACE(
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME,
+				DYMC,
+				GDZCZZ,
+				JTWZ,
+				SCHJGNQ,
+				ZDMJ,
+				DWDM,
+				ZCDBRS) values(
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#,
+				#dymc#,
+				#gdzczz#,
+				#jtwz#,
+				#schjgnq#,
+				#zdmj#,
+				#dwdm#,
+				#zcdbrs#)</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_HAZHARDS_WORKPLACE set status='0' 
+  		where 
+ 	 		id=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultMap="wph" parameterClass="java.lang.String">
+ 		select 
+				TB_HAZHARDS_WORKPLACE.ID as id,
+				TB_HAZHARDS_WORKPLACE.STATUS as status,
+				TB_HAZHARDS_WORKPLACE.CREATED as created,
+				TB_HAZHARDS_WORKPLACE.CREATE_TIME as createTime,
+				TB_HAZHARDS_WORKPLACE.DWDM AS dwdm,
+				TB_ENTERPRISE.CORP_NAME AS corpName,
+				TB_HAZHARDS_WORKPLACE.UPDATED as updated,
+				TB_HAZHARDS_WORKPLACE.UPDATE_TIME as updateTime,
+				TB_HAZHARDS_WORKPLACE.DYMC as dymc,
+				TB_HAZHARDS_WORKPLACE.GDZCZZ as gdzczz,
+				TB_HAZHARDS_WORKPLACE.JTWZ as jtwz,
+				TB_HAZHARDS_WORKPLACE.SCHJGNQ as schjgnq,
+				TB_HAZHARDS_WORKPLACE.ZDMJ as zdmj,
+				TB_HAZHARDS_WORKPLACE.ZCDBRS as zcdbrs
+			from
+		TB_HAZHARDS_WORKPLACE
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_WORKPLACE.DWDM= TB_ENTERPRISE.ID
+  		where 
+ 	 		TB_HAZHARDS_WORKPLACE.ID=#id#</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.workplace.pojo.WorkplaceHazards">
+		update   TB_HAZHARDS_WORKPLACE 
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> status=#status#</isNotNull>
+			<isNotNull prepend="," property="created"> created=#created#</isNotNull>
+			<isNotNull prepend="," property="createTime"> create_time=#createTime#</isNotNull>
+			<isNotNull prepend="," property="updated"> updated=#updated#</isNotNull>
+			<isNotNull prepend="," property="updateTime"> update_time=#updateTime#</isNotNull>
+			<isNotNull prepend="," property="dymc"> DYMC=#dymc#</isNotNull>
+			<isNotNull prepend="," property="dwdm"> DWDM=#dwdm#</isNotNull>
+			<isNotNull prepend="," property="gdzczz"> GDZCZZ=#gdzczz#</isNotNull>
+			<isNotNull prepend="," property="jtwz"> JTWZ=#jtwz#</isNotNull>
+			<isNotNull prepend="," property="schjgnq"> SCHJGNQ=#schjgnq#</isNotNull>
+			<isNotNull prepend="," property="zdmj"> ZDMJ=#zdmj#</isNotNull>
+			<isNotNull prepend="," property="zcdbrs"> ZCDBRS=#zcdbrs#</isNotNull>
+		</dynamic>
+  		where 
+ 	 		id=#id#
+	</update>
+	<!-- add method findAll-->
+	<select id="findAll" resultClass="com.ay.hazards.workplace.pojo.WorkplaceHazards" parameterClass="com.ay.hazards.workplace.pojo.WorkplaceHazards">
+ 		select 
+				TB_HAZHARDS_WORKPLACE.ID,
+				TB_HAZHARDS_WORKPLACE.STATUS,
+				TB_HAZHARDS_WORKPLACE.CREATED,
+				TB_HAZHARDS_WORKPLACE.CREATE_TIME as cREATETIME,
+				TB_HAZHARDS_WORKPLACE.DWDM AS dwdm,
+				TB_ENTERPRISE.CORP_NAME AS corpName,
+				TB_HAZHARDS_WORKPLACE.UPDATED,
+				TB_HAZHARDS_WORKPLACE.UPDATE_TIME as uPDATETIME,
+				DYMC,
+				GDZCZZ,
+				JTWZ,
+				SCHJGNQ,
+				ZDMJ,
+				ZCDBRS
+			from
+		TB_HAZHARDS_WORKPLACE
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_WORKPLACE.DWDM= TB_ENTERPRISE.ID
+  		where 
+ 	 		TB_HAZHARDS_WORKPLACE.status='1'</select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hazards.workplace.pojo.WorkplaceHazards" parameterClass="java.util.Map">
+ 		select 
+ 				dbo.FN_HASMAP(TB_HAZHARDS_WORKPLACE.ID) as hasMap,
+				TB_HAZHARDS_WORKPLACE.ID,
+				TB_HAZHARDS_WORKPLACE.STATUS,
+				TB_HAZHARDS_WORKPLACE.CREATED,
+				TB_HAZHARDS_WORKPLACE.CREATE_TIME as cREATETIME,
+				TB_HAZHARDS_WORKPLACE.DWDM AS dwdm,
+				TB_ENTERPRISE.CORP_NAME AS corpName,
+				TB_HAZHARDS_WORKPLACE.UPDATED,
+				TB_HAZHARDS_WORKPLACE.UPDATE_TIME as uPDATETIME,
+				DYMC,
+				GDZCZZ,
+				JTWZ,
+				SCHJGNQ,
+				ZDMJ,
+				ZCDBRS
+		from
+		TB_HAZHARDS_WORKPLACE
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_WORKPLACE.DWDM= TB_ENTERPRISE.ID
+  		where 
+ 	 		TB_HAZHARDS_WORKPLACE.status='1' 
+		<include refid="TbHazhardsWorkplace.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select count(*) 
+		from
+		TB_HAZHARDS_WORKPLACE
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_WORKPLACE.DWDM= TB_ENTERPRISE.ID
+  		where 
+ 	 		TB_HAZHARDS_WORKPLACE.status='1' 
+		<include refid="TbHazhardsWorkplace.mapWhereClause"/>
+	</select>
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE TB_HAZHARDS_WORKPLACE
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	 </statement>
+</sqlMap>

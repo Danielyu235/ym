@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+<constant name="struts.ui.theme" value="simple" />
+    <!-- 系统常量定义，定义上传文件字符集编码 -->
+   <constant name="struts.i18n.encoding" value="utf-8"></constant>
+
+    <!-- 系统常量定义，定义上传文件临时存放路径 -->
+
+    <constant name="struts.multipart.saveDir" value="c:\"></constant>
+
+   <!-- Action所在包定义 -->
+
+  <package name="C04.4" extends="struts-default">
+
+        <!-- Action名字，类以及导航页面定义 -->
+
+        <!-- 通过Action类处理才导航的的Action定义 -->
+
+        <action name="upload" class="com.ay.employee.action.UploadAction">
+
+            <result name="input">/jsp/upload.jsp</result>
+
+            <result name="success">/jsp/result.jsp</result>
+
+        </action>
+
+    </package>
+
+    
+  <!--员工基本信息模块-->
+  <package name="employees" extends="struts-default" namespace="/employees">
+    <action name="employeesAction" class="com.ay.employee.action.EmployeesAction"/>
+  </package>
+  
+</struts>

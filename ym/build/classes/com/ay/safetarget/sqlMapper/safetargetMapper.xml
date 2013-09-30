@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="SafeTarget">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_SAFE_TARGET1.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_SAFE_TARGET1.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_SAFE_TARGET1.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_SAFE_TARGET1.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_SAFE_TARGET1.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_SAFE_TARGET1.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="value"> TB_SAFE_TARGET1.VALUE like '%'+#value#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gl"> TB_SAFE_TARGET1.GL like '%'+#gl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="testType"> TB_SAFE_TARGET1.TESTTYPE like '%'+#testType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="testTime"> TB_SAFE_TARGET1.TEST_TIME like '%'+#testTime#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.safetarget.pojo.SafeTarget">
+  		INSERT INTO TB_SAFE_TARGET1(
+				
+				VALUE,
+				GL,
+				TESTTYPE,
+				TEST_TIME,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#value#,
+				#gl#,
+				#testType#,
+				#testTime#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_SAFE_TARGET1 SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.safetarget.pojo.SafeTarget" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_SAFE_TARGET1.VALUE AS value,
+			TB_SAFE_TARGET1.GL AS gl,
+			
+			TB_SAFE_TARGET1.ID AS id,
+			TB_SAFE_TARGET1.STATUS AS status,
+			TB_SAFE_TARGET1.CREATED AS created,
+			TB_SAFE_TARGET1.CREATE_TIME AS createTime,
+			TB_SAFE_TARGET1.UPDATED AS updated,
+			TB_SAFE_TARGET1.UPDATE_TIME as updateTime
+		from
+		TB_SAFE_TARGET1
+  		where 
+ 	 		TB_SAFE_TARGET1.ID=#id#
+	</select>
+
+	
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.safetarget.pojo.SafeTarget" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_SAFE_TARGET1.VALUE AS value,
+			TB_SAFE_TARGET1.GL AS gl,
+			
+			TB_SAFE_TARGET1.ID AS id,
+			TB_SAFE_TARGET1.STATUS AS status,
+			TB_SAFE_TARGET1.CREATED AS created,
+			CONVERT(CHAR(19),TB_SAFE_TARGET1.CREATE_TIME, 120) as testTime,
+			TB_SAFE_TARGET1.UPDATED AS updated,
+			TB_SAFE_TARGET1.UPDATE_TIME AS updateTime
+		FROM
+			TB_SAFE_TARGET1
+		WHERE
+			TB_SAFE_TARGET1.STATUS = '1'
+		<include refid="SafeTarget.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_SAFE_TARGET1
+		WHERE
+			TB_SAFE_TARGET1.STATUS = '1' 
+		<include refid="SafeTarget.mapWhereClause"/>
+	</select>
+</sqlMap>

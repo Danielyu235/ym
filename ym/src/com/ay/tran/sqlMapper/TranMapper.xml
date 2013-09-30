@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Tran">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_TRAN.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_TRAN.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_TRAN.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_TRAN.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_TRAN.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_TRAN.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="workFace"> TB_TRAN.WORK_FACE like '%'+#workFace#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="statisticalTime"> TB_TRAN.STATISTICAL_TIME like '%'+#statisticalTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="turns"> TB_TRAN.TURNS like '%'+#turns#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.tran.pojo.Tran">
+  		INSERT INTO TB_TRAN(
+				WORK_FACE,
+				STATISTICAL_TIME,
+				TURNS,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#workFace#,
+				#statisticalTime#,
+				#turns#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_TRAN SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.tran.pojo.Tran" parameterClass="java.lang.String">
+ 		SELECT 
+			TB_TRAN.WORK_FACE AS workFace,
+			dbo.FN_codeToText(TB_TRAN.WORK_FACE) as workFaceByName,
+			TB_TRAN.STATISTICAL_TIME AS statisticalTime,
+			TB_TRAN.TURNS AS turns,
+			
+			TB_TRAN.ID AS id,
+			TB_TRAN.STATUS AS status,
+			TB_TRAN.CREATED AS created,
+			TB_TRAN.CREATE_TIME AS createTime,
+			TB_TRAN.UPDATED AS updated,
+			TB_TRAN.UPDATE_TIME as updateTime
+		from
+		TB_TRAN
+  		where 
+ 	 		TB_TRAN.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.tran.pojo.Tran">
+		UPDATE TB_TRAN 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="workFace"> WORK_FACE=#workFace#</isNotEmpty>
+			<isNotEmpty prepend="," property="statisticalTime"> STATISTICAL_TIME=#statisticalTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="turns"> TURNS=#turns#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.tran.pojo.Tran" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_TRAN.WORK_FACE AS workFace,
+			dbo.FN_codeToText(TB_TRAN.WORK_FACE) as workFaceByName,
+			TB_TRAN.STATISTICAL_TIME AS statisticalTime,
+			TB_TRAN.TURNS AS turns,
+			
+			TB_TRAN.ID AS id,
+			TB_TRAN.STATUS AS status,
+			TB_TRAN.CREATED AS created,
+			TB_TRAN.CREATE_TIME AS createTime,
+			TB_TRAN.UPDATED AS updated,
+			TB_TRAN.UPDATE_TIME AS updateTime
+		FROM
+			TB_TRAN
+		WHERE
+			TB_TRAN.STATUS = '1'
+		<include refid="Tran.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_TRAN
+		WHERE
+			TB_TRAN.STATUS = '1' 
+		<include refid="Tran.mapWhereClause"/>
+	</select>
+	<resultMap class="com.ay.tran.pojo.TranMonth" id="sumColumns">
+		<result property="workFaceByName" column="workFaceByName"/>
+		<result property="y" column="y"/>
+		<result property="e" column="e"/>
+		<result property="s" column="s"/>
+		<result property="s" column="s"/>
+		<result property="si" column="si"/>
+		<result property="w" column="w"/>
+		<result property="l" column="l"/>
+		<result property="q" column="q"/>
+		<result property="b" column="b"/>
+		<result property="j" column="j"/>
+		<result property="shi" column="shi"/>
+		<result property="sy" column="sy"/>
+		<result property="se" column="se"/>
+		<result property="statisticalTime" column="statisticalTime"/>
+	</resultMap>
+	
+	<!-- 矿车运行周期月统计 -->
+	<select id="getCol" resultMap ="sumColumns" parameterClass="java.lang.String">
+		SELECT  dbo.FN_codeToText(workFace) as workFaceByName,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '01' THEN TURNS ELSE 0 END) AS y,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '02' THEN TURNS ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '03' THEN TURNS ELSE 0 END )AS s,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '04' THEN TURNS ELSE 0 END) AS si, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '05' THEN TURNS ELSE 0 END )AS w,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '06' THEN TURNS ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '07' THEN TURNS ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '08' THEN TURNS ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '09' THEN TURNS ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '10' THEN TURNS ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '11' THEN TURNS ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '12' THEN TURNS ELSE 0 END) AS se,
+		   	SUBSTRING(STATISTICAL_TIME, 1, 4) AS statisticalTime		
+		FROM (SELECT STATISTICAL_TIME,max(cast(TURNS as float))AS turns,WORK_FACE AS workFace FROM TB_TRAN WHERE TB_TRAN.STATUS='1' GROUP BY STATISTICAL_TIME,WORK_FACE,TURNS) AS t 
+		WHERE STATISTICAL_TIME like '%'+#statisticalTime#+'%' GROUP BY workFace,SUBSTRING(STATISTICAL_TIME, 1, 4)  
+	</select>
+	
+	<!-- 矿车运行周期月统计 -->
+	<select id="getStaff" resultMap ="sumColumns" parameterClass="java.lang.String">
+		SELECT  dbo.FN_codeToText(workFace) as workFaceByName,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '01' THEN TURNS ELSE 0 END) AS y,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '02' THEN TURNS ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '03' THEN TURNS ELSE 0 END )AS s,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '04' THEN TURNS ELSE 0 END) AS si, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '05' THEN TURNS ELSE 0 END )AS w,
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '06' THEN TURNS ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '07' THEN TURNS ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '08' THEN TURNS ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '09' THEN TURNS ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '10' THEN TURNS ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '11' THEN TURNS ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(STATISTICAL_TIME, 6, 2) WHEN '12' THEN TURNS ELSE 0 END) AS se,
+		   	SUBSTRING(STATISTICAL_TIME, 1, 4) AS statisticalTime		
+		FROM (SELECT STATISTICAL_TIME,max(cast(TURNS as float))AS turns,WORK_FACE AS workFace FROM TB_TRAN WHERE TB_TRAN.STATUS='1' GROUP BY STATISTICAL_TIME,WORK_FACE,TURNS) AS t 
+		WHERE STATISTICAL_TIME like '%'+#statisticalTime#+'%' GROUP BY workFace,SUBSTRING(STATISTICAL_TIME, 1, 4)  
+	</select>
+</sqlMap>

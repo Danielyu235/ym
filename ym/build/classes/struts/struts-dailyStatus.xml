@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--人员日常状态模块-->
+  <package name="dailyStatus" extends="struts-default" namespace="/dailyStatus">
+    <action name="dailyStatusAction" class="com.ay.dailyStatus.action.DailyStatusAction"/>
+  </package>
+</struts>

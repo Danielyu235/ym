@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  <!--重大危险源  锅炉  -->  
+  <bean class="com.ay.hazards.boiler.dao.BoilerHazardsDao" id="boilerDao" parent="baseDao"/>  
+  <bean class="com.ay.hazards.boiler.service.BoilerHazardsService" id="boilerService"> 
+    <property name="dao" ref="boilerDao"/> 
+  </bean>  
+  <!--金属非金属地下矿山模块-->  
+  <bean id="minesHazardsDao" class="com.ay.hazards.mines.dao.MinesHazardsDao" parent="baseDao"/>  
+  <bean id="minesHazardsService" class="com.ay.hazards.mines.service.MinesHazardsService"> 
+    <property name="dao" ref="minesHazardsDao"/> 
+  </bean>  
+  <!--重大危险源  压力管道  -->  
+  <bean class="com.ay.hazards.penstock.dao.PenstockHazardsDao" id="tbHazhardsPenstockDao" parent="baseDao"/>  
+  <bean class="com.ay.hazards.penstock.service.PenstockHazardsService" id="tbHazhardsPenstockService"> 
+    <property name="dao" ref="tbHazhardsPenstockDao"/> 
+  </bean>  
+  <!--压力容器模块-->  
+  <bean id="pressureVesselHazardsDao" class="com.ay.hazards.pressurevessel.dao.PressureVesselHazardsDao" parent="baseDao"/>  
+  <bean id="pressureVesselHazardsService" class="com.ay.hazards.pressurevessel.service.PressureVesselHazardsService"> 
+    <property name="dao" ref="pressureVesselHazardsDao"/> 
+  </bean>  
+  <!--煤矿模块-->  
+  <bean id="collieryHazardsDao" class="com.ay.hazards.colliery.dao.CollieryHazardsDao" parent="baseDao"/>  
+  <bean id="collieryHazardsService" class="com.ay.hazards.colliery.service.CollieryHazardsService"> 
+    <property name="dao" ref="collieryHazardsDao"/> 
+  </bean>  
+  <!--定期检查情况模块-->  
+  <bean id="periodicalSurveyHazardsDao" class="com.ay.hazards.pressurevessel.dao.PeriodicalSurveyHazardsDao" parent="baseDao"/>  
+  <bean id="periodicalSurveyHazardsService" class="com.ay.hazards.pressurevessel.service.PeriodicalSurveyHazardsService"> 
+    <property name="dao" ref="periodicalSurveyHazardsDao"/> 
+  </bean>  
+  <!--库区模块-->  
+  <bean id="reservoirAreaHazardsDao" class="com.ay.hazards.reservoirarea.dao.ReservoirAreaHazardsDao" parent="baseDao"/>  
+  <bean id="reservoirAreaHazardsService" class="com.ay.hazards.reservoirarea.service.ReservoirAreaHazardsService"> 
+    <property name="dao" ref="reservoirAreaHazardsDao"/> 
+  </bean>  
+  <!--库房模块-->  
+  <bean id="reservoirHazardsDao" class="com.ay.hazards.reservoirarea.dao.ReservoirHazardsDao" parent="baseDao"/>  
+  <bean id="reservoirHazardsService" class="com.ay.hazards.reservoirarea.service.ReservoirHazardsService"> 
+    <property name="dao" ref="reservoirHazardsDao"/> 
+  </bean>  
+  <!--贮罐区模块-->  
+  <bean id="tankAraeHazardsDao" class="com.ay.hazards.tank.dao.TankAraeHazardsDao" parent="baseDao"/>  
+  <bean id="tankAraeHazardsService" class="com.ay.hazards.tank.service.TankAraeHazardsService"> 
+    <property name="dao" ref="tankAraeHazardsDao"/> 
+  </bean>  
+  <!--贮罐模块-->  
+  <bean id="tankHazardsDao" class="com.ay.hazards.tank.dao.TankHazardsDao" parent="baseDao"/>  
+  <bean id="tankHazardsService" class="com.ay.hazards.tank.service.TankHazardsService"> 
+    <property name="dao" ref="tankHazardsDao"/> 
+  </bean>  
+  <!--尾矿库模块-->  
+  <bean id="hazhardsTailingspondDao" class="com.ay.hazards.tailingspond.dao.TailingspondHazardsDao" parent="baseDao"/>  
+  <bean id="hazhardsTailingspondService" class="com.ay.hazards.tailingspond.service.TailingspondHazardsService"> 
+    <property name="dao" ref="hazhardsTailingspondDao"/> 
+  </bean>  
+  <!--危险物质模块-->  
+  <bean id="materialsDao" class="com.ay.hazards.hazardousmaterials.dao.MaterialsDao" parent="baseDao"/>  
+  <bean id="materialsService" class="com.ay.hazards.hazardousmaterials.service.MaterialsService"> 
+    <property name="dao" ref="materialsDao"/> 
+  </bean>  
+  <!--自定义危险物质模块-->  
+  <bean id="otherMaterialsDao" class="com.ay.hazards.hazardousmaterials.dao.OtherMaterialsDao" parent="baseDao"/>  
+  <bean id="otherMaterialsService" class="com.ay.hazards.hazardousmaterials.service.OtherMaterialsService"> 
+    <property name="dao" ref="otherMaterialsDao"/> 
+  </bean>  
+  <!--自定义危险物质下拉数据-->  
+  <bean id="chemicalsHazardousDao" class="com.ay.hazards.hazardousmaterials.dao.ChemicalsHazardousDao" parent="baseDao"/>  
+  <bean id="chemicalsHazardousService" class="com.ay.hazards.hazardousmaterials.service.ChemicalsHazardousService"> 
+    <property name="dao" ref="chemicalsHazardousDao"/> 
+  </bean>  
+  <!--生产场所模块-->  
+  <bean id="hazhardsWorkplaceDao" class="com.ay.hazards.workplace.dao.WorkplaceHazardsDao" parent="baseDao"/>  
+  <bean id="hazhardsWorkplaceService" class="com.ay.hazards.workplace.service.WorkplaceHazardsService"> 
+    <property name="dao" ref="hazhardsWorkplaceDao"/> 
+  </bean>  
+  <bean id="tbHazhardsMaterialsDao" class="com.ay.hazards.materials.dao.MaterialsHazardsDao" parent="baseDao"/>  
+  <bean id="tbHazhardsMaterialsService" class="com.ay.hazards.materials.service.MaterialsHazardsService"> 
+    <property name="dao" ref="tbHazhardsMaterialsDao"/> 
+  </bean>  
+  <!--危险源模块-->  
+  <bean id="hazardsDao" class="com.ay.hazards.all.dao.HazardsDao" parent="baseDao"/>  
+  <bean id="hazardsService" class="com.ay.hazards.all.service.HazardsService"> 
+    <property name="dao" ref="hazardsDao"/> 
+  </bean>  
+  <!--辨识结果模块-->  
+  <bean id="hazardsResultDao" class="com.ay.hazards.all.dao.HazardsResultDao" parent="baseDao"/>  
+  <bean id="hazardsResultService" class="com.ay.hazards.all.service.HazardsResultService"> 
+    <property name="dao" ref="hazardsResultDao"/> 
+  </bean>  
+  <!--危险源辨识日志模块-->  
+  <bean id="identificationLogDao" class="com.ay.hazards.identification.log.dao.IdentificationLogDao" parent="baseDao"/>  
+  <bean id="identificationLogService" class="com.ay.hazards.identification.log.service.IdentificationLogService"> 
+    <property name="dao" ref="identificationLogDao"/> 
+  </bean>  
+  <!-- 危险场所 -->  
+  <bean class="com.ay.hazards.dangerousplace.dao.DangerousplaceDao" id="dangerousplaceDao" parent="baseDao"/>  
+  <bean class="com.ay.hazards.dangerousplace.service.DangerousplaceService" id="dangerousplaceService"> 
+    <property name="dao" ref="dangerousplaceDao"/> 
+  </bean>  
+  <!-- 危化品 -->  
+  <bean class="com.ay.hazards.dangerousplacematerials.dao.DangerousPlaceMaterialsDao" id="dangerCargoDao" parent="baseDao"/>  
+  <bean class="com.ay.hazards.dangerousplacematerials.service.DangerousPlaceMaterialsService" id="dangerousPlaceMaterialsService"> 
+    <property name="dao" ref="dangerCargoDao"/> 
+  </bean>  
+  <!--公共部分模块-->  
+  <bean id="publicPartDao" class="com.ay.emergency.plan.publicPart.dao.PublicPartDao" parent="baseDao"/>  
+  <bean id="publicPartService" class="com.ay.emergency.plan.publicPart.service.PublicPartService"> 
+    <property name="dao" ref="publicPartDao"/> 
+  </bean>  
+  <!--尾矿库模块-->
+  <bean id="tailingspondHazardsDao" class="com.ay.hazards.tailingspond.dao.TailingspondHazardsDao" parent="baseDao"/>
+  <bean id="tailingspondHazardsService" class="com.ay.hazards.tailingspond.service.TailingspondHazardsService">
+    <property name="dao" ref="tailingspondHazardsDao"/>
+  </bean>
+</beans>

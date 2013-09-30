@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="HealthSafe">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_HEALTH_SAFE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_HEALTH_SAFE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_HEALTH_SAFE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_HEALTH_SAFE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_HEALTH_SAFE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_HEALTH_SAFE.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="employeeId"> TB_HEALTH_SAFE.EMPLOYEE_ID like '%'+#employeeId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="employeeName"> JOB_NUM like '%'+#employeeName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="source"> TB_HEALTH_SAFE.SOURCE = #source#</isNotEmpty>
+			<isNotEmpty prepend="and" property="date"> TB_HEALTH_SAFE.DATE like '%'+#date#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="number"> TB_HEALTH_SAFE.NUMBER like '%'+#number#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> TB_HEALTH_SAFE.REMARK like '%'+#remark#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<sql id="mapWhereClause2">
+	 	<isParameterPresent>
+	 		<isNotEmpty></isNotEmpty>
+	 	</isParameterPresent>
+	
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.safe.health.pojo.HealthSafe">
+  		INSERT INTO TB_HEALTH_SAFE(
+				
+				EMPLOYEE_ID,
+				SOURCE,
+				DATE,
+				NUMBER,
+				REMARK,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#employeeId#,
+				#source#,
+				#date#,
+				#number#,
+				#remark#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_HEALTH_SAFE SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.safe.health.pojo.HealthSafePojo" parameterClass="java.lang.String">
+ 		SELECT 
+			
+		JOB_NUM as jobNum,
+		NAME as name,
+		dbo.FN_codeToText(major) as major,
+		dbo.FN_codeToText(POST) as post, 
+		NUMBER as number,
+		REMARK as remark,
+		SOURCE as source,
+		DATE as date,
+		h.ID as id,
+		h.STATUS as status,
+		h.CREATE_TIME as createTime,
+		h.CREATED as created,
+		h.UPDATE_TIME as upadteTime,
+		h.UPDATED as updated,
+		h.EMPLOYEE_ID as employeeId
+	from TB_HEALTH_SAFE as h inner join TB_EMPLOYEE as e on e.ID = h.EMPLOYEE_ID
+  		where 
+ 	 		h.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.safe.health.pojo.HealthSafe">
+		UPDATE TB_HEALTH_SAFE 
+		<dynamic prepend="set">			
+			<isNotEmpty prepend="," property="employeeId"> EMPLOYEE_ID=#employeeId#</isNotEmpty>
+			<isNotEmpty prepend="," property="source"> SOURCE=#source#</isNotEmpty>
+			<isNotEmpty prepend="," property="date"> DATE=#date#</isNotEmpty>
+			<isNotEmpty prepend="," property="number"> NUMBER=#number#</isNotEmpty>
+			<isNotEmpty prepend="," property="remark"> REMARK=#remark#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.safe.health.pojo.HealthSafePojo" parameterClass="java.util.Map">
+	select 
+		JOB_NUM as jobNum,
+		NAME as name,
+		dbo.FN_codeToText(major) as major,  
+		dbo.FN_codeToText(POST) as post, 
+		NUMBER as number,
+		REMARK as remark,
+		SOURCE as source,
+		DATE as date,
+		TB_HEALTH_SAFE.ID as id,
+		TB_HEALTH_SAFE.STATUS as status,
+		TB_HEALTH_SAFE.CREATE_TIME as createTime,
+		TB_HEALTH_SAFE.CREATED as created,
+		TB_HEALTH_SAFE.UPDATE_TIME as upadteTime,
+		TB_HEALTH_SAFE.UPDATED as updated,
+		TB_HEALTH_SAFE.EMPLOYEE_ID as employeeId
+	from TB_HEALTH_SAFE inner join TB_EMPLOYEE as e on e.ID = TB_HEALTH_SAFE.EMPLOYEE_ID
+	where TB_HEALTH_SAFE.STATUS = '1'
+		<include refid="HealthSafe.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from TB_HEALTH_SAFE  inner join TB_EMPLOYEE as e on e.ID = TB_HEALTH_SAFE.EMPLOYEE_ID
+		WHERE
+			TB_HEALTH_SAFE.STATUS = '1' 
+		<include refid="HealthSafe.mapWhereClause"/>
+	</select>
+	
+	
+</sqlMap>

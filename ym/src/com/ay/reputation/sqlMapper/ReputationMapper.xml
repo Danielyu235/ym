@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Reputation">
+
+<typeAlias alias="reputation" type="com.ay.reputation.pojo.Reputation"/>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="jobnum"> e.job_num=#jobnum#</isNotEmpty>
+			<isNotEmpty prepend="and" property="date"> t.xy_date=#date#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ename"> e.NAME LIKE '%'+#ename# +'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="departmentf"> e.departmentf =#departmentf#</isNotEmpty>
+			<isNotEmpty prepend="and" property="departments"> e.departments =#departments#</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> e.post=#post#</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> e.major=#major#</isNotEmpty>
+			<isNotEmpty prepend="and" property="idNumber"> e.idNumber=#idNumber#</isNotEmpty>
+			<isNotEmpty prepend="and" property="eid"> e.id=#eid#</isNotEmpty>
+		</isParameterPresent>
+	</sql>	
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.reputation.pojo.Reputation" parameterClass="java.util.Map" remapResults="true">	
+		SELECT		
+			e.job_num as jobnum,
+			t.employee_id as employeeId,
+			xy_date as date,
+			cast(sum(t.mxxycj)as varchar(20)) as achievement,
+			e.NAME as ename,
+			dbo.FN_codeToText(e.POST) as post,
+       		dbo.FN_codeToText(e.MAJOR) as major,
+       		dbo.FN_codeToText(e.DEPARTMENTF) as departmentf,
+       		dbo.FN_codeToText(e.DEPARTMENTS) as departments			
+				from tb_ygxypj t INNER JOIN TB_EMPLOYEES as e on e.ID = t.EMPLOYEE_ID
+			WHERE 
+				1 =1 
+			<include refid="mapWhereClause"/>	
+			group by e.job_num,t.employee_id,t.xy_date,e.NAME,e.POST,e.MAJOR,e.DEPARTMENTF,e.DEPARTMENTS
+			order by date desc
+	</select>
+	
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map" remapResults="true">
+ 		select COUNT(1) from 
+			(SELECT		
+			employee_id as employeeId,
+			xy_date as date,
+			sum(mxxycj) as achievement,
+			NAME as ename,
+			dbo.FN_codeToText(POST) as post				
+				from tb_ygxypj as y INNER JOIN TB_EMPLOYEES as e on e.ID = y.EMPLOYEE_ID		
+				WHERE 
+				1 = 1
+	
+				group by employee_id,xy_date,NAME,POST) as t
+	</select>
+	
+	<select id="list" resultClass="reputation" parameterClass="java.util.Map">	
+		select 
+			employee_id as employeeId,
+			mxxycj as achievement,
+			xy_date as date,
+			bmpd as bmpd
+		from tb_ygxypj
+		where employee_id = #employeeId# and xy_date = #date#
+		order by bmpd
+	</select>
+	
+	<select id="history" resultClass="com.ay.reputation.pojo.HistoryScope" parameterClass="java.util.Map">
+		select SUM(mxxycj) as scope,xy_date as month from tb_ygxypj where employee_id = #employeeId# group by xy_date;
+	</select>
+</sqlMap>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Coal">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_COAL.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_COAL.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_COAL.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_COAL.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_COAL.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_COAL.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="corpKey"> TB_COAL.CORP_KEY like '%'+#corpKey#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_COAL.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_COAL.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_COAL.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="station"> TB_COAL.STATION like '%'+#station#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="craft"> TB_COAL.CRAFT like '%'+#craft#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.coal.pojo.Coal">
+  		INSERT INTO TB_COAL(
+				
+				CORP_KEY,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				STATION,
+				CRAFT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpKey#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#station#,
+				#craft#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_COAL SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.coal.pojo.Coal" parameterClass="java.lang.String">
+ 		<!--SELECT 
+			
+			TB_COAL.CORP_KEY AS corpKey,
+			TB_COAL.DANGEROUS AS dangerous,
+			TB_COAL.LOSS AS loss,
+			TB_COAL.STEP AS step,
+			TB_COAL.STATION AS station,
+			TB_COAL.CRAFT AS craft,
+			
+			TB_COAL.ID AS id,
+			TB_COAL.STATUS AS status,
+			TB_COAL.CREATED AS created,
+			TB_COAL.CREATE_TIME AS createTime,
+			TB_COAL.UPDATED AS updated,
+			TB_COAL.UPDATE_TIME as updateTime
+		from
+		TB_COAL
+  		where 
+ 	 		TB_COAL.ID=#id#
+ 	 	-->
+ 	 	SELECT 
+			VIEW_COAL.CORP_KEY AS corpKey,
+			VIEW_COAL.DANGEROUS AS dangerous,
+			VIEW_COAL.LOSS AS loss,
+			VIEW_COAL.STEP AS step,
+			VIEW_COAL.STATION AS station,
+			VIEW_COAL.CRAFT AS craft,
+			dbo.FN_codeToText(VIEW_COAL.CRAFT) as craftTypeName,
+			VIEW_COAL.ID AS id,
+			VIEW_COAL.STATUS AS status,
+			VIEW_COAL.CREATED AS created,
+			VIEW_COAL.CREATE_TIME AS createTime,
+			VIEW_COAL.UPDATED AS updated,
+			VIEW_COAL.UPDATE_TIME as updateTime,
+			
+			VIEW_COAL.CZYL AS czyl,
+			VIEW_COAL.KSYD AS ksyd,
+			VIEW_COAL.SGAL AS sgal,
+			VIEW_COAL.SSZY AS sszy,
+			VIEW_COAL.SSGZ AS ssgz,
+			dbo.FN_codeToText(VIEW_COAL.sszy) as sszyByType,
+			dbo.FN_codeToText(VIEW_COAL.ssgz) as ssgzByType
+		FROM
+		VIEW_COAL 
+  		where 
+ 	 		VIEW_COAL.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.coal.pojo.Coal">
+		UPDATE TB_COAL 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="corpKey"> CORP_KEY=#corpKey#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="station"> STATION=#station#</isNotEmpty>
+			<isNotEmpty prepend="," property="craft"> CRAFT=#craft#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.coal.pojo.Coal" parameterClass="java.util.Map">
+ 		SELECT		
+			TB_COAL.CORP_KEY AS corpKey,
+			TB_COAL.DANGEROUS AS dangerous,
+			TB_COAL.LOSS AS loss,
+			TB_COAL.STEP AS step,
+			TB_COAL.STATION AS station,
+			TB_COAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_COAL.CRAFT) as craftTypeName,
+			TB_COAL.ID AS id,
+			TB_COAL.STATUS AS status,
+			TB_COAL.CREATED AS created,
+			TB_COAL.CREATE_TIME AS createTime,
+			TB_COAL.UPDATED AS updated,
+			TB_COAL.UPDATE_TIME AS updateTime
+		FROM
+			TB_COAL
+		WHERE
+			TB_COAL.STATUS = '1'
+		<include refid="Coal.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_COAL
+		WHERE
+			TB_COAL.STATUS = '1' 
+		<include refid="Coal.mapWhereClause"/>
+	</select>
+		<!-- add method find-->
+	<select id="flist" resultClass="com.ay.coal.pojo.Coal" parameterClass="java.util.Map">
+ 		SELECT		
+			TB_COAL.CORP_KEY AS corpKey,
+			TB_COAL.DANGEROUS AS dangerous,
+			TB_COAL.LOSS AS loss,
+			TB_COAL.STEP AS step,
+			TB_COAL.STATION AS station,
+			TB_COAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_COAL.CRAFT) as craftTypeName,
+			TB_COAL.ID AS id,
+			TB_COAL.STATUS AS status,
+			TB_COAL.CREATED AS created,
+			TB_COAL.CREATE_TIME AS createTime,
+			TB_COAL.UPDATED AS updated,
+			TB_COAL.UPDATE_TIME AS updateTime
+		FROM
+			TB_COAL
+		WHERE
+			TB_COAL.STATUS = '1'
+		<include refid="Coal.mapWhereClause"/>
+	</select>
+</sqlMap>

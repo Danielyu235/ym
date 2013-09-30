@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.objectFactory" value="spring"/>
+	<!-- 综合应急预案 -->
+	<package extends="struts-default" name="energencyPlan" namespace="/energencyPlan">
+	<action class="com.ay.emergency.plan.comprehensive.action.ComprehensivePlanAction" name="energencyPlanAction"/>
+	</package>
+	<!-- 专项应急预案 -->
+	<package extends="struts-default" name="specialPlan" namespace="/specialPlan">
+		<action name="specialPlanAction" class="com.ay.emergency.plan.special.action.SpecialPlanAction">
+		</action>
+	</package>
+	<!-- 综合预案与专家关联 -->
+	<package extends="struts-default" name="planExp" namespace="/planExp">
+	<action class="com.ay.emergency.plan.comprehensive.action.PlanExpertAction" name="planExpAction"/>
+	</package>
+	<!-- 预案与救援资源关联 -->
+	<package extends="struts-default" name="planResource" namespace="/planResource">
+	<action class="com.ay.emergency.plan.comprehensive.action.PlanResourceAction" name="planResourceAction"/>
+	</package>
+	<!-- 事故与救援资源关联 -->
+	<package extends="struts-default" name="logplanResource" namespace="/logplanResource">
+	<action class="com.ay.emergency.plan.comprehensive.action.LogPlanResourceAction" name="logplanResourceAction"/>
+	</package>
+	<!-- 现场处置方案 -->
+	<package extends="struts-default" name="tbPlanDisposal" namespace="/tbPlanDisposal">
+	<action class="com.ay.emergency.plan.onsite.action.OnsitePlanAction" name="tbPlanDisposalAction"/>
+	</package>
+</struts>

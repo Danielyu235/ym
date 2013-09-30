@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="LogRescue">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_LOG_RESCUE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_LOG_RESCUE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_LOG_RESCUE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_LOG_RESCUE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_LOG_RESCUE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_LOG_RESCUE.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="pid"> TB_LOG_RESCUE.P_ID like '%'+#pid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="aid"> TB_LOG_RESCUE.A_ID like '%'+#aid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="cid"> TB_LOG_RESCUE.C_ID like '%'+#cid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="level"> TB_LOG_RESCUE.LEVEL like '%'+#level#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ptype"> TB_LOG_RESCUE.P_TYPE like '%'+#ptype#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.rescue.logRescue.pojo.LogRescue">
+  		INSERT INTO TB_LOG_RESCUE(
+				
+				P_ID,
+				A_ID,
+				C_ID,
+				LEVEL,
+				P_TYPE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#pid#,
+				#aid#,
+				#cid#,
+				#level#,
+				#ptype#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_LOG_RESCUE SET STATUS='0'
+  		WHERE
+ 	 	TB_LOG_RESCUE.A_ID = #id#
+ 	 	</delete>
+ 	 	
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.rescue.logRescue.pojo.LogRescue" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_LOG_RESCUE.P_ID AS pid,
+			TB_LOG_RESCUE.A_ID AS aid,
+			TB_LOG_RESCUE.C_ID AS cid,
+			TB_LOG_RESCUE.LEVEL AS level,
+			dbo.FN_codeToText(TB_LOG_RESCUE.LEVEL) as levelText,
+			TB_LOG_RESCUE.P_TYPE AS ptype,
+			dbo.FN_codeToText(TB_LOG_RESCUE.LEVEL) as levelText,
+			TB_LOG_RESCUE.ID AS id,
+			TB_LOG_RESCUE.STATUS AS status,
+			TB_LOG_RESCUE.CREATED AS created,
+		    CONVERT(varchar(100), TB_LOG_RESCUE.CREATE_TIME, 120) AS time,
+			TB_LOG_RESCUE.UPDATED AS updated,
+			TB_LOG_RESCUE.UPDATE_TIME as updateTime
+		from
+		TB_LOG_RESCUE
+  		where 
+ 	 		TB_LOG_RESCUE.A_ID=#id# and TB_LOG_RESCUE.STATUS = '1'
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.rescue.logRescue.pojo.LogRescue">
+		UPDATE TB_LOG_RESCUE 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="pid"> P_ID=#pid#</isNotEmpty>
+			<isNotEmpty prepend="," property="aid"> A_ID=#aid#</isNotEmpty>
+			<isNotEmpty prepend="," property="cid"> C_ID=#cid#</isNotEmpty>
+			<isNotEmpty prepend="," property="level"> LEVEL=#level#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.rescue.logRescue.pojo.LogRescue" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_LOG_RESCUE.P_ID AS pid,
+			TB_LOG_RESCUE.A_ID AS aid,
+			TB_LOG_RESCUE.C_ID AS cid,
+			TB_LOG_RESCUE.LEVEL AS level,
+			dbo.FN_codeToText(TB_LOG_RESCUE.LEVEL) as levelText,
+			TB_LOG_RESCUE.ID AS id,
+			TB_LOG_RESCUE.STATUS AS status,
+			TB_LOG_RESCUE.CREATED AS created,
+			CONVERT(CHAR(19), TB_LOG_RESCUE.CREATE_TIME, 120) AS createTime,
+			TB_LOG_RESCUE.UPDATED AS updated,
+			TB_LOG_RESCUE.UPDATE_TIME AS updateTime
+		FROM
+			TB_LOG_RESCUE
+		WHERE
+			TB_LOG_RESCUE.STATUS = '1'
+		<include refid="LogRescue.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_LOG_RESCUE
+		WHERE
+			TB_LOG_RESCUE.STATUS = '1' 
+		<include refid="LogRescue.mapWhereClause"/>
+	</select>
+</sqlMap>

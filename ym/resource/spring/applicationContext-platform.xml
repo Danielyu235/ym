@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+
+ 
+  <!--员工信息模块-->  
+  <bean id="employeeInformationDao" class="com.ay.health.employee.dao.EmployeeInformationDao" parent="baseDao"/>  
+  <bean id="employeeInformationService" class="com.ay.health.employee.service.EmployeeInformationService"> 
+    <property name="dao" ref="employeeInformationDao"/> 
+  </bean>  
+  <!--体检信息模块-->  
+  <bean id="checkUpDao" class="com.ay.health.checkup.dao.CheckUpDao" parent="baseDao"/>  
+  <bean id="checkUpService" class="com.ay.health.checkup.service.CheckUpService"> 
+    <property name="dao" ref="checkUpDao"/> 
+  </bean>  
+  <!--体检结果配置模块-->
+  <bean id="deployDao" class="com.ay.health.deploy.dao.DeployDao" parent="baseDao"/>
+  <bean id="deployService" class="com.ay.health.deploy.service.DeployService">
+    <property name="dao" ref="deployDao"/>
+  </bean>
+</beans>

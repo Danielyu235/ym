@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="AttendReward">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ATTEND_REWARD.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ATTEND_REWARD.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ATTEND_REWARD.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ATTEND_REWARD.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ATTEND_REWARD.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ATTEND_REWARD.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="employeeId"> TB_ATTEND_REWARD.EMPLOYEE_ID like '%'+#employeeId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="employeeName"> JOB_NUM like '%'+#employeeName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jlTime"> TB_ATTEND_REWARD.JL_TIME like '%'+#jlTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="attend"> TB_ATTEND_REWARD.ATTEND like '%'+#attend#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="reward"> TB_ATTEND_REWARD.REWARD like '%'+#reward#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rewardReason"> TB_ATTEND_REWARD.REWARD_REASON like '%'+#rewardReason#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> TB_EMPLOYEES.POST like '%'+#post#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> TB_EMPLOYEES.MAJOR like '%'+#major#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_EMPLOYEES.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="done"> TB_EMPLOYEES.departmentf LIKE '%'+#done# +'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dtwo"> TB_EMPLOYEES.departments LIKE '%'+#dtwo# +'%'</isNotEmpty>
+			
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.attend.pojo.AttendReward">
+  		INSERT INTO TB_ATTEND_REWARD(
+				
+				EMPLOYEE_ID,
+				JL_TIME,
+				ATTEND,
+				REWARD,
+				REWARD_REASON,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#employeeId#,
+				#jlTime#,
+				#attend#,
+				#reward#,
+				#rewardReason#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ATTEND_REWARD SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.attend.pojo.AttendReward" parameterClass="java.lang.String">
+ 		SELECT 
+ 		    JOB_NUM as jobNum,
+			NAME as name,
+			dbo.FN_codeToText(major) as major,
+			dbo.FN_codeToText(POST) as post, 
+			dbo.FN_codeToText(DEPARTMENTF) as done, 
+			dbo.FN_codeToText(DEPARTMENTS) as dtwo,
+			
+			TB_ATTEND_REWARD.EMPLOYEE_ID AS employeeId,
+			TB_ATTEND_REWARD.JL_TIME AS jlTime,
+			TB_ATTEND_REWARD.ATTEND AS attend,
+			TB_ATTEND_REWARD.REWARD AS reward,
+			TB_ATTEND_REWARD.REWARD_REASON AS rewardReason,
+			
+			TB_ATTEND_REWARD.ID AS id,
+			TB_ATTEND_REWARD.STATUS AS status,
+			TB_ATTEND_REWARD.CREATED AS created,
+			TB_ATTEND_REWARD.CREATE_TIME AS createTime,
+			TB_ATTEND_REWARD.UPDATED AS updated,
+			TB_ATTEND_REWARD.UPDATE_TIME as updateTime
+		from
+		TB_ATTEND_REWARD inner join TB_EMPLOYEES  on TB_EMPLOYEES.ID = TB_ATTEND_REWARD.EMPLOYEE_ID
+  		where 
+ 	 		TB_ATTEND_REWARD.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.attend.pojo.AttendReward">
+		UPDATE TB_ATTEND_REWARD 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="employeeId"> EMPLOYEE_ID=#employeeId#</isNotEmpty>
+			<isNotEmpty prepend="," property="jlTime"> JL_TIME=#jlTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="attend"> ATTEND=#attend#</isNotEmpty>
+			<isNotEmpty prepend="," property="reward"> REWARD=#reward#</isNotEmpty>
+			<isNotEmpty prepend="," property="rewardReason"> REWARD_REASON=#rewardReason#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.attend.pojo.AttendReward" parameterClass="java.util.Map">
+ 		SELECT
+			
+		    JOB_NUM as jobNum,
+			NAME as name,
+			dbo.FN_codeToText(major) as major,
+			dbo.FN_codeToText(POST) as post, 
+			dbo.FN_codeToText(DEPARTMENTF) as done, 
+			dbo.FN_codeToText(DEPARTMENTS) as dtwo,
+			
+			TB_ATTEND_REWARD.EMPLOYEE_ID AS employeeId,
+			TB_ATTEND_REWARD.JL_TIME AS jlTime,
+			TB_ATTEND_REWARD.ATTEND AS attend,
+			TB_ATTEND_REWARD.REWARD AS reward,
+			TB_ATTEND_REWARD.REWARD_REASON AS rewardReason,
+			
+			TB_ATTEND_REWARD.ID AS id,
+			TB_ATTEND_REWARD.STATUS AS status,
+			TB_ATTEND_REWARD.CREATED AS created,
+			TB_ATTEND_REWARD.CREATE_TIME AS createTime,
+			TB_ATTEND_REWARD.UPDATED AS updated,
+			TB_ATTEND_REWARD.UPDATE_TIME AS updateTime
+		FROM
+			TB_ATTEND_REWARD inner join TB_EMPLOYEES on TB_EMPLOYEES.ID = TB_ATTEND_REWARD.EMPLOYEE_ID
+		WHERE
+			TB_ATTEND_REWARD.STATUS = '1'
+		<include refid="AttendReward.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		 SELECT COUNT(*)    FROM    tb_attend_reward inner join TB_EMPLOYEES  
+ 		 on TB_EMPLOYEES.id = tb_attend_reward.employee_id   where    tb_attend_reward.status = '1' 
+		<include refid="AttendReward.mapWhereClause"/>
+	</select>
+</sqlMap>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--题库维护 题目类型模块-->
+  <package name="questionManageCredit" extends="struts-default" namespace="/questionManageCredit">
+    <action name="questionManageCreditAction" class="com.ay.credit.examine.questionManage.action.QuestionManageCreditAction"/>
+  </package>
+  <!--题目信息模块-->
+  <package name="questionCredit" extends="struts-default" namespace="/questionCredit">
+    <action name="questionCreditAction" class="com.ay.credit.examine.questionManage.action.QuestionCreditAction"/>
+  </package>
+  <!--试卷管理模块-->
+  <package name="testPaperManage" extends="struts-default" namespace="/testPaperManage">
+    <action name="testPaperManageAction" class="com.ay.credit.examine.testPaperManage.action.TestPaperManageAction"/>
+  </package>
+  <!--查看成绩模块-->
+  <package name="selectPaper" extends="struts-default" namespace="/selectPaper">
+    <action name="selectPaperAction" class="com.ay.credit.examine.testPaperManage.action.selectPaperAction"/>
+  </package>
+</struts>

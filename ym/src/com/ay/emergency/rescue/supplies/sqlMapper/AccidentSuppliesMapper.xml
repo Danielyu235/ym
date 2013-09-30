@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="AccidentSupplies">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ACCIDENT_SUPPLIES.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ACCIDENT_SUPPLIES.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ACCIDENT_SUPPLIES.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ACCIDENT_SUPPLIES.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ACCIDENT_SUPPLIES.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ACCIDENT_SUPPLIES.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="acId"> TB_ACCIDENT_SUPPLIES.AC_ID like '%'+#acId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialName"> TB_ACCIDENT_SUPPLIES.MATERIAL_NAME like '%'+#materialName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="model"> TB_ACCIDENT_SUPPLIES.MODEL like '%'+#model#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="unit"> TB_ACCIDENT_SUPPLIES.UNIT like '%'+#unit#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="num"> TB_ACCIDENT_SUPPLIES.NUM like '%'+#num#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="warehouse"> TB_ACCIDENT_SUPPLIES.WAREHOUSE like '%'+#warehouse#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> TB_ACCIDENT_SUPPLIES.REMARK like '%'+#remark#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.rescue.supplies.pojo.AccidentSupplies">
+  		INSERT INTO TB_ACCIDENT_SUPPLIES(
+				
+				AC_ID,
+				MATERIAL_NAME,
+				MODEL,
+				UNIT,
+				NUM,
+				WAREHOUSE,
+				REMARK,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#acId#,
+				#materialName#,
+				#model#,
+				#unit#,
+				#num#,
+				#warehouse#,
+				#remark#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ACCIDENT_SUPPLIES SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.rescue.supplies.pojo.AccidentSupplies" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_ACCIDENT_SUPPLIES.AC_ID AS acId,
+			TB_ACCIDENT_SUPPLIES.MATERIAL_NAME AS materialName,
+			TB_ACCIDENT_SUPPLIES.MODEL AS model,
+			TB_ACCIDENT_SUPPLIES.UNIT AS unit,
+			TB_ACCIDENT_SUPPLIES.NUM AS num,
+			TB_ACCIDENT_SUPPLIES.WAREHOUSE AS warehouse,
+			TB_ACCIDENT_SUPPLIES.REMARK AS remark,
+			
+			TB_ACCIDENT_SUPPLIES.ID AS id,
+			TB_ACCIDENT_SUPPLIES.STATUS AS status,
+			TB_ACCIDENT_SUPPLIES.CREATED AS created,
+			TB_ACCIDENT_SUPPLIES.CREATE_TIME AS createTime,
+			TB_ACCIDENT_SUPPLIES.UPDATED AS updated,
+			TB_ACCIDENT_SUPPLIES.UPDATE_TIME as updateTime
+		from
+		TB_ACCIDENT_SUPPLIES
+  		where 
+ 	 		TB_ACCIDENT_SUPPLIES.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.rescue.supplies.pojo.AccidentSupplies">
+		UPDATE TB_ACCIDENT_SUPPLIES 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="acId"> AC_ID=#acId#</isNotEmpty>
+			<isNotEmpty prepend="," property="materialName"> MATERIAL_NAME=#materialName#</isNotEmpty>
+			<isNotEmpty prepend="," property="model"> MODEL=#model#</isNotEmpty>
+			<isNotEmpty prepend="," property="unit"> UNIT=#unit#</isNotEmpty>
+			<isNotEmpty prepend="," property="num"> NUM=#num#</isNotEmpty>
+			<isNotEmpty prepend="," property="warehouse"> WAREHOUSE=#warehouse#</isNotEmpty>
+			<isNotEmpty prepend="," property="remark"> REMARK=#remark#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.rescue.supplies.pojo.AccidentSupplies" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_ACCIDENT_SUPPLIES.AC_ID AS acId,
+			TB_ACCIDENT_SUPPLIES.MATERIAL_NAME AS materialName,
+			TB_ACCIDENT_SUPPLIES.MODEL AS model,
+			TB_ACCIDENT_SUPPLIES.UNIT AS unit,
+			TB_ACCIDENT_SUPPLIES.NUM AS num,
+			TB_ACCIDENT_SUPPLIES.WAREHOUSE AS warehouse,
+			TB_ACCIDENT_SUPPLIES.REMARK AS remark,
+			
+			TB_ACCIDENT_SUPPLIES.ID AS id,
+			TB_ACCIDENT_SUPPLIES.STATUS AS status,
+			TB_ACCIDENT_SUPPLIES.CREATED AS created,
+			TB_ACCIDENT_SUPPLIES.CREATE_TIME AS createTime,
+			TB_ACCIDENT_SUPPLIES.UPDATED AS updated,
+			TB_ACCIDENT_SUPPLIES.UPDATE_TIME AS updateTime
+		FROM
+			TB_ACCIDENT_SUPPLIES
+		WHERE
+			TB_ACCIDENT_SUPPLIES.STATUS = '1'
+		<include refid="AccidentSupplies.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ACCIDENT_SUPPLIES
+		WHERE
+			TB_ACCIDENT_SUPPLIES.STATUS = '1' 
+		<include refid="AccidentSupplies.mapWhereClause"/>
+	</select>
+</sqlMap>

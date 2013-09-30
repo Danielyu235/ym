@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 企业信息sqlMapper -->
+<sqlMap namespace="Enterprise">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ENTERPRISE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ENTERPRISE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ENTERPRISE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ENTERPRISE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ENTERPRISE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ENTERPRISE.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="corpNumber"> TB_ENTERPRISE.CORP_NUMBER like '%'+#corpNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpCode"> TB_ENTERPRISE.CORP_CODE like '%'+#corpCode#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="headCorpNumber"> TB_ENTERPRISE.HEAD_CORP_NUMBER like '%'+#headCorpNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_ENTERPRISE.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fax"> TB_ENTERPRISE.FAX like '%'+#fax#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="postCode"> TB_ENTERPRISE.POST_CODE like '%'+#postCode#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="legalPerson"> TB_ENTERPRISE.LEGAL_PERSON like '%'+#legalPerson#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lpersonMail"> TB_ENTERPRISE.LPERSON_MAIL like '%'+#lpersonMail#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lpersonPhone"> TB_ENTERPRISE.LPERSON_PHONE like '%'+#lpersonPhone#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lpersonMobile"> TB_ENTERPRISE.LPERSON_MOBILE like '%'+#lpersonMobile#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lpersonJob"> TB_ENTERPRISE.LPERSON_JOB like '%'+#lpersonJob#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lpersonTitle"> TB_ENTERPRISE.LPERSON_TITLE like '%'+#lpersonTitle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lpersonCardid"> TB_ENTERPRISE.LPERSON_CARDID like '%'+#lpersonCardid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpManagerJob"> TB_ENTERPRISE.CORP_MANAGER_JOB like '%'+#corpManagerJob#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpManagerPosition"> TB_ENTERPRISE.CORP_MANAGER_POSITION like '%'+#corpManagerPosition#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpSafeLeader"> TB_ENTERPRISE.CORP_SAFE_LEADER like '%'+#corpSafeLeader#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ordination"> TB_ENTERPRISE.ORDINATION like '%'+#ordination#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="area"> TB_ENTERPRISE.AREA like '%'+#area#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpScale"> TB_ENTERPRISE.CORP_SCALE like '%'+#corpScale#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ecoType"> TB_ENTERPRISE.ECO_TYPE like '%'+#ecoType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="registerMoney"> TB_ENTERPRISE.REGISTER_MONEY like '%'+#registerMoney#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="totalMoney"> TB_ENTERPRISE.TOTAL_MONEY like '%'+#totalMoney#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="registerDate"> TB_ENTERPRISE.REGISTER_DATE like '%'+#registerDate#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="mainGrade"> TB_ENTERPRISE.MAIN_GRADE like '%'+#mainGrade#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="managerType"> TB_ENTERPRISE.MANAGER_TYPE like '%'+#managerType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="subManagerType"> TB_ENTERPRISE.SUB_MANAGER_TYPE like '%'+#subManagerType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="isGreatHazard"> TB_ENTERPRISE.IS_GREAT_HAZARD like '%'+#isGreatHazard#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="managerDept"> TB_ENTERPRISE.MANAGER_DEPT like '%'+#managerDept#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="townBuildArea"> TB_ENTERPRISE.TOWN_BUILD_AREA like '%'+#townBuildArea#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yearIncome"> TB_ENTERPRISE.YEAR_INCOME like '%'+#yearIncome#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yearMainIncome"> TB_ENTERPRISE.YEAR_MAIN_INCOME like '%'+#yearMainIncome#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpProductAddr"> TB_ENTERPRISE.CORP_PRODUCT_ADDR like '%'+#corpProductAddr#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpRegisterAddr"> TB_ENTERPRISE.CORP_REGISTER_ADDR like '%'+#corpRegisterAddr#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="addrCode"> TB_ENTERPRISE.ADDR_CODE like '%'+#addrCode#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="industryType"> TB_ENTERPRISE.INDUSTRY_TYPE like '%'+#industryType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="subIndustryType"> TB_ENTERPRISE.SUB_INDUSTRY_TYPE like '%'+#subIndustryType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="icProductRange"> TB_ENTERPRISE.IC_PRODUCT_RANGE like '%'+#icProductRange#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- 添加 -->
+	<insert id="insert" parameterClass="com.ay.enterprise.pojo.Enterprise">
+  		INSERT INTO TB_ENTERPRISE(
+				
+				CORP_NUMBER,
+				CORP_CODE,
+				HEAD_CORP_NUMBER,
+				CORP_NAME,
+				FAX,
+				POST_CODE,
+				LEGAL_PERSON,
+				LPERSON_MAIL,
+				LPERSON_PHONE,
+				LPERSON_MOBILE,
+				LPERSON_JOB,
+				LPERSON_TITLE,
+				LPERSON_CARDID,
+				CORP_MANAGER_JOB,
+				CORP_MANAGER_POSITION,
+				CORP_SAFE_LEADER,
+				ORDINATION,
+				AREA,
+				CORP_SCALE,
+				ECO_TYPE,
+				REGISTER_MONEY,
+				TOTAL_MONEY,
+				REGISTER_DATE,
+				MAIN_GRADE,
+				MANAGER_TYPE,
+				SUB_MANAGER_TYPE,
+				IS_GREAT_HAZARD,
+				MANAGER_DEPT,
+				TOWN_BUILD_AREA,
+				YEAR_INCOME,
+				YEAR_MAIN_INCOME,
+				CORP_PRODUCT_ADDR,
+				CORP_REGISTER_ADDR,
+				ADDR_CODE,
+				INDUSTRY_TYPE,
+				SUB_INDUSTRY_TYPE,
+				IC_PRODUCT_RANGE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpNumber#,
+				#corpCode#,
+				#headCorpNumber#,
+				#corpName#,
+				#fax#,
+				#postCode#,
+				#legalPerson#,
+				#lpersonMail#,
+				#lpersonPhone#,
+				#lpersonMobile#,
+				#lpersonJob#,
+				#lpersonTitle#,
+				#lpersonCardid#,
+				#corpManagerJob#,
+				#corpManagerPosition#,
+				#corpSafeLeader#,
+				#ordination#,
+				#area#,
+				#corpScale#,
+				#ecoType#,
+				#registerMoney#,
+				#totalMoney#,
+				#registerDate#,
+				#mainGrade#,
+				#managerType#,
+				#subManagerType#,
+				#isGreatHazard#,
+				#managerDept#,
+				#townBuildArea#,
+				#yearIncome#,
+				#yearMainIncome#,
+				#corpProductAddr#,
+				#corpRegisterAddr#,
+				#addrCode#,
+				#industryType#,
+				#subIndustryType#,
+				#icProductRange#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- 删除单条数据 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ENTERPRISE SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- 通过ID获取信息-->
+	<select id="getById" resultClass="com.ay.enterprise.pojo.Enterprise" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_ENTERPRISE.CORP_NUMBER AS corpNumber,
+			TB_ENTERPRISE.CORP_CODE AS corpCode,
+			TB_ENTERPRISE.HEAD_CORP_NUMBER AS headCorpNumber,
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_ENTERPRISE.FAX AS fax,
+			TB_ENTERPRISE.POST_CODE AS postCode,
+			TB_ENTERPRISE.LEGAL_PERSON AS legalPerson,
+			TB_ENTERPRISE.LPERSON_MAIL AS lpersonMail,
+			TB_ENTERPRISE.LPERSON_PHONE AS lpersonPhone,
+			TB_ENTERPRISE.LPERSON_MOBILE AS lpersonMobile,
+			TB_ENTERPRISE.LPERSON_JOB AS lpersonJob,
+			TB_ENTERPRISE.LPERSON_TITLE AS lpersonTitle,
+			TB_ENTERPRISE.LPERSON_CARDID AS lpersonCardid,
+			TB_ENTERPRISE.CORP_MANAGER_JOB AS corpManagerJob,
+			TB_ENTERPRISE.CORP_MANAGER_POSITION AS corpManagerPosition,
+			TB_ENTERPRISE.CORP_SAFE_LEADER AS corpSafeLeader,
+			TB_ENTERPRISE.ORDINATION AS ordination,
+			TB_ENTERPRISE.AREA AS area,
+			TB_ENTERPRISE.CORP_SCALE AS corpScale,
+			TB_ENTERPRISE.ECO_TYPE AS ecoType,
+			TB_ENTERPRISE.REGISTER_MONEY AS registerMoney,
+			TB_ENTERPRISE.TOTAL_MONEY AS totalMoney,
+			TB_ENTERPRISE.REGISTER_DATE AS registerDate,
+			TB_ENTERPRISE.MAIN_GRADE AS mainGrade,
+			TB_ENTERPRISE.MANAGER_TYPE AS managerType,
+			TB_ENTERPRISE.SUB_MANAGER_TYPE AS subManagerType,
+			TB_ENTERPRISE.IS_GREAT_HAZARD AS isGreatHazard,
+			TB_ENTERPRISE.MANAGER_DEPT AS managerDept,
+			TB_ENTERPRISE.TOWN_BUILD_AREA AS townBuildArea,
+			TB_ENTERPRISE.YEAR_INCOME AS yearIncome,
+			TB_ENTERPRISE.YEAR_MAIN_INCOME AS yearMainIncome,
+			TB_ENTERPRISE.CORP_PRODUCT_ADDR AS corpProductAddr,
+			TB_ENTERPRISE.CORP_REGISTER_ADDR AS corpRegisterAddr,
+			TB_ENTERPRISE.ADDR_CODE AS addrCode,
+			TB_ENTERPRISE.INDUSTRY_TYPE AS industryType,
+			TB_ENTERPRISE.SUB_INDUSTRY_TYPE AS subIndustryType,
+			TB_ENTERPRISE.IC_PRODUCT_RANGE AS icProductRange,
+			
+			TB_ENTERPRISE.ID AS id,
+			TB_ENTERPRISE.STATUS AS status,
+			TB_ENTERPRISE.CREATED AS created,
+			TB_ENTERPRISE.CREATE_TIME AS createTime,
+			TB_ENTERPRISE.UPDATED AS updated,
+			TB_ENTERPRISE.UPDATE_TIME as updateTime
+		from
+		TB_ENTERPRISE
+  		where 
+ 	 		TB_ENTERPRISE.ID=#id#
+	</select>
+	<!-- 更新 -->
+	<update id="update" parameterClass="com.ay.enterprise.pojo.Enterprise">
+		UPDATE TB_ENTERPRISE 
+		<dynamic prepend="set">
+			
+			<isNotNull prepend="," property="corpNumber"> CORP_NUMBER=#corpNumber#</isNotNull>
+			<isNotNull prepend="," property="corpCode"> CORP_CODE=#corpCode#</isNotNull>
+			<isNotNull prepend="," property="headCorpNumber"> HEAD_CORP_NUMBER=#headCorpNumber#</isNotNull>
+			<isNotNull prepend="," property="corpName"> CORP_NAME=#corpName#</isNotNull>
+			<isNotNull prepend="," property="fax"> FAX=#fax#</isNotNull>
+			<isNotNull prepend="," property="postCode"> POST_CODE=#postCode#</isNotNull>
+			<isNotNull prepend="," property="legalPerson"> LEGAL_PERSON=#legalPerson#</isNotNull>
+			<isNotNull prepend="," property="lpersonMail"> LPERSON_MAIL=#lpersonMail#</isNotNull>
+			<isNotNull prepend="," property="lpersonPhone"> LPERSON_PHONE=#lpersonPhone#</isNotNull>
+			<isNotNull prepend="," property="lpersonMobile"> LPERSON_MOBILE=#lpersonMobile#</isNotNull>
+			<isNotNull prepend="," property="lpersonJob"> LPERSON_JOB=#lpersonJob#</isNotNull>
+			<isNotNull prepend="," property="lpersonTitle"> LPERSON_TITLE=#lpersonTitle#</isNotNull>
+			<isNotNull prepend="," property="lpersonCardid"> LPERSON_CARDID=#lpersonCardid#</isNotNull>
+			<isNotNull prepend="," property="corpManagerJob"> CORP_MANAGER_JOB=#corpManagerJob#</isNotNull>
+			<isNotNull prepend="," property="corpManagerPosition"> CORP_MANAGER_POSITION=#corpManagerPosition#</isNotNull>
+			<isNotNull prepend="," property="corpSafeLeader"> CORP_SAFE_LEADER=#corpSafeLeader#</isNotNull>
+			<isNotNull prepend="," property="ordination"> ORDINATION=#ordination#</isNotNull>
+			<isNotNull prepend="," property="area"> AREA=#area#</isNotNull>
+			<isNotNull prepend="," property="corpScale"> CORP_SCALE=#corpScale#</isNotNull>
+			<isNotNull prepend="," property="ecoType"> ECO_TYPE=#ecoType#</isNotNull>
+			<isNotNull prepend="," property="registerMoney"> REGISTER_MONEY=#registerMoney#</isNotNull>
+			<isNotNull prepend="," property="totalMoney"> TOTAL_MONEY=#totalMoney#</isNotNull>
+			<isNotNull prepend="," property="registerDate"> REGISTER_DATE=#registerDate#</isNotNull>
+			<isNotNull prepend="," property="mainGrade"> MAIN_GRADE=#mainGrade#</isNotNull>
+			<isNotNull prepend="," property="managerType"> MANAGER_TYPE=#managerType#</isNotNull>
+			<isNotNull prepend="," property="subManagerType"> SUB_MANAGER_TYPE=#subManagerType#</isNotNull>
+			<isNotNull prepend="," property="isGreatHazard"> IS_GREAT_HAZARD=#isGreatHazard#</isNotNull>
+			<isNotNull prepend="," property="managerDept"> MANAGER_DEPT=#managerDept#</isNotNull>
+			<isNotNull prepend="," property="townBuildArea"> TOWN_BUILD_AREA=#townBuildArea#</isNotNull>
+			<isNotNull prepend="," property="yearIncome"> YEAR_INCOME=#yearIncome#</isNotNull>
+			<isNotNull prepend="," property="yearMainIncome"> YEAR_MAIN_INCOME=#yearMainIncome#</isNotNull>
+			<isNotNull prepend="," property="corpProductAddr"> CORP_PRODUCT_ADDR=#corpProductAddr#</isNotNull>
+			<isNotNull prepend="," property="corpRegisterAddr"> CORP_REGISTER_ADDR=#corpRegisterAddr#</isNotNull>
+			<isNotNull prepend="," property="addrCode"> ADDR_CODE=#addrCode#</isNotNull>
+			<isNotNull prepend="," property="industryType"> INDUSTRY_TYPE=#industryType#</isNotNull>
+			<isNotNull prepend="," property="subIndustryType"> SUB_INDUSTRY_TYPE=#subIndustryType#</isNotNull>
+			<isNotNull prepend="," property="icProductRange"> IC_PRODUCT_RANGE=#icProductRange#</isNotNull>
+			
+			<isNotNull prepend="," property="id"> ID=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> STATUS=#status#</isNotNull>
+			<isNotNull prepend="," property="created"> CREATED=#created#</isNotNull>
+			<isNotNull prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotNull>
+			<isNotNull prepend="," property="updated"> UPDATED=#updated#</isNotNull>
+			<isNotNull prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotNull>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 查找list-->
+	<select id="find" resultClass="com.ay.enterprise.pojo.Enterprise" parameterClass="java.util.Map">
+ 		SELECT
+			dbo.FN_HASMAP(ID) AS hasMap,
+			TB_ENTERPRISE.CORP_NUMBER AS corpNumber,
+			TB_ENTERPRISE.CORP_CODE AS corpCode,
+			TB_ENTERPRISE.HEAD_CORP_NUMBER AS headCorpNumber,
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_ENTERPRISE.FAX AS fax,
+			TB_ENTERPRISE.POST_CODE AS postCode,
+			TB_ENTERPRISE.LEGAL_PERSON AS legalPerson,
+			TB_ENTERPRISE.LPERSON_MAIL AS lpersonMail,
+			TB_ENTERPRISE.LPERSON_PHONE AS lpersonPhone,
+			TB_ENTERPRISE.LPERSON_MOBILE AS lpersonMobile,
+			TB_ENTERPRISE.LPERSON_JOB AS lpersonJob,
+			TB_ENTERPRISE.LPERSON_TITLE AS lpersonTitle,
+			TB_ENTERPRISE.LPERSON_CARDID AS lpersonCardid,
+			TB_ENTERPRISE.CORP_MANAGER_JOB AS corpManagerJob,
+			TB_ENTERPRISE.CORP_MANAGER_POSITION AS corpManagerPosition,
+			TB_ENTERPRISE.CORP_SAFE_LEADER AS corpSafeLeader,
+			TB_ENTERPRISE.ORDINATION AS ordination,
+			TB_ENTERPRISE.AREA AS area,
+			TB_ENTERPRISE.CORP_SCALE AS corpScale,
+			TB_ENTERPRISE.ECO_TYPE AS ecoType,
+			TB_ENTERPRISE.REGISTER_MONEY AS registerMoney,
+			TB_ENTERPRISE.TOTAL_MONEY AS totalMoney,
+			TB_ENTERPRISE.REGISTER_DATE AS registerDate,
+			TB_ENTERPRISE.MAIN_GRADE AS mainGrade,
+			TB_ENTERPRISE.MANAGER_TYPE AS managerType,
+			TB_ENTERPRISE.SUB_MANAGER_TYPE AS subManagerType,
+			TB_ENTERPRISE.IS_GREAT_HAZARD AS isGreatHazard,
+			TB_ENTERPRISE.MANAGER_DEPT AS managerDept,
+			TB_ENTERPRISE.TOWN_BUILD_AREA AS townBuildArea,
+			TB_ENTERPRISE.YEAR_INCOME AS yearIncome,
+			TB_ENTERPRISE.YEAR_MAIN_INCOME AS yearMainIncome,
+			TB_ENTERPRISE.CORP_PRODUCT_ADDR AS corpProductAddr,
+			TB_ENTERPRISE.CORP_REGISTER_ADDR AS corpRegisterAddr,
+			TB_ENTERPRISE.ADDR_CODE AS addrCode,
+			TB_ENTERPRISE.INDUSTRY_TYPE AS industryType,
+			TB_ENTERPRISE.SUB_INDUSTRY_TYPE AS subIndustryType,
+			TB_ENTERPRISE.IC_PRODUCT_RANGE AS icProductRange,
+			
+			TB_ENTERPRISE.ID AS id,
+			TB_ENTERPRISE.STATUS AS status,
+			TB_ENTERPRISE.CREATED AS created,
+			TB_ENTERPRISE.CREATE_TIME AS createTime,
+			TB_ENTERPRISE.UPDATED AS updated,
+			TB_ENTERPRISE.UPDATE_TIME AS updateTime
+		FROM
+			TB_ENTERPRISE
+		WHERE
+			TB_ENTERPRISE.STATUS = '1'
+		<include refid="Enterprise.mapWhereClause"/>
+	</select>
+	<!-- 计数-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ENTERPRISE
+		WHERE
+			TB_ENTERPRISE.STATUS = '1' 
+		<include refid="Enterprise.mapWhereClause"/>
+	</select>
+	<!-- 批量删除 -->
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_ENTERPRISE
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

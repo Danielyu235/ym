@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+  <!--人员职业健康模块-->  
+  <bean id="healthSafeDao" class="com.ay.safe.health.dao.HealthSafeDao" parent="baseDao"/>  
+  <bean id="healthSafeService" class="com.ay.safe.health.service.HealthSafeService"> 
+    <property name="dao" ref="healthSafeDao"/> 
+  </bean>  
+  <!--员工考勤与奖罚模块-->  
+  <bean id="attendRewardDao" class="com.ay.attend.dao.AttendRewardDao" parent="baseDao"/>  
+  <bean id="attendRewardService" class="com.ay.attend.service.AttendRewardService"> 
+    <property name="dao" ref="attendRewardDao"/> 
+  </bean>  
+  <!--日常三违处罚模块-->  
+  <bean id="punishSafeDao" class="com.ay.safe.punish.dao.PunishSafeDao" parent="baseDao"/>  
+  <bean id="punishSafeService" class="com.ay.safe.punish.service.PunishSafeService"> 
+    <property name="dao" ref="punishSafeDao"/> 
+  </bean>  
+  <!--评分管理模块-->  
+  <bean id="scoreManagementDao" class="com.ay.scoremanagement.dao.ScoreManagementDao" parent="baseDao"/>  
+  <bean id="scoreManagementService" class="com.ay.scoremanagement.service.ScoreManagementService"> 
+    <property name="dao" ref="scoreManagementDao"/> 
+  </bean> 
+  <!--职工信誉评价模块-->  
+  <bean id="reputationDao" class="com.ay.reputation.dao.ReputationDao" parent="baseDao"/>  
+  <bean id="reputationService" class="com.ay.reputation.service.ReputationService"> 
+    <property name="dao" ref="reputationDao"/> 
+  </bean>  
+</beans>

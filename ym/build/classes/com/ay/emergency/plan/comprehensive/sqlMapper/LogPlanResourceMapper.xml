@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_ENERGENCY_PLAN-->
+<sqlMap namespace="logplanResource">
+<typeAlias alias="logplanRes" type="com.ay.emergency.plan.comprehensive.pojo.LogPlanResource"/>
+
+	<!--查选list方法  -->
+	<select id="find" resultClass="logplanRes" parameterClass="java.util.Map">
+ select
+ ID as id,
+ TYPE as type,
+ NAME as name,
+ RESID as resId,
+ ACCIDENTID as accidentId
+ from   dbo.TB_logRescoure 
+ where ID=#id#  
+ or accidentId=#accidentId#
+
+	</select>
+
+	<!-- 根据条件查询条数 -->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ select count(*)
+ from   dbo.TB_logRescoure 
+ where ID=#id#  
+ or accidentId=#accidentId#
+	</select>
+	
+	<!-- 新增关联信息 -->
+	<insert id="insert" parameterClass="logplanRes">
+		insert into TB_LogRescoure(
+		ACCIDENTID,
+		RESID,
+		[TYPE],
+		NAME,CREATE_TIME) values(
+		#accidentId#,
+		#resId#,
+		#type#,
+		#name#,#createTime#)
+	</insert>
+	
+	<!-- 根据专家ID 删除关联表信息 -->
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE from TB_LogRescoure
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   RESID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

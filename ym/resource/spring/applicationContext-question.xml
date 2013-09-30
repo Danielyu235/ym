@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+  <!--题库维护 题目类型模块-->  
+  <bean id="questionManageCreditDao" class="com.ay.credit.examine.questionManage.dao.QuestionManageCreditDao" parent="baseDao"/>  
+  <bean id="questionManageCreditService" class="com.ay.credit.examine.questionManage.service.QuestionManageCreditService"> 
+    <property name="dao" ref="questionManageCreditDao"/> 
+  </bean>  
+  <!--题目信息模块-->  
+  <bean id="questionCreditDao" class="com.ay.credit.examine.questionManage.dao.QuestionCreditDao" parent="baseDao"/>  
+  <bean id="questionCreditService" class="com.ay.credit.examine.questionManage.service.QuestionCreditService"> 
+    <property name="dao" ref="questionCreditDao"/> 
+  </bean>  
+  <!--试卷管理模块-->  
+  <bean id="testPaperManageDao" class="com.ay.credit.examine.testPaperManage.dao.TestPaperManageDao" parent="baseDao"/>  
+  <bean id="testPaperManageService" class="com.ay.credit.examine.testPaperManage.service.TestPaperManageService"> 
+    <property name="dao" ref="testPaperManageDao"/> 
+  </bean>  
+  <!--查看成绩模块-->  
+  <bean id="selectPaperDao" class="com.ay.credit.examine.testPaperManage.dao.selectPaperDao" parent="baseDao"/>  
+  <bean id="selectPaperService" class="com.ay.credit.examine.testPaperManage.service.selectPaperService"> 
+    <property name="dao" ref="selectPaperDao"/> 
+  </bean>  
+</beans>

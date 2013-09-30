@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 救援队伍 -->
+	<bean class="com.ay.emergency.resource.responseteam.dao.ResponseteamResourceDao" id="rescueTeamDao" parent="baseDao"/>
+	<bean class="com.ay.emergency.resource.responseteam.service.ResponseteamResourceService" id="rescueTeamService">
+		<property name="dao" ref="rescueTeamDao"/>
+	</bean>
+	<!-- 救援物资-->
+	<bean class="com.ay.emergency.resource.supplies.dao.SuppliesResourceDao" id="tbRescueSuppliesDao" parent="baseDao"/>
+	<bean class="com.ay.emergency.resource.supplies.service.SuppliesResourceService" id="tbRescueSuppliesService">
+		<property name="dao" ref="tbRescueSuppliesDao"/>
+	</bean>
+	<!-- 救援车辆 -->
+	<bean class="com.ay.emergency.resource.cars.dao.CarsResourceDao" id="carsResourceDao" parent="baseDao"/>
+	<bean class="com.ay.emergency.resource.cars.service.CarsResourceService" id="rescueCarsService">
+		<property name="dao" ref="carsResourceDao"/>
+	</bean>
+	<!-- 医疗保障 -->
+	<bean class="com.ay.emergency.resource.medical.dao.MedicalResourceDao" id="rescueMedicalDao" parent="baseDao"/>
+	<bean class="com.ay.emergency.resource.medical.service.MedicalResourceService" id="rescueMedicalService">
+		<property name="dao" ref="rescueMedicalDao"/>
+	</bean>
+</beans>

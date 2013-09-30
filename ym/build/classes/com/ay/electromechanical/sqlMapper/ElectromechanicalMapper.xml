@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Electromechanical">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ELECTROMECHANICAL.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ELECTROMECHANICAL.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ELECTROMECHANICAL.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ELECTROMECHANICAL.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ELECTROMECHANICAL.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ELECTROMECHANICAL.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="corpKey"> TB_ELECTROMECHANICAL.CORP_KEY like '%'+#corpKey#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_ELECTROMECHANICAL.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_ELECTROMECHANICAL.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_ELECTROMECHANICAL.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="station"> TB_ELECTROMECHANICAL.STATION like '%'+#station#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="craft"> TB_ELECTROMECHANICAL.CRAFT like '%'+#craft#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.electromechanical.pojo.Electromechanical">
+  		INSERT INTO TB_ELECTROMECHANICAL(
+				
+				CORP_KEY,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				STATION,
+				CRAFT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpKey#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#station#,
+				#craft#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ELECTROMECHANICAL SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.electromechanical.pojo.Electromechanical" parameterClass="java.lang.String">
+ 		<!-- SELECT 
+			
+			TB_ELECTROMECHANICAL.CORP_KEY AS corpKey,
+			TB_ELECTROMECHANICAL.DANGEROUS AS dangerous,
+			TB_ELECTROMECHANICAL.LOSS AS loss,
+			TB_ELECTROMECHANICAL.STEP AS step,
+			TB_ELECTROMECHANICAL.STATION AS station,
+			TB_ELECTROMECHANICAL.CRAFT AS craft,
+			
+			TB_ELECTROMECHANICAL.ID AS id,
+			TB_ELECTROMECHANICAL.STATUS AS status,
+			TB_ELECTROMECHANICAL.CREATED AS created,
+			TB_ELECTROMECHANICAL.CREATE_TIME AS createTime,
+			TB_ELECTROMECHANICAL.UPDATED AS updated,
+			TB_ELECTROMECHANICAL.UPDATE_TIME as updateTime
+		from
+		TB_ELECTROMECHANICAL
+  		where 
+ 	 		TB_ELECTROMECHANICAL.ID=#id#
+ 	 	-->
+ 	 	SELECT 
+			VIEW_ELECTROMECHANICAL.CORP_KEY AS corpKey,
+			VIEW_ELECTROMECHANICAL.DANGEROUS AS dangerous,
+			VIEW_ELECTROMECHANICAL.LOSS AS loss,
+			VIEW_ELECTROMECHANICAL.STEP AS step,
+			VIEW_ELECTROMECHANICAL.STATION AS station,
+			VIEW_ELECTROMECHANICAL.CRAFT AS craft,
+			dbo.FN_codeToText(VIEW_ELECTROMECHANICAL.CRAFT) as craftTypeName,
+			VIEW_ELECTROMECHANICAL.ID AS id,
+			VIEW_ELECTROMECHANICAL.STATUS AS status,
+			VIEW_ELECTROMECHANICAL.CREATED AS created,
+			VIEW_ELECTROMECHANICAL.CREATE_TIME AS createTime,
+			VIEW_ELECTROMECHANICAL.UPDATED AS updated,
+			VIEW_ELECTROMECHANICAL.UPDATE_TIME as updateTime,
+			VIEW_ELECTROMECHANICAL.CZYL AS czyl,
+			VIEW_ELECTROMECHANICAL.KSYD AS ksyd,
+			VIEW_ELECTROMECHANICAL.SGAL AS sgal,
+			VIEW_ELECTROMECHANICAL.SSZY AS sszy,
+			VIEW_ELECTROMECHANICAL.SSGZ AS ssgz,
+			dbo.FN_codeToText(VIEW_ELECTROMECHANICAL.sszy) as sszyByType,
+			dbo.FN_codeToText(VIEW_ELECTROMECHANICAL.ssgz) as ssgzByType
+		FROM
+		VIEW_ELECTROMECHANICAL 
+  		where 
+ 	 		VIEW_ELECTROMECHANICAL.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.electromechanical.pojo.Electromechanical">
+		UPDATE TB_ELECTROMECHANICAL 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="corpKey"> CORP_KEY=#corpKey#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="station"> STATION=#station#</isNotEmpty>
+			<isNotEmpty prepend="," property="craft"> CRAFT=#craft#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.electromechanical.pojo.Electromechanical" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_ELECTROMECHANICAL.CORP_KEY AS corpKey,
+			TB_ELECTROMECHANICAL.DANGEROUS AS dangerous,
+			TB_ELECTROMECHANICAL.LOSS AS loss,
+			TB_ELECTROMECHANICAL.STEP AS step,
+			TB_ELECTROMECHANICAL.STATION AS station,
+			TB_ELECTROMECHANICAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_ELECTROMECHANICAL.CRAFT) as craftTypeName,
+			TB_ELECTROMECHANICAL.ID AS id,
+			TB_ELECTROMECHANICAL.STATUS AS status,
+			TB_ELECTROMECHANICAL.CREATED AS created,
+			TB_ELECTROMECHANICAL.CREATE_TIME AS createTime,
+			TB_ELECTROMECHANICAL.UPDATED AS updated,
+			TB_ELECTROMECHANICAL.UPDATE_TIME AS updateTime
+		FROM
+			TB_ELECTROMECHANICAL
+		WHERE
+			TB_ELECTROMECHANICAL.STATUS = '1'
+		<include refid="Electromechanical.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ELECTROMECHANICAL
+		WHERE
+			TB_ELECTROMECHANICAL.STATUS = '1' 
+		<include refid="Electromechanical.mapWhereClause"/>
+	</select>
+	
+	<select id="flist" resultClass="com.ay.electromechanical.pojo.Electromechanical" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_ELECTROMECHANICAL.CORP_KEY AS corpKey,
+			TB_ELECTROMECHANICAL.DANGEROUS AS dangerous,
+			TB_ELECTROMECHANICAL.LOSS AS loss,
+			TB_ELECTROMECHANICAL.STEP AS step,
+			TB_ELECTROMECHANICAL.STATION AS station,
+			TB_ELECTROMECHANICAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_ELECTROMECHANICAL.CRAFT) as craftTypeName,
+			TB_ELECTROMECHANICAL.ID AS id,
+			TB_ELECTROMECHANICAL.STATUS AS status,
+			TB_ELECTROMECHANICAL.CREATED AS created,
+			TB_ELECTROMECHANICAL.CREATE_TIME AS createTime,
+			TB_ELECTROMECHANICAL.UPDATED AS updated,
+			TB_ELECTROMECHANICAL.UPDATE_TIME AS updateTime
+		FROM
+			TB_ELECTROMECHANICAL
+		WHERE
+			TB_ELECTROMECHANICAL.STATUS = '1'
+		<include refid="Electromechanical.mapWhereClause"/>
+	</select>
+</sqlMap>

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Employees">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_EMPLOYEES.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_EMPLOYEES.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_EMPLOYEES.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_EMPLOYEES.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_EMPLOYEES.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_EMPLOYEES.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="jobNum"> TB_EMPLOYEES.JOB_NUM like '%'+#jobNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_EMPLOYEES.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gender"> TB_EMPLOYEES.GENDER like '%'+#gender#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="idnumber"> TB_EMPLOYEES.IDNUMBER like '%'+#idnumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="nation"> TB_EMPLOYEES.NATION like '%'+#nation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dataOfBirth"> TB_EMPLOYEES.DATA_OF_BIRTH like '%'+#dataOfBirth#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="homeAddress"> TB_EMPLOYEES.HOME_ADDRESS like '%'+#homeAddress#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="education"> TB_EMPLOYEES.EDUCATION like '%'+#education#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workTime"> TB_EMPLOYEES.WORK_TIME like '%'+#workTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="unit"> TB_EMPLOYEES.UNIT like '%'+#unit#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lenOfService"> TB_EMPLOYEES.LEN_OF_SERVICE like '%'+#lenOfService#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workersNo"> TB_EMPLOYEES.WORKERS_NO like '%'+#workersNo#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workType"> TB_EMPLOYEES.WORK_TYPE like '%'+#workType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="skill"> TB_EMPLOYEES.SKILL like '%'+#skill#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> TB_EMPLOYEES.POST like '%'+#post#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="only"> TB_EMPLOYEES.ONLY like '%'+#only#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="aged"> TB_EMPLOYEES.AGED like '%'+#aged#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="medical"> TB_EMPLOYEES.MEDICAL like '%'+#medical#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fillNo"> TB_EMPLOYEES.FILL_NO like '%'+#fillNo#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="composition"> TB_EMPLOYEES.COMPOSITION like '%'+#composition#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="homeTown"> TB_EMPLOYEES.HOME_TOWN like '%'+#homeTown#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="permanentResidence"> TB_EMPLOYEES.PERMANENT_RESIDENCE like '%'+#permanentResidence#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bureauTime"> TB_EMPLOYEES.BUREAU_TIME like '%'+#bureauTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="contractPeriod"> TB_EMPLOYEES.CONTRACT_PERIOD like '%'+#contractPeriod#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="contractStatusTime"> TB_EMPLOYEES.CONTRACT_STATUS_TIME like '%'+#contractStatusTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="politicalStatus"> TB_EMPLOYEES.POLITICAL_STATUS like '%'+#politicalStatus#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="officialRank"> TB_EMPLOYEES.OFFICIAL_RANK like '%'+#officialRank#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="contractConclusionTime"> TB_EMPLOYEES.CONTRACT_CONCLUSION_TIME like '%'+#contractConclusionTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfbzz"> TB_EMPLOYEES.SFBZZ like '%'+#sfbzz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rzsj"> TB_EMPLOYEES.RZSJ like '%'+#rzsj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dwbh"> TB_EMPLOYEES.DWBH like '%'+#dwbh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bloodType"> TB_EMPLOYEES.BLOOD_TYPE like '%'+#bloodType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="partyTime"> TB_EMPLOYEES.PARTY_TIME like '%'+#partyTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="physiclalStatus"> TB_EMPLOYEES.PHYSICLAL_STATUS like '%'+#physiclalStatus#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="secondaryOccupation"> TB_EMPLOYEES.SECONDARY_OCCUPATION like '%'+#secondaryOccupation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="characterTrait"> TB_EMPLOYEES.CHARACTER_TRAIT like '%'+#characterTrait#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="religion"> TB_EMPLOYEES.RELIGION like '%'+#religion#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="leisureActivities"> TB_EMPLOYEES.LEISURE_ACTIVITIES like '%'+#leisureActivities#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="militaryLen"> TB_EMPLOYEES.MILITARY_LEN like '%'+#militaryLen#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="countryside"> TB_EMPLOYEES.COUNTRYSIDE like '%'+#countryside#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="waitForEmployment"> TB_EMPLOYEES.WAIT_FOR_EMPLOYMENT like '%'+#waitForEmployment#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="personnelQuality"> TB_EMPLOYEES.PERSONNEL_QUALITY like '%'+#personnelQuality#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workLicense"> TB_EMPLOYEES.WORK_LICENSE like '%'+#workLicense#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfglry"> TB_EMPLOYEES.SFGLRY like '%'+#sfglry#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="position"> TB_EMPLOYEES.POSITION like '%'+#position#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="cellphoneNumber"> TB_EMPLOYEES.CELLPHONE_NUMBER like '%'+#cellphoneNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="plateNumber"> TB_EMPLOYEES.PLATE_NUMBER like '%'+#plateNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="relativesName"> TB_EMPLOYEES.RELATIVES_NAME like '%'+#relativesName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="relations"> TB_EMPLOYEES.RELATIONS like '%'+#relations#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="relativesCellphoneNumber"> TB_EMPLOYEES.RELATIVES_CELLPHONE_NUMBER like '%'+#relativesCellphoneNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="cardNumber"> TB_EMPLOYEES.CARD_NUMBER like '%'+#cardNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="passport"> TB_EMPLOYEES.PASSPORT like '%'+#passport#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="done"> TB_EMPLOYEES.DEPARTMENTF like '%'+#done#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dtwo"> TB_EMPLOYEES.DEPARTMENTS like '%'+#dtwo#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> TB_EMPLOYEES.MAJOR like '%'+#major#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="phoneNumber"> TB_EMPLOYEES.PHONE_NUMBER like '%'+#phoneNumber#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.employee.pojo.Employees">
+  		INSERT INTO TB_EMPLOYEES(
+				
+				JOB_NUM,
+				NAME,
+				GENDER,
+				IDNUMBER,
+				NATION,
+				DATA_OF_BIRTH,
+				HOME_ADDRESS,
+				EDUCATION,
+				WORK_TIME,
+				UNIT,
+				LEN_OF_SERVICE,
+				WORKERS_NO,
+				WORK_TYPE,
+				SKILL,
+				POST,
+				ONLY,
+				AGED,
+				MEDICAL,
+				FILL_NO,
+				COMPOSITION,
+				HOME_TOWN,
+				PERMANENT_RESIDENCE,
+				BUREAU_TIME,
+				CONTRACT_PERIOD,
+				CONTRACT_STATUS_TIME,
+				POLITICAL_STATUS,
+				OFFICIAL_RANK,
+				CONTRACT_CONCLUSION_TIME,
+				SFBZZ,
+				RZSJ,
+				DWBH,
+				BLOOD_TYPE,
+				PARTY_TIME,
+				PHYSICLAL_STATUS,
+				SECONDARY_OCCUPATION,
+				CHARACTER_TRAIT,
+				RELIGION,
+				LEISURE_ACTIVITIES,
+				MILITARY_LEN,
+				COUNTRYSIDE,
+				WAIT_FOR_EMPLOYMENT,
+				PERSONNEL_QUALITY,
+				WORK_LICENSE,
+				SFGLRY,
+				POSITION,
+				CELLPHONE_NUMBER,
+				PLATE_NUMBER,
+				RELATIVES_NAME,
+				RELATIONS,
+				RELATIVES_CELLPHONE_NUMBER,
+				CARD_NUMBER,
+				PASSPORT,
+				DEPARTMENTF,
+				DEPARTMENTS,
+				MAJOR,
+				PHONE_NUMBER,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#jobNum#,
+				#name#,
+				#gender#,
+				#idnumber#,
+				#nation#,
+				#dataOfBirth#,
+				#homeAddress#,
+				#education#,
+				#workTime#,
+				#unit#,
+				#lenOfService#,
+				#workersNo#,
+				#workType#,
+				#skill#,
+				#post#,
+				#only#,
+				#aged#,
+				#medical#,
+				#fillNo#,
+				#composition#,
+				#homeTown#,
+				#permanentResidence#,
+				#bureauTime#,
+				#contractPeriod#,
+				#contractStatusTime#,
+				#politicalStatus#,
+				#officialRank#,
+				#contractConclusionTime#,
+				#sfbzz#,
+				#rzsj#,
+				#dwbh#,
+				#bloodType#,
+				#partyTime#,
+				#physiclalStatus#,
+				#secondaryOccupation#,
+				#characterTrait#,
+				#religion#,
+				#leisureActivities#,
+				#militaryLen#,
+				#countryside#,
+				#waitForEmployment#,
+				#personnelQuality#,
+				#workLicense#,
+				#sfglry#,
+				#position#,
+				#cellphoneNumber#,
+				#plateNumber#,
+				#relativesName#,
+				#relations#,
+				#relativesCellphoneNumber#,
+				#cardNumber#,
+				#passport#,
+				#done#,
+				#dtwo#,
+				#major#,
+				#phoneNumber#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_EMPLOYEES SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.employee.pojo.Employees" parameterClass="java.lang.String">
+ 	SELECT
+			
+			TB_EMPLOYEES.JOB_NUM AS jobNum,
+			TB_EMPLOYEES.NAME AS name,
+			dbo.FN_codeToText(TB_EMPLOYEES.GENDER) as genderName,
+			TB_EMPLOYEES.GENDER as gender,
+			TB_EMPLOYEES.IDNUMBER AS idnumber,
+			TB_EMPLOYEES.NATION AS nation,
+			TB_EMPLOYEES.DATA_OF_BIRTH AS dataOfBirth,
+			TB_EMPLOYEES.HOME_ADDRESS AS homeAddress,
+			TB_EMPLOYEES.EDUCATION AS education,
+			TB_EMPLOYEES.WORK_TIME AS workTime,
+			TB_EMPLOYEES.UNIT AS unit,
+			TB_EMPLOYEES.LEN_OF_SERVICE AS lenOfService,
+			TB_EMPLOYEES.WORKERS_NO AS workersNo,
+			TB_EMPLOYEES.WORK_TYPE AS workType,
+			TB_EMPLOYEES.SKILL AS skill,
+			dbo.FN_codeToText(TB_EMPLOYEES.POST) as postName,
+			TB_EMPLOYEES.POST as post,
+			TB_EMPLOYEES.ONLY AS only,
+			TB_EMPLOYEES.AGED AS aged,
+			TB_EMPLOYEES.MEDICAL AS medical,
+			TB_EMPLOYEES.FILL_NO AS fillNo,
+			TB_EMPLOYEES.COMPOSITION AS composition,
+			TB_EMPLOYEES.HOME_TOWN AS homeTown,
+			TB_EMPLOYEES.PERMANENT_RESIDENCE AS permanentResidence,
+			TB_EMPLOYEES.BUREAU_TIME AS bureauTime,
+			TB_EMPLOYEES.CONTRACT_PERIOD AS contractPeriod,
+			TB_EMPLOYEES.CONTRACT_STATUS_TIME AS contractStatusTime,
+			TB_EMPLOYEES.POLITICAL_STATUS AS politicalStatus,
+			TB_EMPLOYEES.OFFICIAL_RANK AS officialRank,
+			TB_EMPLOYEES.CONTRACT_CONCLUSION_TIME AS contractConclusionTime,
+			TB_EMPLOYEES.SFBZZ AS sfbzz,
+			TB_EMPLOYEES.RZSJ AS rzsj,
+			TB_EMPLOYEES.DWBH AS dwbh,
+			TB_EMPLOYEES.BLOOD_TYPE AS bloodType,
+			TB_EMPLOYEES.PARTY_TIME AS partyTime,
+			TB_EMPLOYEES.PHYSICLAL_STATUS AS physiclalStatus,
+			TB_EMPLOYEES.SECONDARY_OCCUPATION AS secondaryOccupation,
+			TB_EMPLOYEES.CHARACTER_TRAIT AS characterTrait,
+			TB_EMPLOYEES.RELIGION AS religion,
+			TB_EMPLOYEES.LEISURE_ACTIVITIES AS leisureActivities,
+			TB_EMPLOYEES.MILITARY_LEN AS militaryLen,
+			TB_EMPLOYEES.COUNTRYSIDE AS countryside,
+			TB_EMPLOYEES.WAIT_FOR_EMPLOYMENT AS waitForEmployment,
+			TB_EMPLOYEES.PERSONNEL_QUALITY AS personnelQuality,
+			TB_EMPLOYEES.WORK_LICENSE AS workLicense,
+			TB_EMPLOYEES.SFGLRY AS sfglry,
+			TB_EMPLOYEES.POSITION AS position,
+			TB_EMPLOYEES.CELLPHONE_NUMBER AS cellphoneNumber,
+			TB_EMPLOYEES.PLATE_NUMBER AS plateNumber,
+			TB_EMPLOYEES.RELATIVES_NAME AS relativesName,
+			TB_EMPLOYEES.RELATIONS AS relations,
+			TB_EMPLOYEES.RELATIVES_CELLPHONE_NUMBER AS relativesCellphoneNumber,
+			TB_EMPLOYEES.CARD_NUMBER AS cardNumber,
+			TB_EMPLOYEES.PASSPORT AS passport,
+			TB_EMPLOYEES.DEPARTMENTF as done,
+			TB_EMPLOYEES.DEPARTMENTS as dtwo,
+			dbo.FN_codeToText(TB_EMPLOYEES.DEPARTMENTF) as doneName,
+			dbo.FN_codeToText(TB_EMPLOYEES.DEPARTMENTS) as dtwoName,
+			dbo.FN_codeToText(TB_EMPLOYEES.MAJOR) as majorName,
+			TB_EMPLOYEES.MAJOR as major,
+			TB_EMPLOYEES.PHONE_NUMBER AS phoneNumber,
+			
+			TB_EMPLOYEES.ID AS id,
+			TB_EMPLOYEES.STATUS AS status,
+			TB_EMPLOYEES.CREATED AS created,
+			TB_EMPLOYEES.CREATE_TIME AS createTime,
+			TB_EMPLOYEES.UPDATED AS updated,
+			TB_EMPLOYEES.UPDATE_TIME AS updateTime
+		FROM
+			TB_EMPLOYEES
+  		where 
+ 	 		TB_EMPLOYEES.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.employee.pojo.Employees">
+		UPDATE TB_EMPLOYEES 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="jobNum"> JOB_NUM=#jobNum#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="gender"> GENDER=#gender#</isNotEmpty>
+			<isNotEmpty prepend="," property="idnumber"> IDNUMBER=#idnumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="nation"> NATION=#nation#</isNotEmpty>
+			<isNotEmpty prepend="," property="dataOfBirth"> DATA_OF_BIRTH=#dataOfBirth#</isNotEmpty>
+			<isNotEmpty prepend="," property="homeAddress"> HOME_ADDRESS=#homeAddress#</isNotEmpty>
+			<isNotEmpty prepend="," property="education"> EDUCATION=#education#</isNotEmpty>
+			<isNotEmpty prepend="," property="workTime"> WORK_TIME=#workTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="unit"> UNIT=#unit#</isNotEmpty>
+			<isNotEmpty prepend="," property="lenOfService"> LEN_OF_SERVICE=#lenOfService#</isNotEmpty>
+			<isNotEmpty prepend="," property="workersNo"> WORKERS_NO=#workersNo#</isNotEmpty>
+			<isNotEmpty prepend="," property="workType"> WORK_TYPE=#workType#</isNotEmpty>
+			<isNotEmpty prepend="," property="skill"> SKILL=#skill#</isNotEmpty>
+			<isNotEmpty prepend="," property="post"> POST=#post#</isNotEmpty>
+			<isNotEmpty prepend="," property="only"> ONLY=#only#</isNotEmpty>
+			<isNotEmpty prepend="," property="aged"> AGED=#aged#</isNotEmpty>
+			<isNotEmpty prepend="," property="medical"> MEDICAL=#medical#</isNotEmpty>
+			<isNotEmpty prepend="," property="fillNo"> FILL_NO=#fillNo#</isNotEmpty>
+			<isNotEmpty prepend="," property="composition"> COMPOSITION=#composition#</isNotEmpty>
+			<isNotEmpty prepend="," property="homeTown"> HOME_TOWN=#homeTown#</isNotEmpty>
+			<isNotEmpty prepend="," property="permanentResidence"> PERMANENT_RESIDENCE=#permanentResidence#</isNotEmpty>
+			<isNotEmpty prepend="," property="bureauTime"> BUREAU_TIME=#bureauTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="contractPeriod"> CONTRACT_PERIOD=#contractPeriod#</isNotEmpty>
+			<isNotEmpty prepend="," property="contractStatusTime"> CONTRACT_STATUS_TIME=#contractStatusTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="politicalStatus"> POLITICAL_STATUS=#politicalStatus#</isNotEmpty>
+			<isNotEmpty prepend="," property="officialRank"> OFFICIAL_RANK=#officialRank#</isNotEmpty>
+			<isNotEmpty prepend="," property="contractConclusionTime"> CONTRACT_CONCLUSION_TIME=#contractConclusionTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="sfbzz"> SFBZZ=#sfbzz#</isNotEmpty>
+			<isNotEmpty prepend="," property="rzsj"> RZSJ=#rzsj#</isNotEmpty>
+			<isNotEmpty prepend="," property="dwbh"> DWBH=#dwbh#</isNotEmpty>
+			<isNotEmpty prepend="," property="bloodType"> BLOOD_TYPE=#bloodType#</isNotEmpty>
+			<isNotEmpty prepend="," property="partyTime"> PARTY_TIME=#partyTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="physiclalStatus"> PHYSICLAL_STATUS=#physiclalStatus#</isNotEmpty>
+			<isNotEmpty prepend="," property="secondaryOccupation"> SECONDARY_OCCUPATION=#secondaryOccupation#</isNotEmpty>
+			<isNotEmpty prepend="," property="characterTrait"> CHARACTER_TRAIT=#characterTrait#</isNotEmpty>
+			<isNotEmpty prepend="," property="religion"> RELIGION=#religion#</isNotEmpty>
+			<isNotEmpty prepend="," property="leisureActivities"> LEISURE_ACTIVITIES=#leisureActivities#</isNotEmpty>
+			<isNotEmpty prepend="," property="militaryLen"> MILITARY_LEN=#militaryLen#</isNotEmpty>
+			<isNotEmpty prepend="," property="countryside"> COUNTRYSIDE=#countryside#</isNotEmpty>
+			<isNotEmpty prepend="," property="waitForEmployment"> WAIT_FOR_EMPLOYMENT=#waitForEmployment#</isNotEmpty>
+			<isNotEmpty prepend="," property="personnelQuality"> PERSONNEL_QUALITY=#personnelQuality#</isNotEmpty>
+			<isNotEmpty prepend="," property="workLicense"> WORK_LICENSE=#workLicense#</isNotEmpty>
+			<isNotEmpty prepend="," property="sfglry"> SFGLRY=#sfglry#</isNotEmpty>
+			<isNotEmpty prepend="," property="position"> POSITION=#position#</isNotEmpty>
+			<isNotEmpty prepend="," property="cellphoneNumber"> CELLPHONE_NUMBER=#cellphoneNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="plateNumber"> PLATE_NUMBER=#plateNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="relativesName"> RELATIVES_NAME=#relativesName#</isNotEmpty>
+			<isNotEmpty prepend="," property="relations"> RELATIONS=#relations#</isNotEmpty>
+			<isNotEmpty prepend="," property="relativesCellphoneNumber"> RELATIVES_CELLPHONE_NUMBER=#relativesCellphoneNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="cardNumber"> CARD_NUMBER=#cardNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="passport"> PASSPORT=#passport#</isNotEmpty>
+			<isNotEmpty prepend="," property="done"> DEPARTMENTF=#done#</isNotEmpty>
+			<isNotEmpty prepend="," property="dtwo"> DEPARTMENTS=#dtwo#</isNotEmpty>
+			<isNotEmpty prepend="," property="major"> MAJOR=#major#</isNotEmpty>
+			<isNotEmpty prepend="," property="phoneNumber"> PHONE_NUMBER=#phoneNumber#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.employee.pojo.Employees" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_EMPLOYEES.JOB_NUM AS jobNum,
+			TB_EMPLOYEES.NAME AS name,
+			dbo.FN_codeToText(TB_EMPLOYEES.GENDER) as genderName,
+			TB_EMPLOYEES.GENDER as gender,
+			TB_EMPLOYEES.IDNUMBER AS idnumber,
+			TB_EMPLOYEES.NATION AS nation,
+			TB_EMPLOYEES.DATA_OF_BIRTH AS dataOfBirth,
+			TB_EMPLOYEES.HOME_ADDRESS AS homeAddress,
+			TB_EMPLOYEES.EDUCATION AS education,
+			TB_EMPLOYEES.WORK_TIME AS workTime,
+			TB_EMPLOYEES.UNIT AS unit,
+			TB_EMPLOYEES.LEN_OF_SERVICE AS lenOfService,
+			TB_EMPLOYEES.WORKERS_NO AS workersNo,
+			TB_EMPLOYEES.WORK_TYPE AS workType,
+			TB_EMPLOYEES.SKILL AS skill,
+			dbo.FN_codeToText(TB_EMPLOYEES.POST) as postName,
+			TB_EMPLOYEES.POST as post,
+			TB_EMPLOYEES.ONLY AS only,
+			TB_EMPLOYEES.AGED AS aged,
+			TB_EMPLOYEES.MEDICAL AS medical,
+			TB_EMPLOYEES.FILL_NO AS fillNo,
+			TB_EMPLOYEES.COMPOSITION AS composition,
+			TB_EMPLOYEES.HOME_TOWN AS homeTown,
+			TB_EMPLOYEES.PERMANENT_RESIDENCE AS permanentResidence,
+			TB_EMPLOYEES.BUREAU_TIME AS bureauTime,
+			TB_EMPLOYEES.CONTRACT_PERIOD AS contractPeriod,
+			TB_EMPLOYEES.CONTRACT_STATUS_TIME AS contractStatusTime,
+			TB_EMPLOYEES.POLITICAL_STATUS AS politicalStatus,
+			TB_EMPLOYEES.OFFICIAL_RANK AS officialRank,
+			TB_EMPLOYEES.CONTRACT_CONCLUSION_TIME AS contractConclusionTime,
+			TB_EMPLOYEES.SFBZZ AS sfbzz,
+			TB_EMPLOYEES.RZSJ AS rzsj,
+			TB_EMPLOYEES.DWBH AS dwbh,
+			TB_EMPLOYEES.BLOOD_TYPE AS bloodType,
+			TB_EMPLOYEES.PARTY_TIME AS partyTime,
+			TB_EMPLOYEES.PHYSICLAL_STATUS AS physiclalStatus,
+			TB_EMPLOYEES.SECONDARY_OCCUPATION AS secondaryOccupation,
+			TB_EMPLOYEES.CHARACTER_TRAIT AS characterTrait,
+			TB_EMPLOYEES.RELIGION AS religion,
+			TB_EMPLOYEES.LEISURE_ACTIVITIES AS leisureActivities,
+			TB_EMPLOYEES.MILITARY_LEN AS militaryLen,
+			TB_EMPLOYEES.COUNTRYSIDE AS countryside,
+			TB_EMPLOYEES.WAIT_FOR_EMPLOYMENT AS waitForEmployment,
+			TB_EMPLOYEES.PERSONNEL_QUALITY AS personnelQuality,
+			TB_EMPLOYEES.WORK_LICENSE AS workLicense,
+			TB_EMPLOYEES.SFGLRY AS sfglry,
+			TB_EMPLOYEES.POSITION AS position,
+			TB_EMPLOYEES.CELLPHONE_NUMBER AS cellphoneNumber,
+			TB_EMPLOYEES.PLATE_NUMBER AS plateNumber,
+			TB_EMPLOYEES.RELATIVES_NAME AS relativesName,
+			TB_EMPLOYEES.RELATIONS AS relations,
+			TB_EMPLOYEES.RELATIVES_CELLPHONE_NUMBER AS relativesCellphoneNumber,
+			TB_EMPLOYEES.CARD_NUMBER AS cardNumber,
+			TB_EMPLOYEES.PASSPORT AS passport,
+			TB_EMPLOYEES.DEPARTMENTF as done,
+			TB_EMPLOYEES.DEPARTMENTS as dtwo,
+			dbo.FN_codeToText(TB_EMPLOYEES.DEPARTMENTF) as doneName,
+			dbo.FN_codeToText(TB_EMPLOYEES.DEPARTMENTS) as dtwoName,
+			dbo.FN_codeToText(TB_EMPLOYEES.MAJOR) as majorName,
+			TB_EMPLOYEES.MAJOR as major,
+			TB_EMPLOYEES.PHONE_NUMBER AS phoneNumber,
+			
+			TB_EMPLOYEES.ID AS id,
+			TB_EMPLOYEES.STATUS AS status,
+			TB_EMPLOYEES.CREATED AS created,
+			TB_EMPLOYEES.CREATE_TIME AS createTime,
+			TB_EMPLOYEES.UPDATED AS updated,
+			TB_EMPLOYEES.UPDATE_TIME AS updateTime
+		FROM
+			TB_EMPLOYEES
+		WHERE
+			TB_EMPLOYEES.STATUS = '1'
+		<include refid="Employees.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_EMPLOYEES
+		WHERE
+			TB_EMPLOYEES.STATUS = '1' 
+		<include refid="Employees.mapWhereClause"/>
+	</select>
+		<select id="queryName" resultClass="com.ay.employee.pojo.Employees" parameterClass="java.util.Map">
+ 		SELECT top 100
+			TB_EMPLOYEES.JOB_NUM AS jobNum,
+			TB_EMPLOYEES.NAME AS name,
+			TB_EMPLOYEES.MAJOR AS major,
+			TB_EMPLOYEES.POST AS post,
+
+
+			TB_EMPLOYEES.DEPARTMENTF AS done,
+			TB_EMPLOYEES.DEPARTMENTS AS dtwo,
+			
+			
+			dbo.FN_codeToText(TB_EMPLOYEES.MAJOR) as majorName,
+			dbo.FN_codeToText(TB_EMPLOYEES.POST) as postName,
+			dbo.FN_codeToText(TB_EMPLOYEES.DEPARTMENTF) as doneName,
+			dbo.FN_codeToText(TB_EMPLOYEES.DEPARTMENTS) as dtwoName,
+			dbo.FN_codeToText(TB_EMPLOYEES.GENDER) as genderName,
+			
+			TB_EMPLOYEES.ID AS id,
+			TB_EMPLOYEES.STATUS AS status,
+			SUBSTRING((dbo.CreateFirstLetter(name)),1,1) as first
+		FROM
+			TB_EMPLOYEES
+		WHERE
+			TB_EMPLOYEES.STATUS = '1' 
+		<include refid="Employees.mapWhereClause"/>
+			 order by first 
+	</select>
+</sqlMap>

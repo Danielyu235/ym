@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 安全生产法规 -->
+	<bean class="com.ay.knowlbase.law.dao.LawKnowlbaseDao" id="lawKnowlbaseDao" parent="baseDao"/>
+	<bean class="com.ay.knowlbase.law.service.LawKnowlbaseService" id="lawService">
+		<property name="dao" ref="lawKnowlbaseDao"/>
+	</bean>
+	<!-- 安全生产标准 -->
+	<bean class="com.ay.knowlbase.criterion.dao.CriKnowlbaseDao" id="criKnowlbaseDao" parent="baseDao"/>
+	<bean class="com.ay.knowlbase.criterion.service.CriKnowlbaseService" id="criterionService">
+		<property name="dao" ref="criKnowlbaseDao"/>
+	</bean>
+	<!-- 典型事故案例 -->
+	<bean class="com.ay.knowlbase.accidentCase.dao.AccKnowlbaseDao" id="accKnowlbaseDao" parent="baseDao"/>
+	<bean class="com.ay.knowlbase.accidentCase.service.AccKnowlbaseService" id="accidentCaseService">
+		<property name="dao" ref="accKnowlbaseDao"/>
+	</bean>
+</beans>

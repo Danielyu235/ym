@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="MinesHazards">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_MINES_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_MINES_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_MINES_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_MINES_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_MINES_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_MINES_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="dwdm"> TB_MINES_HAZARDS.DWDM like '%'+#dwdm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="mineName"> TB_MINES_HAZARDS.MINE_NAME like '%'+#mineName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="address"> TB_MINES_HAZARDS.ADDRESS like '%'+#address#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yzbm"> TB_MINES_HAZARDS.YZBM like '%'+#yzbm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zyfzr"> TB_MINES_HAZARDS.ZYFZR like '%'+#zyfzr#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxdh"> TB_MINES_HAZARDS.LXDH like '%'+#lxdh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sjfrdw"> TB_MINES_HAZARDS.SJFRDW like '%'+#sjfrdw#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ckrq"> TB_MINES_HAZARDS.CKRQ like '%'+#ckrq#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designAblity"> TB_MINES_HAZARDS.DESIGN_ABLITY like '%'+#designAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="realAblity"> TB_MINES_HAZARDS.REAL_ABLITY like '%'+#realAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kckz"> TB_MINES_HAZARDS.KCKZ like '%'+#kckz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kccl"> TB_MINES_HAZARDS.KCCL like '%'+#kccl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdzc"> TB_MINES_HAZARDS.GDZC like '%'+#gdzc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="nlr"> TB_MINES_HAZARDS.NLR like '%'+#nlr#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jjlx"> TB_MINES_HAZARDS.JJLX like '%'+#jjlx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ktfs"> TB_MINES_HAZARDS.KTFS like '%'+#ktfs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tffs"> TB_MINES_HAZARDS.TFFS like '%'+#tffs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tsfs"> TB_MINES_HAZARDS.TSFS like '%'+#tsfs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdfs"> TB_MINES_HAZARDS.GDFS like '%'+#gdfs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tsscdzds"> TB_MINES_HAZARDS.TSSCDZDS like '%'+#tsscdzds#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zbscdzds"> TB_MINES_HAZARDS.ZBSCDZDS like '%'+#zbscdzds#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tsscdccs"> TB_MINES_HAZARDS.TSSCDCCS like '%'+#tsscdccs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxtszyrs"> TB_MINES_HAZARDS.JXTSZYRS like '%'+#jxtszyrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjzjfl"> TB_MINES_HAZARDS.KJZJFL like '%'+#kjzjfl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjyxfll"> TB_MINES_HAZARDS.KJYXFLL like '%'+#kjyxfll#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjzdysl"> TB_MINES_HAZARDS.KJZDYSL like '%'+#kjzdysl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjzdzhpsl"> TB_MINES_HAZARDS.ZJZDZHPSL like '%'+#zjzdzhpsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjws"> TB_MINES_HAZARDS.YXLXDKJWS like '%'+#yxlxdkjws#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjm"> TB_MINES_HAZARDS.YXLXDKJM like '%'+#yxlxdkjm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjfh"> TB_MINES_HAZARDS.YXLXDKJFH like '%'+#yxlxdkjfh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjkc"> TB_MINES_HAZARDS.YXLXDKJKC like '%'+#yxlxdkjkc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjmxdk"> TB_MINES_HAZARDS.YXLXDKJMXDK like '%'+#yxlxdkjmxdk#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjfsx"> TB_MINES_HAZARDS.YXLXDKJFSX like '%'+#yxlxdkjfsx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjglk"> TB_MINES_HAZARDS.YXLXDKJGLK like '%'+#yxlxdkjglk#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yxlxdkjcjdy"> TB_MINES_HAZARDS.YXLXDKJCJDY like '%'+#yxlxdkjcjdy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sjhqjdjx"> TB_MINES_HAZARDS.SJHQJDJX like '%'+#sjhqjdjx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="spxdhjqdjx"> TB_MINES_HAZARDS.SPXDHJQDJX like '%'+#spxdhjqdjx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dmbzclkfs"> TB_MINES_HAZARDS.DMBZCLKFS like '%'+#dmbzclkfs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dmbzclzy"> TB_MINES_HAZARDS.DMBZCLZY like '%'+#dmbzclzy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dmbzcllg"> TB_MINES_HAZARDS.DMBZCLLG like '%'+#dmbzcllg#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxbzcltss"> TB_MINES_HAZARDS.JXBZCLTSS like '%'+#jxbzcltss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxbzclzy"> TB_MINES_HAZARDS.JXBZCLZY like '%'+#jxbzclzy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsbzcllg"> TB_MINES_HAZARDS.JSBZCLLG like '%'+#jsbzcllg#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kqfjqk"> TB_MINES_HAZARDS.KQFJQK like '%'+#kqfjqk#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lnsw"> TB_MINES_HAZARDS.LNSW like '%'+#lnsw#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kqqtkq"> TB_MINES_HAZARDS.KQQTKQ like '%'+#kqqtkq#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kqzkzl"> TB_MINES_HAZARDS.KQZKZL like '%'+#kqzkzl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="xyscjqk"> TB_MINES_HAZARDS.XYSCJQK like '%'+#xyscjqk#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjsdsllx"> TB_MINES_HAZARDS.KJSDSLLX like '%'+#kjsdsllx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="swdzkj"> TB_MINES_HAZARDS.SWDZKJ like '%'+#swdzkj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ktddbhscqk"> TB_MINES_HAZARDS.KTDDBHSCQK like '%'+#ktddbhscqk#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ktddbyfhsc"> TB_MINES_HAZARDS.KTDDBYFHSC like '%'+#ktddbyfhsc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjsfstwx"> TB_MINES_HAZARDS.KJSFSTWX like '%'+#kjsfstwx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="cjdywh"> TB_MINES_HAZARDS.CJDYWH like '%'+#cjdywh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kqdcsm"> TB_MINES_HAZARDS.KQDCSM like '%'+#kqdcsm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="xdwywdx"> TB_MINES_HAZARDS.XDWYWDX like '%'+#xdwywdx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxcysbsl"> TB_MINES_HAZARDS.JXCYSBSL like '%'+#jxcysbsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxyysbsl"> TB_MINES_HAZARDS.JXYYSBSL like '%'+#jxyysbsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxgzylcfdd"> TB_MINES_HAZARDS.JXGZYLCFDD like '%'+#jxgzylcfdd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxgzylcfsl"> TB_MINES_HAZARDS.JXGZYLCFSL like '%'+#jxgzylcfsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsssjsl"> TB_MINES_HAZARDS.DSSSJSL like '%'+#dsssjsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ynxfhcsssd"> TB_MINES_HAZARDS.YNXFHCSSSD like '%'+#ynxfhcsssd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ynxfhcsjz"> TB_MINES_HAZARDS.YNXFHCSJZ like '%'+#ynxfhcsjz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ynxfhcszh"> TB_MINES_HAZARDS.YNXFHCSZH like '%'+#ynxfhcszh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ynxfhcsqc"> TB_MINES_HAZARDS.YNXFHCSQC like '%'+#ynxfhcsqc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ynxfhcszz"> TB_MINES_HAZARDS.YNXFHCSZZ like '%'+#ynxfhcszz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ynxfhcswd"> TB_MINES_HAZARDS.YNXFHCSWD like '%'+#ynxfhcswd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="qtcs"> TB_MINES_HAZARDS.QTCS like '%'+#qtcs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dmfscrl"> TB_MINES_HAZARDS.DMFSCRL like '%'+#dmfscrl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxxfsgcd"> TB_MINES_HAZARDS.JXXFSGCD like '%'+#jxxfsgcd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxyhqt"> TB_MINES_HAZARDS.JXYHQT like '%'+#jxyhqt#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjywhq"> TB_MINES_HAZARDS.KJYWHQ like '%'+#kjywhq#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kqnywtxwxqy"> TB_MINES_HAZARDS.KQNYWTXWXQY like '%'+#kqnywtxwxqy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfjzstdlkc"> TB_MINES_HAZARDS.SFJZSTDLKC like '%'+#sfjzstdlkc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjaqsfsljyx"> TB_MINES_HAZARDS.KJAQSFSLJYX like '%'+#kjaqsfsljyx#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jwnsg"> TB_MINES_HAZARDS.JWNSG like '%'+#jwnsg#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="qsrs"> TB_MINES_HAZARDS.QSRS like '%'+#qsrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zsrs"> TB_MINES_HAZARDS.ZSRS like '%'+#zsrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="swrs"> TB_MINES_HAZARDS.SWRS like '%'+#swrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jkylzdsgsz"> TB_MINES_HAZARDS.JKYLZDSGSZ like '%'+#jkylzdsgsz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jkylzdsghz"> TB_MINES_HAZARDS.JKYLZDSGHZ like '%'+#jkylzdsghz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jkylzdsgmd"> TB_MINES_HAZARDS.JKYLZDSGMD like '%'+#jkylzdsgmd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jkylzdsgzgmc"> TB_MINES_HAZARDS.JKYLZDSGZGMC like '%'+#jkylzdsgzgmc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jkylzdsgqt"> TB_MINES_HAZARDS.JKYLZDSGQT like '%'+#jkylzdsgqt#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zsxh"> TB_MINES_HAZARDS.ZSXH like '%'+#zsxh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zssl"> TB_MINES_HAZARDS.ZSSL like '%'+#zssl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsxh"> TB_MINES_HAZARDS.JSXH like '%'+#jsxh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jssl"> TB_MINES_HAZARDS.JSSL like '%'+#jssl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zpsgxh"> TB_MINES_HAZARDS.ZPSGXH like '%'+#zpsgxh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zpsgsl"> TB_MINES_HAZARDS.ZPSGSL like '%'+#zpsgsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tfssbxh"> TB_MINES_HAZARDS.TFSSBXH like '%'+#tfssbxh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tfssbsl"> TB_MINES_HAZARDS.TFSSBSL like '%'+#tfssbsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jctssbxh"> TB_MINES_HAZARDS.JCTSSBXH like '%'+#jctssbxh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jctssbsl"> TB_MINES_HAZARDS.JCTSSBSL like '%'+#jctssbsl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsrysgj"> TB_MINES_HAZARDS.JSRYSGJ like '%'+#jsrysgj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsryszj"> TB_MINES_HAZARDS.JSRYSZJ like '%'+#jsryszj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsryscj"> TB_MINES_HAZARDS.JSRYSCJ like '%'+#jsryscj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dgrs"> TB_MINES_HAZARDS.DGRS like '%'+#dgrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcsjrs"> TB_MINES_HAZARDS.JCSJRS like '%'+#jcsjrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fbrs"> TB_MINES_HAZARDS.FBRS like '%'+#fbrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ckff"> TB_MINES_HAZARDS.CKFF like '%'+#ckff#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="xykjwtsm"> TB_MINES_HAZARDS.XYKJWTSM like '%'+#xykjwtsm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bz"> TB_MINES_HAZARDS.BZ like '%'+#bz#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tblxdh"> TB_MINES_HAZARDS.TBLXDH like '%'+#tblxdh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tbr"> TB_MINES_HAZARDS.TBR like '%'+#tbr#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tbrq"> TB_MINES_HAZARDS.TBRQ like '%'+#tbrq#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_ENTERPRISE.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.mines.pojo.MinesHazards">
+  		INSERT INTO TB_MINES_HAZARDS(
+				
+				DWDM,
+				MINE_NAME,
+				ADDRESS,
+				YZBM,
+				ZYFZR,
+				LXDH,
+				SJFRDW,
+				CKRQ,
+				DESIGN_ABLITY,
+				REAL_ABLITY,
+				KCKZ,
+				KCCL,
+				GDZC,
+				NLR,
+				JJLX,
+				KTFS,
+				TFFS,
+				TSFS,
+				GDFS,
+				TSSCDZDS,
+				ZBSCDZDS,
+				TSSCDCCS,
+				JXTSZYRS,
+				KJZJFL,
+				KJYXFLL,
+				KJZDYSL,
+				ZJZDZHPSL,
+				YXLXDKJWS,
+				YXLXDKJM,
+				YXLXDKJFH,
+				YXLXDKJKC,
+				YXLXDKJMXDK,
+				YXLXDKJFSX,
+				YXLXDKJGLK,
+				YXLXDKJCJDY,
+				SJHQJDJX,
+				SPXDHJQDJX,
+				DMBZCLKFS,
+				DMBZCLZY,
+				DMBZCLLG,
+				JXBZCLTSS,
+				JXBZCLZY,
+				JSBZCLLG,
+				KQFJQK,
+				LNSW,
+				KQQTKQ,
+				KQZKZL,
+				XYSCJQK,
+				KJSDSLLX,
+				SWDZKJ,
+				KTDDBHSCQK,
+				KTDDBYFHSC,
+				KJSFSTWX,
+				CJDYWH,
+				KQDCSM,
+				XDWYWDX,
+				JXCYSBSL,
+				JXYYSBSL,
+				JXGZYLCFDD,
+				JXGZYLCFSL,
+				DSSSJSL,
+				YNXFHCSSSD,
+				YNXFHCSJZ,
+				YNXFHCSZH,
+				YNXFHCSQC,
+				YNXFHCSZZ,
+				YNXFHCSWD,
+				QTCS,
+				DMFSCRL,
+				JXXFSGCD,
+				JXYHQT,
+				KJYWHQ,
+				KQNYWTXWXQY,
+				SFJZSTDLKC,
+				KJAQSFSLJYX,
+				JWNSG,
+				QSRS,
+				ZSRS,
+				SWRS,
+				JKYLZDSGSZ,
+				JKYLZDSGHZ,
+				JKYLZDSGMD,
+				JKYLZDSGZGMC,
+				JKYLZDSGQT,
+				ZSXH,
+				ZSSL,
+				JSXH,
+				JSSL,
+				ZPSGXH,
+				ZPSGSL,
+				TFSSBXH,
+				TFSSBSL,
+				JCTSSBXH,
+				JCTSSBSL,
+				JSRYSGJ,
+				JSRYSZJ,
+				JSRYSCJ,
+				DGRS,
+				JCSJRS,
+				FBRS,
+				CKFF,
+				XYKJWTSM,
+				BZ,
+				TBLXDH,
+				TBR,
+				TBRQ,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#dwdm#,
+				#mineName#,
+				#address#,
+				#yzbm#,
+				#zyfzr#,
+				#lxdh#,
+				#sjfrdw#,
+				#ckrq#,
+				#designAblity#,
+				#realAblity#,
+				#kckz#,
+				#kccl#,
+				#gdzc#,
+				#nlr#,
+				#jjlx#,
+				#ktfs#,
+				#tffs#,
+				#tsfs#,
+				#gdfs#,
+				#tsscdzds#,
+				#zbscdzds#,
+				#tsscdccs#,
+				#jxtszyrs#,
+				#kjzjfl#,
+				#kjyxfll#,
+				#kjzdysl#,
+				#zjzdzhpsl#,
+				#yxlxdkjws#,
+				#yxlxdkjm#,
+				#yxlxdkjfh#,
+				#yxlxdkjkc#,
+				#yxlxdkjmxdk#,
+				#yxlxdkjfsx#,
+				#yxlxdkjglk#,
+				#yxlxdkjcjdy#,
+				#sjhqjdjx#,
+				#spxdhjqdjx#,
+				#dmbzclkfs#,
+				#dmbzclzy#,
+				#dmbzcllg#,
+				#jxbzcltss#,
+				#jxbzclzy#,
+				#jsbzcllg#,
+				#kqfjqk#,
+				#lnsw#,
+				#kqqtkq#,
+				#kqzkzl#,
+				#xyscjqk#,
+				#kjsdsllx#,
+				#swdzkj#,
+				#ktddbhscqk#,
+				#ktddbyfhsc#,
+				#kjsfstwx#,
+				#cjdywh#,
+				#kqdcsm#,
+				#xdwywdx#,
+				#jxcysbsl#,
+				#jxyysbsl#,
+				#jxgzylcfdd#,
+				#jxgzylcfsl#,
+				#dsssjsl#,
+				#ynxfhcsssd#,
+				#ynxfhcsjz#,
+				#ynxfhcszh#,
+				#ynxfhcsqc#,
+				#ynxfhcszz#,
+				#ynxfhcswd#,
+				#qtcs#,
+				#dmfscrl#,
+				#jxxfsgcd#,
+				#jxyhqt#,
+				#kjywhq#,
+				#kqnywtxwxqy#,
+				#sfjzstdlkc#,
+				#kjaqsfsljyx#,
+				#jwnsg#,
+				#qsrs#,
+				#zsrs#,
+				#swrs#,
+				#jkylzdsgsz#,
+				#jkylzdsghz#,
+				#jkylzdsgmd#,
+				#jkylzdsgzgmc#,
+				#jkylzdsgqt#,
+				#zsxh#,
+				#zssl#,
+				#jsxh#,
+				#jssl#,
+				#zpsgxh#,
+				#zpsgsl#,
+				#tfssbxh#,
+				#tfssbsl#,
+				#jctssbxh#,
+				#jctssbsl#,
+				#jsrysgj#,
+				#jsryszj#,
+				#jsryscj#,
+				#dgrs#,
+				#jcsjrs#,
+				#fbrs#,
+				#ckff#,
+				#xykjwtsm#,
+				#bz#,
+				#tblxdh#,
+				#tbr#,
+				#tbrq#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_MINES_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.hazards.mines.pojo.MinesHazards" parameterClass="java.lang.String">
+ 		SELECT 
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_MINES_HAZARDS.DWDM AS dwdm,
+			TB_MINES_HAZARDS.MINE_NAME AS mineName,
+			TB_MINES_HAZARDS.ADDRESS AS address,
+			TB_MINES_HAZARDS.YZBM AS yzbm,
+			TB_MINES_HAZARDS.ZYFZR AS zyfzr,
+			TB_MINES_HAZARDS.LXDH AS lxdh,
+			TB_MINES_HAZARDS.SJFRDW AS sjfrdw,
+			TB_MINES_HAZARDS.CKRQ AS ckrq,
+			TB_MINES_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_MINES_HAZARDS.REAL_ABLITY AS realAblity,
+			TB_MINES_HAZARDS.KCKZ AS kckz,
+			TB_MINES_HAZARDS.KCCL AS kccl,
+			TB_MINES_HAZARDS.GDZC AS gdzc,
+			TB_MINES_HAZARDS.NLR AS nlr,
+			TB_MINES_HAZARDS.JJLX AS jjlx,
+			TB_MINES_HAZARDS.KTFS AS ktfs,
+			TB_MINES_HAZARDS.TFFS AS tffs,
+			TB_MINES_HAZARDS.TSFS AS tsfs,
+			TB_MINES_HAZARDS.GDFS AS gdfs,
+			TB_MINES_HAZARDS.TSSCDZDS AS tsscdzds,
+			TB_MINES_HAZARDS.ZBSCDZDS AS zbscdzds,
+			TB_MINES_HAZARDS.TSSCDCCS AS tsscdccs,
+			TB_MINES_HAZARDS.JXTSZYRS AS jxtszyrs,
+			TB_MINES_HAZARDS.KJZJFL AS kjzjfl,
+			TB_MINES_HAZARDS.KJYXFLL AS kjyxfll,
+			TB_MINES_HAZARDS.KJZDYSL AS kjzdysl,
+			TB_MINES_HAZARDS.ZJZDZHPSL AS zjzdzhpsl,
+			TB_MINES_HAZARDS.YXLXDKJWS AS yxlxdkjws,
+			TB_MINES_HAZARDS.YXLXDKJM AS yxlxdkjm,
+			TB_MINES_HAZARDS.YXLXDKJFH AS yxlxdkjfh,
+			TB_MINES_HAZARDS.YXLXDKJKC AS yxlxdkjkc,
+			TB_MINES_HAZARDS.YXLXDKJMXDK AS yxlxdkjmxdk,
+			TB_MINES_HAZARDS.YXLXDKJFSX AS yxlxdkjfsx,
+			TB_MINES_HAZARDS.YXLXDKJGLK AS yxlxdkjglk,
+			TB_MINES_HAZARDS.YXLXDKJCJDY AS yxlxdkjcjdy,
+			TB_MINES_HAZARDS.SJHQJDJX AS sjhqjdjx,
+			TB_MINES_HAZARDS.SPXDHJQDJX AS spxdhjqdjx,
+			TB_MINES_HAZARDS.DMBZCLKFS AS dmbzclkfs,
+			TB_MINES_HAZARDS.DMBZCLZY AS dmbzclzy,
+			TB_MINES_HAZARDS.DMBZCLLG AS dmbzcllg,
+			TB_MINES_HAZARDS.JXBZCLTSS AS jxbzcltss,
+			TB_MINES_HAZARDS.JXBZCLZY AS jxbzclzy,
+			TB_MINES_HAZARDS.JSBZCLLG AS jsbzcllg,
+			TB_MINES_HAZARDS.KQFJQK AS kqfjqk,
+			TB_MINES_HAZARDS.LNSW AS lnsw,
+			TB_MINES_HAZARDS.KQQTKQ AS kqqtkq,
+			TB_MINES_HAZARDS.KQZKZL AS kqzkzl,
+			TB_MINES_HAZARDS.XYSCJQK AS xyscjqk,
+			TB_MINES_HAZARDS.KJSDSLLX AS kjsdsllx,
+			TB_MINES_HAZARDS.SWDZKJ AS swdzkj,
+			TB_MINES_HAZARDS.KTDDBHSCQK AS ktddbhscqk,
+			TB_MINES_HAZARDS.KTDDBYFHSC AS ktddbyfhsc,
+			TB_MINES_HAZARDS.KJSFSTWX AS kjsfstwx,
+			TB_MINES_HAZARDS.CJDYWH AS cjdywh,
+			TB_MINES_HAZARDS.KQDCSM AS kqdcsm,
+			TB_MINES_HAZARDS.XDWYWDX AS xdwywdx,
+			TB_MINES_HAZARDS.JXCYSBSL AS jxcysbsl,
+			TB_MINES_HAZARDS.JXYYSBSL AS jxyysbsl,
+			TB_MINES_HAZARDS.JXGZYLCFDD AS jxgzylcfdd,
+			TB_MINES_HAZARDS.JXGZYLCFSL AS jxgzylcfsl,
+			TB_MINES_HAZARDS.DSSSJSL AS dsssjsl,
+			TB_MINES_HAZARDS.YNXFHCSSSD AS ynxfhcsssd,
+			TB_MINES_HAZARDS.YNXFHCSJZ AS ynxfhcsjz,
+			TB_MINES_HAZARDS.YNXFHCSZH AS ynxfhcszh,
+			TB_MINES_HAZARDS.YNXFHCSQC AS ynxfhcsqc,
+			TB_MINES_HAZARDS.YNXFHCSZZ AS ynxfhcszz,
+			TB_MINES_HAZARDS.YNXFHCSWD AS ynxfhcswd,
+			TB_MINES_HAZARDS.QTCS AS qtcs,
+			TB_MINES_HAZARDS.DMFSCRL AS dmfscrl,
+			TB_MINES_HAZARDS.JXXFSGCD AS jxxfsgcd,
+			TB_MINES_HAZARDS.JXYHQT AS jxyhqt,
+			TB_MINES_HAZARDS.KJYWHQ AS kjywhq,
+			TB_MINES_HAZARDS.KQNYWTXWXQY AS kqnywtxwxqy,
+			TB_MINES_HAZARDS.SFJZSTDLKC AS sfjzstdlkc,
+			TB_MINES_HAZARDS.KJAQSFSLJYX AS kjaqsfsljyx,
+			TB_MINES_HAZARDS.JWNSG AS jwnsg,
+			TB_MINES_HAZARDS.QSRS AS qsrs,
+			TB_MINES_HAZARDS.ZSRS AS zsrs,
+			TB_MINES_HAZARDS.SWRS AS swrs,
+			TB_MINES_HAZARDS.JKYLZDSGSZ AS jkylzdsgsz,
+			TB_MINES_HAZARDS.JKYLZDSGHZ AS jkylzdsghz,
+			TB_MINES_HAZARDS.JKYLZDSGMD AS jkylzdsgmd,
+			TB_MINES_HAZARDS.JKYLZDSGZGMC AS jkylzdsgzgmc,
+			TB_MINES_HAZARDS.JKYLZDSGQT AS jkylzdsgqt,
+			TB_MINES_HAZARDS.ZSXH AS zsxh,
+			TB_MINES_HAZARDS.ZSSL AS zssl,
+			TB_MINES_HAZARDS.JSXH AS jsxh,
+			TB_MINES_HAZARDS.JSSL AS jssl,
+			TB_MINES_HAZARDS.ZPSGXH AS zpsgxh,
+			TB_MINES_HAZARDS.ZPSGSL AS zpsgsl,
+			TB_MINES_HAZARDS.TFSSBXH AS tfssbxh,
+			TB_MINES_HAZARDS.TFSSBSL AS tfssbsl,
+			TB_MINES_HAZARDS.JCTSSBXH AS jctssbxh,
+			TB_MINES_HAZARDS.JCTSSBSL AS jctssbsl,
+			TB_MINES_HAZARDS.JSRYSGJ AS jsrysgj,
+			TB_MINES_HAZARDS.JSRYSZJ AS jsryszj,
+			TB_MINES_HAZARDS.JSRYSCJ AS jsryscj,
+			TB_MINES_HAZARDS.DGRS AS dgrs,
+			TB_MINES_HAZARDS.JCSJRS AS jcsjrs,
+			TB_MINES_HAZARDS.FBRS AS fbrs,
+			TB_MINES_HAZARDS.CKFF AS ckff,
+			TB_MINES_HAZARDS.XYKJWTSM AS xykjwtsm,
+			TB_MINES_HAZARDS.BZ AS bz,
+			TB_MINES_HAZARDS.TBLXDH AS tblxdh,
+			TB_MINES_HAZARDS.TBR AS tbr,
+			TB_MINES_HAZARDS.TBRQ AS tbrq,
+			
+			TB_MINES_HAZARDS.ID AS id,
+			TB_MINES_HAZARDS.STATUS AS status,
+			TB_MINES_HAZARDS.CREATED AS created,
+			TB_MINES_HAZARDS.CREATE_TIME AS createTime,
+			TB_MINES_HAZARDS.UPDATED AS updated,
+			TB_MINES_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_MINES_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_MINES_HAZARDS.DWDM= TB_ENTERPRISE.ID
+  		where 
+ 	 		TB_MINES_HAZARDS.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.mines.pojo.MinesHazards">
+		UPDATE TB_MINES_HAZARDS 
+		<dynamic prepend="set">
+			
+			<isNotNull prepend="," property="dwdm"> DWDM=#dwdm#</isNotNull>
+			<isNotNull prepend="," property="mineName"> MINE_NAME=#mineName#</isNotNull>
+			<isNotNull prepend="," property="address"> ADDRESS=#address#</isNotNull>
+			<isNotNull prepend="," property="yzbm"> YZBM=#yzbm#</isNotNull>
+			<isNotNull prepend="," property="zyfzr"> ZYFZR=#zyfzr#</isNotNull>
+			<isNotNull prepend="," property="lxdh"> LXDH=#lxdh#</isNotNull>
+			<isNotNull prepend="," property="sjfrdw"> SJFRDW=#sjfrdw#</isNotNull>
+			<isNotNull prepend="," property="ckrq"> CKRQ=#ckrq#</isNotNull>
+			<isNotNull prepend="," property="designAblity"> DESIGN_ABLITY=#designAblity#</isNotNull>
+			<isNotNull prepend="," property="realAblity"> REAL_ABLITY=#realAblity#</isNotNull>
+			<isNotNull prepend="," property="kckz"> KCKZ=#kckz#</isNotNull>
+			<isNotNull prepend="," property="kccl"> KCCL=#kccl#</isNotNull>
+			<isNotNull prepend="," property="gdzc"> GDZC=#gdzc#</isNotNull>
+			<isNotNull prepend="," property="nlr"> NLR=#nlr#</isNotNull>
+			<isNotNull prepend="," property="jjlx"> JJLX=#jjlx#</isNotNull>
+			<isNotNull prepend="," property="ktfs"> KTFS=#ktfs#</isNotNull>
+			<isNotNull prepend="," property="tffs"> TFFS=#tffs#</isNotNull>
+			<isNotNull prepend="," property="tsfs"> TSFS=#tsfs#</isNotNull>
+			<isNotNull prepend="," property="gdfs"> GDFS=#gdfs#</isNotNull>
+			<isNotNull prepend="," property="tsscdzds"> TSSCDZDS=#tsscdzds#</isNotNull>
+			<isNotNull prepend="," property="zbscdzds"> ZBSCDZDS=#zbscdzds#</isNotNull>
+			<isNotNull prepend="," property="tsscdccs"> TSSCDCCS=#tsscdccs#</isNotNull>
+			<isNotNull prepend="," property="jxtszyrs"> JXTSZYRS=#jxtszyrs#</isNotNull>
+			<isNotNull prepend="," property="kjzjfl"> KJZJFL=#kjzjfl#</isNotNull>
+			<isNotNull prepend="," property="kjyxfll"> KJYXFLL=#kjyxfll#</isNotNull>
+			<isNotNull prepend="," property="kjzdysl"> KJZDYSL=#kjzdysl#</isNotNull>
+			<isNotNull prepend="," property="zjzdzhpsl"> ZJZDZHPSL=#zjzdzhpsl#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjws"> YXLXDKJWS=#yxlxdkjws#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjm"> YXLXDKJM=#yxlxdkjm#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjfh"> YXLXDKJFH=#yxlxdkjfh#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjkc"> YXLXDKJKC=#yxlxdkjkc#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjmxdk"> YXLXDKJMXDK=#yxlxdkjmxdk#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjfsx"> YXLXDKJFSX=#yxlxdkjfsx#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjglk"> YXLXDKJGLK=#yxlxdkjglk#</isNotNull>
+			<isNotNull prepend="," property="yxlxdkjcjdy"> YXLXDKJCJDY=#yxlxdkjcjdy#</isNotNull>
+			<isNotNull prepend="," property="sjhqjdjx"> SJHQJDJX=#sjhqjdjx#</isNotNull>
+			<isNotNull prepend="," property="spxdhjqdjx"> SPXDHJQDJX=#spxdhjqdjx#</isNotNull>
+			<isNotNull prepend="," property="dmbzclkfs"> DMBZCLKFS=#dmbzclkfs#</isNotNull>
+			<isNotNull prepend="," property="dmbzclzy"> DMBZCLZY=#dmbzclzy#</isNotNull>
+			<isNotNull prepend="," property="dmbzcllg"> DMBZCLLG=#dmbzcllg#</isNotNull>
+			<isNotNull prepend="," property="jxbzcltss"> JXBZCLTSS=#jxbzcltss#</isNotNull>
+			<isNotNull prepend="," property="jxbzclzy"> JXBZCLZY=#jxbzclzy#</isNotNull>
+			<isNotNull prepend="," property="jsbzcllg"> JSBZCLLG=#jsbzcllg#</isNotNull>
+			<isNotNull prepend="," property="kqfjqk"> KQFJQK=#kqfjqk#</isNotNull>
+			<isNotNull prepend="," property="lnsw"> LNSW=#lnsw#</isNotNull>
+			<isNotNull prepend="," property="kqqtkq"> KQQTKQ=#kqqtkq#</isNotNull>
+			<isNotNull prepend="," property="kqzkzl"> KQZKZL=#kqzkzl#</isNotNull>
+			<isNotNull prepend="," property="xyscjqk"> XYSCJQK=#xyscjqk#</isNotNull>
+			<isNotNull prepend="," property="kjsdsllx"> KJSDSLLX=#kjsdsllx#</isNotNull>
+			<isNotNull prepend="," property="swdzkj"> SWDZKJ=#swdzkj#</isNotNull>
+			<isNotNull prepend="," property="ktddbhscqk"> KTDDBHSCQK=#ktddbhscqk#</isNotNull>
+			<isNotNull prepend="," property="ktddbyfhsc"> KTDDBYFHSC=#ktddbyfhsc#</isNotNull>
+			<isNotNull prepend="," property="kjsfstwx"> KJSFSTWX=#kjsfstwx#</isNotNull>
+			<isNotNull prepend="," property="cjdywh"> CJDYWH=#cjdywh#</isNotNull>
+			<isNotNull prepend="," property="kqdcsm"> KQDCSM=#kqdcsm#</isNotNull>
+			<isNotNull prepend="," property="xdwywdx"> XDWYWDX=#xdwywdx#</isNotNull>
+			<isNotNull prepend="," property="jxcysbsl"> JXCYSBSL=#jxcysbsl#</isNotNull>
+			<isNotNull prepend="," property="jxyysbsl"> JXYYSBSL=#jxyysbsl#</isNotNull>
+			<isNotNull prepend="," property="jxgzylcfdd"> JXGZYLCFDD=#jxgzylcfdd#</isNotNull>
+			<isNotNull prepend="," property="jxgzylcfsl"> JXGZYLCFSL=#jxgzylcfsl#</isNotNull>
+			<isNotNull prepend="," property="dsssjsl"> DSSSJSL=#dsssjsl#</isNotNull>
+			<isNotNull prepend="," property="ynxfhcsssd"> YNXFHCSSSD=#ynxfhcsssd#</isNotNull>
+			<isNotNull prepend="," property="ynxfhcsjz"> YNXFHCSJZ=#ynxfhcsjz#</isNotNull>
+			<isNotNull prepend="," property="ynxfhcszh"> YNXFHCSZH=#ynxfhcszh#</isNotNull>
+			<isNotNull prepend="," property="ynxfhcsqc"> YNXFHCSQC=#ynxfhcsqc#</isNotNull>
+			<isNotNull prepend="," property="ynxfhcszz"> YNXFHCSZZ=#ynxfhcszz#</isNotNull>
+			<isNotNull prepend="," property="ynxfhcswd"> YNXFHCSWD=#ynxfhcswd#</isNotNull>
+			<isNotNull prepend="," property="qtcs"> QTCS=#qtcs#</isNotNull>
+			<isNotNull prepend="," property="dmfscrl"> DMFSCRL=#dmfscrl#</isNotNull>
+			<isNotNull prepend="," property="jxxfsgcd"> JXXFSGCD=#jxxfsgcd#</isNotNull>
+			<isNotNull prepend="," property="jxyhqt"> JXYHQT=#jxyhqt#</isNotNull>
+			<isNotNull prepend="," property="kjywhq"> KJYWHQ=#kjywhq#</isNotNull>
+			<isNotNull prepend="," property="kqnywtxwxqy"> KQNYWTXWXQY=#kqnywtxwxqy#</isNotNull>
+			<isNotNull prepend="," property="sfjzstdlkc"> SFJZSTDLKC=#sfjzstdlkc#</isNotNull>
+			<isNotNull prepend="," property="kjaqsfsljyx"> KJAQSFSLJYX=#kjaqsfsljyx#</isNotNull>
+			<isNotNull prepend="," property="jwnsg"> JWNSG=#jwnsg#</isNotNull>
+			<isNotNull prepend="," property="qsrs"> QSRS=#qsrs#</isNotNull>
+			<isNotNull prepend="," property="zsrs"> ZSRS=#zsrs#</isNotNull>
+			<isNotNull prepend="," property="swrs"> SWRS=#swrs#</isNotNull>
+			<isNotNull prepend="," property="jkylzdsgsz"> JKYLZDSGSZ=#jkylzdsgsz#</isNotNull>
+			<isNotNull prepend="," property="jkylzdsghz"> JKYLZDSGHZ=#jkylzdsghz#</isNotNull>
+			<isNotNull prepend="," property="jkylzdsgmd"> JKYLZDSGMD=#jkylzdsgmd#</isNotNull>
+			<isNotNull prepend="," property="jkylzdsgzgmc"> JKYLZDSGZGMC=#jkylzdsgzgmc#</isNotNull>
+			<isNotNull prepend="," property="jkylzdsgqt"> JKYLZDSGQT=#jkylzdsgqt#</isNotNull>
+			<isNotNull prepend="," property="zsxh"> ZSXH=#zsxh#</isNotNull>
+			<isNotNull prepend="," property="zssl"> ZSSL=#zssl#</isNotNull>
+			<isNotNull prepend="," property="jsxh"> JSXH=#jsxh#</isNotNull>
+			<isNotNull prepend="," property="jssl"> JSSL=#jssl#</isNotNull>
+			<isNotNull prepend="," property="zpsgxh"> ZPSGXH=#zpsgxh#</isNotNull>
+			<isNotNull prepend="," property="zpsgsl"> ZPSGSL=#zpsgsl#</isNotNull>
+			<isNotNull prepend="," property="tfssbxh"> TFSSBXH=#tfssbxh#</isNotNull>
+			<isNotNull prepend="," property="tfssbsl"> TFSSBSL=#tfssbsl#</isNotNull>
+			<isNotNull prepend="," property="jctssbxh"> JCTSSBXH=#jctssbxh#</isNotNull>
+			<isNotNull prepend="," property="jctssbsl"> JCTSSBSL=#jctssbsl#</isNotNull>
+			<isNotNull prepend="," property="jsrysgj"> JSRYSGJ=#jsrysgj#</isNotNull>
+			<isNotNull prepend="," property="jsryszj"> JSRYSZJ=#jsryszj#</isNotNull>
+			<isNotNull prepend="," property="jsryscj"> JSRYSCJ=#jsryscj#</isNotNull>
+			<isNotNull prepend="," property="dgrs"> DGRS=#dgrs#</isNotNull>
+			<isNotNull prepend="," property="jcsjrs"> JCSJRS=#jcsjrs#</isNotNull>
+			<isNotNull prepend="," property="fbrs"> FBRS=#fbrs#</isNotNull>
+			<isNotNull prepend="," property="ckff"> CKFF=#ckff#</isNotNull>
+			<isNotNull prepend="," property="xykjwtsm"> XYKJWTSM=#xykjwtsm#</isNotNull>
+			<isNotNull prepend="," property="bz"> BZ=#bz#</isNotNull>
+			<isNotNull prepend="," property="tblxdh"> TBLXDH=#tblxdh#</isNotNull>
+			<isNotNull prepend="," property="tbr"> TBR=#tbr#</isNotNull>
+			<isNotNull prepend="," property="tbrq"> TBRQ=#tbrq#</isNotNull>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hazards.mines.pojo.MinesHazards" parameterClass="java.util.Map">
+ 		SELECT
+ 			dbo.FN_HASMAP(TB_MINES_HAZARDS.ID) as hasMap,
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_MINES_HAZARDS.DWDM AS dwdm,
+			TB_MINES_HAZARDS.MINE_NAME AS mineName,
+			TB_MINES_HAZARDS.ADDRESS AS address,
+			TB_MINES_HAZARDS.YZBM AS yzbm,
+			TB_MINES_HAZARDS.ZYFZR AS zyfzr,
+			TB_MINES_HAZARDS.LXDH AS lxdh,
+			TB_MINES_HAZARDS.SJFRDW AS sjfrdw,
+			TB_MINES_HAZARDS.CKRQ AS ckrq,
+			TB_MINES_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_MINES_HAZARDS.REAL_ABLITY AS realAblity,
+			TB_MINES_HAZARDS.KCKZ AS kckz,
+			TB_MINES_HAZARDS.KCCL AS kccl,
+			TB_MINES_HAZARDS.GDZC AS gdzc,
+			TB_MINES_HAZARDS.NLR AS nlr,
+			TB_MINES_HAZARDS.JJLX AS jjlx,
+			TB_MINES_HAZARDS.KTFS AS ktfs,
+			TB_MINES_HAZARDS.TFFS AS tffs,
+			TB_MINES_HAZARDS.TSFS AS tsfs,
+			TB_MINES_HAZARDS.GDFS AS gdfs,
+			TB_MINES_HAZARDS.TSSCDZDS AS tsscdzds,
+			TB_MINES_HAZARDS.ZBSCDZDS AS zbscdzds,
+			TB_MINES_HAZARDS.TSSCDCCS AS tsscdccs,
+			TB_MINES_HAZARDS.JXTSZYRS AS jxtszyrs,
+			TB_MINES_HAZARDS.KJZJFL AS kjzjfl,
+			TB_MINES_HAZARDS.KJYXFLL AS kjyxfll,
+			TB_MINES_HAZARDS.KJZDYSL AS kjzdysl,
+			TB_MINES_HAZARDS.ZJZDZHPSL AS zjzdzhpsl,
+			TB_MINES_HAZARDS.YXLXDKJWS AS yxlxdkjws,
+			TB_MINES_HAZARDS.YXLXDKJM AS yxlxdkjm,
+			TB_MINES_HAZARDS.YXLXDKJFH AS yxlxdkjfh,
+			TB_MINES_HAZARDS.YXLXDKJKC AS yxlxdkjkc,
+			TB_MINES_HAZARDS.YXLXDKJMXDK AS yxlxdkjmxdk,
+			TB_MINES_HAZARDS.YXLXDKJFSX AS yxlxdkjfsx,
+			TB_MINES_HAZARDS.YXLXDKJGLK AS yxlxdkjglk,
+			TB_MINES_HAZARDS.YXLXDKJCJDY AS yxlxdkjcjdy,
+			TB_MINES_HAZARDS.SJHQJDJX AS sjhqjdjx,
+			TB_MINES_HAZARDS.SPXDHJQDJX AS spxdhjqdjx,
+			TB_MINES_HAZARDS.DMBZCLKFS AS dmbzclkfs,
+			TB_MINES_HAZARDS.DMBZCLZY AS dmbzclzy,
+			TB_MINES_HAZARDS.DMBZCLLG AS dmbzcllg,
+			TB_MINES_HAZARDS.JXBZCLTSS AS jxbzcltss,
+			TB_MINES_HAZARDS.JXBZCLZY AS jxbzclzy,
+			TB_MINES_HAZARDS.JSBZCLLG AS jsbzcllg,
+			TB_MINES_HAZARDS.KQFJQK AS kqfjqk,
+			TB_MINES_HAZARDS.LNSW AS lnsw,
+			TB_MINES_HAZARDS.KQQTKQ AS kqqtkq,
+			TB_MINES_HAZARDS.KQZKZL AS kqzkzl,
+			TB_MINES_HAZARDS.XYSCJQK AS xyscjqk,
+			TB_MINES_HAZARDS.KJSDSLLX AS kjsdsllx,
+			TB_MINES_HAZARDS.SWDZKJ AS swdzkj,
+			TB_MINES_HAZARDS.KTDDBHSCQK AS ktddbhscqk,
+			TB_MINES_HAZARDS.KTDDBYFHSC AS ktddbyfhsc,
+			TB_MINES_HAZARDS.KJSFSTWX AS kjsfstwx,
+			TB_MINES_HAZARDS.CJDYWH AS cjdywh,
+			TB_MINES_HAZARDS.KQDCSM AS kqdcsm,
+			TB_MINES_HAZARDS.XDWYWDX AS xdwywdx,
+			TB_MINES_HAZARDS.JXCYSBSL AS jxcysbsl,
+			TB_MINES_HAZARDS.JXYYSBSL AS jxyysbsl,
+			TB_MINES_HAZARDS.JXGZYLCFDD AS jxgzylcfdd,
+			TB_MINES_HAZARDS.JXGZYLCFSL AS jxgzylcfsl,
+			TB_MINES_HAZARDS.DSSSJSL AS dsssjsl,
+			TB_MINES_HAZARDS.YNXFHCSSSD AS ynxfhcsssd,
+			TB_MINES_HAZARDS.YNXFHCSJZ AS ynxfhcsjz,
+			TB_MINES_HAZARDS.YNXFHCSZH AS ynxfhcszh,
+			TB_MINES_HAZARDS.YNXFHCSQC AS ynxfhcsqc,
+			TB_MINES_HAZARDS.YNXFHCSZZ AS ynxfhcszz,
+			TB_MINES_HAZARDS.YNXFHCSWD AS ynxfhcswd,
+			TB_MINES_HAZARDS.QTCS AS qtcs,
+			TB_MINES_HAZARDS.DMFSCRL AS dmfscrl,
+			TB_MINES_HAZARDS.JXXFSGCD AS jxxfsgcd,
+			TB_MINES_HAZARDS.JXYHQT AS jxyhqt,
+			TB_MINES_HAZARDS.KJYWHQ AS kjywhq,
+			TB_MINES_HAZARDS.KQNYWTXWXQY AS kqnywtxwxqy,
+			TB_MINES_HAZARDS.SFJZSTDLKC AS sfjzstdlkc,
+			TB_MINES_HAZARDS.KJAQSFSLJYX AS kjaqsfsljyx,
+			TB_MINES_HAZARDS.JWNSG AS jwnsg,
+			TB_MINES_HAZARDS.QSRS AS qsrs,
+			TB_MINES_HAZARDS.ZSRS AS zsrs,
+			TB_MINES_HAZARDS.SWRS AS swrs,
+			TB_MINES_HAZARDS.JKYLZDSGSZ AS jkylzdsgsz,
+			TB_MINES_HAZARDS.JKYLZDSGHZ AS jkylzdsghz,
+			TB_MINES_HAZARDS.JKYLZDSGMD AS jkylzdsgmd,
+			TB_MINES_HAZARDS.JKYLZDSGZGMC AS jkylzdsgzgmc,
+			TB_MINES_HAZARDS.JKYLZDSGQT AS jkylzdsgqt,
+			TB_MINES_HAZARDS.ZSXH AS zsxh,
+			TB_MINES_HAZARDS.ZSSL AS zssl,
+			TB_MINES_HAZARDS.JSXH AS jsxh,
+			TB_MINES_HAZARDS.JSSL AS jssl,
+			TB_MINES_HAZARDS.ZPSGXH AS zpsgxh,
+			TB_MINES_HAZARDS.ZPSGSL AS zpsgsl,
+			TB_MINES_HAZARDS.TFSSBXH AS tfssbxh,
+			TB_MINES_HAZARDS.TFSSBSL AS tfssbsl,
+			TB_MINES_HAZARDS.JCTSSBXH AS jctssbxh,
+			TB_MINES_HAZARDS.JCTSSBSL AS jctssbsl,
+			TB_MINES_HAZARDS.JSRYSGJ AS jsrysgj,
+			TB_MINES_HAZARDS.JSRYSZJ AS jsryszj,
+			TB_MINES_HAZARDS.JSRYSCJ AS jsryscj,
+			TB_MINES_HAZARDS.DGRS AS dgrs,
+			TB_MINES_HAZARDS.JCSJRS AS jcsjrs,
+			TB_MINES_HAZARDS.FBRS AS fbrs,
+			TB_MINES_HAZARDS.CKFF AS ckff,
+			TB_MINES_HAZARDS.XYKJWTSM AS xykjwtsm,
+			TB_MINES_HAZARDS.BZ AS bz,
+			TB_MINES_HAZARDS.TBLXDH AS tblxdh,
+			TB_MINES_HAZARDS.TBR AS tbr,
+			TB_MINES_HAZARDS.TBRQ AS tbrq,
+			
+			TB_MINES_HAZARDS.ID AS id,
+			TB_MINES_HAZARDS.STATUS AS status,
+			TB_MINES_HAZARDS.CREATED AS created,
+			TB_MINES_HAZARDS.CREATE_TIME AS createTime,
+			TB_MINES_HAZARDS.UPDATED AS updated,
+			TB_MINES_HAZARDS.UPDATE_TIME AS updateTime
+		from
+		TB_MINES_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_MINES_HAZARDS.DWDM= TB_ENTERPRISE.ID
+		WHERE
+			TB_MINES_HAZARDS.STATUS = '1'
+		<include refid="MinesHazards.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from
+		TB_MINES_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_MINES_HAZARDS.DWDM= TB_ENTERPRISE.ID
+		WHERE
+			TB_MINES_HAZARDS.STATUS = '1' 
+		<include refid="MinesHazards.mapWhereClause"/>
+	</select>
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE TB_MINES_HAZARDS
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

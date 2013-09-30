@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="ScoreManagement">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_SCORE_MANAGEMENT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_SCORE_MANAGEMENT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_SCORE_MANAGEMENT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_SCORE_MANAGEMENT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_SCORE_MANAGEMENT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_SCORE_MANAGEMENT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="sp"> TB_SCORE_MANAGEMENT.SP like '%'+#sp#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hs"> TB_SCORE_MANAGEMENT.HS like '%'+#hs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hp"> TB_SCORE_MANAGEMENT.HP like '%'+#hp#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ps"> TB_SCORE_MANAGEMENT.PS like '%'+#ps#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pp"> TB_SCORE_MANAGEMENT.PP like '%'+#pp#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ds"> TB_SCORE_MANAGEMENT.DS like '%'+#ds#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dp"> TB_SCORE_MANAGEMENT.DP like '%'+#dp#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rls"> TB_SCORE_MANAGEMENT.RLS like '%'+#rls#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ras"> TB_SCORE_MANAGEMENT.RAS like '%'+#ras#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rps"> TB_SCORE_MANAGEMENT.RPS like '%'+#rps#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rrs"> TB_SCORE_MANAGEMENT.RRS like '%'+#rrs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rp"> TB_SCORE_MANAGEMENT.RP like '%'+#rp#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.scoremanagement.pojo.ScoreManagement">
+  		INSERT INTO TB_SCORE_MANAGEMENT(
+				
+				SP,
+				HS,
+				HP,
+				PS,
+				PP,
+				DS,
+				DP,
+				RLS,
+				RAS,
+				RPS,
+				RRS,
+				RP,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#sp#,
+				#hs#,
+				#hp#,
+				#ps#,
+				#pp#,
+				#ds#,
+				#dp#,
+				#rls#,
+				#ras#,
+				#rps#,
+				#rrs#,
+				#rp#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_SCORE_MANAGEMENT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.scoremanagement.pojo.ScoreManagement" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_SCORE_MANAGEMENT.SP AS sp,
+			TB_SCORE_MANAGEMENT.HS AS hs,
+			TB_SCORE_MANAGEMENT.HP AS hp,
+			TB_SCORE_MANAGEMENT.PS AS ps,
+			TB_SCORE_MANAGEMENT.PP AS pp,
+			TB_SCORE_MANAGEMENT.DS AS ds,
+			TB_SCORE_MANAGEMENT.DP AS dp,
+			TB_SCORE_MANAGEMENT.RLS AS rls,
+			TB_SCORE_MANAGEMENT.RAS AS ras,
+			TB_SCORE_MANAGEMENT.RPS AS rps,
+			TB_SCORE_MANAGEMENT.RRS AS rrs,
+			TB_SCORE_MANAGEMENT.RP AS rp,
+			
+			TB_SCORE_MANAGEMENT.ID AS id,
+			TB_SCORE_MANAGEMENT.STATUS AS status,
+			TB_SCORE_MANAGEMENT.CREATED AS created,
+			TB_SCORE_MANAGEMENT.CREATE_TIME AS createTime,
+			TB_SCORE_MANAGEMENT.UPDATED AS updated,
+			TB_SCORE_MANAGEMENT.UPDATE_TIME as updateTime
+		from
+		TB_SCORE_MANAGEMENT
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.scoremanagement.pojo.ScoreManagement">
+		UPDATE TB_SCORE_MANAGEMENT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="sp"> SP=#sp#</isNotEmpty>
+			<isNotEmpty prepend="," property="hs"> HS=#hs#</isNotEmpty>
+			<isNotEmpty prepend="," property="hp"> HP=#hp#</isNotEmpty>
+			<isNotEmpty prepend="," property="ps"> PS=#ps#</isNotEmpty>
+			<isNotEmpty prepend="," property="pp"> PP=#pp#</isNotEmpty>
+			<isNotEmpty prepend="," property="ds"> DS=#ds#</isNotEmpty>
+			<isNotEmpty prepend="," property="dp"> DP=#dp#</isNotEmpty>
+			<isNotEmpty prepend="," property="rls"> RLS=#rls#</isNotEmpty>
+			<isNotEmpty prepend="," property="ras"> RAS=#ras#</isNotEmpty>
+			<isNotEmpty prepend="," property="rps"> RPS=#rps#</isNotEmpty>
+			<isNotEmpty prepend="," property="rrs"> RRS=#rrs#</isNotEmpty>
+			<isNotEmpty prepend="," property="rp"> RP=#rp#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.scoremanagement.pojo.ScoreManagement" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_SCORE_MANAGEMENT.SP AS sp,
+			TB_SCORE_MANAGEMENT.HS AS hs,
+			TB_SCORE_MANAGEMENT.HP AS hp,
+			TB_SCORE_MANAGEMENT.PS AS ps,
+			TB_SCORE_MANAGEMENT.PP AS pp,
+			TB_SCORE_MANAGEMENT.DS AS ds,
+			TB_SCORE_MANAGEMENT.DP AS dp,
+			TB_SCORE_MANAGEMENT.RLS AS rls,
+			TB_SCORE_MANAGEMENT.RAS AS ras,
+			TB_SCORE_MANAGEMENT.RPS AS rps,
+			TB_SCORE_MANAGEMENT.RRS AS rrs,
+			TB_SCORE_MANAGEMENT.RP AS rp,
+			
+			TB_SCORE_MANAGEMENT.ID AS id,
+			TB_SCORE_MANAGEMENT.STATUS AS status,
+			TB_SCORE_MANAGEMENT.CREATED AS created,
+			TB_SCORE_MANAGEMENT.CREATE_TIME AS createTime,
+			TB_SCORE_MANAGEMENT.UPDATED AS updated,
+			TB_SCORE_MANAGEMENT.UPDATE_TIME AS updateTime
+		FROM
+			TB_SCORE_MANAGEMENT
+		WHERE
+			TB_SCORE_MANAGEMENT.STATUS = '1'
+		<include refid="ScoreManagement.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_SCORE_MANAGEMENT
+		WHERE
+			TB_SCORE_MANAGEMENT.STATUS = '1' 
+		<include refid="ScoreManagement.mapWhereClause"/>
+	</select>
+</sqlMap>

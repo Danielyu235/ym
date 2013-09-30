@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="selectPaper">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_SELECT_PAPER.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="paperId"> TB_SELECT_PAPER.PAPER_ID=#paperId#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_SELECT_PAPER.STATUS=#status#</isNotEmpty>
+			<!--  <isNotEmpty prepend="and" property="created"> TB_SELECT_PAPER.CREATED=#created#</isNotEmpty>-->
+			<isNotEmpty prepend="and" property="createTime"> TB_SELECT_PAPER.CREATE_TIME like '%'+#createTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="examTime"> convert(varchar(16),tb_select_paper.create_time,121) like '%'+#examTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_SELECT_PAPER.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_SELECT_PAPER.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="paperName"> PAPER_NAME like '%'+#paperName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="judgeIds"> TB_SELECT_PAPER.JUDGE_IDS like '%'+#judgeIds#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="manyIds"> TB_SELECT_PAPER.MANY_IDS like '%'+#manyIds#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="singleIds"> TB_SELECT_PAPER.SINGLE_IDS like '%'+#singleIds#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="singleAnswer"> TB_SELECT_PAPER.SINGLE_ANSWER like '%'+#singleAnswer#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="manyAnswer"> TB_SELECT_PAPER.MANY_ANSWER like '%'+#manyAnswer#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="judgeAnswer"> TB_SELECT_PAPER.JUDGE_ANSWER like '%'+#judgeAnswer#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="username"> USERNAME like '%'+#username#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="employeeName"> JOB_NUM like '%'+#employeeName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sysuser"> name like '%'+#sysuser#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> TB_EMPLOYEES.POST like '%'+#post#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> TB_EMPLOYEES.MAJOR like '%'+#major#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="time"> convert(varchar(16),tb_select_paper.create_time,121) like '%'+#time#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="done"> TB_EMPLOYEES.departmentf LIKE '%'+#done# +'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dtwo"> TB_EMPLOYEES.departments LIKE '%'+#dtwo# +'%'</isNotEmpty>
+			
+			</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.credit.examine.testPaperManage.pojo.selectPaper">
+  		INSERT INTO TB_SELECT_PAPER(
+				
+				PAPER_ID,
+				JUDGE_IDS,
+				MANY_IDS,
+				SINGLE_IDS,
+				SINGLE_ANSWER,
+				MANY_ANSWER,
+				JUDGE_ANSWER,
+				SCORES,
+				USERNAME,
+				PAPERSCORES,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#paperId#,
+				#judgeIds#,
+				#manyIds#,
+				#singleIds#,
+				#singleAnswer#,
+				#manyAnswer#,
+				#judgeAnswer#,
+				#scores#,
+				#username#,
+				#paperscores#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_SELECT_PAPER SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.credit.examine.testPaperManage.pojo.selectPaper" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_SELECT_PAPER.PAPER_ID AS paperId,
+			TB_SELECT_PAPER.JUDGE_IDS AS judgeIds,
+			TB_SELECT_PAPER.MANY_IDS AS manyIds,
+			TB_SELECT_PAPER.SINGLE_IDS AS singleIds,
+			TB_SELECT_PAPER.SINGLE_ANSWER AS singleAnswer,
+			TB_SELECT_PAPER.MANY_ANSWER AS manyAnswer,
+			TB_SELECT_PAPER.JUDGE_ANSWER AS judgeAnswer,
+			TB_SELECT_PAPER.SCORES AS scores,
+			TB_SELECT_PAPER.USERNAME AS username,
+			
+			TB_SELECT_PAPER.ID AS id,
+			TB_SELECT_PAPER.STATUS AS status,
+			TB_SELECT_PAPER.CREATED AS created,
+			TB_SELECT_PAPER.CREATE_TIME AS createTime,
+			TB_SELECT_PAPER.UPDATED AS updated,
+			TB_SELECT_PAPER.UPDATE_TIME as updateTime
+		from
+		TB_SELECT_PAPER
+  		where 
+ 	 		TB_SELECT_PAPER.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.credit.examine.testPaperManage.pojo.selectPaper">
+		UPDATE TB_SELECT_PAPER 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="paperId"> PAPER_ID=#paperId#</isNotEmpty>
+			<isNotEmpty prepend="," property="judgeIds"> JUDGE_IDS=#judgeIds#</isNotEmpty>
+			<isNotEmpty prepend="," property="manyIds"> MANY_IDS=#manyIds#</isNotEmpty>
+			<isNotEmpty prepend="," property="singleIds"> SINGLE_IDS=#singleIds#</isNotEmpty>
+			<isNotEmpty prepend="," property="singleAnswer"> SINGLE_ANSWER=#singleAnswer#</isNotEmpty>
+			<isNotEmpty prepend="," property="manyAnswer"> MANY_ANSWER=#manyAnswer#</isNotEmpty>
+			<isNotEmpty prepend="," property="judgeAnswer"> JUDGE_ANSWER=#judgeAnswer#</isNotEmpty>
+			<isNotEmpty prepend="," property="scores"> SCORES=#scores#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.credit.examine.testPaperManage.pojo.selectPaper" parameterClass="java.util.Map">
+ 		select 
+ 			JOB_NUM as employeeName,
+			dbo.FN_codeToText(major) as major,
+			dbo.FN_codeToText(POST) as post,
+			dbo.FN_codeToText(DEPARTMENTF) as done, 
+			dbo.FN_codeToText(DEPARTMENTS) as dtwo,
+            tp.PAPER_NAME as paperName,
+ 			TB_SELECT_PAPER.PAPER_ID AS paperId,
+			TB_SELECT_PAPER.JUDGE_IDS AS judgeIds,
+			TB_SELECT_PAPER.MANY_IDS AS manyIds,
+			TB_SELECT_PAPER.SINGLE_IDS AS singleIds,
+			TB_SELECT_PAPER.SINGLE_ANSWER AS singleAnswer,
+			TB_SELECT_PAPER.MANY_ANSWER AS manyAnswer,
+			TB_SELECT_PAPER.JUDGE_ANSWER AS judgeAnswer,
+			TB_SELECT_PAPER.SCORES AS scores,
+			TB_EMPLOYEES.NAME AS username,
+			
+			TB_SELECT_PAPER.ID AS id,
+			TB_SELECT_PAPER.STATUS AS status,
+			TB_SELECT_PAPER.CREATED AS created,
+			TB_SELECT_PAPER.CREATE_TIME createTime,
+			CONVERT(VARCHAR(16),TB_SELECT_PAPER.CREATE_TIME,121) AS time,
+			TB_SELECT_PAPER.UPDATED AS updated,
+			TB_SELECT_PAPER.UPDATE_TIME AS updateTime from TB_SELECT_PAPER 
+		inner join TB_TEST_PAPER_MANAGE as tp on tp.ID = TB_SELECT_PAPER.PAPER_ID inner join TB_EMPLOYEES on TB_EMPLOYEES.id  =TB_SELECT_PAPER.USERNAME
+		WHERE
+			TB_SELECT_PAPER.STATUS = '1' 
+		<include refid="selectPaper.mapWhereClause"/>
+		order by time desc
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from TB_SELECT_PAPER 
+		inner join TB_TEST_PAPER_MANAGE as tp on tp.ID = TB_SELECT_PAPER.PAPER_ID inner join TB_EMPLOYEES on TB_EMPLOYEES.id  =TB_SELECT_PAPER.USERNAME
+		WHERE
+			TB_SELECT_PAPER.STATUS = '1' 
+		<include refid="selectPaper.mapWhereClause"/>
+	</select>
+</sqlMap>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+  <!--启动应急救援平台模块-->  
+  <bean id="platformRescueDao" class="com.ay.emergency.rescue.platform.dao.PlatformRescueDao" parent="baseDao"/>  
+  <bean id="platformRescueService" class="com.ay.emergency.rescue.platform.service.PlatformRescueService"> 
+    <property name="dao" ref="platformRescueDao"/> 
+  </bean>  
+  <!--启动预案模块-->  
+  <bean id="planRescueDao" class="com.ay.emergency.rescue.planRescue.dao.PlanRescueDao" parent="baseDao"/>  
+  <bean id="planRescueService" class="com.ay.emergency.rescue.planRescue.service.PlanRescueService"> 
+    <property name="dao" ref="planRescueDao"/> 
+  </bean>  
+  <!--救援预案日志模块-->  
+  <bean id="logRescueDao" class="com.ay.emergency.rescue.logRescue.dao.LogRescueDao" parent="baseDao"/>  
+  <bean id="logRescueService" class="com.ay.emergency.rescue.logRescue.service.LogRescueService"> 
+    <property name="dao" ref="logRescueDao"/> 
+  </bean>  
+  <!--应急指挥中心模块-->  
+  <bean id="headquartersDao" class="com.ay.emergency.resource.headquarters.dao.HeadquartersDao" parent="baseDao"/>  
+  <bean id="headquartersService" class="com.ay.emergency.resource.headquarters.service.HeadquartersService"> 
+    <property name="dao" ref="headquartersDao"/> 
+  </bean>  
+  <!--救援机构反馈信息模块-->  
+  <bean id="agenciesDao" class="com.ay.agencies.dao.AgenciesDao" parent="baseDao"/>  
+  <bean id="agenciesService" class="com.ay.agencies.service.AgenciesService"> 
+    <property name="dao" ref="agenciesDao"/> 
+  </bean>  
+  <!--事故调用物资模块-->  
+  <bean id="accidentSuppliesDao" class="com.ay.emergency.rescue.supplies.dao.AccidentSuppliesDao" parent="baseDao"/>  
+  <bean id="accidentSuppliesService" class="com.ay.emergency.rescue.supplies.service.AccidentSuppliesService"> 
+    <property name="dao" ref="accidentSuppliesDao"/> 
+  </bean>  
+</beans>

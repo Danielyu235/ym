@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="PerilsData">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_PERILS_DATA.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_PERILS_DATA.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_PERILS_DATA.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_PERILS_DATA.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_PERILS_DATA.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_PERILS_DATA.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="hiddenId"> TB_PERILS_DATA.HIDDEN_ID like '%'+#hiddenId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="level"> TB_PERILS_DATA.LEVEL like '%'+#level#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> TB_PERILS_DATA.MAJOR like '%'+#major#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="content"> TB_PERILS_DATA.CONTENT like '%'+#content#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="suggestion"> TB_PERILS_DATA.SUGGESTION like '%'+#suggestion#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="color"> TB_PERILS_DATA.COLOR like '%'+#color#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dep"> TB_PERILS_DATA.DEP like '%'+#dep#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lsr"> TB_PERILS_DATA.LSR like '%'+#lsr#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tel"> TB_PERILS_DATA.TEL like '%'+#tel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="time"> TB_PERILS_DATA.TIME like '%'+#time#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="way"> TB_PERILS_DATA.WAY like '%'+#way#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hiddenPerils.pojo.PerilsData">
+  		INSERT INTO TB_PERILS_DATA(
+				
+				HIDDEN_ID,
+				LEVEL,
+				MAJOR,
+				CONTENT,
+				SUGGESTION,
+				COLOR,
+				DEP,
+				LSR,
+				TEL,
+				TIME,
+				WAY,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#hiddenId#,
+				#level#,
+				#major#,
+				#content#,
+				#suggestion#,
+				#color#,
+				#dep#,
+				#lsr#,
+				#tel#,
+				#time#,
+				#way#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_PERILS_DATA SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.hiddenPerils.pojo.PerilsData" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_PERILS_DATA.HIDDEN_ID AS hiddenId,
+			TB_PERILS_DATA.LEVEL AS level,
+			TB_PERILS_DATA.MAJOR AS major,
+			TB_PERILS_DATA.CONTENT AS content,
+			TB_PERILS_DATA.SUGGESTION AS suggestion,
+			TB_PERILS_DATA.COLOR AS color,
+			TB_PERILS_DATA.DEP AS dep,
+			TB_PERILS_DATA.LSR AS lsr,
+			TB_PERILS_DATA.TEL AS tel,
+			TB_PERILS_DATA.TIME AS time,
+			TB_PERILS_DATA.WAY AS way,
+			
+			TB_PERILS_DATA.ID AS id,
+			TB_PERILS_DATA.STATUS AS status,
+			TB_PERILS_DATA.CREATED AS created,
+			TB_PERILS_DATA.CREATE_TIME AS createTime,
+			TB_PERILS_DATA.UPDATED AS updated,
+			TB_PERILS_DATA.UPDATE_TIME as updateTime
+		from
+		TB_PERILS_DATA
+  		where 
+ 	 		TB_PERILS_DATA.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hiddenPerils.pojo.PerilsData">
+		UPDATE TB_PERILS_DATA 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="hiddenId"> HIDDEN_ID=#hiddenId#</isNotEmpty>
+			<isNotEmpty prepend="," property="level"> LEVEL=#level#</isNotEmpty>
+			<isNotEmpty prepend="," property="major"> MAJOR=#major#</isNotEmpty>
+			<isNotEmpty prepend="," property="content"> CONTENT=#content#</isNotEmpty>
+			<isNotEmpty prepend="," property="suggestion"> SUGGESTION=#suggestion#</isNotEmpty>
+			<isNotEmpty prepend="," property="color"> COLOR=#color#</isNotEmpty>
+			<isNotEmpty prepend="," property="dep"> DEP=#dep#</isNotEmpty>
+			<isNotEmpty prepend="," property="lsr"> LSR=#lsr#</isNotEmpty>
+			<isNotEmpty prepend="," property="tel"> TEL=#tel#</isNotEmpty>
+			<isNotEmpty prepend="," property="time"> TIME=#time#</isNotEmpty>
+			<isNotEmpty prepend="," property="way"> WAY=#way#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hiddenPerils.pojo.PerilsData" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_PERILS_DATA.HIDDEN_ID AS hiddenId,
+			TB_PERILS_DATA.LEVEL AS level,
+			TB_PERILS_DATA.MAJOR AS major,
+			TB_PERILS_DATA.CONTENT AS content,
+			TB_PERILS_DATA.SUGGESTION AS suggestion,
+			TB_PERILS_DATA.COLOR AS color,
+			TB_PERILS_DATA.DEP AS dep,
+			TB_PERILS_DATA.LSR AS lsr,
+			TB_PERILS_DATA.TEL AS tel,
+			TB_PERILS_DATA.TIME AS time,
+			TB_PERILS_DATA.WAY AS way,
+			
+			TB_PERILS_DATA.ID AS id,
+			TB_PERILS_DATA.STATUS AS status,
+			TB_PERILS_DATA.CREATED AS created,
+			TB_PERILS_DATA.CREATE_TIME AS createTime,
+			TB_PERILS_DATA.UPDATED AS updated,
+			TB_PERILS_DATA.UPDATE_TIME AS updateTime
+		FROM
+			TB_PERILS_DATA
+		WHERE
+			TB_PERILS_DATA.STATUS = '1'
+		<include refid="PerilsData.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_PERILS_DATA
+		WHERE
+			TB_PERILS_DATA.STATUS = '1' 
+		<include refid="PerilsData.mapWhereClause"/>
+	</select>
+</sqlMap>

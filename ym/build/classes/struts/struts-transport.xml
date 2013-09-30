@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 运输保障 -->
+<package extends="struts-default" name="tbRescueTransport" namespace="/tbRescueTransport">
+<action class="com.ay.emergency.resource.transport.action.TransportResourceAction" name="tbRescueTransportAction"/>
+</package>
+</struts>

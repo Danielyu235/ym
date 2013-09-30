@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--人员职业健康模块-->
+  <package name="healthSafe" extends="struts-default" namespace="/healthSafe">
+    <action name="healthSafeAction" class="com.ay.safe.health.action.HealthSafeAction"/>
+  </package>
+  <!--员工考勤与奖罚模块-->
+  <package name="attendReward" extends="struts-default" namespace="/attendReward">
+    <action name="attendRewardAction" class="com.ay.attend.action.AttendRewardAction"/>
+  </package>
+  <!--日常三违处罚模块-->
+  <package name="punishSafe" extends="struts-default" namespace="/punishSafe">
+    <action name="punishSafeAction" class="com.ay.safe.punish.action.PunishSafeAction"/>
+  </package>
+   <!--评分管理模块-->
+  <package name="scoreManagement" extends="struts-default" namespace="/scoreManagement">
+    <action name="scoreManagementAction" class="com.ay.scoremanagement.action.ScoreManagementAction"/>
+  </package>
+  <!--职工信誉评价模块-->
+  <package name="reputation" extends="struts-default" namespace="/reputation">
+    <action name="reputationAction" class="com.ay.reputation.action.ReputationAction"/>
+  </package>
+</struts>
+

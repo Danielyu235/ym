@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="WorkFace">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_WORK_FACE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_WORK_FACE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_WORK_FACE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_WORK_FACE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_WORK_FACE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_WORK_FACE.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="number"> TB_WORK_FACE.NUMBER like '%'+#number#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workFaceName"> TB_WORK_FACE.WORK_FACE_NAME like '%'+#workFaceName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workFacePlace"> TB_WORK_FACE.WORK_FACE_PLACE like '%'+#workFacePlace#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workFaceCase"> TB_WORK_FACE.WORK_FACE_CASE like '%'+#workFaceCase#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_WORK_FACE.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_WORK_FACE.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_WORK_FACE.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bz"> TB_WORK_FACE.BZ like '%'+#bz#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.workface.pojo.WorkFace">
+  		INSERT INTO TB_WORK_FACE(
+				
+				NUMBER,
+				WORK_FACE_NAME,
+				WORK_FACE_PLACE,
+				WORK_FACE_CASE,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				BZ,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#number#,
+				#workFaceName#,
+				#workFacePlace#,
+				#workFaceCase#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#bz#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_WORK_FACE SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.workface.pojo.WorkFace" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_WORK_FACE.NUMBER AS number,
+			TB_WORK_FACE.WORK_FACE_NAME AS workFaceName,
+			TB_WORK_FACE.WORK_FACE_PLACE AS workFacePlace,
+			TB_WORK_FACE.WORK_FACE_CASE AS workFaceCase,
+			TB_WORK_FACE.DANGEROUS AS dangerous,
+			TB_WORK_FACE.LOSS AS loss,
+			TB_WORK_FACE.STEP AS step,
+			TB_WORK_FACE.BZ AS bz,
+			
+			TB_WORK_FACE.ID AS id,
+			TB_WORK_FACE.STATUS AS status,
+			TB_WORK_FACE.CREATED AS created,
+			TB_WORK_FACE.CREATE_TIME AS createTime,
+			TB_WORK_FACE.UPDATED AS updated,
+			TB_WORK_FACE.UPDATE_TIME as updateTime
+		from
+		TB_WORK_FACE
+  		where 
+ 	 		TB_WORK_FACE.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.workface.pojo.WorkFace">
+		UPDATE TB_WORK_FACE 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="number"> NUMBER=#number#</isNotEmpty>
+			<isNotEmpty prepend="," property="workFaceName"> WORK_FACE_NAME=#workFaceName#</isNotEmpty>
+			<isNotEmpty prepend="," property="workFacePlace"> WORK_FACE_PLACE=#workFacePlace#</isNotEmpty>
+			<isNotEmpty prepend="," property="workFaceCase"> WORK_FACE_CASE=#workFaceCase#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="bz"> BZ=#bz#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.workface.pojo.WorkFace" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_WORK_FACE.NUMBER AS number,
+			TB_WORK_FACE.WORK_FACE_NAME AS workFaceName,
+			TB_WORK_FACE.WORK_FACE_PLACE AS workFacePlace,
+			TB_WORK_FACE.WORK_FACE_CASE AS workFaceCase,
+			TB_WORK_FACE.DANGEROUS AS dangerous,
+			TB_WORK_FACE.LOSS AS loss,
+			TB_WORK_FACE.STEP AS step,
+			TB_WORK_FACE.BZ AS bz,
+			
+			TB_WORK_FACE.ID AS id,
+			TB_WORK_FACE.STATUS AS status,
+			TB_WORK_FACE.CREATED AS created,
+			TB_WORK_FACE.CREATE_TIME AS createTime,
+			TB_WORK_FACE.UPDATED AS updated,
+			TB_WORK_FACE.UPDATE_TIME AS updateTime
+		FROM
+			TB_WORK_FACE
+		WHERE
+			TB_WORK_FACE.STATUS = '1'
+		<include refid="WorkFace.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_WORK_FACE
+		WHERE
+			TB_WORK_FACE.STATUS = '1' 
+		<include refid="WorkFace.mapWhereClause"/>
+	</select>
+</sqlMap>

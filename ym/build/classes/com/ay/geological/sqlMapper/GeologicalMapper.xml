@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Geological">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_GEOLOGICAL.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_GEOLOGICAL.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_GEOLOGICAL.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_GEOLOGICAL.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_GEOLOGICAL.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_GEOLOGICAL.UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpKey"> TB_GEOLOGICAL.CORP_KEY like '%'+#corpKey#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_GEOLOGICAL.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_GEOLOGICAL.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_GEOLOGICAL.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="station"> TB_GEOLOGICAL.STATION like '%'+#station#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="craft"> TB_GEOLOGICAL.CRAFT like '%'+#craft#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.geological.pojo.Geological">
+  		INSERT INTO TB_GEOLOGICAL(
+				
+				CORP_KEY,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				STATION,
+				CRAFT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpKey#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#station#,
+				#craft#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_GEOLOGICAL SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.geological.pojo.Geological" parameterClass="java.lang.String">
+ 		<!-- SELECT 
+			
+			TB_GEOLOGICAL.CORP_KEY AS corpKey,
+			TB_GEOLOGICAL.DANGEROUS AS dangerous,
+			TB_GEOLOGICAL.LOSS AS loss,
+			TB_GEOLOGICAL.STEP AS step,
+			TB_GEOLOGICAL.STATION AS station,
+			TB_GEOLOGICAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_GEOLOGICAL.CRAFT) as craftTypeName,
+			TB_GEOLOGICAL.ID AS id,
+			TB_GEOLOGICAL.STATUS AS status,
+			TB_GEOLOGICAL.CREATED AS created,
+			TB_GEOLOGICAL.CREATE_TIME AS createTime,
+			TB_GEOLOGICAL.UPDATED AS updated,
+			TB_GEOLOGICAL.UPDATE_TIME as updateTime
+		from
+		TB_GEOLOGICAL
+  		where 
+ 	 		TB_GEOLOGICAL.ID=#id#
+ 	 	 -->	
+ 	 	SELECT 
+			VIEW_GEOLOGICAL.CORP_KEY AS corpKey,
+			VIEW_GEOLOGICAL.DANGEROUS AS dangerous,
+			VIEW_GEOLOGICAL.LOSS AS loss,
+			VIEW_GEOLOGICAL.STEP AS step,
+			VIEW_GEOLOGICAL.STATION AS station,
+			VIEW_GEOLOGICAL.CRAFT AS craft,
+			dbo.FN_codeToText(VIEW_GEOLOGICAL.CRAFT) as craftTypeName,
+			VIEW_GEOLOGICAL.ID AS id,
+			VIEW_GEOLOGICAL.STATUS AS status,
+			VIEW_GEOLOGICAL.CREATED AS created,
+			VIEW_GEOLOGICAL.CREATE_TIME AS createTime,
+			VIEW_GEOLOGICAL.UPDATED AS updated,
+			VIEW_GEOLOGICAL.UPDATE_TIME as updateTime,
+			VIEW_GEOLOGICAL.CZYL AS czyl,
+			VIEW_GEOLOGICAL.KSYD AS ksyd,
+			VIEW_GEOLOGICAL.SGAL AS sgal,
+			VIEW_GEOLOGICAL.SSZY AS sszy,
+			VIEW_GEOLOGICAL.SSGZ AS ssgz,
+			dbo.FN_codeToText(VIEW_GEOLOGICAL.sszy) as sszyByType,
+			dbo.FN_codeToText(VIEW_GEOLOGICAL.ssgz) as ssgzByType
+		FROM
+		VIEW_GEOLOGICAL 
+  		where 
+ 	 		VIEW_GEOLOGICAL.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.geological.pojo.Geological">
+		UPDATE TB_GEOLOGICAL 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="corpKey"> CORP_KEY=#corpKey#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="station"> STATION=#station#</isNotEmpty>
+			<isNotEmpty prepend="," property="craft"> CRAFT=#craft#</isNotEmpty>
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	<select id="flist" resultClass="com.ay.geological.pojo.Geological" parameterClass="java.util.Map">
+ 		SELECT
+			TB_GEOLOGICAL.CORP_KEY AS corpKey,
+			TB_GEOLOGICAL.DANGEROUS AS dangerous,
+			TB_GEOLOGICAL.LOSS AS loss,
+			TB_GEOLOGICAL.STEP AS step,
+			TB_GEOLOGICAL.STATION AS station,
+			TB_GEOLOGICAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_GEOLOGICAL.CRAFT) as craftTypeName,
+			TB_GEOLOGICAL.ID AS id,
+			TB_GEOLOGICAL.STATUS AS status,
+			TB_GEOLOGICAL.CREATED AS created,
+			TB_GEOLOGICAL.CREATE_TIME AS createTime,
+			TB_GEOLOGICAL.UPDATED AS updated,
+			TB_GEOLOGICAL.UPDATE_TIME AS updateTime
+		FROM
+			TB_GEOLOGICAL
+		WHERE
+			TB_GEOLOGICAL.STATUS = '1'
+		<include refid="Geological.mapWhereClause"/>
+	</select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.geological.pojo.Geological" parameterClass="java.util.Map">
+ 		SELECT
+			TB_GEOLOGICAL.CORP_KEY AS corpKey,
+			TB_GEOLOGICAL.DANGEROUS AS dangerous,
+			TB_GEOLOGICAL.LOSS AS loss,
+			TB_GEOLOGICAL.STEP AS step,
+			TB_GEOLOGICAL.STATION AS station,
+			TB_GEOLOGICAL.CRAFT AS craft,
+			dbo.FN_codeToText(TB_GEOLOGICAL.CRAFT) as craftTypeName,
+			TB_GEOLOGICAL.ID AS id,
+			TB_GEOLOGICAL.STATUS AS status,
+			TB_GEOLOGICAL.CREATED AS created,
+			TB_GEOLOGICAL.CREATE_TIME AS createTime,
+			TB_GEOLOGICAL.UPDATED AS updated,
+			TB_GEOLOGICAL.UPDATE_TIME AS updateTime
+		FROM
+			TB_GEOLOGICAL
+		WHERE
+			TB_GEOLOGICAL.STATUS = '1'
+		<include refid="Geological.mapWhereClause"/>
+	</select>
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_GEOLOGICAL
+		WHERE
+			TB_GEOLOGICAL.STATUS = '1' 
+		<include refid="Geological.mapWhereClause"/>
+	</select>
+	
+</sqlMap>

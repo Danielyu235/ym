@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="HazardsResult">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_HAZARDS_RESULT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_HAZARDS_RESULT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_HAZARDS_RESULT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_HAZARDS_RESULT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_HAZARDS_RESULT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_HAZARDS_RESULT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="hazardsId"> TB_HAZARDS_RESULT.HAZARDS_ID like '%'+#hazardsId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="info"> TB_HAZARDS_RESULT.INFO like '%'+#info#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="reason"> TB_HAZARDS_RESULT.REASON like '%'+#reason#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.all.pojo.HazardsResult">
+  		INSERT INTO TB_HAZARDS_RESULT(
+				
+				HAZARDS_ID,
+				INFO,
+				REASON,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#hazardsId#,
+				#info#,
+				#reason#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_HAZARDS_RESULT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.hazards.all.pojo.HazardsResult" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_HAZARDS_RESULT.HAZARDS_ID AS hazardsId,
+			TB_HAZARDS_RESULT.INFO AS info,
+			TB_HAZARDS_RESULT.REASON AS reason,
+			
+			TB_HAZARDS_RESULT.ID AS id,
+			TB_HAZARDS_RESULT.STATUS AS status,
+			TB_HAZARDS_RESULT.CREATED AS created,
+			TB_HAZARDS_RESULT.CREATE_TIME AS createTime,
+			TB_HAZARDS_RESULT.UPDATED AS updated,
+			TB_HAZARDS_RESULT.UPDATE_TIME as updateTime
+		from
+		TB_HAZARDS_RESULT
+  		where 
+ 	 		TB_HAZARDS_RESULT.ID=#id#
+	</select>
+	
+	<select id="getByHazardsId" resultClass="com.ay.hazards.all.pojo.HazardsResult" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_HAZARDS_RESULT.HAZARDS_ID AS hazardsId,
+			TB_HAZARDS_RESULT.INFO AS info,
+			TB_HAZARDS_RESULT.REASON AS reason,
+			
+			TB_HAZARDS_RESULT.ID AS id,
+			TB_HAZARDS_RESULT.STATUS AS status,
+			TB_HAZARDS_RESULT.CREATED AS created,
+			TB_HAZARDS_RESULT.CREATE_TIME AS createTime,
+			TB_HAZARDS_RESULT.UPDATED AS updated,
+			TB_HAZARDS_RESULT.UPDATE_TIME as updateTime
+		from
+		TB_HAZARDS_RESULT
+  		where 
+ 	 		TB_HAZARDS_RESULT.HAZARDS_ID=#value#
+	</select>
+	<update id="updateByHazardsId" parameterClass="com.ay.hazards.all.pojo.HazardsResult">
+		UPDATE TB_HAZARDS_RESULT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="hazardsId"> HAZARDS_ID=#hazardsId#</isNotEmpty>
+			<isNotEmpty prepend="," property="info"> INFO=#info#</isNotEmpty>
+			<isPropertyAvailable prepend="," property="reason"> REASON=#reason#</isPropertyAvailable>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		HAZARDS_ID=#hazardsId#
+	</update>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.all.pojo.HazardsResult">
+		UPDATE TB_HAZARDS_RESULT 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="hazardsId"> HAZARDS_ID=#hazardsId#</isNotEmpty>
+			<isNotEmpty prepend="," property="info"> INFO=#info#</isNotEmpty>
+			<isNotNull prepend="," property="reason"> REASON=#reason#</isNotNull>
+			<isNull prepend="," property="reason"> REASON=#reason#</isNull>
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hazards.all.pojo.HazardsResult" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_HAZARDS_RESULT.HAZARDS_ID AS hazardsId,
+			TB_HAZARDS_RESULT.INFO AS info,
+			TB_HAZARDS_RESULT.REASON AS reason,
+			
+			TB_HAZARDS_RESULT.ID AS id,
+			TB_HAZARDS_RESULT.STATUS AS status,
+			TB_HAZARDS_RESULT.CREATED AS created,
+			TB_HAZARDS_RESULT.CREATE_TIME AS createTime,
+			TB_HAZARDS_RESULT.UPDATED AS updated,
+			TB_HAZARDS_RESULT.UPDATE_TIME AS updateTime
+		FROM
+			TB_HAZARDS_RESULT
+		WHERE
+			TB_HAZARDS_RESULT.STATUS = '1'
+		<include refid="HazardsResult.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_HAZARDS_RESULT
+		WHERE
+			TB_HAZARDS_RESULT.STATUS = '1' 
+		<include refid="HazardsResult.mapWhereClause"/>
+	</select>
+</sqlMap>

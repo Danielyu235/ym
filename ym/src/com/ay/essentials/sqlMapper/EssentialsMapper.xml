@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Essentials">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ESSENTIALS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ESSENTIALS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ESSENTIALS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ESSENTIALS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ESSENTIALS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ESSENTIALS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="czyl"> TB_ESSENTIALS.CZYL like '%'+#czyl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ksyd"> TB_ESSENTIALS.KSYD like '%'+#ksyd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sgal"> TB_ESSENTIALS.SGAL like '%'+#sgal#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sszy"> TB_ESSENTIALS.SSZY like '%'+#sszy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssgz"> TB_ESSENTIALS.SSGZ like '%'+#ssgz#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.essentials.pojo.Essentials">
+  		INSERT INTO TB_ESSENTIALS(
+				
+				CZYL,
+				KSYD,
+				SGAL,
+				SSZY,
+				SSGZ,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#czyl#,
+				#ksyd#,
+				#sgal#,
+				#sszy#,
+				#ssgz#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		<!--UPDATE TB_ESSENTIALS SET STATUS='0'   -->
+		DELETE FROM TB_ESSENTIALS
+  		WHERE 
+ 	 		ID=#id#
+ 	</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.essentials.pojo.Essentials" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_ESSENTIALS.CZYL AS czyl,
+			TB_ESSENTIALS.KSYD AS ksyd,
+			TB_ESSENTIALS.SGAL AS sgal,
+			TB_ESSENTIALS.SSZY AS sszy,
+			TB_ESSENTIALS.SSGZ AS ssgz,
+			dbo.FN_codeToText(TB_ESSENTIALS.sszy) as sszyByType,
+			dbo.FN_codeToText(TB_ESSENTIALS.ssgz) as ssgzByType,
+			TB_ESSENTIALS.ID AS id,
+			TB_ESSENTIALS.STATUS AS status,
+			TB_ESSENTIALS.CREATED AS created,
+			TB_ESSENTIALS.CREATE_TIME AS createTime,
+			TB_ESSENTIALS.UPDATED AS updated,
+			TB_ESSENTIALS.UPDATE_TIME as updateTime
+		from
+		TB_ESSENTIALS
+  		where 
+ 	 		TB_ESSENTIALS.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.essentials.pojo.Essentials">
+		UPDATE TB_ESSENTIALS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="czyl"> CZYL=#czyl#</isNotEmpty>
+			<isNotEmpty prepend="," property="ksyd"> KSYD=#ksyd#</isNotEmpty>
+			<isNotEmpty prepend="," property="sgal"> SGAL=#sgal#</isNotEmpty>
+			<isNotEmpty prepend="," property="sszy"> SSZY=#sszy#</isNotEmpty>
+			<isNotEmpty prepend="," property="ssgz"> SSGZ=#ssgz#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.essentials.pojo.Essentials" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_ESSENTIALS.CZYL AS czyl,
+			TB_ESSENTIALS.KSYD AS ksyd,
+			TB_ESSENTIALS.SGAL AS sgal,
+			TB_ESSENTIALS.SSZY AS sszy,
+			TB_ESSENTIALS.SSGZ AS ssgz,
+			dbo.FN_codeToText(TB_ESSENTIALS.sszy) as sszyByType,
+			dbo.FN_codeToText(TB_ESSENTIALS.ssgz) as ssgzByType,
+			TB_ESSENTIALS.ID AS id,
+			TB_ESSENTIALS.STATUS AS status,
+			TB_ESSENTIALS.CREATED AS created,
+			TB_ESSENTIALS.CREATE_TIME AS createTime,
+			TB_ESSENTIALS.UPDATED AS updated,
+			TB_ESSENTIALS.UPDATE_TIME AS updateTime
+		FROM
+			TB_ESSENTIALS
+		WHERE
+			TB_ESSENTIALS.STATUS = '1'
+		<include refid="Essentials.mapWhereClause"/>
+		ORDER BY ssgzByType
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ESSENTIALS
+		WHERE
+			TB_ESSENTIALS.STATUS = '1' 
+		<include refid="Essentials.mapWhereClause"/>
+	</select>
+</sqlMap>

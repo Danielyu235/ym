@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_RESCUE_medical-->
+<sqlMap namespace="rescueMedical">
+	<!-- add Condition TB_RESCUE_medical-->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> id=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> status=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> created=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> create_time=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> updated=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> update_time=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jgmc"> JGMC like '%$jgmc$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yljglb"> YLJGLB=#yljglb#</isNotEmpty>
+			<isNotEmpty prepend="and" property="affiliation"> AFFILIATION=#affiliation#</isNotEmpty>
+			<isNotEmpty prepend="and" property="syzxs"> SYZXS=#syzxs#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jhry"> JHRY=#jhry#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jhcl"> JHCL=#jhcl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bed"> BED=#bed#</isNotEmpty>
+			<isNotEmpty prepend="and" property="qtwz"> QTWZ=#qtwz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="yljgdj"> YLJGDJ like '%$yljgdj$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="address"> ADDRESS=#address#</isNotEmpty>
+			<isNotEmpty prepend="and" property="tel"> TEL=#tel#</isNotEmpty>
+			<isNotEmpty prepend="and" property="byValue"> BY_VALUE=#byValue#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrxm"> FZRXM=#fzrxm#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrxb"> FZRXB=#fzrxb#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrzy"> FZRZY=#fzrzy#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrzw"> FZRZW=#fzrzw#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrzc"> FZRZC=#fzrzc#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrbgdh"> FZRBGDH=#fzrbgdh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrzzdh"> FZRZZDH=#fzrzzdh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrsj"> FZRSJ=#fzrsj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrxm"> LXRXM=#lxrxm#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrxb"> LXRXB=#lxrxb#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrzy"> LXRZY=#lxrzy#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrzw"> LXRZW=#lxrzw#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrzc"> LXRZC=#lxrzc#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrbgdh"> LXRBGDH=#lxrbgdh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrzzdh"> LXRZZDH=#lxrzzdh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxrsj"> LXRSJ=#lxrsj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> REMARK=#remark#</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.resource.medical.pojo.MedicalResource">
+  		insert into  TB_RESCUE_medical(
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME,
+				JGMC,
+				YLJGLB,
+				AFFILIATION,
+				SYZXS,
+				JHRY,
+				JHCL,
+				BED,
+				QTWZ,
+				YLJGDJ,
+				ADDRESS,
+				TEL,
+				BY_VALUE,
+				FZRXM,
+				FZRXB,
+				FZRZY,
+				FZRZW,
+				FZRZC,
+				FZRBGDH,
+				FZRZZDH,
+				FZRSJ,
+				LXRXM,
+				LXRXB,
+				LXRZY,
+				LXRZW,
+				LXRZC,
+				LXRBGDH,
+				LXRZZDH,
+				LXRSJ,
+				REMARK) values(
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#,
+				#jgmc#,
+				#yljglb#,
+				#affiliation#,
+				#syzxs#,
+				#jhry#,
+				#jhcl#,
+				#bed#,
+				#qtwz#,
+				#yljgdj#,
+				#address#,
+				#tel#,
+				#byValue#,
+				#fzrxm#,
+				#fzrxb#,
+				#fzrzy#,
+				#fzrzw#,
+				#fzrzc#,
+				#fzrbgdh#,
+				#fzrzzdh#,
+				#fzrsj#,
+				#lxrxm#,
+				#lxrxb#,
+				#lxrzy#,
+				#lxrzw#,
+				#lxrzc#,
+				#lxrbgdh#,
+				#lxrzzdh#,
+				#lxrsj#,
+				#remark#)</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_RESCUE_medical set status='0' 
+  		where 
+ 	 		id=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.resource.medical.pojo.MedicalResource" parameterClass="java.lang.String">
+ 		select 
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				JGMC,
+				dbo.FN_codeToText(YLJGLB) as YLJGLBTEXT,
+				YLJGLB,
+				AFFILIATION,
+				SYZXS,
+				JHRY,
+				JHCL,
+				BED,
+				QTWZ,
+				YLJGDJ,
+				ADDRESS,
+				TEL,
+				BY_VALUE as bYVALUE,
+				FZRXM,
+				FZRXB,
+				FZRZY,
+				FZRZW,
+				FZRZC,
+				FZRBGDH,
+				FZRZZDH,
+				FZRSJ,
+				LXRXM,
+				LXRXB,
+				LXRZY,
+				LXRZW,
+				LXRZC,
+				LXRBGDH,
+				LXRZZDH,
+				LXRSJ,
+				REMARK
+			from
+			TB_RESCUE_medical
+  		where 
+ 	 		id=#id#</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.resource.medical.pojo.MedicalResource">
+		update   TB_RESCUE_medical 
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> status=#status#</isNotNull>
+			<isNotNull prepend="," property="created"> created=#created#</isNotNull>
+			<isNotNull prepend="," property="createTime"> create_time=#createTime#</isNotNull>
+			<isNotNull prepend="," property="updated"> updated=#updated#</isNotNull>
+			<isNotNull prepend="," property="updateTime"> update_time=#updateTime#</isNotNull>
+			<isNotNull prepend="," property="jgmc"> JGMC=#jgmc#</isNotNull>
+			<isNotNull prepend="," property="yljglb"> YLJGLB=#yljglb#</isNotNull>
+			<isNotNull prepend="," property="affiliation"> AFFILIATION=#affiliation#</isNotNull>
+			<isNotNull prepend="," property="syzxs"> SYZXS=#syzxs#</isNotNull>
+			<isNotNull prepend="," property="jhry"> JHRY=#jhry#</isNotNull>
+			<isNotNull prepend="," property="jhcl"> JHCL=#jhcl#</isNotNull>
+			<isNotNull prepend="," property="bed"> BED=#bed#</isNotNull>
+			<isNotNull prepend="," property="qtwz"> QTWZ=#qtwz#</isNotNull>
+			<isNotNull prepend="," property="yljgdj"> YLJGDJ=#yljgdj#</isNotNull>
+			<isNotNull prepend="," property="address"> ADDRESS=#address#</isNotNull>
+			<isNotNull prepend="," property="tel"> TEL=#tel#</isNotNull>
+			<isNotNull prepend="," property="byValue"> BY_VALUE=#byValue#</isNotNull>
+			<isNotNull prepend="," property="fzrxm"> FZRXM=#fzrxm#</isNotNull>
+			<isNotNull prepend="," property="fzrxb"> FZRXB=#fzrxb#</isNotNull>
+			<isNotNull prepend="," property="fzrzy"> FZRZY=#fzrzy#</isNotNull>
+			<isNotNull prepend="," property="fzrzw"> FZRZW=#fzrzw#</isNotNull>
+			<isNotNull prepend="," property="fzrzc"> FZRZC=#fzrzc#</isNotNull>
+			<isNotNull prepend="," property="fzrbgdh"> FZRBGDH=#fzrbgdh#</isNotNull>
+			<isNotNull prepend="," property="fzrzzdh"> FZRZZDH=#fzrzzdh#</isNotNull>
+			<isNotNull prepend="," property="fzrsj"> FZRSJ=#fzrsj#</isNotNull>
+			<isNotNull prepend="," property="lxrxm"> LXRXM=#lxrxm#</isNotNull>
+			<isNotNull prepend="," property="lxrxb"> LXRXB=#lxrxb#</isNotNull>
+			<isNotNull prepend="," property="lxrzy"> LXRZY=#lxrzy#</isNotNull>
+			<isNotNull prepend="," property="lxrzw"> LXRZW=#lxrzw#</isNotNull>
+			<isNotNull prepend="," property="lxrzc"> LXRZC=#lxrzc#</isNotNull>
+			<isNotNull prepend="," property="lxrbgdh"> LXRBGDH=#lxrbgdh#</isNotNull>
+			<isNotNull prepend="," property="lxrzzdh"> LXRZZDH=#lxrzzdh#</isNotNull>
+			<isNotNull prepend="," property="lxrsj"> LXRSJ=#lxrsj#</isNotNull>
+			<isNotNull prepend="," property="remark"> REMARK=#remark#</isNotNull>
+		</dynamic>
+  		where 
+ 	 		id=#id#
+	</update>
+	<!-- add method findAll-->
+	<select id="findAll" resultClass="com.ay.emergency.resource.medical.pojo.MedicalResource" parameterClass="com.ay.emergency.resource.medical.pojo.MedicalResource">
+ 		select 
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				JGMC,
+				YLJGLB,
+				AFFILIATION,
+				SYZXS,
+				JHRY,
+				JHCL,
+				BED,
+				QTWZ,
+				YLJGDJ,
+				ADDRESS,
+				TEL,
+				BY_VALUE as bYVALUE,
+				FZRXM,
+				FZRXB,
+				FZRZY,
+				FZRZW,
+				FZRZC,
+				FZRBGDH,
+				FZRZZDH,
+				FZRSJ,
+				LXRXM,
+				LXRXB,
+				LXRZY,
+				LXRZW,
+				LXRZC,
+				LXRBGDH,
+				LXRZZDH,
+				LXRSJ,
+				REMARK
+			from
+			TB_RESCUE_medical
+  		where 
+ 	 		 status='1'</select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.resource.medical.pojo.MedicalResource" parameterClass="java.util.Map">
+ 		select 
+ 				dbo.FN_HASMAP(ID) as hasMap,
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				JGMC,
+				dbo.FN_codeToText(YLJGLB) as YLJGLBTEXT,
+				AFFILIATION,
+				SYZXS,
+				JHRY,
+				JHCL,
+				BED,
+				QTWZ,
+				YLJGDJ,
+				ADDRESS,
+				TEL,
+				BY_VALUE as bYVALUE,
+				FZRXM,
+				FZRXB,
+				FZRZY,
+				FZRZW,
+				FZRZC,
+				FZRBGDH,
+				FZRZZDH,
+				FZRSJ,
+				LXRXM,
+				LXRXB,
+				LXRZY,
+				LXRZW,
+				LXRZC,
+				LXRBGDH,
+				LXRZZDH,
+				LXRSJ,
+				REMARK
+			from
+			TB_RESCUE_medical
+  		where 
+ 	 		 status='1' 
+		<include refid="rescueMedical.mapWhereClause"/>
+	</select>
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE TB_RESCUE_medical
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	</statement>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select count(*) 
+			from
+			TB_RESCUE_medical
+  		where 
+ 	 		 status='1' 
+		<include refid="rescueMedical.mapWhereClause"/>
+	</select>
+</sqlMap>

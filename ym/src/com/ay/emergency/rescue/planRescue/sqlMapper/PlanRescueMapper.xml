@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="PlanRescue">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="pid"> p.PID like '%'+#pid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pCreateTime"> p.P_CREATE_TIME like '%'+#pCreateTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentType"> p.ACCIDENT_TYPE like '%'+#accidentType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planName"> p.PLAN_NAME like '%'+#planName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planLevel"> p.PLAN_LEVEL like '%'+#planLevel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="rid"> r.RID like '%'+#rid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bigAccidentType"> r.BIG_ACCIDENT_TYPES like '%'+#bigAccidentType#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.rescue.planRescue.pojo.PlanRescue" parameterClass="java.lang.String">
+ 		select p.id as pid,
+			p.CREATE_TIME as pCreateTime,
+			p.ACCIDENT_TYPE as accidentType,
+			p.PLAN_NAME as planName,
+			dbo.FN_codeToText(p.ACCIDENT_TYPE) as accidentTypeName,
+			p.PLAN_LEVE as planLevel,dbo.FN_codeToText(p.PLAN_LEVE) as planLevelName,
+			r.ID as rid,
+			r.BIG_ACCIDENT_TYPES as bigAccidentType,
+			dbo.FN_codeToText(r.BIG_ACCIDENT_TYPES) as bigAccidentTypeName,
+			p.ID AS id,
+			p.STATUS AS status,
+			p.CREATED AS created,
+			p.CREATE_TIME AS createTime,
+			p.UPDATED AS updated,
+			p.UPDATE_TIME AS updateTime
+		from
+			dbo.TB_PLAN_DISPOSAL as p,dbo.TB_PLATFORM_RESCUE as r where  p.ID=#id#
+	</select>
+	<!-- 保障预案  -->
+	<select id="findDis" resultClass="com.ay.emergency.rescue.planRescue.pojo.PlanRescue" parameterClass="java.util.Map">
+		select p.id as pid,
+			p.ACCIDENT_TYPE as accidentType,
+			p.PLAN_NAME as planName,
+			dbo.FN_codeToText(p.ACCIDENT_TYPE) as accidentTypeName,
+			p.PLAN_LEVE as planLevel,dbo.FN_codeToText(p.PLAN_LEVE) as planLevelName,
+			p.create_time as pCreatetime,
+			dbo.FN_codeToText(p.ACCIDENT_TYPE) as bigAccidentTypeName,
+			p.ID AS id,
+			p.STATUS AS status,
+			p.CREATED AS created,
+			p.CREATE_TIME AS createTime,
+			p.UPDATED AS updated,
+			p.UPDATE_TIME AS updateTime
+		from
+			dbo.TB_PLAN_DISPOSAL as p where  p.STATUS = '1'
+		<include refid="PlanRescue.mapWhereClause"/>
+	</select>
+	<!-- 保障预案-->
+	<select id="countDis" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from 
+			dbo.TB_PLAN_DISPOSAL as p where  p.STATUS = '1'
+		<include refid="PlanRescue.mapWhereClause"/>
+	</select>
+	<!-- 综合预案  -->
+	<select id="find" resultClass="com.ay.emergency.rescue.planRescue.pojo.PlanRescue" parameterClass="java.util.Map">
+		select p.id as pid,
+			p.ACCIDENT_TYPE as accidentType,
+			p.PLAN_NAME as planName,
+			dbo.FN_codeToText(p.ACCIDENT_TYPE) as accidentTypeName,
+			p.PLAN_LEVEL as planLevel,dbo.FN_codeToText(p.PLAN_LEVEL) as planLevelName,
+			r.ID as rid,
+			p.create_time as pCreatetime,
+			r.BIG_ACCIDENT_TYPES as bigAccidentType,
+			dbo.FN_codeToText(r.BIG_ACCIDENT_TYPES) as bigAccidentTypeName,
+			p.ID AS id,
+			p.STATUS AS status,
+			p.CREATED AS created,
+			p.CREATE_TIME AS createTime,
+			p.UPDATED AS updated,
+			p.UPDATE_TIME AS updateTime
+		from
+			TB_ENERGENCY_PLAN as p,dbo.TB_PLATFORM_RESCUE as r  where  p.STATUS = '1' and r.STATUS ='1'
+		<include refid="PlanRescue.mapWhereClause"/>
+	</select>
+	<!-- 综合预案-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from 
+		TB_ENERGENCY_PLAN as p,dbo.TB_PLATFORM_RESCUE as r  where  p.STATUS = '1' and r.STATUS ='1' 
+		<include refid="PlanRescue.mapWhereClause"/>
+	</select>
+	<!-- 专项预案  -->
+	<select id="findSpe" resultClass="com.ay.emergency.rescue.planRescue.pojo.PlanRescue" parameterClass="java.util.Map">
+		select p.id as pid,
+			p.ACCIDENT_TYPE as accidentType,
+			p.PLAN_NAME as planName,
+			dbo.FN_codeToText(p.ACCIDENT_TYPE) as accidentTypeName,
+			p.PLAN_LEVEL as planLevel,dbo.FN_codeToText(p.PLAN_LEVEL) as planLevelName,
+			r.ID as rid,
+			p.create_time as pCreatetime,
+			r.BIG_ACCIDENT_TYPES as bigAccidentType,
+			dbo.FN_codeToText(r.BIG_ACCIDENT_TYPES) as bigAccidentTypeName,
+			p.ID AS id,
+			p.STATUS AS status,
+			p.CREATED AS created,
+			p.CREATE_TIME AS createTime,
+			p.UPDATED AS updated,
+			p.UPDATE_TIME AS updateTime
+		from
+			TB_SPECIAL_PLAN as p,dbo.TB_PLATFORM_RESCUE as r  where  p.STATUS = '1' and r.STATUS ='1'
+		<include refid="PlanRescue.mapWhereClause"/>
+	</select>
+	<!-- 转项预案-->
+	<select id="countSpe" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from 
+		TB_SPECIAL_PLAN as p,dbo.TB_PLATFORM_RESCUE as r  where  p.STATUS = '1' and r.STATUS ='1' 
+		<include refid="PlanRescue.mapWhereClause"/>
+	</select>
+</sqlMap>

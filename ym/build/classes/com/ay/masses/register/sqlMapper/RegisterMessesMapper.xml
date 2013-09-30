@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="RegisterMesses">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_REGISTER_MESSES.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_REGISTER_MESSES.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_REGISTER_MESSES.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_REGISTER_MESSES.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_REGISTER_MESSES.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_REGISTER_MESSES.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="theUnit"> TB_REGISTER_MESSES.THE_UNIT like '%'+#theUnit#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="registerTime"> TB_REGISTER_MESSES.REGISTER_TIME like '%'+#registerTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="place"> TB_REGISTER_MESSES.PLACE like '%'+#place#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="foundUnit"> TB_REGISTER_MESSES.FOUND_UNIT like '%'+#foundUnit#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="find"> TB_REGISTER_MESSES.FIND like '%'+#find#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> TB_REGISTER_MESSES.POST like '%'+#post#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="content"> TB_REGISTER_MESSES.CONTENT like '%'+#content#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="state"> TB_REGISTER_MESSES.STATE like '%'+#state#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.masses.register.pojo.RegisterMesses">
+  		INSERT INTO TB_REGISTER_MESSES(
+				
+				THE_UNIT,
+				REGISTER_TIME,
+				PLACE,
+				FOUND_UNIT,
+				FIND,
+				POST,
+				CONTENT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#theUnit#,
+				#registerTime#,
+				#place#,
+				#foundUnit#,
+				#find#,
+				#post#,
+				#content#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_REGISTER_MESSES SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.masses.register.pojo.RegisterMesses" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_REGISTER_MESSES.THE_UNIT AS theUnit,
+			TB_REGISTER_MESSES.REGISTER_TIME AS registerTime,
+			TB_REGISTER_MESSES.PLACE AS place,
+			TB_REGISTER_MESSES.FOUND_UNIT AS foundUnit,
+			TB_REGISTER_MESSES.FIND AS find,
+			TB_REGISTER_MESSES.POST AS post,
+			TB_REGISTER_MESSES.CONTENT AS content,
+			TB_REGISTER_MESSES.HIDDEN_TYPE AS hiddenType,
+			TB_REGISTER_MESSES.THREE_COLOR_FORM AS threeColorForm,
+			TB_REGISTER_MESSES.MEASURE AS measure,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE_ID AS correctivePeople_Id,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE AS correctivePeople,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE_UNITS AS correctivePeopleUnits,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE_NAME AS correctivePeopleName,
+			TB_REGISTER_MESSES.DEADLINE AS deadline,
+			TB_REGISTER_MESSES.CORRECTION_REPORT AS correctionReport,
+			TB_REGISTER_MESSES.COMPLETION_TIME AS completionTime,
+			TB_REGISTER_MESSES.FOLLOW_UP AS followUp,
+			
+			TB_REGISTER_MESSES.ID AS id,
+			TB_REGISTER_MESSES.STATUS AS status,
+			TB_REGISTER_MESSES.CREATED AS created,
+			TB_REGISTER_MESSES.CREATE_TIME AS createTime,
+			TB_REGISTER_MESSES.UPDATED AS updated,
+			TB_REGISTER_MESSES.UPDATE_TIME as updateTime
+		from
+		TB_REGISTER_MESSES
+  		where 
+ 	 		TB_REGISTER_MESSES.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.masses.register.pojo.RegisterMesses">
+		UPDATE TB_REGISTER_MESSES 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="theUnit"> THE_UNIT=#theUnit#</isNotEmpty>
+			<isNotEmpty prepend="," property="registerTime"> REGISTER_TIME=#registerTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="place"> PLACE=#place#</isNotEmpty>
+			<isNotEmpty prepend="," property="foundUnit"> FOUND_UNIT=#foundUnit#</isNotEmpty>
+			<isNotEmpty prepend="," property="find"> FIND=#find#</isNotEmpty>
+			<isNotEmpty prepend="," property="post"> POST=#post#</isNotEmpty>
+			<isNotEmpty prepend="," property="content"> CONTENT=#content#</isNotEmpty>
+			<isNotEmpty prepend="," property="hiddenType"> HIDDEN_TYPE=#hiddenType#</isNotEmpty>
+			<isNotEmpty prepend="," property="threeColorForm"> THREE_COLOR_FORM=#threeColorForm#</isNotEmpty>
+			<isNotEmpty prepend="," property="measure"> MEASURE=#measure#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeople_Id"> CORRECTIVE_PEOPLE_ID=#correctivePeople_Id#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeople"> CORRECTIVE_PEOPLE=#correctivePeople#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeopleUnits"> CORRECTIVE_PEOPLE_UNITS=#correctivePeopleUnits#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeopleName"> CORRECTIVE_PEOPLE_NAME=#correctivePeopleName#</isNotEmpty>
+			<isNotEmpty prepend="," property="deadline"> DEADLINE=#deadline#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctionReport"> CORRECTION_REPORT=#correctionReport#</isNotEmpty>
+			<isNotEmpty prepend="," property="completionTime"> COMPLETION_TIME=#completionTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="followUp"> FOLLOW_UP=#followUp#</isNotEmpty>
+			<isNotEmpty prepend="," property="state"> STATE=#state#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.masses.register.pojo.RegisterMesses" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_REGISTER_MESSES.THE_UNIT AS theUnit,
+			TB_REGISTER_MESSES.REGISTER_TIME AS registerTime,
+			TB_REGISTER_MESSES.PLACE AS place,
+			TB_REGISTER_MESSES.FOUND_UNIT AS foundUnit,
+			TB_REGISTER_MESSES.FIND AS find,
+			TB_REGISTER_MESSES.POST AS post,
+			TB_REGISTER_MESSES.CONTENT AS content,
+			TB_REGISTER_MESSES.HIDDEN_TYPE AS hiddenType,
+			TB_REGISTER_MESSES.THREE_COLOR_FORM AS threeColorForm,
+			TB_REGISTER_MESSES.MEASURE AS measure,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE_ID AS correctivePeople_Id,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE AS correctivePeople,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE_UNITS AS correctivePeopleUnits,
+			TB_REGISTER_MESSES.CORRECTIVE_PEOPLE_NAME AS correctivePeopleName,
+			TB_REGISTER_MESSES.DEADLINE AS deadline,
+			TB_REGISTER_MESSES.CORRECTION_REPORT AS correctionReport,
+			TB_REGISTER_MESSES.COMPLETION_TIME AS completionTime,
+			TB_REGISTER_MESSES.FOLLOW_UP AS followUp,
+			TB_REGISTER_MESSES.STATE AS state,
+			
+			TB_REGISTER_MESSES.ID AS id,
+			TB_REGISTER_MESSES.STATUS AS status,
+			TB_REGISTER_MESSES.CREATED AS created,
+			TB_REGISTER_MESSES.CREATE_TIME AS createTime,
+			TB_REGISTER_MESSES.UPDATED AS updated,
+			TB_REGISTER_MESSES.UPDATE_TIME AS updateTime
+		FROM
+			TB_REGISTER_MESSES
+		WHERE
+			TB_REGISTER_MESSES.STATUS = '1'
+		<include refid="RegisterMesses.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_REGISTER_MESSES
+		WHERE
+			TB_REGISTER_MESSES.STATUS = '1' 
+		<include refid="RegisterMesses.mapWhereClause"/>
+	</select>
+</sqlMap>

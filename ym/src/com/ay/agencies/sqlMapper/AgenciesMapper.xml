@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Agencies">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+		    <isNotEmpty prepend="and" property="accidentId"> TB_AGENCIES.ACCIDENTID=#accidentId#</isNotEmpty>
+			<isNotEmpty prepend="and" property="id"> TB_AGENCIES.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_AGENCIES.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_AGENCIES.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_AGENCIES.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_AGENCIES.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_AGENCIES.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="aidAgencies"> TB_AGENCIES.AID_AGENCIES like '%'+#aidAgencies#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="measures"> TB_AGENCIES.MEASURES like '%'+#measures#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="head"> TB_AGENCIES.HEAD like '%'+#head#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="executeTime"> TB_AGENCIES.EXECUTE_TIME like '%'+#executeTime#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.agencies.pojo.Agencies">
+  		INSERT INTO TB_AGENCIES(
+				
+				ACCIDENTID,
+				AID_AGENCIES,
+				MEASURES,
+				HEAD,
+				EXECUTE_TIME,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#accidentId#,
+				#aidAgencies#,
+				#measures#,
+				#head#,
+				#executeTime#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_AGENCIES SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.agencies.pojo.Agencies" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_AGENCIES.AID_AGENCIES AS aidAgencies,
+			TB_AGENCIES.MEASURES AS measures,
+			TB_AGENCIES.HEAD AS head,
+			TB_AGENCIES.EXECUTE_TIME AS executeTime,
+			
+			TB_AGENCIES.ID AS id,
+			TB_AGENCIES.STATUS AS status,
+			TB_AGENCIES.CREATED AS created,
+			TB_AGENCIES.CREATE_TIME AS createTime,
+			TB_AGENCIES.UPDATED AS updated,
+			TB_AGENCIES.UPDATE_TIME as updateTime
+		from
+		TB_AGENCIES
+  		where 
+ 	 		TB_AGENCIES.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.agencies.pojo.Agencies">
+		UPDATE TB_AGENCIES 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="aidAgencies"> AID_AGENCIES=#aidAgencies#</isNotEmpty>
+			<isNotEmpty prepend="," property="measures"> MEASURES=#measures#</isNotEmpty>
+			<isNotEmpty prepend="," property="head"> HEAD=#head#</isNotEmpty>
+			<isNotEmpty prepend="," property="executeTime"> EXECUTE_TIME=#executeTime#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.agencies.pojo.Agencies" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_AGENCIES.AID_AGENCIES AS aidAgencies,
+			TB_AGENCIES.MEASURES AS measures,
+			TB_AGENCIES.HEAD AS head,
+			TB_AGENCIES.EXECUTE_TIME AS executeTime,
+			
+			TB_AGENCIES.ID AS id,
+			TB_AGENCIES.STATUS AS status,
+			TB_AGENCIES.CREATED AS created,
+			TB_AGENCIES.CREATE_TIME AS createTime,
+			TB_AGENCIES.UPDATED AS updated,
+			TB_AGENCIES.UPDATE_TIME AS updateTime
+		FROM
+			TB_AGENCIES
+		WHERE
+			TB_AGENCIES.STATUS = '1' 
+		<include refid="Agencies.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_AGENCIES
+		WHERE
+			TB_AGENCIES.STATUS = '1' 
+		<include refid="Agencies.mapWhereClause"/>
+	</select>
+</sqlMap>

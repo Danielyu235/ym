@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+  <!--干部走动隐患模块-->  
+  <bean id="hiddenPerilsDao" class="com.ay.hiddenPerils.dao.HiddenPerilsDao" parent="baseDao"/>  
+  <bean id="hiddenPerilsService" class="com.ay.hiddenPerils.service.HiddenPerilsService"> 
+    <property name="dao" ref="hiddenPerilsDao"/> 
+  </bean>  
+  <!--添加隐患模块-->  
+  <bean id="perilsDataDao" class="com.ay.hiddenPerils.dao.PerilsDataDao" parent="baseDao"/>  
+  <bean id="perilsDataService" class="com.ay.hiddenPerils.service.PerilsDataService"> 
+    <property name="dao" ref="perilsDataDao"/> 
+  </bean>  
+  <!--事故调查模块-->  
+  <bean id="accidentSurveryDao" class="com.ay.emergency.rescue.accidentsurvey.dao.AccidentSurveryDao" parent="baseDao"/>  
+  <bean id="accidentSurveryService" class="com.ay.emergency.rescue.accidentsurvey.service.AccidentSurveryService"> 
+    <property name="dao" ref="accidentSurveryDao"/> 
+  </bean>  
+  <!--事故总结报告模块-->
+  <bean id="accidentConclusionDao" class="com.ay.emergency.rescue.accidentconclusion.dao.AccidentConclusionDao" parent="baseDao"/>
+  <bean id="accidentConclusionService" class="com.ay.emergency.rescue.accidentconclusion.service.AccidentConclusionService">
+    <property name="dao" ref="accidentConclusionDao"/>
+  </bean>
+</beans>

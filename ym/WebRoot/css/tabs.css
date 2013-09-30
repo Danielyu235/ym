@@ -1,0 +1,19 @@
+.table_nemu_new { 
+	font-size: 13px;
+	border: 0px;
+	background: #EAF4FC;
+	line-height: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight:bold; 
+	text-align:center;
+}
+
+.table_con {
+	font-size: 13px;
+	border: 0px;
+	background: #f6fafd;
+	line-height: 20px;
+	padding-left: 15px;
+	text-align:center;
+}

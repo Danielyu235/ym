@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<!-- 用到的sqlmap文件全部都要在这个地方配置，这样才会加载-->
+<sqlMapConfig>
+  <settings useStatementNamespaces="true"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/MenuMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/IconMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/DepartmentMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/UserMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/MenuOptMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/DataMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/DataTypeMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysGroupMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/EntityMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/EntityFieldMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysUserGroupMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysRoleMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysRoleDataMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysRoleDeptMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysRoleUserMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysRoleGroupMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysRoleMenuOptMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/DevFormMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/DevFormPropertyMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/dev/sqlMapper/DevStatisticsMapper.xml"/>
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/SysParameterMapper.xml"/>
+  <!-- 	救援队伍 -->
+  <sqlMap resource="com/ay/emergency/resource/responseteam/sqlMapper/ResponseteamResourceMapper.xml"/>
+  <!-- 	救援物资 -->
+  <sqlMap resource="com/ay/emergency/resource/supplies/sqlMapper/SuppliesResourceMapper.xml"/>
+  <!-- 	救援车辆 -->
+  <sqlMap resource="com/ay/emergency/resource/cars/sqlMapper/CarsResourceMapper.xml"/>
+  <!-- 	安全生产法规 -->
+  <sqlMap resource="com/ay/knowlbase/law/sqlMapper/LawKnowlbaseMapper.xml"/>
+  <!-- 	安全生产标准 -->
+  <sqlMap resource="com/ay/knowlbase/criterion/sqlMapper/CriKnowlbaseMapper.xml"/>
+  <!-- 	典型事故案例 -->
+  <sqlMap resource="com/ay/knowlbase/accidentCase/sqlMapper/AccKnowlbaseMapper.xml"/>
+  <!-- 应急资源——救援专家 -->
+  <sqlMap resource="com/ay/emergency/resource/expert/sqlMapper/ExpertResourceMapper.xml"/>
+  <!-- 应急资源——避难场所 -->
+  <sqlMap resource="com/ay/emergency/resource/shelter/sqlMapper/ShelterResourceMapper.xml"/>
+  <!-- 应急资源——运输保障 -->
+  <sqlMap resource="com/ay/emergency/resource/transport/sqlMapper/TransporResourcetMapper.xml"/>
+  <!-- 应急资源——通讯保障 -->
+  <sqlMap resource="com/ay/emergency/resource/communication/sqlMapper/CommunicationResourcetMapper.xml"/>
+  <!-- 应急资源——技术支持 -->
+  <sqlMap resource="com/ay/emergency/resource/technical/sqlMapper/TechnicalResourcetMapper.xml"/>
+  <!-- 应急预案——综合预案 -->
+  <sqlMap resource="com/ay/emergency/plan/comprehensive/sqlMapper/ComprehensivePlanMapper.xml"/>
+  <!-- 应急预案——专项预案 -->
+  <sqlMap resource="com/ay/emergency/plan/special/sqlMapper/SpecialPlanMapper.xml"/>
+  <!-- 应急预案——现场处置方案-->
+  <sqlMap resource="com/ay/emergency/plan/onsite/sqlMapper/OnsitePlanMapper.xml"/>
+  <!--综合应急预案与专家信息关联 -->
+  <sqlMap resource="com/ay/emergency/plan/comprehensive/sqlMapper/PlanExpertMapper.xml"/>
+  <!--综合应急预案与救援资源信息关联 -->
+  <sqlMap resource="com/ay/emergency/plan/comprehensive/sqlMapper/PlanResourceMapper.xml"/>
+  <!-- 上传下载 -->
+  <sqlMap resource="com/ay/jfds/sys/sqlMapper/UploadFileMapper.xml"/>
+  <!-- 企业信息 -->
+  <sqlMap resource="com/ay/enterprise/sqlMapper/EnterpriseMapper.xml"/>
+  <!-- 医疗保障 -->
+  <sqlMap resource="com/ay/emergency/resource/medical/sqlMapper/MedicalResourceMapper.xml"/>
+  <!-- Msds库 -->
+  <sqlMap resource="com/ay/knowlbase//msds/sqlMapper/MsdsKnowlbaseMapper.xml"/>
+  <!-- 重大危险源 锅炉 -->
+  <sqlMap resource="com/ay/hazards/boiler/sqlMapper/BoilerHazardsMapper.xml"/>
+  <!-- 重大危险源  压力管道 -->
+  <sqlMap resource="com/ay/hazards/penstock/sqlMapper/PenstockHazardsMapper.xml"/>
+  <!--金属非金属地下矿山模块-->
+  <sqlMap resource="com/ay/hazards/mines/sqlMapper/MinesHazardsMapper.xml"/>
+  <!--压力容器模块-->
+  <sqlMap resource="com/ay/hazards/pressurevessel/sqlMapper/PressureVesselHazardsMapper.xml"/>
+  <!--定期检查情况模块-->
+  <sqlMap resource="com/ay/hazards/pressurevessel/sqlMapper/PeriodicalSurveyHazardsMapper.xml"/>
+  <!--煤矿模块-->
+  <sqlMap resource="com/ay/hazards/colliery/sqlMapper/CollieryHazardsMapper.xml"/>
+  <!--库区模块-->
+  <sqlMap resource="com/ay/hazards/reservoirarea/sqlMapper/ReservoirAreaHazardsMapper.xml"/>
+  <!--库房模块-->
+  <sqlMap resource="com/ay/hazards/reservoirarea/sqlMapper/ReservoirHazardsMapper.xml"/>
+  <!--贮罐区模块-->
+  <sqlMap resource="com/ay/hazards/tank/sqlMapper/TankAraeHazardsMapper.xml"/>
+  <!--贮罐模块-->
+  <sqlMap resource="com/ay/hazards/tank/sqlMapper/TankHazardsMapper.xml"/>
+  <!--尾矿库模块-->
+  <sqlMap resource="com/ay/hazards/tailingspond/sqlMapper/TailingspondHazardsMapper.xml"/>
+  <!--生产场所模块-->
+  <sqlMap resource="com/ay/hazards/workplace/sqlMapper/WorkplaceHazardsMapper.xml"/>
+  <!--生产物品模块-->
+  <sqlMap resource="com/ay/hazards/materials/sqlMapper/MaterialsHazardsMapper.xml"/>
+  <!--危险物质模块-->
+  <sqlMap resource="com/ay/hazards/hazardousmaterials/sqlMapper/MaterialsMapper.xml"/>
+  <!--自定义危险物质模块-->
+  <sqlMap resource="com/ay/hazards/hazardousmaterials/sqlMapper/OtherMaterialsMapper.xml"/>
+  <!--自定义危险物质下拉数据模块-->
+  <sqlMap resource="com/ay/hazards/hazardousmaterials/sqlMapper/ChemicalsHazardousMapper.xml"/>
+  <!-- 通讯录-联系人信息 -->
+  <!--   <sqlMap resource="com/ay/peoplemanage/sqlMapper/People.xml"/>-->
+  <sqlMap resource="com/ay/peoplemanage/sqlMappper/People.xml"/>
+  <!--危险源模块-->
+  <sqlMap resource="com/ay/hazards/all/sqlMapper/HazardsMapper.xml"/>
+  <!--辨识结果模块-->
+  <sqlMap resource="com/ay/hazards/all/sqlMapper/HazardsResultMapper.xml"/>
+  <!--危险源辨识日志模块-->
+  <sqlMap resource="com/ay/hazards/identification/log/sqlMapper/IdentificationLogMapper.xml"/>
+  <!-- 危险场所 -->
+  <sqlMap resource="com/ay/hazards/dangerousplace/sqlMapper/DangerPlace.xml"/>
+  <!-- 危险场所危险物质 -->
+  <sqlMap resource="com/ay/hazards/dangerousplacematerials/sqlMapper/DangerousPlaceMaterials.xml"/>
+  <!--题库维护 题目类型模块-->
+  <sqlMap resource="com/ay/credit/examine/questionManage/sqlMapper/QuestionManageCreditMapper.xml"/>
+  <!--题目信息模块-->
+  <sqlMap resource="com/ay/credit/examine/questionManage/sqlMapper/QuestionCreditMapper.xml"/>
+  <!--公共部分模块-->
+  <sqlMap resource="com/ay/emergency/plan/publicPart/sqlMapper/PublicPartMapper.xml"/>
+  <!--通风安全专业模块-->
+  <sqlMap resource="com/ay/ventilation/sqlMapper/VentilationMapper.xml"/>
+   <!--岗位要领维护模块-->
+  <sqlMap resource="com/ay/essentials/sqlMapper/EssentialsMapper.xml"/>
+  <!--地测专业模块-->
+  <sqlMap resource="com/ay/geological/sqlMapper/GeologicalMapper.xml"/>
+  <!--采煤专业模块-->
+  <sqlMap resource="com/ay/coal/sqlMapper/CoalMapper.xml"/>
+  <!--掘进专业模块-->
+  <sqlMap resource="com/ay/steep/sqlMapper/SteepMapper.xml"/>
+  <!--机电专业模块-->
+  <sqlMap resource="com/ay/electromechanical/sqlMapper/ElectromechanicalMapper.xml"/>
+  <!--运输专业模块-->
+  <sqlMap resource="com/ay/transport/sqlMapper/TransportMapper.xml"/>
+  <!--洗煤专业模块-->
+  <sqlMap resource="com/ay/wash/sqlMapper/WashMapper.xml"/>
+  <!--人员日常状态模块-->
+  <sqlMap resource="com/ay/dailyStatus/sqlMapper/DailyStatusMapper.xml"/>
+  <!--员工基本信息模块-->
+  <sqlMap resource="com/ay/employee/sqlMapper/EmployeeMapper.xml"/>
+  <!--人员职业健康模块-->
+  <sqlMap resource="com/ay/safe/health/sqlMapper/HealthSafeMapper.xml"/>
+  <!--试卷管理模块-->
+  <sqlMap resource="com/ay/credit/examine/testPaperManage/sqlMapper/TestPaperManageMapper.xml"/>
+  <!--日常三违处罚模块-->
+  <sqlMap resource="com/ay/safe/punish/sqlMapper/PunishSafeMapper.xml"/>
+  <!--员工考勤与奖罚模块-->
+  <sqlMap resource="com/ay/attend/sqlMapper/AttendRewardMapper.xml"/>
+  <!--评分管理模块-->
+  <sqlMap resource="com/ay/scoremanagement/sqlMapper/ScoreManagementMapper.xml"/>
+  <!--职工信誉评价模块-->
+  <sqlMap resource="com/ay/reputation/sqlMapper/ReputationMapper.xml"/>
+  <!--查看成绩模块-->
+  <sqlMap resource="com/ay/credit/examine/testPaperManage/sqlMapper/selectPaperMapper.xml"/>
+  <!-- 人员职业健康 -->
+  <sqlMap resource="com/ay/health/employee/sqlMapper/EmployeeInformationMapper.xml"/>
+  <sqlMap resource="com/ay/health/deploy/sqlMapper/DeployMapper.xml"/>
+  <sqlMap resource="com/ay/health/checkup/sqlMapper/CheckUpMapper.xml"/>
+  <!--干部走动隐患模块-->
+  <sqlMap resource="com/ay/hiddenPerils/sqlMapper/HiddenPerilsMapper.xml"/>
+  <!--添加隐患模块-->
+  <sqlMap resource="com/ay/hiddenPerils/sqlMapper/PerilsDataMapper.xml"/>
+  <!--员工基本信息模块-->
+  <sqlMap resource="com/ay/employee/sqlMapper/EmployeesMapper.xml"/>
+  <!--事故调查模块-->
+  <sqlMap resource="com/ay/emergency/rescue/accidentsurvey/sqlMapper/AccidentSurveryMapper.xml"/>
+  <!--事故总结报告模块-->
+  <sqlMap resource="com/ay/emergency/rescue/accidentconclusion/sqlMapper/AccidentConclusionMapper.xml"/>
+  <!--启动应急救援平台模块-->
+  <sqlMap resource="com/ay/emergency/rescue/platform/sqlMapper/PlatformRescueMapper.xml"/>
+  <!--应急指挥中心模块-->
+  <sqlMap resource="com/ay/emergency/resource/headquarters/sqlMapper/HeadquartersMapper.xml"/>
+  <!--启动预案模块-->
+  <sqlMap resource="com/ay/emergency/rescue/planRescue/sqlMapper/PlanRescueMapper.xml"/>
+  <!--救援机构反馈信息模块-->
+  <sqlMap resource="com/ay/agencies/sqlMapper/AgenciesMapper.xml"/>
+  <!--救援预案日志模块-->
+  <sqlMap resource="com/ay/emergency/rescue/logRescue/sqlMapper/LogRescueMapper.xml"/>
+  <!--事故调用物资模块-->
+  <sqlMap resource="com/ay/emergency/rescue/supplies/sqlMapper/AccidentSuppliesMapper.xml"/>
+  <!--事故_应急资源模块-->
+  <sqlMap resource="com/ay/emergency/plan/comprehensive/sqlMapper/LogPlanResourceMapper.xml"/>
+  <!--隐患列表模块-->
+  <sqlMap resource="com/ay/danger/sqlMapper/HiddenDangerMapper.xml"/>
+  <!--群众登记模块-->
+  <sqlMap resource="com/ay/masses/register/sqlMapper/RegisterMessesMapper.xml"/>
+  <!--采煤系统主题模块-->
+  <sqlMap resource="com/ay/themezt/coalzt/sqlMapper/CoalztMapper.xml"/>
+  <!--机电系统主题预算模块-->
+  <sqlMap resource="com/ay/elect/sqlMapper/ElectMapper.xml"/>
+  <!--原煤产量模块-->
+  <sqlMap resource="com/ay/themezt/coalzt/sqlMapper/CoalOutputMapper.xml"/>
+  <!--运输系统数据入口模块-->
+  <sqlMap resource="com/ay/tran/sqlMapper/TranMapper.xml"/>
+  <!--安全评价指标体系模块-->
+  <sqlMap resource="com/ay/safetarget/sqlMapper/safetargetMapper.xml"/>
+</sqlMapConfig>

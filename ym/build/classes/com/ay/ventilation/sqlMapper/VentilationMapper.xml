@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Ventilation">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_VENTILATION.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_VENTILATION.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_VENTILATION.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_VENTILATION.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_VENTILATION.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_VENTILATION.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="corpKey"> TB_VENTILATION.CORP_KEY like '%'+#corpKey#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_VENTILATION.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_VENTILATION.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_VENTILATION.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="station"> TB_VENTILATION.STATION like '%'+#station#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="craft"> TB_VENTILATION.CRAFT like '%'+#craft#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.ventilation.pojo.Ventilation">
+  		INSERT INTO TB_VENTILATION(
+				
+				CORP_KEY,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				STATION,
+				CRAFT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpKey#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#station#,
+				#craft#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_VENTILATION SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.ventilation.pojo.Ventilation" parameterClass="java.lang.String">
+ 		<!-- SELECT 
+			
+			TB_VENTILATION.CORP_KEY AS corpKey,
+			TB_VENTILATION.DANGEROUS AS dangerous,
+			TB_VENTILATION.LOSS AS loss,
+			TB_VENTILATION.STEP AS step,
+			TB_VENTILATION.STATION AS station,
+			TB_VENTILATION.CRAFT AS craft,
+			dbo.FN_codeToText(TB_VENTILATION.CRAFT) as craftTypeName,
+			TB_VENTILATION.ID AS id,
+			TB_VENTILATION.STATUS AS status,
+			TB_VENTILATION.CREATED AS created,
+			TB_VENTILATION.CREATE_TIME AS createTime,
+			TB_VENTILATION.UPDATED AS updated,
+			TB_VENTILATION.UPDATE_TIME as updateTime
+		from
+		TB_VENTILATION  -->
+		SELECT 
+			VIEW_VENTILATION.CORP_KEY AS corpKey,
+			VIEW_VENTILATION.DANGEROUS AS dangerous,
+			VIEW_VENTILATION.LOSS AS loss,
+			VIEW_VENTILATION.STEP AS step,
+			VIEW_VENTILATION.STATION AS station,
+			VIEW_VENTILATION.CRAFT AS craft,
+			dbo.FN_codeToText(VIEW_VENTILATION.CRAFT) as craftTypeName,
+			VIEW_VENTILATION.ID AS id,
+			VIEW_VENTILATION.STATUS AS status,
+			VIEW_VENTILATION.CREATED AS created,
+			VIEW_VENTILATION.CREATE_TIME AS createTime,
+			VIEW_VENTILATION.UPDATED AS updated,
+			VIEW_VENTILATION.UPDATE_TIME as updateTime,
+			
+			VIEW_VENTILATION.CZYL AS czyl,
+			VIEW_VENTILATION.KSYD AS ksyd,
+			VIEW_VENTILATION.SGAL AS sgal,
+			VIEW_VENTILATION.SSZY AS sszy,
+			VIEW_VENTILATION.SSGZ AS ssgz,
+			dbo.FN_codeToText(VIEW_VENTILATION.sszy) as sszyByType,
+			dbo.FN_codeToText(VIEW_VENTILATION.ssgz) as ssgzByType
+		FROM
+		VIEW_VENTILATION 
+  		WHERE 
+ 	 		VIEW_VENTILATION.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.ventilation.pojo.Ventilation">
+		UPDATE TB_VENTILATION 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="corpKey"> CORP_KEY=#corpKey#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="station"> STATION=#station#</isNotEmpty>
+			<isNotEmpty prepend="," property="craft"> CRAFT=#craft#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.ventilation.pojo.Ventilation" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_VENTILATION.CORP_KEY AS corpKey,
+			TB_VENTILATION.DANGEROUS AS dangerous,
+			TB_VENTILATION.LOSS AS loss,
+			TB_VENTILATION.STEP AS step,
+			TB_VENTILATION.STATION AS station,
+			TB_VENTILATION.CRAFT AS craft,
+			dbo.FN_codeToText(TB_VENTILATION.CRAFT) as craftTypeName,
+			TB_VENTILATION.ID AS id,
+			TB_VENTILATION.STATUS AS status,
+			TB_VENTILATION.CREATED AS created,
+			TB_VENTILATION.CREATE_TIME AS createTime,
+			TB_VENTILATION.UPDATED AS updated,
+			TB_VENTILATION.UPDATE_TIME AS updateTime
+		FROM
+			TB_VENTILATION
+		WHERE
+			TB_VENTILATION.STATUS = '1'
+		<include refid="Ventilation.mapWhereClause"/>
+		ORDER BY craftTypeName
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_VENTILATION
+		WHERE
+			TB_VENTILATION.STATUS = '1' 
+		<include refid="Ventilation.mapWhereClause"/>
+	</select>
+	<select id="flist" resultClass="com.ay.ventilation.pojo.Ventilation" parameterClass="java.util.Map">
+ 		SELECT
+			TB_VENTILATION.CORP_KEY AS corpKey,
+			TB_VENTILATION.DANGEROUS AS dangerous,
+			TB_VENTILATION.LOSS AS loss,
+			TB_VENTILATION.STEP AS step,
+			TB_VENTILATION.STATION AS station,
+			TB_VENTILATION.CRAFT AS craft,
+			dbo.FN_codeToText(TB_VENTILATION.CRAFT) as craftTypeName,
+			TB_VENTILATION.ID AS id,
+			TB_VENTILATION.STATUS AS status,
+			TB_VENTILATION.CREATED AS created,
+			TB_VENTILATION.CREATE_TIME AS createTime,
+			TB_VENTILATION.UPDATED AS updated,
+			TB_VENTILATION.UPDATE_TIME AS updateTime
+		FROM
+			TB_VENTILATION
+		WHERE
+			TB_VENTILATION.STATUS = '1'
+		<include refid="Ventilation.mapWhereClause"/>
+		ORDER BY craftTypeName
+	</select>
+</sqlMap>

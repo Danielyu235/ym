@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <constant name="struts.i18n.encoding" value="UTF-8"/>
+  <constant name="struts.objectFactory" value="spring"/>
+  <!--通风安全专业模块-->
+  <package name="ventilation" extends="struts-default" namespace="/ventilation">
+    <action name="ventilationAction" class="com.ay.ventilation.action.VentilationAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--地测专业模块-->
+  <package name="geological" extends="struts-default" namespace="/geological">
+    <action name="geologicalAction" class="com.ay.geological.action.GeologicalAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--采煤专业模块-->
+  <package name="coal" extends="struts-default" namespace="/coal">
+    <action name="coalAction" class="com.ay.coal.action.CoalAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--掘进专业模块-->
+  <package name="steep" extends="struts-default" namespace="/steep">
+    <action name="steepAction" class="com.ay.steep.action.SteepAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--机电专业模块-->
+  <package name="electromechanical" extends="struts-default" namespace="/electromechanical">
+    <action name="electromechanicalAction" class="com.ay.electromechanical.action.ElectromechanicalAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--运输专业模块-->
+  <package name="transport" extends="struts-default" namespace="/transport">
+    <action name="transportAction" class="com.ay.transport.action.TransportAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--洗煤专业模块-->
+  <package name="wash" extends="struts-default" namespace="/wash">
+    <action name="washAction" class="com.ay.wash.action.WashAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+  <!--工作面部分模块-->
+  <package name="workFace" extends="struts-default" namespace="/workFace">
+    <action name="workFaceAction" class="com.ay.workface.action.WorkFaceAction">
+      <result name="exp" type="chain"> 
+        <param name="namespace">/excel</param>  
+        <param name="actionName ">excel_exp</param> 
+      </result>
+    </action>
+  </package>
+</struts>

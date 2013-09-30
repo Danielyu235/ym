@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="AThreeAntiSysTheme">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_A_THREE_ANTI_SYS_THEME.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_A_THREE_ANTI_SYS_THEME.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_A_THREE_ANTI_SYS_THEME.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_A_THREE_ANTI_SYS_THEME.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_A_THREE_ANTI_SYS_THEME.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_A_THREE_ANTI_SYS_THEME.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="wind"> TB_A_THREE_ANTI_SYS_THEME.WIND like '%'+#wind#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gasDensity"> TB_A_THREE_ANTI_SYS_THEME.GAS_DENSITY like '%'+#gasDensity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="date"> TB_A_THREE_ANTI_SYS_THEME.DATE like '%'+#date#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="areaId"> TB_A_THREE_ANTI_SYS_THEME.AREA_ID like '%'+#areaId#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.colliery.theme.AThreeAntiSysTheme.pojo.AThreeAntiSysTheme">
+  		INSERT INTO TB_A_THREE_ANTI_SYS_THEME(
+				
+				WIND,
+				GAS_DENSITY,
+				DATE,
+				AREA_ID,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#wind#,
+				#gasDensity#,
+				#date#,
+				#areaId#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_A_THREE_ANTI_SYS_THEME SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.colliery.theme.AThreeAntiSysTheme.pojo.AThreeAntiSysTheme" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_A_THREE_ANTI_SYS_THEME.WIND AS wind,
+			TB_A_THREE_ANTI_SYS_THEME.GAS_DENSITY AS gasDensity,
+			TB_A_THREE_ANTI_SYS_THEME.DATE AS date,
+			TB_A_THREE_ANTI_SYS_THEME.AREA_ID AS areaId,
+			dbo.FN_codeToText(TB_A_THREE_ANTI_SYS_THEME.AREA_ID) as areaName,
+			
+			TB_A_THREE_ANTI_SYS_THEME.ID AS id,
+			TB_A_THREE_ANTI_SYS_THEME.STATUS AS status,
+			TB_A_THREE_ANTI_SYS_THEME.CREATED AS created,
+			TB_A_THREE_ANTI_SYS_THEME.CREATE_TIME AS createTime,
+			TB_A_THREE_ANTI_SYS_THEME.UPDATED AS updated,
+			TB_A_THREE_ANTI_SYS_THEME.UPDATE_TIME as updateTime
+		from
+		TB_A_THREE_ANTI_SYS_THEME
+  		where 
+ 	 		TB_A_THREE_ANTI_SYS_THEME.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.colliery.theme.AThreeAntiSysTheme.pojo.AThreeAntiSysTheme">
+		UPDATE TB_A_THREE_ANTI_SYS_THEME 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="wind"> WIND=#wind#</isNotEmpty>
+			<isNotEmpty prepend="," property="gasDensity"> GAS_DENSITY=#gasDensity#</isNotEmpty>
+			<isNotEmpty prepend="," property="date"> DATE=#date#</isNotEmpty>
+			<isNotEmpty prepend="," property="areaId"> AREA_ID=#areaId#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.colliery.theme.AThreeAntiSysTheme.pojo.AThreeAntiSysTheme" parameterClass="java.util.Map">
+ 		SELECT
+			TB_A_THREE_ANTI_SYS_THEME.WIND AS wind,
+			TB_A_THREE_ANTI_SYS_THEME.GAS_DENSITY AS gasDensity,
+			TB_A_THREE_ANTI_SYS_THEME.DATE AS date,
+			TB_A_THREE_ANTI_SYS_THEME.AREA_ID AS areaId,
+			dbo.FN_codeToText(TB_A_THREE_ANTI_SYS_THEME.AREA_ID) as areaName,
+			
+			TB_A_THREE_ANTI_SYS_THEME.ID AS id,
+			TB_A_THREE_ANTI_SYS_THEME.STATUS AS status,
+			TB_A_THREE_ANTI_SYS_THEME.CREATED AS created,
+			TB_A_THREE_ANTI_SYS_THEME.CREATE_TIME AS createTime,
+			TB_A_THREE_ANTI_SYS_THEME.UPDATED AS updated,
+			TB_A_THREE_ANTI_SYS_THEME.UPDATE_TIME AS updateTime
+		FROM
+			TB_A_THREE_ANTI_SYS_THEME
+		WHERE
+			TB_A_THREE_ANTI_SYS_THEME.STATUS = '1'
+		<include refid="AThreeAntiSysTheme.mapWhereClause"/>
+		order by areaId
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_A_THREE_ANTI_SYS_THEME
+		WHERE
+			TB_A_THREE_ANTI_SYS_THEME.STATUS = '1' 
+		<include refid="AThreeAntiSysTheme.mapWhereClause"/>
+	</select>
+</sqlMap>

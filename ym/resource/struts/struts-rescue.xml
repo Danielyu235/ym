@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--启动应急救援平台模块-->
+  <package name="platformRescue" extends="struts-default" namespace="/platformRescue">
+    <action name="platformRescueAction" class="com.ay.emergency.rescue.platform.action.PlatformRescueAction"/>
+  </package>
+  <!--启动预案模块-->
+  <package name="planRescue" extends="struts-default" namespace="/planRescue">
+    <action name="planRescueAction" class="com.ay.emergency.rescue.planRescue.action.PlanRescueAction"/>
+  </package>
+  <!--救援预案日志模块-->
+  <package name="logRescue" extends="struts-default" namespace="/logRescue">
+    <action name="logRescueAction" class="com.ay.emergency.rescue.logRescue.action.LogRescueAction"/>
+  </package>
+  <!--应急指挥中心模块-->
+  <package name="headquarters" extends="struts-default" namespace="/headquarters">
+    <action name="headquartersAction" class="com.ay.emergency.resource.headquarters.action.HeadquartersAction"/>
+  </package>
+  <!--救援机构反馈信息模块-->
+  <package name="agencies" extends="struts-default" namespace="/agencies">
+    <action name="agenciesAction" class="com.ay.agencies.action.AgenciesAction"/>
+  </package>
+  <!--事故调用物资模块-->
+  <package name="accidentSupplies" extends="struts-default" namespace="/accidentSupplies">
+    <action name="accidentSuppliesAction" class="com.ay.emergency.rescue.supplies.action.AccidentSuppliesAction"/>
+  </package>
+</struts>

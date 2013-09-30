@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_RESCUE_SUPPLIES-->
+<sqlMap namespace="TbRescueSupplies">
+	<!-- add Condition TB_RESCUE_SUPPLIES-->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> id=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> status=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> created=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> create_time=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> updated=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> update_time=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wzmc"> WZMC like '%$wzmc$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="wzlb"> WZLB=#wzlb#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wzlx"> WZLX=#wzlx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wzsl"> WZSL=#wzsl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="zbcl"> ZBCL=#zbcl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="valid"> VALID=#valid#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssdw"> SSDW=#ssdw#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ssbm"> SSBM=#ssbm#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzr"> FZR=#fzr#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzrsj"> FZRSJ=#fzrsj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="cfwz"> CFWZ like '%$cfwz$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> REMARK=#remark#</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource">
+  		insert into  TB_RESCUE_SUPPLIES(
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME,
+				WZMC,
+				WZLB,
+				WZLX,
+				WZSL,
+				ZBCL,
+				VALID,
+				SSDW,
+				SSBM,
+				FZR,
+				FZRSJ,
+				CFWZ,
+				REMARK) values(
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#,
+				#wzmc#,
+				#wzlb#,
+				#wzlx#,
+				#wzsl#,
+				#zbcl#,
+				#valid#,
+				#ssdw#,
+				#ssbm#,
+				#fzr#,
+				#fzrsj#,
+				#cfwz#,
+				#remark#)</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_RESCUE_SUPPLIES set status='0' 
+  		where 
+ 	 		id=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource" parameterClass="java.lang.String">
+ 		select 
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				WZMC,
+				dbo.FN_codeToText(WZLB) as WZLBTEXT,
+				WZLB,
+				WZLX,
+				WZSL,
+				ZBCL,
+				VALID,
+				SSDW,
+				SSBM,
+				FZR,
+				FZRSJ,
+				CFWZ,
+				REMARK
+			from
+			TB_RESCUE_SUPPLIES
+  		where 
+ 	 		id=#id#</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource">
+		update   TB_RESCUE_SUPPLIES 
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> status=#status#</isNotNull>
+			<isNotNull prepend="," property="created"> created=#created#</isNotNull>
+			<isNotNull prepend="," property="createTime"> create_time=#createTime#</isNotNull>
+			<isNotNull prepend="," property="updated"> updated=#updated#</isNotNull>
+			<isNotNull prepend="," property="updateTime"> update_time=#updateTime#</isNotNull>
+			<isNotNull prepend="," property="wzmc"> WZMC=#wzmc#</isNotNull>
+			<isNotNull prepend="," property="wzlb"> WZLB=#wzlb#</isNotNull>
+			<isNotNull prepend="," property="wzlx"> WZLX=#wzlx#</isNotNull>
+			<isNotNull prepend="," property="wzsl"> WZSL=#wzsl#</isNotNull>
+			<isNotNull prepend="," property="zbcl"> ZBCL=#zbcl#</isNotNull>
+			<isNotNull prepend="," property="valid"> VALID=#valid#</isNotNull>
+			<isNotNull prepend="," property="ssdw"> SSDW=#ssdw#</isNotNull>
+			<isNotNull prepend="," property="ssbm"> SSBM=#ssbm#</isNotNull>
+			<isNotNull prepend="," property="fzr"> FZR=#fzr#</isNotNull>
+			<isNotNull prepend="," property="fzrsj"> FZRSJ=#fzrsj#</isNotNull>
+			<isNotNull prepend="," property="cfwz"> CFWZ=#cfwz#</isNotNull>
+			<isNotNull prepend="," property="remark"> REMARK=#remark#</isNotNull>
+		</dynamic>
+  		where 
+ 	 		id=#id#
+	</update>
+	<!-- add method findAll-->
+	<select id="findAll" resultClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource" parameterClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource">
+ 		select 
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				WZMC,
+				dbo.FN_codeToText(WZLB) as WZLB,
+				WZLX,
+				WZSL,
+				ZBCL,
+				VALID,
+				SSDW,
+				SSBM,
+				FZR,
+				FZRSJ,
+				CFWZ,
+				REMARK
+			from
+			TB_RESCUE_SUPPLIES
+  		where 
+ 	 		 status='1'</select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource" parameterClass="java.util.Map">
+ 		select 
+ 				dbo.FN_HASMAP(ID) as hasMap,
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				WZMC,
+				WZLB,
+				dbo.FN_codeToText(WZLB) as WZLBTEXT,
+				WZLX,
+				WZSL,
+				ZBCL,
+				VALID,
+				SSDW,
+				SSBM,
+				FZR,
+				FZRSJ,
+				CFWZ,
+				REMARK
+			from
+			TB_RESCUE_SUPPLIES
+  		where 
+ 	 		 status='1' 
+		<include refid="TbRescueSupplies.mapWhereClause"/>
+	</select>
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE dbo.TB_RESCUE_SUPPLIES
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	</statement>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select count(*) 
+			from
+			TB_RESCUE_SUPPLIES
+  		where 
+ 	 		 status='1' 
+		<include refid="TbRescueSupplies.mapWhereClause"/>
+	</select>
+	<select id="suppList" resultClass="com.ay.emergency.resource.supplies.pojo.SuppliesResource">
+ 		select 
+ 				dbo.FN_HASMAP(ID) as hasMap,
+				id,
+				status,
+				created,
+				create_time as createTime,
+				updated,
+				update_time as updateTime,
+				WZMC,
+				WZLB,
+				dbo.FN_codeToText(WZLB) as WZLBTEXT,
+				WZLX,
+				WZSL,
+				ZBCL,
+				VALID,
+				SSDW,
+				SSBM,
+				FZR,
+				FZRSJ,
+				CFWZ,
+				REMARK
+			from
+			TB_RESCUE_SUPPLIES
+  		where 
+ 	 		 status='1' 
+		<include refid="TbRescueSupplies.mapWhereClause"/>
+	</select>
+</sqlMap>

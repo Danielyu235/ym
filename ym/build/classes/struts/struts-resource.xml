@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.multipart.saveDir" value="c:\temp"/>
+	<!-- 救援队伍 -->
+	<package extends="struts-default" name="rescueTeam" namespace="/rescueTeam">
+	<action class="com.ay.emergency.resource.responseteam.action.ResponseteamResourceAction" name="rescueTeamAction"/>
+	</package>
+	<!-- 救援物资 -->
+	<package extends="struts-default" name="tbRescueSupplies" namespace="/tbRescueSupplies">
+	<action class="com.ay.emergency.resource.supplies.action.SuppliesResourceAction" name="tbRescueSuppliesAction"/>
+	</package>
+	<!-- 救援车辆 -->
+	<package extends="struts-default" name="rescueCars" namespace="/rescueCars">
+	<action class="com.ay.emergency.resource.cars.action.CarsResourceAction" name="rescueCarsAction"/>
+	</package>
+	<!-- 医疗保障-->
+	<package extends="struts-default" name="rescueMedical" namespace="/rescueMedical">
+	<action class="com.ay.emergency.resource.medical.action.MedicalResourceAction" name="rescueMedicalAction"/>
+	</package>
+</struts>

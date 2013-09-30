@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="AccidentSurvery">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ACCIDENT_SURVERY.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ACCIDENT_SURVERY.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ACCIDENT_SURVERY.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ACCIDENT_SURVERY.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ACCIDENT_SURVERY.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ACCIDENT_SURVERY.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="type"> TB_ACCIDENT_SURVERY.TYPE like '%'+#type#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="happenTime"> TB_ACCIDENT_SURVERY.HAPPEN_TIME like '%'+#happenTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="address"> TB_ACCIDENT_SURVERY.ADDRESS like '%'+#address#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="siteProfile"> TB_ACCIDENT_SURVERY.SITE_PROFILE like '%'+#siteProfile#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="safetyRegulation"> TB_ACCIDENT_SURVERY.SAFETY_REGULATION like '%'+#safetyRegulation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="safeRescueSituation"> TB_ACCIDENT_SURVERY.SAFE_RESCUE_SITUATION like '%'+#safeRescueSituation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="losses"> TB_ACCIDENT_SURVERY.LOSSES like '%'+#losses#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="immediateCause"> TB_ACCIDENT_SURVERY.IMMEDIATE_CAUSE like '%'+#immediateCause#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="indirectReason"> TB_ACCIDENT_SURVERY.INDIRECT_REASON like '%'+#indirectReason#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accdientNature"> TB_ACCIDENT_SURVERY.ACCDIENT_NATURE like '%'+#accdientNature#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="responsibility"> TB_ACCIDENT_SURVERY.RESPONSIBILITY like '%'+#responsibility#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.rescue.accidentsurvey.pojo.AccidentSurvery">
+  		INSERT INTO TB_ACCIDENT_SURVERY(
+				
+				TYPE,
+				HAPPEN_TIME,
+				ADDRESS,
+				SITE_PROFILE,
+				SAFETY_REGULATION,
+				SAFE_RESCUE_SITUATION,
+				LOSSES,
+				IMMEDIATE_CAUSE,
+				INDIRECT_REASON,
+				ACCDIENT_NATURE,
+				RESPONSIBILITY,
+				ACCIDENT_ID,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#type#,
+				#happenTime#,
+				#address#,
+				#siteProfile#,
+				#safetyRegulation#,
+				#safeRescueSituation#,
+				#losses#,
+				#immediateCause#,
+				#indirectReason#,
+				#accdientNature#,
+				#responsibility#,
+				#aid#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ACCIDENT_SURVERY SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.rescue.accidentsurvey.pojo.AccidentSurvery" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_ACCIDENT_SURVERY.TYPE AS type,
+			TB_ACCIDENT_SURVERY.HAPPEN_TIME AS happenTime,
+			TB_ACCIDENT_SURVERY.ADDRESS AS address,
+			TB_ACCIDENT_SURVERY.SITE_PROFILE AS siteProfile,
+			TB_ACCIDENT_SURVERY.SAFETY_REGULATION AS safetyRegulation,
+			TB_ACCIDENT_SURVERY.SAFE_RESCUE_SITUATION AS safeRescueSituation,
+			TB_ACCIDENT_SURVERY.LOSSES AS losses,
+			TB_ACCIDENT_SURVERY.IMMEDIATE_CAUSE AS immediateCause,
+			TB_ACCIDENT_SURVERY.INDIRECT_REASON AS indirectReason,
+			TB_ACCIDENT_SURVERY.ACCDIENT_NATURE AS accdientNature,
+			TB_ACCIDENT_SURVERY.RESPONSIBILITY AS responsibility,
+			TB_ACCIDENT_SURVERY.ACCIDENT_ID AS aid,
+			
+			TB_ACCIDENT_SURVERY.ID AS id,
+			TB_ACCIDENT_SURVERY.STATUS AS status,
+			TB_ACCIDENT_SURVERY.CREATED AS created,
+			TB_ACCIDENT_SURVERY.CREATE_TIME AS createTime,
+			TB_ACCIDENT_SURVERY.UPDATED AS updated,
+			TB_ACCIDENT_SURVERY.UPDATE_TIME as updateTime
+		from
+		TB_ACCIDENT_SURVERY
+  		where 
+ 	 		TB_ACCIDENT_SURVERY.ACCIDENT_ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.rescue.accidentsurvey.pojo.AccidentSurvery">
+		UPDATE TB_ACCIDENT_SURVERY 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="type"> TYPE=#type#</isNotEmpty>
+			<isNotEmpty prepend="," property="happenTime"> HAPPEN_TIME=#happenTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="address"> ADDRESS=#address#</isNotEmpty>
+			<isNotEmpty prepend="," property="siteProfile"> SITE_PROFILE=#siteProfile#</isNotEmpty>
+			<isNotEmpty prepend="," property="safetyRegulation"> SAFETY_REGULATION=#safetyRegulation#</isNotEmpty>
+			<isNotEmpty prepend="," property="safeRescueSituation"> SAFE_RESCUE_SITUATION=#safeRescueSituation#</isNotEmpty>
+			<isNotEmpty prepend="," property="losses"> LOSSES=#losses#</isNotEmpty>
+			<isNotEmpty prepend="," property="immediateCause"> IMMEDIATE_CAUSE=#immediateCause#</isNotEmpty>
+			<isNotEmpty prepend="," property="indirectReason"> INDIRECT_REASON=#indirectReason#</isNotEmpty>
+			<isNotEmpty prepend="," property="accdientNature"> ACCDIENT_NATURE=#accdientNature#</isNotEmpty>
+			<isNotEmpty prepend="," property="responsibility"> RESPONSIBILITY=#responsibility#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.rescue.accidentsurvey.pojo.AccidentSurvery" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_ACCIDENT_SURVERY.TYPE AS type,
+			TB_ACCIDENT_SURVERY.HAPPEN_TIME AS happenTime,
+			TB_ACCIDENT_SURVERY.ADDRESS AS address,
+			TB_ACCIDENT_SURVERY.SITE_PROFILE AS siteProfile,
+			TB_ACCIDENT_SURVERY.SAFETY_REGULATION AS safetyRegulation,
+			TB_ACCIDENT_SURVERY.SAFE_RESCUE_SITUATION AS safeRescueSituation,
+			TB_ACCIDENT_SURVERY.LOSSES AS losses,
+			TB_ACCIDENT_SURVERY.IMMEDIATE_CAUSE AS immediateCause,
+			TB_ACCIDENT_SURVERY.INDIRECT_REASON AS indirectReason,
+			TB_ACCIDENT_SURVERY.ACCDIENT_NATURE AS accdientNature,
+			TB_ACCIDENT_SURVERY.RESPONSIBILITY AS responsibility,
+			TB_ACCIDENT_SURVERY.ACCIDENT_ID AS aid,
+			
+			TB_ACCIDENT_SURVERY.ID AS id,
+			TB_ACCIDENT_SURVERY.STATUS AS status,
+			TB_ACCIDENT_SURVERY.CREATED AS created,
+			TB_ACCIDENT_SURVERY.CREATE_TIME AS createTime,
+			TB_ACCIDENT_SURVERY.UPDATED AS updated,
+			TB_ACCIDENT_SURVERY.UPDATE_TIME AS updateTime
+		FROM
+			TB_ACCIDENT_SURVERY
+		WHERE
+			TB_ACCIDENT_SURVERY.STATUS = '1'
+		<include refid="AccidentSurvery.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ACCIDENT_SURVERY
+		WHERE
+			TB_ACCIDENT_SURVERY.STATUS = '1' 
+		<include refid="AccidentSurvery.mapWhereClause"/>
+	</select>
+	
+	<select id="countByAid" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ACCIDENT_SURVERY
+		WHERE
+			TB_ACCIDENT_SURVERY.ACCIDENT_ID = #aid# 
+		AND
+			TB_ACCIDENT_SURVERY.STATUS = '1' 
+		<include refid="AccidentSurvery.mapWhereClause"/>
+	</select>
+</sqlMap>

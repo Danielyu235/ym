@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_HAZHARDS_PENSTOCK-->
+<sqlMap namespace="TbHazhardsPenstock">
+	<resultMap class="com.ay.hazards.penstock.pojo.PenstockHazards" id="th">
+		<result property="materialsId" column="materialsId" />
+		<result property="materials.id" column="materials.id" />
+		<result property="materials.name" column="materials.name"/>
+		<result property="materials.type" column="materials.type"/>
+		<result property="materials.thresholdQuantity" column="materials.thresholdQuantity"/>
+		<result property="dwdm" column="dwdm"/>
+		<result property="corpName" column="corpName"/>
+		<result property="gdmc" column="gdmc"/>
+		<result property="gdbh" column="gdbh"/>
+		<result property="gdlb" column="gdlb"/>
+		<result property="gdzj" column="gdzj"/>
+		<result property="cz" column="cz"/>
+		<result property="bh" column="bh"/>
+		<result property="gdlb" column="gdlb"/>
+		<result property="gdcd" column="gdcd"/>
+		<result property="gzyl" column="gzyl"/>
+		<result property="qdsyyl" column="qdsyyl"/>
+		<result property="ymxsyyl" column="ymxsyyl"/>
+		<result property="csjz" column="csjz"/>
+		<result property="gzwd" column="gzwd"/>
+		<result property="tyrq" column="tyrq"/>
+		<result property="fsfs" column="fsfs"/>
+		<result property="fffs" column="fffs"/>
+		<result property="jrfs" column="jrfs"/>
+		<result property="sjgf" column="sjgf"/>
+		<result property="sjdw" column="sjdw"/>
+		<result property="azgf" column="azgf"/>
+		<result property="azdw" column="azdw"/>
+		<result property="gdth" column="gdth"/>
+		<result property="gdjgdq" column="gdjgdq"/>
+		<result property="corpName" column="corpName"/>
+		<result property="ygdxldtyz" column="ygdxldtyz"/>
+		<result property="tbr" column="tbr"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="tbrq" column="tbrq"/>
+ 		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="created" column="created"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updated" column="updated"/>
+		<result property="updateTime" column="updateTime"/>
+	</resultMap>
+	<!-- add Condition TB_HAZHARDS_PENSTOCK-->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdmc"> GDMC like '%$gdmc$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdbh"> GDBH like '%$gdbh$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdlb"> GDLB like '%$gdlb$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdzj"> GDZJ=#gdzj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="cz"> CZ=#cz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bh"> BH=#bh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdcd"> GDCD=#gdcd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gzyl"> GZYL=#gzyl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="qdsyyl"> QDSYYL=#qdsyyl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ymxsyyl"> YMXSYYL=#ymxsyyl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="csjz"> CSJZ=#csjz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gzwd"> GZWD=#gzwd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="tyrq"> TYRQ=#tyrq#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fsfs"> FSFS=#fsfs#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fffs"> FFFS=#fffs#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jrfs"> JRFS=#jrfs#</isNotEmpty>
+			<isNotEmpty prepend="and" property="sjgf"> SJGF=#sjgf#</isNotEmpty>
+			<isNotEmpty prepend="and" property="sjdw"> SJDW=#sjdw#</isNotEmpty>
+			<isNotEmpty prepend="and" property="azgf"> AZGF=#azgf#</isNotEmpty>
+			<isNotEmpty prepend="and" property="azdw"> AZDW=#azdw#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdth"> GDTH=#gdth#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdjgdq"> GDJGDQ=#gdjgdq#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ygdxldtyz"> YGDXLDTYZ=#ygdxldtyz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="tbr"> TBR=#tbr#</isNotEmpty>
+			<isNotEmpty prepend="and" property="lxdh"> LXDH=#lxdh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="tbrq"> TBRQ=#tbrq#</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert"  parameterClass="com.ay.hazards.penstock.pojo.PenstockHazards">
+  		insert into  TB_HAZHARDS_PENSTOCK(
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME,
+				GDMC,
+				MATERIALS_ID,
+				DWDM,
+				GDBH,
+				GDLB,
+				GDZJ,
+				CZ,
+				BH,
+				GDCD,
+				GZYL,
+				QDSYYL,
+				YMXSYYL,
+				CSJZ,
+				GZWD,
+				TYRQ,
+				FSFS,
+				FFFS,
+				JRFS,
+				SJGF,
+				SJDW,
+				AZGF,
+				AZDW,
+				GDTH,
+				GDJGDQ,
+				YGDXLDTYZ,
+				TBR,
+				LXDH,
+				TBRQ) values(
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#,
+				#gdmc#,
+				#materialsId#,
+				#dwdm#,
+				#gdbh#,
+				#gdlb#,
+				#gdzj#,
+				#cz#,
+				#bh#,
+				#gdcd#,
+				#gzyl#,
+				#qdsyyl#,
+				#ymxsyyl#,
+				#csjz#,
+				#gzwd#,
+				#tyrq#,
+				#fsfs#,
+				#fffs#,
+				#jrfs#,
+				#sjgf#,
+				#sjdw#,
+				#azgf#,
+				#azdw#,
+				#gdth#,
+				#gdjgdq#,
+				#ygdxldtyz#,
+				#tbr#,
+				#lxdh#,
+				#tbrq#)</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_HAZHARDS_PENSTOCK set status='0' 
+  		where 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultMap="th" parameterClass="java.lang.String">
+		select 
+				TB_HAZHARDS_PENSTOCK.MATERIALS_ID as materialsId,
+ 				VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				TB_HAZHARDS_PENSTOCK.ID,
+				TB_ENTERPRISE.CORP_NAME AS corpName,
+				TB_HAZHARDS_PENSTOCK.DWDM,
+				TB_HAZHARDS_PENSTOCK.STATUS,
+				TB_HAZHARDS_PENSTOCK.CREATED,
+				TB_HAZHARDS_PENSTOCK.CREATE_TIME as cREATETIME,
+				TB_HAZHARDS_PENSTOCK.UPDATED,
+				TB_HAZHARDS_PENSTOCK.UPDATE_TIME as uPDATETIME,
+				TB_HAZHARDS_PENSTOCK.GDMC,
+				TB_HAZHARDS_PENSTOCK.GDBH,
+				TB_HAZHARDS_PENSTOCK.GDLB,
+				TB_HAZHARDS_PENSTOCK.GDZJ,
+				TB_HAZHARDS_PENSTOCK.CZ,
+				TB_HAZHARDS_PENSTOCK.BH,
+				TB_HAZHARDS_PENSTOCK.GDCD,
+				TB_HAZHARDS_PENSTOCK.GZYL,
+				TB_HAZHARDS_PENSTOCK.QDSYYL,
+				TB_HAZHARDS_PENSTOCK.YMXSYYL,
+				TB_HAZHARDS_PENSTOCK.CSJZ,
+				TB_HAZHARDS_PENSTOCK.GZWD,
+				TB_HAZHARDS_PENSTOCK.TYRQ,
+				TB_HAZHARDS_PENSTOCK.FSFS,
+				TB_HAZHARDS_PENSTOCK.FFFS,
+				TB_HAZHARDS_PENSTOCK.JRFS,
+				TB_HAZHARDS_PENSTOCK.SJGF,
+				TB_HAZHARDS_PENSTOCK.SJDW,
+				TB_HAZHARDS_PENSTOCK.AZGF,
+				TB_HAZHARDS_PENSTOCK.AZDW,
+				TB_HAZHARDS_PENSTOCK.GDTH,
+				TB_HAZHARDS_PENSTOCK.GDJGDQ,
+				TB_HAZHARDS_PENSTOCK.YGDXLDTYZ,
+				TB_HAZHARDS_PENSTOCK.TBR,
+				TB_HAZHARDS_PENSTOCK.LXDH,
+				TB_HAZHARDS_PENSTOCK.TBRQ
+			from
+			TB_HAZHARDS_PENSTOCK
+		 LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_PENSTOCK.DWDM = TB_ENTERPRISE.ID
+		 LEFT JOIN VIEW_MATERIALS ON
+		TB_HAZHARDS_PENSTOCK.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		 TB_HAZHARDS_PENSTOCK.ID=#id#</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.penstock.pojo.PenstockHazards">
+		update   TB_HAZHARDS_PENSTOCK 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="materialsId"> MATERIALS_ID=#materialsId#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdmc"> GDMC=#gdmc#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdbh"> GDBH=#gdbh#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdlb"> GDLB=#gdlb#</isNotEmpty>
+			<isNotEmpty prepend="," property="dwdm"> DWDM=#dwdm#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdzj"> GDZJ=#gdzj#</isNotEmpty>
+			<isNotEmpty prepend="," property="cz"> CZ=#cz#</isNotEmpty>
+			<isNotEmpty prepend="," property="bh"> BH=#bh#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdcd"> GDCD=#gdcd#</isNotEmpty>
+			<isNotEmpty prepend="," property="gzyl"> GZYL=#gzyl#</isNotEmpty>
+			<isNotEmpty prepend="," property="qdsyyl"> QDSYYL=#qdsyyl#</isNotEmpty>
+			<isNotEmpty prepend="," property="ymxsyyl"> YMXSYYL=#ymxsyyl#</isNotEmpty>
+			<isNotEmpty prepend="," property="csjz"> CSJZ=#csjz#</isNotEmpty>
+			<isNotEmpty prepend="," property="gzwd"> GZWD=#gzwd#</isNotEmpty>
+			<isNotEmpty prepend="," property="tyrq"> TYRQ=#tyrq#</isNotEmpty>
+			<isNotEmpty prepend="," property="fsfs"> FSFS=#fsfs#</isNotEmpty>
+			<isNotEmpty prepend="," property="fffs"> FFFS=#fffs#</isNotEmpty>
+			<isNotEmpty prepend="," property="jrfs"> JRFS=#jrfs#</isNotEmpty>
+			<isNotEmpty prepend="," property="sjgf"> SJGF=#sjgf#</isNotEmpty>
+			<isNotEmpty prepend="," property="sjdw"> SJDW=#sjdw#</isNotEmpty>
+			<isNotEmpty prepend="," property="azgf"> AZGF=#azgf#</isNotEmpty>
+			<isNotEmpty prepend="," property="azdw"> AZDW=#azdw#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdth"> GDTH=#gdth#</isNotEmpty>
+			<isNotEmpty prepend="," property="gdjgdq"> GDJGDQ=#gdjgdq#</isNotEmpty>
+			<isNotEmpty prepend="," property="ygdxldtyz"> YGDXLDTYZ=#ygdxldtyz#</isNotEmpty>
+			<isNotEmpty prepend="," property="tbr"> TBR=#tbr#</isNotEmpty>
+			<isNotEmpty prepend="," property="lxdh"> LXDH=#lxdh#</isNotEmpty>
+			<isNotEmpty prepend="," property="tbrq"> TBRQ=#tbrq#</isNotEmpty>
+		</dynamic>
+  		where 
+ 	 		ID=#id#
+	</update>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hazards.penstock.pojo.PenstockHazards" parameterClass="java.util.Map">
+ 		select 
+ 				dbo.FN_HASMAP(TB_HAZHARDS_PENSTOCK.ID) as hasMap,
+ 				TB_HAZHARDS_PENSTOCK.MATERIALS_ID as materialsId,
+				VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				TB_HAZHARDS_PENSTOCK.ID,
+				TB_HAZHARDS_PENSTOCK.DWDM,
+				TB_ENTERPRISE.CORP_NAME AS corpName,
+				TB_HAZHARDS_PENSTOCK.STATUS,
+				TB_HAZHARDS_PENSTOCK.CREATED,
+				TB_HAZHARDS_PENSTOCK.CREATE_TIME as cREATETIME,
+				TB_HAZHARDS_PENSTOCK.UPDATED,
+				TB_HAZHARDS_PENSTOCK.UPDATE_TIME as uPDATETIME,
+				TB_HAZHARDS_PENSTOCK.GDMC,
+				TB_HAZHARDS_PENSTOCK.GDBH,
+				TB_HAZHARDS_PENSTOCK.GDLB,
+				TB_HAZHARDS_PENSTOCK.GDZJ,
+				TB_HAZHARDS_PENSTOCK.CZ,
+				TB_HAZHARDS_PENSTOCK.BH,
+				TB_HAZHARDS_PENSTOCK.GDCD,
+				TB_HAZHARDS_PENSTOCK.GZYL,
+				TB_HAZHARDS_PENSTOCK.QDSYYL,
+				TB_HAZHARDS_PENSTOCK.YMXSYYL,
+				TB_HAZHARDS_PENSTOCK.CSJZ,
+				TB_HAZHARDS_PENSTOCK.GZWD,
+				TB_HAZHARDS_PENSTOCK.TYRQ,
+				TB_HAZHARDS_PENSTOCK.FSFS,
+				TB_HAZHARDS_PENSTOCK.FFFS,
+				TB_HAZHARDS_PENSTOCK.JRFS,
+				TB_HAZHARDS_PENSTOCK.SJGF,
+				TB_HAZHARDS_PENSTOCK.SJDW,
+				TB_HAZHARDS_PENSTOCK.AZGF,
+				TB_HAZHARDS_PENSTOCK.AZDW,
+				TB_HAZHARDS_PENSTOCK.GDTH,
+				TB_HAZHARDS_PENSTOCK.GDJGDQ,
+				TB_HAZHARDS_PENSTOCK.YGDXLDTYZ,
+				TB_HAZHARDS_PENSTOCK.TBR,
+				TB_HAZHARDS_PENSTOCK.LXDH,
+				TB_HAZHARDS_PENSTOCK.TBRQ
+			from
+			TB_HAZHARDS_PENSTOCK
+		 LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_PENSTOCK.DWDM = TB_ENTERPRISE.ID
+		 LEFT JOIN VIEW_MATERIALS ON
+		TB_HAZHARDS_PENSTOCK.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		 TB_HAZHARDS_PENSTOCK.status='1' 
+		<include refid="TbHazhardsPenstock.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select count(*) 
+			from
+			TB_HAZHARDS_PENSTOCK
+		 LEFT JOIN TB_ENTERPRISE ON
+		TB_HAZHARDS_PENSTOCK.DWDM = TB_ENTERPRISE.ID
+  		where 
+ 	 		 TB_HAZHARDS_PENSTOCK.status='1' 
+		<include refid="TbHazhardsPenstock.mapWhereClause"/>
+	</select>
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE TB_HAZHARDS_PENSTOCK
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	 </statement>
+</sqlMap>

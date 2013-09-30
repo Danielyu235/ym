@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 救援专家 -->
+<package extends="struts-default" name="peoplemanage" namespace="/peoplemanage">
+<action class="com.ay.peoplemanage.action.PeopleInfoAction" name="peopleInfoAction"/>
+</package>
+</struts>

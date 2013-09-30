@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.saveDir" value="c:\temp" />
+	
+	<!-- 安全生产法规 -->
+	<package extends="struts-default" name="law" namespace="/law">	
+		<action class="com.ay.knowlbase.law.action.LawKnowlbaseAction" name="lawAction">
+		</action>
+	</package>
+	<!-- 安全生产标准 -->
+	<package extends="struts-default" name="criterion" namespace="/criterion">	
+		<action class="com.ay.knowlbase.criterion.action.CriKnowlbaseAction" name="criterionAction">
+		</action>
+	</package>
+	<!-- 典型事故案例 -->
+	<package extends="struts-default" name="accidentCase" namespace="/accidentCase">	
+		<action class="com.ay.knowlbase.accidentCase.action.AccKnowlbaseAction" name="accidentCaseAction">
+		</action>
+	</package>
+	
+
+</struts>

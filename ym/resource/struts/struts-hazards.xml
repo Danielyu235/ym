@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--重大危险源  锅炉  -->
+  <package extends="struts-default" name="boiler" namespace="/boiler">
+    <action class="com.ay.hazards.boiler.action.BoilerHazardsAction" name="boilerAction"/>
+  </package>
+  <!--金属非金属地下矿山模块-->
+  <package name="minesHazards" extends="struts-default" namespace="/minesHazards">
+    <action name="minesHazardsAction" class="com.ay.hazards.mines.action.MinesHazardsAction"/>
+  </package>
+  <package extends="struts-default" name="tbHazhardsPenstock" namespace="/tbHazhardsPenstock">
+    <action class="com.ay.hazards.penstock.action.PenstockHazardsAction" name="tbHazhardsPenstockAction"/>
+  </package>
+  <!--压力容器模块-->
+  <package name="pressureVesselHazards" extends="struts-default" namespace="/pressureVesselHazards">
+    <action name="pressureVesselHazardsAction" class="com.ay.hazards.pressurevessel.action.PressureVesselHazardsAction"/>
+  </package>
+  <!--煤矿模块-->
+  <package name="collieryHazards" extends="struts-default" namespace="/collieryHazards">
+    <action name="collieryHazardsAction" class="com.ay.hazards.colliery.action.CollieryHazardsAction"/>
+  </package>
+  <!--定期检查情况模块-->
+  <package name="periodicalSurveyHazards" extends="struts-default" namespace="/periodicalSurveyHazards">
+    <action name="periodicalSurveyHazardsAction" class="com.ay.hazards.pressurevessel.action.PeriodicalSurveyHazardsAction"/>
+  </package>
+  <!--库区模块-->
+  <package name="reservoirAreaHazards" extends="struts-default" namespace="/reservoirAreaHazards">
+    <action name="reservoirAreaHazardsAction" class="com.ay.hazards.reservoirarea.action.ReservoirAreaHazardsAction"/>
+  </package>
+  <!--库房模块-->
+  <package name="reservoirHazards" extends="struts-default" namespace="/reservoirHazards">
+    <action name="reservoirHazardsAction" class="com.ay.hazards.reservoirarea.action.ReservoirHazardsAction"/>
+  </package>
+  <!--贮罐区模块-->
+  <package name="tankAraeHazards" extends="struts-default" namespace="/tankAraeHazards">
+    <action name="tankAraeHazardsAction" class="com.ay.hazards.tank.action.TankAraeHazardsAction"/>
+  </package>
+  <!--贮罐模块-->
+  <package name="tankHazards" extends="struts-default" namespace="/tankHazards">
+    <action name="tankHazardsAction" class="com.ay.hazards.tank.action.TankHazardsAction"/>
+  </package>
+  <!--尾矿库模块-->
+  <package name="hazhardsTailingspond" extends="struts-default" namespace="/hazhardsTailingspond">
+    <action name="hazhardsTailingspondAction" class="com.ay.hazards.tailingspond.action.TailingspondHazardsAction"/>
+  </package>
+  <!--危险物质模块-->
+  <package name="materials" extends="struts-default" namespace="/materials">
+    <action name="materialsAction" class="com.ay.hazards.hazardousmaterials.action.MaterialsAction"/>
+  </package>
+  <!--自定义危险物质模块-->
+  <package name="otherMaterials" extends="struts-default" namespace="/otherMaterials">
+    <action name="otherMaterialsAction" class="com.ay.hazards.hazardousmaterials.action.OtherMaterialsAction"/>
+  </package>
+  <!--自定义危险物质下来数据模块-->
+  <package name="chemicalsHazardous" extends="struts-default" namespace="/chemicalsHazardous">
+    <action name="chemicalsHazardousAction" class="com.ay.hazards.hazardousmaterials.action.ChemicalsHazardousAction"/>
+  </package>
+  <!--生产场所模块-->
+  <package name="hazhardsWorkplace" extends="struts-default" namespace="/hazhardsWorkplace">
+    <action name="hazhardsWorkplaceAction" class="com.ay.hazards.workplace.action.WorkplaceHazardsAction"/>
+  </package>
+  <!--生产物品模块-->
+  <package name="tbHazhardsMaterials" extends="struts-default" namespace="/tbHazhardsMaterials">
+    <action name="tbHazhardsMaterialsAction" class="com.ay.hazards.materials.action.MaterialsHazardsAction"/>
+  </package>
+  <!--危险源模块-->
+  <package name="hazards" extends="struts-default" namespace="/hazards">
+    <action name="hazardsAction" class="com.ay.hazards.all.action.HazardsAction"/>
+  </package>
+  <!--辨识结果模块-->
+  <package name="hazardsResult" extends="struts-default" namespace="/hazardsResult">
+    <action name="hazardsResultAction" class="com.ay.hazards.all.action.HazardsResultAction"/>
+  </package>
+  <!--危险源辨识日志模块-->
+  <package name="identificationLog" extends="struts-default" namespace="/identificationLog">
+    <action name="identificationLogAction" class="com.ay.hazards.identification.log.action.IdentificationLogAction"/>
+  </package>
+  <!-- 危化品 -->
+  <package extends="struts-default" name="dangercargo" namespace="/dangercargo">
+    <action class="com.ay.hazards.dangerousplacematerials.action.DangerousPlaceMaterialsAction" name="dangerCargoAction"/>
+  </package>
+  <!-- 危险场所 -->
+  <package extends="struts-default" name="dangerplace" namespace="/dangerplace">
+    <action class="com.ay.hazards.dangerousplace.action.DangerousplaceAction" name="dangerousplaceAction">
+      <result>/jsp/hazards/DangerousPlaceView.jsp</result>
+    </action>
+  </package>
+  <!--尾矿库模块-->
+  <package name="tailingspondHazards" extends="struts-default" namespace="/tailingspondHazards">
+    <action name="tailingspondHazardsAction" class="com.ay.hazards.tailingspond.action.TailingspondHazardsAction"/>
+  </package>
+</struts>

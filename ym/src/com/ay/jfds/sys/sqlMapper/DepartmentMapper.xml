@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+                        " http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="dept">
+
+	<typeAlias alias="dept" type="com.ay.jfds.sys.pojo.Department" />
+	<typeAlias alias="user" type="com.ay.jfds.sys.pojo.User" />
+	
+	<sql id="mapWhereClause" >
+	   <isParameterPresent >
+	      <isNotEmpty prepend="and" property="deptName" >
+	        dept_name like '%$deptName$%'
+	      </isNotEmpty>
+	      <isNotEmpty prepend="and" property="parentId" >
+	        parent_id = #parentId#
+	      </isNotEmpty>
+	   </isParameterPresent>
+	</sql>
+	
+	<insert id="insert" parameterClass="dept">
+		INSERT INTO sys_dept (
+			id,
+			parent_id,
+			dept_name,
+			dept_order,
+			status,
+			created,
+			create_time,
+			updated,
+			update_time
+		)
+		VALUES
+			(
+				#id#, #parentId#, #deptName#, #deptOrder#, #status#, #created#, #createTime#, #updated#, #updateTime#
+			)
+	</insert>
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE sys_dept
+		SET status=0
+		WHERE
+			id = #id#
+	</delete>
+	
+	<select id="getById" parameterClass="java.lang.String" resultClass="dept">
+		SELECT
+			id AS id,
+			parent_id AS parentId,
+			dept_name AS deptName,
+			dept_order AS deptOrder,
+			status AS status,
+			created AS created,
+			create_time AS createTime,
+			updated AS updated,
+			update_time AS updateTime
+		FROM
+			sys_dept
+		WHERE
+			id = #id# and status=1
+	</select>
+	
+	<update id="update" parameterClass="dept">
+		UPDATE sys_dept
+		SET parent_id = #parentId#, dept_name = #deptName#, dept_order = #deptOrder#, status = #status#, updated = #updated#, update_time = #updateTime#
+		WHERE
+			id = #id#
+	</update>
+	
+	<select id="findAll" resultClass="dept">
+		SELECT
+			id AS id,
+			parent_id AS parentId,
+			dept_name AS deptName,
+			dept_order AS deptOrder,
+			status AS status,
+			created AS created,
+			create_time AS createTime,
+			updated AS updated,
+			update_time AS updateTime
+		FROM
+			sys_dept
+		WHERE
+			status=1
+			order by dept_order asc 
+	</select>
+	
+	<select id="find" resultClass="dept"  parameterClass="java.util.Map">
+		SELECT
+			id AS id,
+			parent_id AS parentId,
+			dept_name AS deptName,
+			dept_order AS deptOrder,
+			status AS status,
+			created AS created,
+			create_time AS createTime,
+			updated AS updated,
+			update_time AS updateTime
+		FROM
+			sys_dept 
+		WHERE 1=1 
+		AND
+			status=1
+		<include refid="dept.mapWhereClause" />
+		ORDER BY dept_order desc
+	</select>
+	
+	<select id="findAllChildDept" resultClass="dept" parameterClass="java.lang.String">
+		SELECT
+			id AS id,
+			parent_id AS parentId,
+			dept_name AS deptName,
+			dept_order AS deptOrder,
+			status AS status,
+			created AS created,
+			create_time AS createTime,
+			updated AS updated,
+			update_time AS updateTime
+		FROM
+			sys_dept
+		WHERE
+			parent_id=#id#		
+		AND
+			status=1
+	</select>
+	
+	<select id="findDeptsUser" resultClass="user" parameterClass="dept">
+		SELECT
+			id AS id,
+			account AS account,
+			password AS password,
+			user_name AS userName,
+			dept_id AS deptId,
+			user_type AS userType,
+			skin_type AS skinType,
+			login_time AS loginTime,
+			last_login_time AS lastLoginTime,
+			status AS status,
+			created AS created,
+			create_time AS createTime,
+			updated AS updated,
+			update_time AS updateTime
+		FROM
+			sys_user
+		WHERE
+			id = #id#
+		AND
+			status=1
+	</select>
+	
+	<select id="findDeptUserById" resultClass="user" parameterClass="java.lang.String">
+		SELECT
+			id AS id,
+			account AS account,
+			password AS password,
+			user_name AS userName,
+			dept_id AS deptId,
+			user_type AS userType,
+			skin_type AS skinType,
+			login_time AS loginTime,
+			last_login_time AS lastLoginTime,
+			status AS status,
+			created AS created,
+			create_time AS createTime,
+			updated AS updated,
+			update_time AS updateTime
+		FROM
+			sys_user
+		WHERE
+			id = #id#
+		AND
+			status=1
+	</select>
+
+	<delete id="deleteUserByDept" parameterClass="java.lang.String">
+		UPDATE sys_user
+		SET status=0
+		WHERE
+		dept_id = #id#
+	</delete>
+</sqlMap>
+

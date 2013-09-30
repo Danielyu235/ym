@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--采煤系统模块-->
+  <package name="coalMiningSysTheme" extends="struts-default" namespace="/coalMiningSysTheme">
+    <action name="coalMiningSysThemeAction" class="com.ay.colliery.theme.CoalMiningSysTheme.action.CoalMiningSysThemeAction"/>
+  </package>
+  <!--掘进系统模块-->
+  <package name="tunnellingSysTheme" extends="struts-default" namespace="/tunnellingSysTheme">
+    <action name="tunnellingSysThemeAction" class="com.ay.colliery.theme.TunnellingSysTheme.action.TunnellingSysThemeAction"/>
+  </package>
+  <!--机电系统模块-->
+  <package name="machineElectricSysTheme" extends="struts-default" namespace="/machineElectricSysTheme">
+    <action name="machineElectricSysThemeAction" class="com.ay.colliery.theme.MachineElectricSysTheme.action.MachineElectricSysThemeAction"/>
+  </package>
+  <!--一通三防系统模块-->
+  <package name="aThreeAntiSysTheme" extends="struts-default" namespace="/aThreeAntiSysTheme">
+    <action name="aThreeAntiSysThemeAction" class="com.ay.colliery.theme.AThreeAntiSysTheme.action.AThreeAntiSysThemeAction"/>
+  </package>
+  <!--地面设施系统模块-->
+  <package name="floorFacilitiesSysTheme" extends="struts-default" namespace="/floorFacilitiesSysTheme">
+    <action name="floorFacilitiesSysThemeAction" class="com.ay.colliery.theme.FloorFacilitiesSysTheme.action.FloorFacilitiesSysThemeAction"/>
+  </package>
+  <!--采煤系统主题模块-->
+  <package name="coalzt" extends="struts-default" namespace="/coalzt">
+    <action name="coalztAction" class="com.ay.themezt.coalzt.action.CoalztAction"/>
+  </package>
+  <!--原煤产量模块-->
+  <package name="coalOutput" extends="struts-default" namespace="/coalOutput">
+    <action name="coalOutputAction" class="com.ay.themezt.coalzt.action.CoalOutputAction"/>
+  </package>
+  <!--机电系统主题预算模块-->
+  <package name="elect" extends="struts-default" namespace="/elect">
+    <action name="electAction" class="com.ay.elect.action.ElectAction"/>
+  </package>
+  <!--运输系统数据入口模块-->
+  <package name="tran" extends="struts-default" namespace="/tran">
+    <action name="tranAction" class="com.ay.tran.action.TranAction"/>
+  </package>
+</struts>

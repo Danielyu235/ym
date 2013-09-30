@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--员工信息模块-->
+  <package name="employeeInformation" extends="struts-default" namespace="/employeeInformation">
+    <action name="employeeInformationAction" class="com.ay.health.employee.action.EmployeeInformationAction"/>
+  </package>
+  <!--体检信息模块-->
+  <package name="checkUp" extends="struts-default" namespace="/checkUp">
+    <action name="checkUpAction" class="com.ay.health.checkup.action.CheckUpAction"/>
+  </package>
+  <!--体检结果配置模块-->
+  <package name="deploy" extends="struts-default" namespace="/deploy">
+    <action name="deployAction" class="com.ay.health.deploy.action.DeployAction">
+    	<result name="add">/jsp/health/deploy/deploy.jsp</result>
+    </action>
+  </package>
+</struts>

@@ -1,0 +1,5 @@
+危险源pojo实现IHazards接口
+辨识类实现IHazardsIdentification接口
+在identification.properties中加入对应的类名
+测试类写在：test/com/ay/hazards/identification/test/IdentificationTest.java中
+通过调用IdentificationFactory的identification方法来进行辨识

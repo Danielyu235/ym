@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--压力容器sqlMapper-->
+<sqlMap namespace="PressureVesselHazards">
+	<resultMap class="com.ay.hazards.pressurevessel.pojo.PressureVesselHazards" id="pv">
+		<result property="materials.id" column="materials.id"/>
+		<result property="materials.name" column="materials.name"/>
+		<result property="materials.type" column="materials.type"/>
+		<result property="materials.thresholdQuantity"/>
+		<result property="corpName" column="corpName"/>
+		<result property="dwdm" column="dwdm"/>
+		<result property="name" column="name"/>
+		<result property="ownId" column="ownId"/>
+		<result property="registerId" column="registerId"/>
+		<result property="certificateId" column="certificateId"/>
+		<result property="type" column="type"/>
+		<result property="designDept" column="designDept"/>
+		<result property="useTime" column="useTime"/>
+		<result property="useDept" column="useDept"/>
+		<result property="createDept" column="createDept"/>
+		<result property="createYear" column="createYear"/>
+		<result property="facoryId" column="facoryId"/>
+		<result property="tongti" column="tongti"/>
+		<result property="fengtou" column="fengtou"/>
+		<result property="neichen" column="neichen"/>
+		<result property="neijing" column="neijing"/>
+		<result property="designPresure" column="designPresure"/>
+		<result property="bihou" column="bihou"/>
+		<result property="zggzyl" column="zggzyl"/>
+		<result property="height" column="height"/>
+		<result property="designTemp" column="designTemp"/>
+		<result property="volume" column="volume"/>
+		<result property="materialsId" column="materialsId"/>
+		<result property="jiezhi" column="jiezhi"/>
+		<result property="haveBw" column="haveBw"/>
+		<result property="haveAqf" column="haveAqf"/>
+		<result property="haveBpp" column="haveBpp"/>
+		<result property="haveJjqdf" column="haveJjqdf"/>
+		<result property="haveYlb" column="haveYlb"/>
+		<result property="haveYmy" column="haveYmy"/>
+		<result property="safeLevel" column="safeLevel"/>
+		<result property="regularCheck" column="regularCheck"/>
+		<result property="remark" column="remark"/>
+		<result property="saveMan" column="saveMan"/>
+		<result property="contactPhone" column="contactPhone"/>
+		<result property="saveTime" column="saveTime"/>
+					
+		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="created" column="created"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updated" column="updated"/>
+		<result property="updateTime" column="updateTime"/>
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_PRESSURE_VESSEL_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_PRESSURE_VESSEL_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_PRESSURE_VESSEL_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_PRESSURE_VESSEL_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_PRESSURE_VESSEL_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_PRESSURE_VESSEL_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="dwdm"> TB_PRESSURE_VESSEL_HAZARDS.DWDM like '%'+#dwdm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_PRESSURE_VESSEL_HAZARDS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ownId"> TB_PRESSURE_VESSEL_HAZARDS.OWN_ID like '%'+#ownId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="registerId"> TB_PRESSURE_VESSEL_HAZARDS.REGISTER_ID like '%'+#registerId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="certificateId"> TB_PRESSURE_VESSEL_HAZARDS.CERTIFICATE_ID like '%'+#certificateId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="type"> TB_PRESSURE_VESSEL_HAZARDS.TYPE like '%'+#type#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designDept"> TB_PRESSURE_VESSEL_HAZARDS.DESIGN_DEPT like '%'+#designDept#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="useTime"> TB_PRESSURE_VESSEL_HAZARDS.USE_TIME like '%'+#useTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="useDept"> TB_PRESSURE_VESSEL_HAZARDS.USE_DEPT like '%'+#useDept#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="createDept"> TB_PRESSURE_VESSEL_HAZARDS.CREATE_DEPT like '%'+#createDept#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="createYear"> TB_PRESSURE_VESSEL_HAZARDS.CREATE_YEAR like '%'+#createYear#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="facoryId"> TB_PRESSURE_VESSEL_HAZARDS.FACORY_ID like '%'+#facoryId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tongti"> TB_PRESSURE_VESSEL_HAZARDS.TONGTI like '%'+#tongti#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fengtou"> TB_PRESSURE_VESSEL_HAZARDS.FENGTOU like '%'+#fengtou#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="neichen"> TB_PRESSURE_VESSEL_HAZARDS.NEICHEN like '%'+#neichen#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="neijing"> TB_PRESSURE_VESSEL_HAZARDS.NEIJING like '%'+#neijing#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designPresure"> TB_PRESSURE_VESSEL_HAZARDS.DESIGN_PRESURE like '%'+#designPresure#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bihou"> TB_PRESSURE_VESSEL_HAZARDS.BIHOU like '%'+#bihou#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zggzyl"> TB_PRESSURE_VESSEL_HAZARDS.ZGGZYL like '%'+#zggzyl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="height"> TB_PRESSURE_VESSEL_HAZARDS.HEIGHT like '%'+#height#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designTemp"> TB_PRESSURE_VESSEL_HAZARDS.DESIGN_TEMP like '%'+#designTemp#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="volume"> TB_PRESSURE_VESSEL_HAZARDS.VOLUME like '%'+#volume#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jiezhi"> TB_PRESSURE_VESSEL_HAZARDS.JIEZHI like '%'+#jiezhi#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="haveBw"> TB_PRESSURE_VESSEL_HAZARDS.HAVE_BW like '%'+#haveBw#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="haveAqf"> TB_PRESSURE_VESSEL_HAZARDS.HAVE_AQF like '%'+#haveAqf#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="haveBpp"> TB_PRESSURE_VESSEL_HAZARDS.HAVE_BPP like '%'+#haveBpp#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="haveJjqdf"> TB_PRESSURE_VESSEL_HAZARDS.HAVE_JJQDF like '%'+#haveJjqdf#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="haveYlb"> TB_PRESSURE_VESSEL_HAZARDS.HAVE_YLB like '%'+#haveYlb#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="haveYmy"> TB_PRESSURE_VESSEL_HAZARDS.HAVE_YMY like '%'+#haveYmy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="safeLevel"> TB_PRESSURE_VESSEL_HAZARDS.SAFE_LEVEL like '%'+#safeLevel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="regularCheck"> TB_PRESSURE_VESSEL_HAZARDS.REGULAR_CHECK like '%'+#regularCheck#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> TB_PRESSURE_VESSEL_HAZARDS.REMARK like '%'+#remark#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="saveMan"> TB_PRESSURE_VESSEL_HAZARDS.SAVE_MAN like '%'+#saveMan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="contactPhone"> TB_PRESSURE_VESSEL_HAZARDS.CONTACT_PHONE like '%'+#contactPhone#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="saveTime"> TB_PRESSURE_VESSEL_HAZARDS.SAVE_TIME like '%'+#saveTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_ENTERPRISE.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- 添加 -->
+	<insert id="insert" parameterClass="com.ay.hazards.pressurevessel.pojo.PressureVesselHazards">
+  		INSERT INTO TB_PRESSURE_VESSEL_HAZARDS(
+				
+				DWDM,
+				NAME,
+				OWN_ID,
+				REGISTER_ID,
+				CERTIFICATE_ID,
+				TYPE,
+				DESIGN_DEPT,
+				USE_TIME,
+				USE_DEPT,
+				CREATE_DEPT,
+				CREATE_YEAR,
+				FACORY_ID,
+				TONGTI,
+				FENGTOU,
+				NEICHEN,
+				NEIJING,
+				DESIGN_PRESURE,
+				BIHOU,
+				ZGGZYL,
+				HEIGHT,
+				DESIGN_TEMP,
+				VOLUME,
+				MATERIALS_ID,
+				JIEZHI,
+				HAVE_BW,
+				HAVE_AQF,
+				HAVE_BPP,
+				HAVE_JJQDF,
+				HAVE_YLB,
+				HAVE_YMY,
+				SAFE_LEVEL,
+				REGULAR_CHECK,
+				REMARK,
+				SAVE_MAN,
+				CONTACT_PHONE,
+				SAVE_TIME,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#dwdm#,
+				#name#,
+				#ownId#,
+				#registerId#,
+				#certificateId#,
+				#type#,
+				#designDept#,
+				#useTime#,
+				#useDept#,
+				#createDept#,
+				#createYear#,
+				#facoryId#,
+				#tongti#,
+				#fengtou#,
+				#neichen#,
+				#neijing#,
+				#designPresure#,
+				#bihou#,
+				#zggzyl#,
+				#height#,
+				#designTemp#,
+				#volume#,
+				#materialsId#,
+				#jiezhi#,
+				#haveBw#,
+				#haveAqf#,
+				#haveBpp#,
+				#haveJjqdf#,
+				#haveYlb#,
+				#haveYmy#,
+				#safeLevel#,
+				#regularCheck#,
+				#remark#,
+				#saveMan#,
+				#contactPhone#,
+				#saveTime#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- 删除单条数据 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_PRESSURE_VESSEL_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- 通过ID获取信息-->
+	<select id="getById" resultMap="pv" parameterClass="java.lang.String">
+ 		SELECT
+			VIEW_MATERIALS.ID as 'materials.id',
+			VIEW_MATERIALS.NAME as 'materials.name',
+			VIEW_MATERIALS.TYPE as 'materials.type',
+			VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_PRESSURE_VESSEL_HAZARDS.DWDM AS dwdm,
+			TB_PRESSURE_VESSEL_HAZARDS.NAME AS name,
+			TB_PRESSURE_VESSEL_HAZARDS.OWN_ID AS ownId,
+			TB_PRESSURE_VESSEL_HAZARDS.REGISTER_ID AS registerId,
+			TB_PRESSURE_VESSEL_HAZARDS.CERTIFICATE_ID AS certificateId,
+			TB_PRESSURE_VESSEL_HAZARDS.TYPE AS type,
+			TB_PRESSURE_VESSEL_HAZARDS.DESIGN_DEPT AS designDept,
+			TB_PRESSURE_VESSEL_HAZARDS.USE_TIME AS useTime,
+			TB_PRESSURE_VESSEL_HAZARDS.USE_DEPT AS useDept,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATE_DEPT AS createDept,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATE_YEAR AS createYear,
+			TB_PRESSURE_VESSEL_HAZARDS.FACORY_ID AS facoryId,
+			TB_PRESSURE_VESSEL_HAZARDS.TONGTI AS tongti,
+			TB_PRESSURE_VESSEL_HAZARDS.FENGTOU AS fengtou,
+			TB_PRESSURE_VESSEL_HAZARDS.NEICHEN AS neichen,
+			TB_PRESSURE_VESSEL_HAZARDS.NEIJING AS neijing,
+			TB_PRESSURE_VESSEL_HAZARDS.DESIGN_PRESURE AS designPresure,
+			TB_PRESSURE_VESSEL_HAZARDS.BIHOU AS bihou,
+			TB_PRESSURE_VESSEL_HAZARDS.ZGGZYL AS zggzyl,
+			TB_PRESSURE_VESSEL_HAZARDS.HEIGHT AS height,
+			TB_PRESSURE_VESSEL_HAZARDS.DESIGN_TEMP AS designTemp,
+			TB_PRESSURE_VESSEL_HAZARDS.VOLUME AS volume,
+			TB_PRESSURE_VESSEL_HAZARDS.MATERIALS_ID AS materialsId,
+			TB_PRESSURE_VESSEL_HAZARDS.JIEZHI AS jiezhi,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_BW AS haveBw,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_AQF AS haveAqf,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_BPP AS haveBpp,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_JJQDF AS haveJjqdf,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_YLB AS haveYlb,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_YMY AS haveYmy,
+			TB_PRESSURE_VESSEL_HAZARDS.SAFE_LEVEL AS safeLevel,
+			TB_PRESSURE_VESSEL_HAZARDS.REGULAR_CHECK AS regularCheck,
+			TB_PRESSURE_VESSEL_HAZARDS.REMARK AS remark,
+			TB_PRESSURE_VESSEL_HAZARDS.SAVE_MAN AS saveMan,
+			TB_PRESSURE_VESSEL_HAZARDS.CONTACT_PHONE AS contactPhone,
+			TB_PRESSURE_VESSEL_HAZARDS.SAVE_TIME AS saveTime,
+			
+			TB_PRESSURE_VESSEL_HAZARDS.ID AS id,
+			TB_PRESSURE_VESSEL_HAZARDS.STATUS AS status,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATED AS created,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATE_TIME AS createTime,
+			TB_PRESSURE_VESSEL_HAZARDS.UPDATED AS updated,
+			TB_PRESSURE_VESSEL_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_PRESSURE_VESSEL_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_PRESSURE_VESSEL_HAZARDS.DWDM = TB_ENTERPRISE.ID
+		LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_PRESSURE_VESSEL_HAZARDS.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		TB_PRESSURE_VESSEL_HAZARDS.ID=#id#
+	</select>
+	<!-- 更新 -->
+	<update id="update" parameterClass="com.ay.hazards.pressurevessel.pojo.PressureVesselHazards">
+		UPDATE TB_PRESSURE_VESSEL_HAZARDS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="dwdm"> DWDM=#dwdm#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="ownId"> OWN_ID=#ownId#</isNotEmpty>
+			<isNotEmpty prepend="," property="registerId"> REGISTER_ID=#registerId#</isNotEmpty>
+			<isNotEmpty prepend="," property="certificateId"> CERTIFICATE_ID=#certificateId#</isNotEmpty>
+			<isNotEmpty prepend="," property="type"> TYPE=#type#</isNotEmpty>
+			<isNotEmpty prepend="," property="designDept"> DESIGN_DEPT=#designDept#</isNotEmpty>
+			<isNotEmpty prepend="," property="useTime"> USE_TIME=#useTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="useDept"> USE_DEPT=#useDept#</isNotEmpty>
+			<isNotEmpty prepend="," property="createDept"> CREATE_DEPT=#createDept#</isNotEmpty>
+			<isNotEmpty prepend="," property="createYear"> CREATE_YEAR=#createYear#</isNotEmpty>
+			<isNotEmpty prepend="," property="facoryId"> FACORY_ID=#facoryId#</isNotEmpty>
+			<isNotEmpty prepend="," property="tongti"> TONGTI=#tongti#</isNotEmpty>
+			<isNotEmpty prepend="," property="fengtou"> FENGTOU=#fengtou#</isNotEmpty>
+			<isNotEmpty prepend="," property="neichen"> NEICHEN=#neichen#</isNotEmpty>
+			<isNotEmpty prepend="," property="neijing"> NEIJING=#neijing#</isNotEmpty>
+			<isNotEmpty prepend="," property="designPresure"> DESIGN_PRESURE=#designPresure#</isNotEmpty>
+			<isNotEmpty prepend="," property="bihou"> BIHOU=#bihou#</isNotEmpty>
+			<isNotEmpty prepend="," property="zggzyl"> ZGGZYL=#zggzyl#</isNotEmpty>
+			<isNotEmpty prepend="," property="height"> HEIGHT=#height#</isNotEmpty>
+			<isNotEmpty prepend="," property="designTemp"> DESIGN_TEMP=#designTemp#</isNotEmpty>
+			<isNotEmpty prepend="," property="volume"> VOLUME=#volume#</isNotEmpty>
+			<isNotEmpty prepend="," property="materialsId"> MATERIALS_ID=#materialsId#</isNotEmpty>
+			<isNotEmpty prepend="," property="jiezhi"> JIEZHI=#jiezhi#</isNotEmpty>
+			<isNotEmpty prepend="," property="haveBw"> HAVE_BW=#haveBw#</isNotEmpty>
+			<isNotEmpty prepend="," property="haveAqf"> HAVE_AQF=#haveAqf#</isNotEmpty>
+			<isNotEmpty prepend="," property="haveBpp"> HAVE_BPP=#haveBpp#</isNotEmpty>
+			<isNotEmpty prepend="," property="haveJjqdf"> HAVE_JJQDF=#haveJjqdf#</isNotEmpty>
+			<isNotEmpty prepend="," property="haveYlb"> HAVE_YLB=#haveYlb#</isNotEmpty>
+			<isNotEmpty prepend="," property="haveYmy"> HAVE_YMY=#haveYmy#</isNotEmpty>
+			<isNotEmpty prepend="," property="safeLevel"> SAFE_LEVEL=#safeLevel#</isNotEmpty>
+			<isNotEmpty prepend="," property="regularCheck"> REGULAR_CHECK=#regularCheck#</isNotEmpty>
+			<isNotEmpty prepend="," property="remark"> REMARK=#remark#</isNotEmpty>
+			<isNotEmpty prepend="," property="saveMan"> SAVE_MAN=#saveMan#</isNotEmpty>
+			<isNotEmpty prepend="," property="contactPhone"> CONTACT_PHONE=#contactPhone#</isNotEmpty>
+			<isNotEmpty prepend="," property="saveTime"> SAVE_TIME=#saveTime#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 查找list-->
+	<select id="find" resultClass="com.ay.hazards.pressurevessel.pojo.PressureVesselHazards" parameterClass="java.util.Map">
+ 		SELECT
+ 			dbo.FN_HASMAP(TB_PRESSURE_VESSEL_HAZARDS.ID) as hasMap,
+			VIEW_MATERIALS.ID as 'materials.id',
+			VIEW_MATERIALS.NAME as 'materials.name',
+			VIEW_MATERIALS.TYPE as 'materials.type',
+			VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_PRESSURE_VESSEL_HAZARDS.DWDM AS dwdm,
+			TB_PRESSURE_VESSEL_HAZARDS.NAME AS name,
+			TB_PRESSURE_VESSEL_HAZARDS.OWN_ID AS ownId,
+			TB_PRESSURE_VESSEL_HAZARDS.REGISTER_ID AS registerId,
+			TB_PRESSURE_VESSEL_HAZARDS.CERTIFICATE_ID AS certificateId,
+			TB_PRESSURE_VESSEL_HAZARDS.TYPE AS type,
+			TB_PRESSURE_VESSEL_HAZARDS.DESIGN_DEPT AS designDept,
+			TB_PRESSURE_VESSEL_HAZARDS.USE_TIME AS useTime,
+			TB_PRESSURE_VESSEL_HAZARDS.USE_DEPT AS useDept,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATE_DEPT AS createDept,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATE_YEAR AS createYear,
+			TB_PRESSURE_VESSEL_HAZARDS.FACORY_ID AS facoryId,
+			TB_PRESSURE_VESSEL_HAZARDS.TONGTI AS tongti,
+			TB_PRESSURE_VESSEL_HAZARDS.FENGTOU AS fengtou,
+			TB_PRESSURE_VESSEL_HAZARDS.NEICHEN AS neichen,
+			TB_PRESSURE_VESSEL_HAZARDS.NEIJING AS neijing,
+			TB_PRESSURE_VESSEL_HAZARDS.DESIGN_PRESURE AS designPresure,
+			TB_PRESSURE_VESSEL_HAZARDS.BIHOU AS bihou,
+			TB_PRESSURE_VESSEL_HAZARDS.ZGGZYL AS zggzyl,
+			TB_PRESSURE_VESSEL_HAZARDS.HEIGHT AS height,
+			TB_PRESSURE_VESSEL_HAZARDS.DESIGN_TEMP AS designTemp,
+			TB_PRESSURE_VESSEL_HAZARDS.VOLUME AS volume,
+			TB_PRESSURE_VESSEL_HAZARDS.MATERIALS_ID AS materialsId,
+			TB_PRESSURE_VESSEL_HAZARDS.JIEZHI AS jiezhi,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_BW AS haveBw,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_AQF AS haveAqf,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_BPP AS haveBpp,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_JJQDF AS haveJjqdf,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_YLB AS haveYlb,
+			TB_PRESSURE_VESSEL_HAZARDS.HAVE_YMY AS haveYmy,
+			TB_PRESSURE_VESSEL_HAZARDS.SAFE_LEVEL AS safeLevel,
+			TB_PRESSURE_VESSEL_HAZARDS.REGULAR_CHECK AS regularCheck,
+			TB_PRESSURE_VESSEL_HAZARDS.REMARK AS remark,
+			TB_PRESSURE_VESSEL_HAZARDS.SAVE_MAN AS saveMan,
+			TB_PRESSURE_VESSEL_HAZARDS.CONTACT_PHONE AS contactPhone,
+			TB_PRESSURE_VESSEL_HAZARDS.SAVE_TIME AS saveTime,
+			
+			TB_PRESSURE_VESSEL_HAZARDS.ID AS id,
+			TB_PRESSURE_VESSEL_HAZARDS.STATUS AS status,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATED AS created,
+			TB_PRESSURE_VESSEL_HAZARDS.CREATE_TIME AS createTime,
+			TB_PRESSURE_VESSEL_HAZARDS.UPDATED AS updated,
+			TB_PRESSURE_VESSEL_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_PRESSURE_VESSEL_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_PRESSURE_VESSEL_HAZARDS.DWDM = TB_ENTERPRISE.ID
+		LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_PRESSURE_VESSEL_HAZARDS.MATERIALS_ID = VIEW_MATERIALS.ID
+		WHERE
+			TB_PRESSURE_VESSEL_HAZARDS.STATUS = '1'
+		<include refid="PressureVesselHazards.mapWhereClause"/>
+	</select>
+	<!-- 计数-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_PRESSURE_VESSEL_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_PRESSURE_VESSEL_HAZARDS.DWDM = TB_ENTERPRISE.ID
+		WHERE
+			TB_PRESSURE_VESSEL_HAZARDS.STATUS = '1' 
+		<include refid="PressureVesselHazards.mapWhereClause"/>
+	</select>
+	<!-- 批量删除 -->
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_PRESSURE_VESSEL_HAZARDS
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

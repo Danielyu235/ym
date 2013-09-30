@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+	
+	<!--隐患列表模块-->
+  	<bean id="hiddenDangerDao" class="com.ay.danger.dao.HiddenDangerDao" parent="baseDao"/>
+  		<bean id="hiddenDangerService" class="com.ay.danger.service.HiddenDangerService">
+    	<property name="dao" ref="hiddenDangerDao"/>
+  	</bean>
+</beans>  

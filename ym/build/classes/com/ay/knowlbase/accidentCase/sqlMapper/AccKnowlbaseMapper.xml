@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+                        " http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AccKnowlbase">
+	<!-- 安全生产标准 -->
+	<typeAlias alias="accidentCase" type="com.ay.knowlbase.accidentCase.pojo.AccKnowlbase" />
+	
+	<!-- list页面模糊查询语句 -->
+	<sql id="mapWhereClause">
+		<isNotEmpty prepend="and" property="caseTitle">
+			case_title like '%$caseTitle$%'
+		</isNotEmpty>
+
+		<isNotEmpty prepend="and" property="caseType">
+			case_type like '%$caseType$%'
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="and" property="caseTrade">
+			case_trade like '%$caseTrade$%'
+		</isNotEmpty>
+	</sql>
+	
+	<!-- list分页查询 -->
+	<select id="find" resultClass="accidentCase">
+		SELECT
+		id AS id,
+		status,
+		created,
+		create_Time as createTime,
+		updated,
+		update_Time as updateTime,
+		case_title as caseTitle,
+		case_time as caseTime,
+		case_address as caseAddress,
+		dbo.FN_codeToText(case_type) as caseTypeId,
+		case_trade as caseTrade,
+		model,
+		case_cause as caseCause,
+		precaution
+		FROM
+		TB_ACCIDENT_CASE
+		WHERE
+		status=1
+		<include refid="AccKnowlbase.mapWhereClause" />
+	</select>
+
+	<!-- 查询记录条数 -->
+	<select id="count" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(id)
+		from TB_ACCIDENT_CASE
+		where 1=1
+		and
+		status !=0
+		<include refid="AccKnowlbase.mapWhereClause" />
+	</select>
+	
+	<!-- 根据ID查询 -->
+	<select id="getById" resultClass="accidentCase" parameterClass="java.lang.String">
+		SELECT
+		id AS id,
+		status,
+		created,
+		create_Time as createTime,
+		updated,
+		update_Time as updateTime,
+		case_title as caseTitle,
+		case_time as caseTime,
+		case_address as caseAddress,
+		case_type as caseType,
+		dbo.FN_codeToText(case_type) as caseTypeId,
+		case_trade as caseTrade,
+		model,
+		case_cause as caseCause,
+		precaution
+		FROM
+		TB_ACCIDENT_CASE
+		WHERE
+
+		id=#id#
+		AND
+		status
+		!= 0
+
+	</select>
+	
+	<!-- update语句 -->
+	<update id="update" parameterClass="accidentCase">
+		update TB_ACCIDENT_CASE
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> status=#status#
+			</isNotNull>
+			<isNotNull prepend="," property="created"> created=#created#
+			</isNotNull>
+			<isNotNull prepend="," property="createTime"> create_time=#createTime#
+			</isNotNull>
+			<isNotNull prepend="," property="updated"> updated=#updated#
+			</isNotNull>
+			<isNotNull prepend="," property="updateTime"> update_time=#updateTime#
+			</isNotNull>
+			<isNotNull prepend="," property="caseTitle"> case_title=#caseTitle#
+			</isNotNull>
+			<isNotNull prepend="," property="caseTime"> case_time=#caseTime#
+			</isNotNull>
+			<isNotNull prepend="," property="caseAddress"> case_address=#caseAddress#
+			</isNotNull>
+			<isNotEmpty prepend="," property="caseType"> case_type=#caseType#
+			</isNotEmpty>
+			<isNotNull prepend="," property="caseTrade"> case_trade=#caseTrade#
+			</isNotNull>
+			<isNotNull prepend="," property="model"> model=#model#
+			</isNotNull>
+			<isNotNull prepend="," property="caseCause"> case_cause=#caseCause#
+			</isNotNull>
+			<isNotNull prepend="," property="precaution"> precaution=#precaution#
+			</isNotNull>
+		</dynamic>
+		where
+		id=#id#
+	</update>
+	
+	<!-- insert语句 -->
+	<insert id="insert" parameterClass="accidentCase">
+		INSERT INTO
+		TB_ACCIDENT_CASE (
+		id,
+		status,
+		created,
+		create_Time,
+		updated,
+		update_Time,
+		case_title,
+		case_time,
+		case_address,
+		case_type,
+		case_trade,
+		model,
+		case_cause,
+		precaution
+		)
+		VALUES
+		(
+		#id#,
+		#status#,
+		#created#,
+		#createTime#,
+		#updated#,
+		#updateTime#,
+		#caseTitle#,
+		#caseTime#,
+		#caseAddress#,
+		#caseType#,
+		#caseTrade#,
+		#model#,
+		#caseCause#,
+		#precaution#
+		)
+	</insert>
+	
+	<!-- 删除语句 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_ACCIDENT_CASE set status='0'
+		where
+		id=#id#
+	</delete>
+	
+</sqlMap>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--定期检查情况sqlMapper-->
+<sqlMap namespace="PeriodicalSurveyHazards">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_PERIODICAL_SURVEY_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_PERIODICAL_SURVEY_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_PERIODICAL_SURVEY_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_PERIODICAL_SURVEY_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_PERIODICAL_SURVEY_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_PERIODICAL_SURVEY_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="pressureId"> TB_PERIODICAL_SURVEY_HAZARDS.PRESSURE_ID like '%'+#pressureId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="date"> TB_PERIODICAL_SURVEY_HAZARDS.DATE like '%'+#date#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="result"> TB_PERIODICAL_SURVEY_HAZARDS.RESULT like '%'+#result#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="situation"> TB_PERIODICAL_SURVEY_HAZARDS.SITUATION like '%'+#situation#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- 添加 -->
+	<insert id="insert" parameterClass="com.ay.hazards.pressurevessel.pojo.PeriodicalSurveyHazards">
+  		INSERT INTO TB_PERIODICAL_SURVEY_HAZARDS(
+				
+				PRESSURE_ID,
+				DATE,
+				RESULT,
+				SITUATION,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#pressureId#,
+				#date#,
+				#result#,
+				#situation#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- 删除单条数据 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_PERIODICAL_SURVEY_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- 通过ID获取信息-->
+	<select id="getById" resultClass="com.ay.hazards.pressurevessel.pojo.PeriodicalSurveyHazards" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_PERIODICAL_SURVEY_HAZARDS.PRESSURE_ID AS pressureId,
+			TB_PERIODICAL_SURVEY_HAZARDS.DATE AS date,
+			TB_PERIODICAL_SURVEY_HAZARDS.RESULT AS result,
+			TB_PERIODICAL_SURVEY_HAZARDS.SITUATION AS situation,
+			
+			TB_PERIODICAL_SURVEY_HAZARDS.ID AS id,
+			TB_PERIODICAL_SURVEY_HAZARDS.STATUS AS status,
+			TB_PERIODICAL_SURVEY_HAZARDS.CREATED AS created,
+			TB_PERIODICAL_SURVEY_HAZARDS.CREATE_TIME AS createTime,
+			TB_PERIODICAL_SURVEY_HAZARDS.UPDATED AS updated,
+			TB_PERIODICAL_SURVEY_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_PERIODICAL_SURVEY_HAZARDS
+  		where 
+ 	 		TB_PERIODICAL_SURVEY_HAZARDS.ID=#id#
+	</select>
+	<!-- 更新 -->
+	<update id="update" parameterClass="com.ay.hazards.pressurevessel.pojo.PeriodicalSurveyHazards">
+		UPDATE TB_PERIODICAL_SURVEY_HAZARDS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="pressureId"> PRESSURE_ID=#pressureId#</isNotEmpty>
+			<isNotEmpty prepend="," property="date"> DATE=#date#</isNotEmpty>
+			<isNotEmpty prepend="," property="result"> RESULT=#result#</isNotEmpty>
+			<isNotEmpty prepend="," property="situation"> SITUATION=#situation#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 查找list-->
+	<select id="find" resultClass="com.ay.hazards.pressurevessel.pojo.PeriodicalSurveyHazards" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_PERIODICAL_SURVEY_HAZARDS.PRESSURE_ID AS pressureId,
+			TB_PERIODICAL_SURVEY_HAZARDS.DATE AS date,
+			TB_PERIODICAL_SURVEY_HAZARDS.RESULT AS result,
+			TB_PERIODICAL_SURVEY_HAZARDS.SITUATION AS situation,
+			
+			TB_PERIODICAL_SURVEY_HAZARDS.ID AS id,
+			TB_PERIODICAL_SURVEY_HAZARDS.STATUS AS status,
+			TB_PERIODICAL_SURVEY_HAZARDS.CREATED AS created,
+			TB_PERIODICAL_SURVEY_HAZARDS.CREATE_TIME AS createTime,
+			TB_PERIODICAL_SURVEY_HAZARDS.UPDATED AS updated,
+			TB_PERIODICAL_SURVEY_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_PERIODICAL_SURVEY_HAZARDS
+		WHERE
+			TB_PERIODICAL_SURVEY_HAZARDS.STATUS = '1'
+		<include refid="PeriodicalSurveyHazards.mapWhereClause"/>
+	</select>
+	<!-- 计数-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_PERIODICAL_SURVEY_HAZARDS
+		WHERE
+			TB_PERIODICAL_SURVEY_HAZARDS.STATUS = '1' 
+		<include refid="PeriodicalSurveyHazards.mapWhereClause"/>
+	</select>
+	<!-- 批量删除 -->
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_PERIODICAL_SURVEY_HAZARDS
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

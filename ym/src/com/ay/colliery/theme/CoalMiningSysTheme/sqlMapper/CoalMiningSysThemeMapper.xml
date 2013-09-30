@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="CoalMiningSysTheme">
+	<resultMap class="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme" id="sumColumn">
+		<result property="realityOutput" column="realityOutput"/>
+		<result property="planOutput" column="planOutput"/>
+		<result property="mine_date" column="mine_date"/>
+		<result property="workingFaceId" column="workingFaceId"/>
+		<result property="workingFaceName" column="workingFaceName"/>
+	</resultMap>
+	<resultMap class="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme" id="sumPie">
+		<result property="realityOutput" column="realityOutput"/>
+		<result property="planOutput" column="planOutput"/>
+		<result property="workingFaceId" column="workingFaceId"/>
+		<result property="workingFaceName" column="workingFaceName"/>
+	</resultMap>
+	<resultMap class="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme" id="avgCoal">
+		<result property="realityOutput" column="realityOutput"/>
+		<result property="planOutput" column="planOutput"/>
+		<result property="mine_date" column="mine_date"/>
+	</resultMap>
+	<resultMap class="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningGraph" id="sumColumns">
+	<result property="workingFaceName" column="workingFaceName"/>
+		<result property="y" column="y"/>
+		<result property="e" column="e"/>
+		<result property="s" column="s"/>
+		<result property="s" column="s"/>
+		<result property="si" column="si"/>
+		<result property="w" column="w"/>
+		<result property="l" column="l"/>
+		<result property="q" column="q"/>
+		<result property="b" column="b"/>
+		<result property="j" column="j"/>
+		<result property="shi" column="shi"/>
+		<result property="sy" column="sy"/>
+		<result property="se" column="se"/>
+		<result property="mine_date" column="mine_date"/>
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_COAL_MINING_SYS_THEME.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_COAL_MINING_SYS_THEME.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_COAL_MINING_SYS_THEME.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_COAL_MINING_SYS_THEME.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_COAL_MINING_SYS_THEME.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_COAL_MINING_SYS_THEME.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="realityOutput"> TB_COAL_MINING_SYS_THEME.REALITY_OUTPUT like '%'+#realityOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planOutput"> TB_COAL_MINING_SYS_THEME.PLAN_OUTPUT like '%'+#planOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="mine_date"> TB_COAL_MINING_SYS_THEME.MINE_DATE like '%'+#mine_date#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workingFaceId"> TB_COAL_MINING_SYS_THEME.WORKING_FACE_ID like '%'+#workingFaceId#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme">
+  		INSERT INTO TB_COAL_MINING_SYS_THEME(
+				
+				REALITY_OUTPUT,
+				PLAN_OUTPUT,
+				MINE_DATE,
+				WORKING_FACE_ID,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				#realityOutput#,
+				#planOutput#,
+				#mine_date#,
+				#workingFaceId#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_COAL_MINING_SYS_THEME SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_COAL_MINING_SYS_THEME.REALITY_OUTPUT AS realityOutput,
+			TB_COAL_MINING_SYS_THEME.PLAN_OUTPUT AS planOutput,
+			TB_COAL_MINING_SYS_THEME.MINE_DATE AS mine_date,
+			TB_COAL_MINING_SYS_THEME.WORKING_FACE_ID AS workingFaceId,
+			dbo.FN_codeToText(TB_COAL_MINING_SYS_THEME.WORKING_FACE_ID) as workingFaceName,
+			
+			TB_COAL_MINING_SYS_THEME.ID AS id,
+			TB_COAL_MINING_SYS_THEME.STATUS AS status,
+			TB_COAL_MINING_SYS_THEME.CREATED AS created,
+			TB_COAL_MINING_SYS_THEME.CREATE_TIME AS createTime,
+			TB_COAL_MINING_SYS_THEME.UPDATED AS updated,
+			TB_COAL_MINING_SYS_THEME.UPDATE_TIME as updateTime
+		from
+		TB_COAL_MINING_SYS_THEME
+  		where 
+ 	 		TB_COAL_MINING_SYS_THEME.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme">
+		UPDATE TB_COAL_MINING_SYS_THEME 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="realityOutput"> REALITY_OUTPUT=#realityOutput#</isNotEmpty>
+			<isNotEmpty prepend="," property="planOutput"> PLAN_OUTPUT=#planOutput#</isNotEmpty>
+			<isNotEmpty prepend="," property="mine_date"> MINE_DATE=#mine_date#</isNotEmpty>
+			<isNotEmpty prepend="," property="workingFaceId"> WORKING_FACE_ID=#workingFaceId#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.colliery.theme.CoalMiningSysTheme.pojo.CoalMiningSysTheme" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_COAL_MINING_SYS_THEME.REALITY_OUTPUT AS realityOutput,
+			TB_COAL_MINING_SYS_THEME.PLAN_OUTPUT AS planOutput,
+			TB_COAL_MINING_SYS_THEME.MINE_DATE AS mine_date,
+			TB_COAL_MINING_SYS_THEME.WORKING_FACE_ID AS workingFaceId,
+			dbo.FN_codeToText(TB_COAL_MINING_SYS_THEME.WORKING_FACE_ID) as workingFaceName,
+			
+			TB_COAL_MINING_SYS_THEME.ID AS id,
+			TB_COAL_MINING_SYS_THEME.STATUS AS status,
+			TB_COAL_MINING_SYS_THEME.CREATED AS created,
+			TB_COAL_MINING_SYS_THEME.CREATE_TIME AS createTime,
+			TB_COAL_MINING_SYS_THEME.UPDATED AS updated,
+			TB_COAL_MINING_SYS_THEME.UPDATE_TIME AS updateTime
+		FROM
+			TB_COAL_MINING_SYS_THEME
+		WHERE
+			TB_COAL_MINING_SYS_THEME.STATUS = '1'
+		<include refid="CoalMiningSysTheme.mapWhereClause"/>
+		order by workingFaceId
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_COAL_MINING_SYS_THEME
+		WHERE
+			TB_COAL_MINING_SYS_THEME.STATUS = '1' 
+		<include refid="CoalMiningSysTheme.mapWhereClause"/>
+	</select>  
+	<!-- 查询采煤系统  柱形图  -->
+	<select id="sumPie" resultMap ="sumPie" parameterClass = "java.lang.String">
+		select 
+		sum(convert(numeric(7,2),REALITY_OUTPUT)) as realityOutput,
+		sum(convert(numeric(7,2),PLAN_OUTPUT)) as planOutput,
+		dbo.FN_codeToText(WORKING_FACE_ID) as workingFaceName ,
+		WORKING_FACE_ID as workingFaceId from dbo.TB_COAL_MINING_SYS_THEME 
+		where 
+		STATUS = '1' and MINE_DATE like '%'+#date#+'%' 
+		group by WORKING_FACE_ID;
+	</select>
+	<!-- 查询采煤系统  折线图-->
+	<select id="avgCoal" resultMap ="avgCoal" parameterClass = "java.lang.String">
+	select 
+		round(avg(convert(numeric(7,2),REALITY_OUTPUT)),2)as realityOutput,
+		round(avg(convert(numeric(7,2),PLAN_OUTPUT)),2) as planOutput,
+		SUBSTRING(MINE_DATE,6,2)as mine_date 
+		from dbo.TB_COAL_MINING_SYS_THEME 
+		where STATUS = '1' and MINE_DATE like '%'+#date#+'%'
+	group by SUBSTRING(MINE_DATE,6,2);
+	</select> 
+	<select id="sums" resultMap ="sumColumns" parameterClass = "java.lang.String">
+		select * from VI_MINE where mine_date like '%'+#date#+'%'
+	</select>
+</sqlMap>

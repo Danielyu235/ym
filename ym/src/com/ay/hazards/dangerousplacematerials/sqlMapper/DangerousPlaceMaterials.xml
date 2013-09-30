@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!--sqlMapper-->
+<sqlMap namespace="dangeCargo">
+<!-- add Condition TB_HAZHARDS_MATERIALS-->
+
+	<resultMap class="com.ay.hazards.dangerousplacematerials.pojo.DangerousPlaceMaterialsInfo" id="th">
+	<result property="materials.id" column="materials.id" />
+		<result property="materials.name" column="materials.name"/>
+		<result property="materials.type" column="materials.type"/>
+		<result property="materials.thresholdQuantity" column="materials.thresholdQuantity"/>
+		<result property="materialsId" column="materialsId" />
+		<result property="fid" column="fid"/>
+		<result property="dangercargoname" column="dangercargoname" />
+		<result property="dangernumber" column="dangernumber"/>
+		<result property="dangeruse" column="dangeruse" />
+		<result property="dangertech" column="dangertech"/>
+		<result property="physical" column="physical"/>
+		<result property="dangercartem" column="dangertem"/>
+		<result property="dangermpa" column="dangermpa"/>
+		<result property="dangerstore" column="dangerstore"/>
+		<result property="dangerunitstore" column="dangerunitstore"/>
+		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="created" column="created"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updated" column="updated"/>
+		<result property="updateTime" column="updateTime"/>
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_MATERIALS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_MATERIALS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_MATERIALS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_MATERIALS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_MATERIALS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_MATERIALS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fid"> FID=#fid#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangercargoname"> DANGERCARGONAME like '%'+#dangercargoname#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerkind"> DANGERKIND = #dangerkind# </isNotEmpty>
+			<isNotEmpty prepend="and" property="dangernumber"> DANGERNUMBER = #dangernumber#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangeruse"> DANGERUSE = #dangeruse#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangertech"> DANGERTECH = #dangertech#</isNotEmpty>
+			<isNotEmpty prepend="and" property="physical"> PHYSICAL = #physical#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangercartem"> DANGERTEM = #dangercartem#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangermpa"> DANGERMPA = #dangermpa#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerstore"> DANGERSTORE = #dangerstore# </isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerunitstore"> DANGERUNITSTORE = #dangerunitstore# </isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.dangerousplacematerials.pojo.DangerousPlaceMaterialsInfo">
+  		INSERT INTO TB_DANGEROUSCARGO(
+				ID,
+				STATUS,
+				MATERIALS_ID,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME,
+				FID,
+				DANGERCARGONAME,
+				DANGERNUMBER,
+				DANGERUSE,
+				DANGERTECH,
+                PHYSICAL,
+                DANGERTEM,
+				DANGERMPA,
+				DANGERSTORE,
+				DANGERUNITSTORE
+				) values(
+				#id#,
+				#status#,
+				#materialsId#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#,
+				#fid#,
+				#dangercargoname#,
+				#dangernumber#,
+				#dangeruse#,
+				#dangertech#,
+				#physical#,
+				#dangercartem#,
+				#dangermpa#,
+				#dangerstore#,
+				#dangerunitstore#
+			    )
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_DANGEROUSCARGO SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultMap="th" parameterClass="java.lang.String">
+ 		SELECT 
+ 		       VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				td.MATERIALS_ID AS materialsId,
+				td.id,
+				td.status,
+				td.created,
+				td.create_time as createTime,
+				td.updated,
+				td.update_time as updateTime,
+				td.FID,
+				td.DANGERCARGONAME,
+				td.DANGERNUMBER,
+				td.DANGERUSE,
+				td.DANGERTECH,
+                td.PHYSICAL,
+                td.DANGERTEM as dangertem,
+				td.DANGERMPA,
+				td.DANGERSTORE,
+				td.DANGERUNITSTORE
+		from
+			TB_DANGEROUSCARGO td
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		td.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where td.id=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.dangerousplacematerials.pojo.DangerousPlaceMaterialsInfo">
+		UPDATE TB_DANGEROUSCARGO 
+		<dynamic prepend="set">
+			<isParameterPresent>
+			<isNotNull prepend="," property="id"> TB_DANGEROUSCARGO.ID=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> TB_DANGEROUSCARGO.STATUS=#status#</isNotNull>
+			<isNotNull prepend="," property="created"> TB_DANGEROUSCARGO.CREATED=#created#</isNotNull>
+			<isNotNull prepend="," property="createTime"> TB_DANGEROUSCARGO.CREATE_TIME=#createTime#</isNotNull>
+			<isNotNull prepend="," property="updated"> TB_DANGEROUSCARGO.UPDATED=#updated#</isNotNull>
+			<isNotNull prepend="," property="updateTime"> TB_DANGEROUSCARGO.UPDATE_TIME=#updateTime#</isNotNull>
+			<isNotNull prepend="," property="fid"> FID=#fid#</isNotNull>
+			<isNotNull prepend="," property="dangercargoname"> DANGERCARGONAME = #dangercargoname#</isNotNull>
+			<isNotNull prepend="," property="dangernumber"> DANGERNUMBER = #dangernumber#</isNotNull>
+			<isNotNull prepend="," property="dangeruse"> DANGERUSE = #dangeruse#</isNotNull>
+			<isNotNull prepend="," property="dangertech"> DANGERTECH = #dangertech#</isNotNull>
+			<isNotNull prepend="," property="physical"> PHYSICAL = #physical#</isNotNull>
+			<isNotNull prepend="," property="dangercartem"> DANGERTEM = #dangercartem#</isNotNull>
+			<isNotNull prepend="," property="dangermpa"> DANGERMPA = #dangermpa#</isNotNull>
+			<isNotNull prepend="," property="dangerstore"> DANGERSTORE = #dangerstore# </isNotNull>
+			<isNotNull prepend="," property="dangerunitstore"> DANGERUNITSTORE = #dangerunitstore# </isNotNull>
+		</isParameterPresent>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultMap="th" parameterClass="java.util.Map">
+ 		select 
+				VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				td.MATERIALS_ID AS materialsId,
+				td.id,
+				td.status,
+				td.created,
+				td.create_time as createTime,
+				td.updated,
+				td.update_time as updateTime,
+				td.fid,
+				td.dangercargoname,
+				td.dangernumber,
+				td.dangeruse ,
+				td.dangertech,
+				td.physical,
+				td.dangertem,
+				td.dangermpa,
+				td.dangerstore,
+				td.dangerunitstore 
+			from
+			TB_DANGEROUSCARGO td
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		td.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		 td.status='1' and td.fid =#fid#
+		<include refid="dangeCargo.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_DANGEROUSCARGO
+		WHERE
+			TB_DANGEROUSCARGO.STATUS = '1' 
+		<include refid="dangeCargo.mapWhereClause"/>
+	</select>
+	<select id="findByPId" resultMap="th" parameterClass="java.lang.String">
+ 		SELECT 
+ 		       VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				td.MATERIALS_ID AS materialsId,
+				td.id,
+				td.status,
+				td.created,
+				td.create_time as createTime,
+				td.updated,
+				td.update_time as updateTime,
+				td.FID,
+				td.DANGERCARGONAME,
+				td.DANGERNUMBER,
+				td.DANGERUSE,
+				td.DANGERTECH,
+                td.PHYSICAL,
+                td.DANGERTEM,
+				td.DANGERMPA,
+				td.DANGERSTORE,
+				td.DANGERUNITSTORE
+		from
+			TB_DANGEROUSCARGO td
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		td.MATERIALS_ID = VIEW_MATERIALS.ID
+		WHERE
+			td.STATUS = '1'
+		AND td.fid = #value# 
+	</select>
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE TB_DANGEROUSCARGO
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	</statement>
+	
+	
+</sqlMap>

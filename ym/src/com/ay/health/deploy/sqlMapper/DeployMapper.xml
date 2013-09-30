@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Deploy">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_DEPLOY.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_DEPLOY.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_DEPLOY.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_DEPLOY.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_DEPLOY.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_DEPLOY.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="bloodPressureLow"> TB_DEPLOY.BLOOD_PRESSURE_LOW like '%'+#bloodPressureLow#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bloodPressureHigh"> TB_DEPLOY.BLOOD_PRESSURE_HIGH like '%'+#bloodPressureHigh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pulseRate"> TB_DEPLOY.PULSE_RATE like '%'+#pulseRate#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="electrocardiogram"> TB_DEPLOY.ELECTROCARDIOGRAM like '%'+#electrocardiogram#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bc"> TB_DEPLOY.BC like '%'+#bc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pneumoconiosis"> TB_DEPLOY.PNEUMOCONIOSIS like '%'+#pneumoconiosis#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bloodExamination"> TB_DEPLOY.BLOOD_EXAMINATION like '%'+#bloodExamination#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lkExamination"> TB_DEPLOY.LK_EXAMINATION like '%'+#lkExamination#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="nervousSystem"> TB_DEPLOY.NERVOUS_SYSTEM like '%'+#nervousSystem#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="thyroid"> TB_DEPLOY.THYROID like '%'+#thyroid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="superficialLymphadenopathy"> TB_DEPLOY.SUPERFICIAL_LYMPHADENOPATHY like '%'+#superficialLymphadenopathy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="skinAndMucosa"> TB_DEPLOY.SKIN_AND_MUCOSA like '%'+#skinAndMucosa#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.health.deploy.pojo.Deploy">
+  		INSERT INTO TB_DEPLOY(
+				
+				BLOOD_PRESSURE_LOW,
+				BLOOD_PRESSURE_HIGH,
+				PULSE_RATE,
+				ELECTROCARDIOGRAM,
+				BC,
+				PNEUMOCONIOSIS,
+				BLOOD_EXAMINATION,
+				LK_EXAMINATION,
+				NERVOUS_SYSTEM,
+				THYROID,
+				SUPERFICIAL_LYMPHADENOPATHY,
+				SKIN_AND_MUCOSA,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#bloodPressureLow#,
+				#bloodPressureHigh#,
+				#pulseRate#,
+				#electrocardiogram#,
+				#bc#,
+				#pneumoconiosis#,
+				#bloodExamination#,
+				#lkExamination#,
+				#nervousSystem#,
+				#thyroid#,
+				#superficialLymphadenopathy#,
+				#skinAndMucosa#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_DEPLOY SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.health.deploy.pojo.Deploy" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_DEPLOY.BLOOD_PRESSURE_LOW AS bloodPressureLow,
+			TB_DEPLOY.BLOOD_PRESSURE_HIGH AS bloodPressureHigh,
+			TB_DEPLOY.PULSE_RATE AS pulseRate,
+			TB_DEPLOY.ELECTROCARDIOGRAM AS electrocardiogram,
+			TB_DEPLOY.BC AS bc,
+			TB_DEPLOY.PNEUMOCONIOSIS AS pneumoconiosis,
+			TB_DEPLOY.BLOOD_EXAMINATION AS bloodExamination,
+			TB_DEPLOY.LK_EXAMINATION AS lkExamination,
+			TB_DEPLOY.NERVOUS_SYSTEM AS nervousSystem,
+			TB_DEPLOY.THYROID AS thyroid,
+			TB_DEPLOY.SUPERFICIAL_LYMPHADENOPATHY AS superficialLymphadenopathy,
+			TB_DEPLOY.SKIN_AND_MUCOSA AS skinAndMucosa,
+			
+			TB_DEPLOY.ID AS id,
+			TB_DEPLOY.STATUS AS status,
+			TB_DEPLOY.CREATED AS created,
+			TB_DEPLOY.CREATE_TIME AS createTime,
+			TB_DEPLOY.UPDATED AS updated,
+			TB_DEPLOY.UPDATE_TIME as updateTime
+		from
+		TB_DEPLOY
+  		
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.health.deploy.pojo.Deploy">
+		UPDATE TB_DEPLOY 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="bloodPressureLow"> BLOOD_PRESSURE_LOW=#bloodPressureLow#</isNotEmpty>
+			<isNotEmpty prepend="," property="bloodPressureHigh"> BLOOD_PRESSURE_HIGH=#bloodPressureHigh#</isNotEmpty>
+			<isNotEmpty prepend="," property="pulseRate"> PULSE_RATE=#pulseRate#</isNotEmpty>
+			<isNotEmpty prepend="," property="electrocardiogram"> ELECTROCARDIOGRAM=#electrocardiogram#</isNotEmpty>
+			<isNotEmpty prepend="," property="bc"> BC=#bc#</isNotEmpty>
+			<isNotEmpty prepend="," property="pneumoconiosis"> PNEUMOCONIOSIS=#pneumoconiosis#</isNotEmpty>
+			<isNotEmpty prepend="," property="bloodExamination"> BLOOD_EXAMINATION=#bloodExamination#</isNotEmpty>
+			<isNotEmpty prepend="," property="lkExamination"> LK_EXAMINATION=#lkExamination#</isNotEmpty>
+			<isNotEmpty prepend="," property="nervousSystem"> NERVOUS_SYSTEM=#nervousSystem#</isNotEmpty>
+			<isNotEmpty prepend="," property="thyroid"> THYROID=#thyroid#</isNotEmpty>
+			<isNotEmpty prepend="," property="superficialLymphadenopathy"> SUPERFICIAL_LYMPHADENOPATHY=#superficialLymphadenopathy#</isNotEmpty>
+			<isNotEmpty prepend="," property="skinAndMucosa"> SKIN_AND_MUCOSA=#skinAndMucosa#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.health.deploy.pojo.Deploy" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_DEPLOY.BLOOD_PRESSURE_LOW AS bloodPressureLow,
+			TB_DEPLOY.BLOOD_PRESSURE_HIGH AS bloodPressureHigh,
+			TB_DEPLOY.PULSE_RATE AS pulseRate,
+			TB_DEPLOY.ELECTROCARDIOGRAM AS electrocardiogram,
+			TB_DEPLOY.BC AS bc,
+			TB_DEPLOY.PNEUMOCONIOSIS AS pneumoconiosis,
+			TB_DEPLOY.BLOOD_EXAMINATION AS bloodExamination,
+			TB_DEPLOY.LK_EXAMINATION AS lkExamination,
+			TB_DEPLOY.NERVOUS_SYSTEM AS nervousSystem,
+			TB_DEPLOY.THYROID AS thyroid,
+			TB_DEPLOY.SUPERFICIAL_LYMPHADENOPATHY AS superficialLymphadenopathy,
+			TB_DEPLOY.SKIN_AND_MUCOSA AS skinAndMucosa,
+			
+			TB_DEPLOY.ID AS id,
+			TB_DEPLOY.STATUS AS status,
+			TB_DEPLOY.CREATED AS created,
+			TB_DEPLOY.CREATE_TIME AS createTime,
+			TB_DEPLOY.UPDATED AS updated,
+			TB_DEPLOY.UPDATE_TIME AS updateTime
+		FROM
+			TB_DEPLOY
+		WHERE
+			TB_DEPLOY.STATUS = '1'
+		<include refid="Deploy.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_DEPLOY
+		WHERE
+			TB_DEPLOY.STATUS = '1' 
+		<include refid="Deploy.mapWhereClause"/>
+	</select>
+</sqlMap>

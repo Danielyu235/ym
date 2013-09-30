@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="IdentificationLog">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="dwdm"> TB_IDENTIFICATION_LOG.DWDM like '%'+#dwdm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_IDENTIFICATION_LOG.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hazardsId"> TB_IDENTIFICATION_LOG.HAZARDS_ID like '%'+#hazardsId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hazardsName"> TB_IDENTIFICATION_LOG.HAZARDS_NAME like '%'+#hazardsName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hazardsType"> TB_IDENTIFICATION_LOG.HAZARDS_TYPE like '%'+#hazardsType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="info"> TB_IDENTIFICATION_LOG.INFO like '%'+#info#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="reason"> TB_IDENTIFICATION_LOG.REASON like '%'+#reason#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.identification.log.pojo.IdentificationLog">
+  		INSERT INTO TB_IDENTIFICATION_LOG(
+				
+				DWDM,
+				CORP_NAME,
+				HAZARDS_ID,
+				HAZARDS_NAME,
+				HAZARDS_TYPE,
+				INFO,
+				REASON,
+				LOGDATE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#dwdm#,
+				#corpName#,
+				#hazardsId#,
+				#hazardsName#,
+				#hazardsType#,
+				#info#,
+				#reason#,
+				#logDate#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hazards.identification.log.pojo.IdentificationLog" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_IDENTIFICATION_LOG.DWDM AS dwdm,
+			TB_IDENTIFICATION_LOG.CORP_NAME AS corpName,
+			TB_IDENTIFICATION_LOG.HAZARDS_ID AS hazardsId,
+			TB_IDENTIFICATION_LOG.HAZARDS_NAME AS hazardsName,
+			TB_IDENTIFICATION_LOG.HAZARDS_TYPE AS hazardsType,
+			TB_IDENTIFICATION_LOG.INFO AS info,
+			TB_IDENTIFICATION_LOG.REASON AS reason,
+			TB_IDENTIFICATION_LOG.LOGDATE AS logDate,
+			
+			TB_IDENTIFICATION_LOG.ID AS id,
+			TB_IDENTIFICATION_LOG.STATUS AS status,
+			TB_IDENTIFICATION_LOG.CREATED AS created,
+			TB_IDENTIFICATION_LOG.CREATE_TIME AS createTime,
+			TB_IDENTIFICATION_LOG.UPDATED AS updated,
+			TB_IDENTIFICATION_LOG.UPDATE_TIME AS updateTime
+		FROM
+			TB_IDENTIFICATION_LOG
+		WHERE
+			TB_IDENTIFICATION_LOG.STATUS = '1' 
+			<include refid="IdentificationLog.mapWhereClause"/>
+		order by createTime desc
+		
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_IDENTIFICATION_LOG
+		WHERE
+			TB_IDENTIFICATION_LOG.STATUS = '1' 
+		<include refid="IdentificationLog.mapWhereClause"/>
+	</select>
+</sqlMap>

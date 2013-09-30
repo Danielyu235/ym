@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+                        " http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CriKnowlbase">
+	<!-- 安全生产标准 -->
+	<typeAlias alias="criterion" type="com.ay.knowlbase.criterion.pojo.CriKnowlbase" />
+
+	<!-- list页面模糊查询语句 -->
+	<sql id="mapWhereClause">
+		<isNotEmpty prepend="and" property="bzName">
+			bz_name like
+			'%$bzName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="bzType">
+			bz_type like
+			'%$bzType$%'
+		</isNotEmpty>
+	</sql>
+
+	<!-- list分页查询 -->
+	<select id="find" resultClass="criterion">
+		SELECT
+		id AS id,
+		status,
+		created,
+		create_Time,
+		updated,
+		update_Time,
+		bz_num
+		as bzNum,
+		bz_name as bzName,
+		dbo.FN_codeToText(bz_type) as bzTypeId,
+		publish_time as publishTime,
+		implement_time as implementTime,
+		effective_time as effectiveTime,
+		prom_department as promDepartment,
+		content,
+		attach_path as attachPath
+		FROM
+		TB_PRODUCTION_STANDARD
+		WHERE
+		status=1
+		<include refid="CriKnowlbase.mapWhereClause" />
+	</select>
+
+	<!-- 查询记录条数 -->
+	<select id="count" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(id)
+		from TB_PRODUCTION_STANDARD
+		where 1=1
+		and
+		status !=0
+		<include refid="CriKnowlbase.mapWhereClause" />
+	</select>
+
+	<!-- 根据ID查询 -->
+	<select id="getById" resultClass="criterion" parameterClass="java.lang.String">
+		SELECT
+		id
+		AS id,
+		status AS status,
+		created AS created,
+		create_time AS createTime,
+		updated AS updated,
+		update_time AS updateTime,
+		bz_num as bzNum,
+		bz_name
+		as bzName,
+		bz_type as bzType,
+		dbo.FN_codeToText(bz_type) as bzTypeId,
+		publish_time as publishTime,
+		implement_time as implementTime,
+		effective_time as effectiveTime,
+		prom_department as promDepartment,
+		content,
+		attach_path as attachPath
+		FROM
+		TB_PRODUCTION_STANDARD
+		WHERE
+
+		id=#id#
+		AND
+		status
+		!= 0
+
+	</select>
+
+	<!-- update语句 -->
+	<update id="update" parameterClass="criterion">
+		update TB_PRODUCTION_STANDARD
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> status=#status#
+			</isNotNull>
+			<isNotNull prepend="," property="created"> created=#created#
+			</isNotNull>
+			<isNotNull prepend="," property="createTime"> create_time=#createTime#
+			</isNotNull>
+			<isNotNull prepend="," property="updated"> updated=#updated#
+			</isNotNull>
+			<isNotNull prepend="," property="updateTime"> update_time=#updateTime#
+			</isNotNull>
+			<isNotNull prepend="," property="bzNum"> bz_num=#bzNum#
+			</isNotNull>
+			<isNotNull prepend="," property="bzName"> bz_name=#bzName#
+			</isNotNull>
+			<isNotEmpty prepend="," property="bzType"> bz_type=#bzType#
+			</isNotEmpty>
+			<isNotNull prepend="," property="publishTime">
+				publish_time=#publishTime#
+			</isNotNull>
+			<isNotNull prepend="," property="implementTime">
+				implement_time=#implementTime#
+			</isNotNull>
+			<isNotNull prepend="," property="effectiveTime">
+				effective_time=#effectiveTime#
+			</isNotNull>
+			<isNotNull prepend="," property="promDepartment">
+				prom_department=#promDepartment#
+			</isNotNull>
+			<isNotNull prepend="," property="content"> content=#content#
+			</isNotNull>
+			<isNotNull prepend="," property="attachPath">
+				attach_path=#attachPath#
+			</isNotNull>
+		</dynamic>
+		where
+		id=#id#
+	</update>
+
+	<!-- insert语句 -->
+	<insert id="insert" parameterClass="criterion">
+		INSERT INTO
+		TB_PRODUCTION_STANDARD (
+		id,
+		status,
+		created,
+		create_Time,
+		updated,
+		update_Time,
+		bz_num,
+		bz_name,
+		bz_type,
+		publish_time,
+		implement_time,
+		effective_time,
+		prom_department,
+		content,
+		attach_path
+		)
+		VALUES
+		(
+		#id#,
+		#status#,
+		#created#,
+		#createTime#,
+		#updated#,
+		#updateTime#,
+		#bzNum#,
+		#bzName#,
+		#bzType#,
+		#publishTime#,
+		#implementTime#,
+		#effectiveTime#,
+		#promDepartment#,
+		#content#,
+		#attachPath#
+		)
+	</insert>
+
+	<!-- 删除语句 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_PRODUCTION_STANDARD
+		set status='0'
+		where
+		id=#id#
+	</delete>
+</sqlMap>

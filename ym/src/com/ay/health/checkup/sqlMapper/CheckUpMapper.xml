@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="CheckUp">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_CHECK_UP.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_CHECK_UP.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_CHECK_UP.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_CHECK_UP.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_CHECK_UP.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_CHECK_UP.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="pid"> TB_CHECK_UP.PID like '%'+#pid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bloodPressureLow"> TB_CHECK_UP.BLOOD_PRESSURE_LOW like '%'+#bloodPressureLow#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bloodPressureHigh"> TB_CHECK_UP.BLOOD_PRESSURE_HIGH like '%'+#bloodPressureHigh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pulseRate"> TB_CHECK_UP.PULSE_RATE like '%'+#pulseRate#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="electrocardiogram"> TB_CHECK_UP.ELECTROCARDIOGRAM like '%'+#electrocardiogram#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bc"> TB_CHECK_UP.BC like '%'+#bc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pneumoconiosis"> TB_CHECK_UP.PNEUMOCONIOSIS like '%'+#pneumoconiosis#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bloodExamination"> TB_CHECK_UP.BLOOD_EXAMINATION like '%'+#bloodExamination#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lkExamination"> TB_CHECK_UP.LK_EXAMINATION like '%'+#lkExamination#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="nervousSystem"> TB_CHECK_UP.NERVOUS_SYSTEM like '%'+#nervousSystem#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="thyroid"> TB_CHECK_UP.THYROID like '%'+#thyroid#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="superficialLymphadenopathy"> TB_CHECK_UP.SUPERFICIAL_LYMPHADENOPATHY like '%'+#superficialLymphadenopathy#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="skinAndMucosa"> TB_CHECK_UP.SKIN_AND_MUCOSA like '%'+#skinAndMucosa#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> TB_CHECK_UP.REMARK like '%'+#remark#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="date"> TB_CHECK_UP.DATE like '%'+#date#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="employeeName"> JOB_NUM like '%'+#employeeName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> TB_EMPLOYEES.POST like '%'+#post#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> TB_EMPLOYEES.MAJOR like '%'+#major#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_EMPLOYEES.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="result"> TB_CHECK_UP.RESULT = #result#</isNotEmpty>
+			<isNotEmpty prepend="and" property="done"> TB_EMPLOYEES.departmentf LIKE '%'+#done# +'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dtwo"> TB_EMPLOYEES.departments LIKE '%'+#dtwo# +'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="idNumber"> TB_EMPLOYEES.IDNUMBER LIKE '%'+#idNumber# +'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.health.checkup.pojo.CheckUp">
+  		INSERT INTO TB_CHECK_UP(
+				
+				PID,
+				BLOOD_PRESSURE_LOW,
+				BLOOD_PRESSURE_HIGH,
+				PULSE_RATE,
+				ELECTROCARDIOGRAM,
+				BC,
+				PNEUMOCONIOSIS,
+				BLOOD_EXAMINATION,
+				LK_EXAMINATION,
+				NERVOUS_SYSTEM,
+				THYROID,
+				SUPERFICIAL_LYMPHADENOPATHY,
+				SKIN_AND_MUCOSA,
+				REMARK,
+				date,
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#pid#,
+				#bloodPressureLow#,
+				#bloodPressureHigh#,
+				#pulseRate#,
+				#electrocardiogram#,
+				#bc#,
+				#pneumoconiosis#,
+				#bloodExamination#,
+				#lkExamination#,
+				#nervousSystem#,
+				#thyroid#,
+				#superficialLymphadenopathy#,
+				#skinAndMucosa#,
+				#remark#,
+				#date#,
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_CHECK_UP SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.health.checkup.pojo.CheckUp" parameterClass="java.lang.String">
+ 			SELECT 
+			JOB_NUM as jobNum,
+			NAME as name,
+			dbo.FN_codeToText(major) as major,
+			dbo.FN_codeToText(POST) as post, 
+			dbo.FN_codeToText(DEPARTMENTF) as done, 
+			dbo.FN_codeToText(DEPARTMENTS) as dtwo,
+			TB_CHECK_UP.PID AS pid,
+			TB_CHECK_UP.BLOOD_PRESSURE_LOW AS bloodPressureLow,
+			TB_CHECK_UP.BLOOD_PRESSURE_HIGH AS bloodPressureHigh,
+			TB_CHECK_UP.PULSE_RATE AS pulseRate,
+			TB_CHECK_UP.ELECTROCARDIOGRAM AS electrocardiogram,
+			TB_CHECK_UP.BC AS bc,
+			TB_CHECK_UP.PNEUMOCONIOSIS AS pneumoconiosis,
+			TB_CHECK_UP.BLOOD_EXAMINATION AS bloodExamination,
+			TB_CHECK_UP.LK_EXAMINATION AS lkExamination,
+			TB_CHECK_UP.NERVOUS_SYSTEM AS nervousSystem,
+			TB_CHECK_UP.THYROID AS thyroid,
+			TB_CHECK_UP.SUPERFICIAL_LYMPHADENOPATHY AS superficialLymphadenopathy,
+			TB_CHECK_UP.SKIN_AND_MUCOSA AS skinAndMucosa,
+			TB_CHECK_UP.REMARK AS remark,
+			TB_CHECK_UP.RESULT as result,
+			TB_CHECK_UP.DATE AS date,
+			TB_CHECK_UP.ID AS id,
+			TB_CHECK_UP.STATUS AS status,
+			TB_CHECK_UP.CREATED AS created,
+			TB_CHECK_UP.CREATE_TIME AS createTime,
+			TB_CHECK_UP.UPDATED AS updated,
+			TB_CHECK_UP.UPDATE_TIME as updateTime
+		from
+		TB_CHECK_UP inner join TB_EMPLOYEES  on TB_EMPLOYEES.ID = TB_CHECK_UP.PID
+  		where 
+ 	 		TB_CHECK_UP.ID=#id#    
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.health.checkup.pojo.CheckUp">
+		UPDATE TB_CHECK_UP 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="pid"> PID=#pid#</isNotEmpty>
+			<isNotEmpty prepend="," property="bloodPressureLow"> BLOOD_PRESSURE_LOW=#bloodPressureLow#</isNotEmpty>
+			<isNotEmpty prepend="," property="bloodPressureHigh"> BLOOD_PRESSURE_HIGH=#bloodPressureHigh#</isNotEmpty>
+			<isNotEmpty prepend="," property="pulseRate"> PULSE_RATE=#pulseRate#</isNotEmpty>
+			<isNotEmpty prepend="," property="electrocardiogram"> ELECTROCARDIOGRAM=#electrocardiogram#</isNotEmpty>
+			<isNotEmpty prepend="," property="bc"> BC=#bc#</isNotEmpty>
+			<isNotEmpty prepend="," property="pneumoconiosis"> PNEUMOCONIOSIS=#pneumoconiosis#</isNotEmpty>
+			<isNotEmpty prepend="," property="bloodExamination"> BLOOD_EXAMINATION=#bloodExamination#</isNotEmpty>
+			<isNotEmpty prepend="," property="lkExamination"> LK_EXAMINATION=#lkExamination#</isNotEmpty>
+			<isNotEmpty prepend="," property="nervousSystem"> NERVOUS_SYSTEM=#nervousSystem#</isNotEmpty>
+			<isNotEmpty prepend="," property="thyroid"> THYROID=#thyroid#</isNotEmpty>
+			<isNotEmpty prepend="," property="superficialLymphadenopathy"> SUPERFICIAL_LYMPHADENOPATHY=#superficialLymphadenopathy#</isNotEmpty>
+			<isNotEmpty prepend="," property="skinAndMucosa"> SKIN_AND_MUCOSA=#skinAndMucosa#</isNotEmpty>
+			<isNotEmpty prepend="," property="remark"> REMARK=#remark#</isNotEmpty>
+			<isNotEmpty prepend="," property="date"> DATE=#date#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.health.checkup.pojo.CheckUp" parameterClass="java.util.Map">
+ 			SELECT 
+			JOB_NUM as jobNum,
+			NAME as name,
+			dbo.FN_codeToText(major) as major,
+			dbo.FN_codeToText(POST) as post, 
+			dbo.FN_codeToText(DEPARTMENTF) as done, 
+			dbo.FN_codeToText(DEPARTMENTS) as dtwo,
+			TB_CHECK_UP.PID AS pid,
+			TB_CHECK_UP.BLOOD_PRESSURE_LOW AS bloodPressureLow,
+			TB_CHECK_UP.BLOOD_PRESSURE_HIGH AS bloodPressureHigh,
+			TB_CHECK_UP.PULSE_RATE AS pulseRate,
+			TB_CHECK_UP.ELECTROCARDIOGRAM AS electrocardiogram,
+			TB_CHECK_UP.BC AS bc,
+			TB_CHECK_UP.PNEUMOCONIOSIS AS pneumoconiosis,
+			TB_CHECK_UP.BLOOD_EXAMINATION AS bloodExamination,
+			TB_CHECK_UP.LK_EXAMINATION AS lkExamination,
+			TB_CHECK_UP.NERVOUS_SYSTEM AS nervousSystem,
+			TB_CHECK_UP.THYROID AS thyroid,
+			TB_CHECK_UP.SUPERFICIAL_LYMPHADENOPATHY AS superficialLymphadenopathy,
+			TB_CHECK_UP.SKIN_AND_MUCOSA AS skinAndMucosa,
+			TB_CHECK_UP.REMARK AS remark,
+			TB_CHECK_UP.RESULT as result,
+			TB_CHECK_UP.DATE AS date,
+			TB_CHECK_UP.ID AS id,
+			TB_CHECK_UP.STATUS AS status,
+			TB_CHECK_UP.CREATED AS created,
+			TB_CHECK_UP.CREATE_TIME AS createTime,
+			TB_CHECK_UP.UPDATED AS updated,
+			TB_CHECK_UP.UPDATE_TIME as updateTime
+		from
+		TB_CHECK_UP inner join TB_EMPLOYEES  on TB_EMPLOYEES.ID = TB_CHECK_UP.PID
+		WHERE
+			TB_CHECK_UP.STATUS = '1' 
+		<include refid="CheckUp.mapWhereClause"/>
+		 order by date desc
+	</select>
+	
+	<select id="getByPid" resultClass="com.ay.health.checkup.pojo.CheckUp" parameterClass="java.lang.String">
+		select BLOOD_PRESSURE_LOW as low ,
+			BLOOD_PRESSURE_HIGH as high ,TB_CHECK_UP.date,pulse_rate as pulseRate
+		 	 from TB_CHECK_UP  where pid=#pid# and TB_CHECK_UP.STATUS = '1'  
+		  order by TB_CHECK_UP.date
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_CHECK_UP inner join TB_EMPLOYEES  on TB_EMPLOYEES.ID = TB_CHECK_UP.PID
+		WHERE
+			TB_CHECK_UP.STATUS = '1'  
+		<include refid="CheckUp.mapWhereClause"/>
+	</select>
+	
+	<select id="charsData" resultClass="com.ay.health.checkup.pojo.CheckUp" parameterClass="java.util.Map">
+		SELECT
+			TB_CHECK_UP.BLOOD_PRESSURE_LOW AS bloodPressureLow,
+			TB_CHECK_UP.BLOOD_PRESSURE_HIGH AS bloodPressureHigh,
+			TB_CHECK_UP.PULSE_RATE AS pulseRate,
+			TB_CHECK_UP.ELECTROCARDIOGRAM AS electrocardiogram,
+			TB_CHECK_UP.BC AS bc,
+			TB_CHECK_UP.PNEUMOCONIOSIS AS pneumoconiosis,
+			TB_CHECK_UP.BLOOD_EXAMINATION AS bloodExamination,
+			TB_CHECK_UP.LK_EXAMINATION AS lkExamination,
+			TB_CHECK_UP.NERVOUS_SYSTEM AS nervousSystem,
+			TB_CHECK_UP.THYROID AS thyroid,
+			TB_CHECK_UP.SUPERFICIAL_LYMPHADENOPATHY AS superficialLymphadenopathy,
+			TB_CHECK_UP.SKIN_AND_MUCOSA AS skinAndMucosa
+		FROM
+			TB_CHECK_UP
+		WHERE
+			TB_CHECK_UP.STATUS = '1'
+		<isNotEmpty prepend="AND" property="updateTime"> TB_CHECK_UP.DATE LIKE  #date# + '%'</isNotEmpty>	
+	</select>
+</sqlMap>

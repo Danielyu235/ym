@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="EmployeeInformation">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_EMPLOYEE_INFORMATION.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_EMPLOYEE_INFORMATION.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_EMPLOYEE_INFORMATION.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_EMPLOYEE_INFORMATION.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_EMPLOYEE_INFORMATION.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_EMPLOYEE_INFORMATION.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="jobNumber"> TB_EMPLOYEE_INFORMATION.JOB_NUMBER like '%'+#jobNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_EMPLOYEE_INFORMATION.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sex"> TB_EMPLOYEE_INFORMATION.SEX like '%'+#sex#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="date"> TB_EMPLOYEE_INFORMATION.DATE like '%'+#date#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="result"> TB_EMPLOYEE_INFORMATION.RESULT like '%'+#result#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.health.employee.pojo.EmployeeInformation">
+  		INSERT INTO TB_EMPLOYEE_INFORMATION(
+				
+				JOB_NUMBER,
+				NAME,
+				SEX,
+				DATE,
+				specialities,
+				post,
+				RESULT,
+				telephone,
+				email,
+				address,
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#jobNumber#,
+				#name#,
+				#sex#,
+				#date#,
+				#specialities#,
+				#post#,
+				#result#,
+				#telephone#,
+				#email#,
+				#address#,
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_EMPLOYEE_INFORMATION SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.health.employee.pojo.EmployeeInformation" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_EMPLOYEE_INFORMATION.JOB_NUMBER AS jobNumber,
+			TB_EMPLOYEE_INFORMATION.NAME AS name,
+			TB_EMPLOYEE_INFORMATION.SEX AS sex,
+			TB_EMPLOYEE_INFORMATION.DATE AS date,
+			TB_EMPLOYEE_INFORMATION.specialities AS specialities,
+			TB_EMPLOYEE_INFORMATION.post AS post,
+			TB_EMPLOYEE_INFORMATION.RESULT AS result,
+			TB_EMPLOYEE_INFORMATION.telephone as telephone,
+			TB_EMPLOYEE_INFORMATION.email as email,
+			TB_EMPLOYEE_INFORMATION.address as address,
+			TB_EMPLOYEE_INFORMATION.ID AS id,
+			dbo.FN_codeToText(TB_EMPLOYEE_INFORMATION.specialities) as specialitiesByType,
+			dbo.FN_codeToText(TB_EMPLOYEE_INFORMATION.post) as postByType,
+			TB_EMPLOYEE_INFORMATION.STATUS AS status,
+			TB_EMPLOYEE_INFORMATION.CREATED AS created,
+			TB_EMPLOYEE_INFORMATION.CREATE_TIME AS createTime,
+			TB_EMPLOYEE_INFORMATION.UPDATED AS updated,
+			TB_EMPLOYEE_INFORMATION.UPDATE_TIME as updateTime
+		from
+		TB_EMPLOYEE_INFORMATION
+  		where 
+ 	 		TB_EMPLOYEE_INFORMATION.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.health.employee.pojo.EmployeeInformation">
+		UPDATE TB_EMPLOYEE_INFORMATION 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="jobNumber"> JOB_NUMBER=#jobNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="sex"> SEX=#sex#</isNotEmpty>
+			<isNotEmpty prepend="," property="date"> DATE=#date#</isNotEmpty>
+			<isNotEmpty prepend="," property="specialities"> specialities=#specialities#</isNotEmpty>
+			<isNotEmpty prepend="," property="post"> post=#post#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="result"> RESULT=#result#</isNotEmpty>
+			<isNotEmpty prepend="," property="telephone"> telephone=#telephone#</isNotEmpty>
+			<isNotEmpty prepend="," property="email"> email=#email#</isNotEmpty>
+			<isNotEmpty prepend="," property="address"> address=#address#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.health.employee.pojo.EmployeeInformation" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_EMPLOYEE_INFORMATION.JOB_NUMBER AS jobNumber,
+			TB_EMPLOYEE_INFORMATION.NAME AS name,
+			TB_EMPLOYEE_INFORMATION.SEX AS sex,
+			TB_EMPLOYEE_INFORMATION.DATE AS date,
+			TB_EMPLOYEE_INFORMATION.specialities AS specialities,
+			TB_EMPLOYEE_INFORMATION.post AS post,
+			TB_EMPLOYEE_INFORMATION.RESULT AS result,
+			TB_EMPLOYEE_INFORMATION.telephone as telephone,
+			TB_EMPLOYEE_INFORMATION.email as email,
+			TB_EMPLOYEE_INFORMATION.address as address,
+			dbo.FN_codeToText(TB_EMPLOYEE_INFORMATION.specialities) as specialitiesByType,
+			dbo.FN_codeToText(TB_EMPLOYEE_INFORMATION.post) as postByType,
+			TB_EMPLOYEE_INFORMATION.ID AS id,
+			TB_EMPLOYEE_INFORMATION.STATUS AS status,
+			TB_EMPLOYEE_INFORMATION.CREATED AS created,
+			TB_EMPLOYEE_INFORMATION.CREATE_TIME AS createTime,
+			TB_EMPLOYEE_INFORMATION.UPDATED AS updated,
+			TB_EMPLOYEE_INFORMATION.UPDATE_TIME AS updateTime
+		FROM
+			TB_EMPLOYEE_INFORMATION
+		WHERE
+			TB_EMPLOYEE_INFORMATION.STATUS = '1'
+		<include refid="EmployeeInformation.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_EMPLOYEE_INFORMATION
+		WHERE
+			TB_EMPLOYEE_INFORMATION.STATUS = '1' 
+		<include refid="EmployeeInformation.mapWhereClause"/>
+	</select>
+	
+		<select id="getByJobNumber" resultClass="java.lang.Integer" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			count(*)
+		from
+		TB_EMPLOYEE_INFORMATION
+  		where 
+ 	 		TB_EMPLOYEE_INFORMATION.STATUS = '1' and TB_EMPLOYEE_INFORMATION.JOB_NUMBER=#jobnumber#
+ 	 		
+	</select>
+</sqlMap>

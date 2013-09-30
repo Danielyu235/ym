@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--煤矿sqlMapper-->
+<sqlMap namespace="CollieryHazards">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_COLLIERY_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_COLLIERY_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_COLLIERY_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_COLLIERY_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_COLLIERY_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_COLLIERY_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="dwdm"> TB_COLLIERY_HAZARDS.DWDM like '%'+#dwdm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_COLLIERY_HAZARDS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="address"> TB_COLLIERY_HAZARDS.ADDRESS like '%'+#address#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="postcode"> TB_COLLIERY_HAZARDS.POSTCODE like '%'+#postcode#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="chargePerson"> TB_COLLIERY_HAZARDS.CHARGE_PERSON like '%'+#chargePerson#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="chargePersonPhone"> TB_COLLIERY_HAZARDS.CHARGE_PERSON_PHONE like '%'+#chargePersonPhone#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="legalCompany"> TB_COLLIERY_HAZARDS.LEGAL_COMPANY like '%'+#legalCompany#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bulidDate"> TB_COLLIERY_HAZARDS.BULID_DATE like '%'+#bulidDate#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designAblity"> TB_COLLIERY_HAZARDS.DESIGN_ABLITY like '%'+#designAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="realOutput"> TB_COLLIERY_HAZARDS.REAL_OUTPUT like '%'+#realOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="brand"> TB_COLLIERY_HAZARDS.BRAND like '%'+#brand#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workPersonNum"> TB_COLLIERY_HAZARDS.WORK_PERSON_NUM like '%'+#workPersonNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fixedAssets"> TB_COLLIERY_HAZARDS.FIXED_ASSETS like '%'+#fixedAssets#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="yearProfit"> TB_COLLIERY_HAZARDS.YEAR_PROFIT like '%'+#yearProfit#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ktStyle"> TB_COLLIERY_HAZARDS.KT_STYLE like '%'+#ktStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tfStyle"> TB_COLLIERY_HAZARDS.TF_STYLE like '%'+#tfStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ffStyle"> TB_COLLIERY_HAZARDS.FF_STYLE like '%'+#ffStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tsStyle"> TB_COLLIERY_HAZARDS.TS_STYLE like '%'+#tsStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gdStyle"> TB_COLLIERY_HAZARDS.GD_STYLE like '%'+#gdStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zcmcqj"> TB_COLLIERY_HAZARDS.ZCMCQJ like '%'+#zcmcqj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zcmchd"> TB_COLLIERY_HAZARDS.ZCMCHD like '%'+#zcmchd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="kjkcsd"> TB_COLLIERY_HAZARDS.KJKCSD like '%'+#kjkcsd#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sccqgs"> TB_COLLIERY_HAZARDS.SCCQGS like '%'+#sccqgs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hcgzmgs"> TB_COLLIERY_HAZARDS.HCGZMGS like '%'+#hcgzmgs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jjgzmgs"> TB_COLLIERY_HAZARDS.JJGZMGS like '%'+#jjgzmgs#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gzmhcStyle"> TB_COLLIERY_HAZARDS.GZMHC_STYLE like '%'+#gzmhcStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="height"> TB_COLLIERY_HAZARDS.HEIGHT like '%'+#height#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zylmStyle"> TB_COLLIERY_HAZARDS.ZYLM_STYLE like '%'+#zylmStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zyzhStyle"> TB_COLLIERY_HAZARDS.ZYZH_STYLE like '%'+#zyzhStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dbclStyle"> TB_COLLIERY_HAZARDS.DBCL_STYLE like '%'+#dbclStyle#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gasLevel"> TB_COLLIERY_HAZARDS.GAS_LEVEL like '%'+#gasLevel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pyrophorisity"> TB_COLLIERY_HAZARDS.PYROPHORISITY like '%'+#pyrophorisity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="explosivity"> TB_COLLIERY_HAZARDS.EXPLOSIVITY like '%'+#explosivity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="containWater"> TB_COLLIERY_HAZARDS.CONTAIN_WATER like '%'+#containWater#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="complexDegree"> TB_COLLIERY_HAZARDS.COMPLEX_DEGREE like '%'+#complexDegree#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="waterThreat"> TB_COLLIERY_HAZARDS.WATER_THREAT like '%'+#waterThreat#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="harmDegree"> TB_COLLIERY_HAZARDS.HARM_DEGREE like '%'+#harmDegree#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="coalOcurrence"> TB_COLLIERY_HAZARDS.COAL_OCURRENCE like '%'+#coalOcurrence#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="stability"> TB_COLLIERY_HAZARDS.STABILITY like '%'+#stability#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="relativeComingAmount"> TB_COLLIERY_HAZARDS.RELATIVE_COMING_AMOUNT like '%'+#relativeComingAmount#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="absoluteComingAmount"> TB_COLLIERY_HAZARDS.ABSOLUTE_COMING_AMOUNT like '%'+#absoluteComingAmount#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pyrophorisityPeriod"> TB_COLLIERY_HAZARDS.PYROPHORISITY_PERIOD like '%'+#pyrophorisityPeriod#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="recentMonthGasOverTime"> TB_COLLIERY_HAZARDS.RECENT_MONTH_GAS_OVER_TIME like '%'+#recentMonthGasOverTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="recentYearGasOverTime"> TB_COLLIERY_HAZARDS.RECENT_YEAR_GAS_OVER_TIME like '%'+#recentYearGasOverTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="recentCoalPyrophorisityTime"> TB_COLLIERY_HAZARDS.RECENT_COAL_PYROPHORISITY_TIME like '%'+#recentCoalPyrophorisityTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="recentRepairTime"> TB_COLLIERY_HAZARDS.RECENT_REPAIR_TIME like '%'+#recentRepairTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="recentElecRepairTime"> TB_COLLIERY_HAZARDS.RECENT_ELEC_REPAIR_TIME like '%'+#recentElecRepairTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="totalDust"> TB_COLLIERY_HAZARDS.TOTAL_DUST like '%'+#totalDust#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="breathDust"> TB_COLLIERY_HAZARDS.BREATH_DUST like '%'+#breathDust#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="totalIntakeAmount"> TB_COLLIERY_HAZARDS.TOTAL_INTAKE_AMOUNT like '%'+#totalIntakeAmount#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="effectIntakeAmount"> TB_COLLIERY_HAZARDS.EFFECT_INTAKE_AMOUNT like '%'+#effectIntakeAmount#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="WaterInMAX"> TB_COLLIERY_HAZARDS._WATER_IN_M_A_X like '%'+#WaterInMAX#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="WaterOutMAX"> TB_COLLIERY_HAZARDS._WATER_OUT_M_A_X like '%'+#WaterOutMAX#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="poolVolumn"> TB_COLLIERY_HAZARDS.POOL_VOLUMN like '%'+#poolVolumn#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="pipeLength"> TB_COLLIERY_HAZARDS.PIPE_LENGTH like '%'+#pipeLength#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="groundRoom"> TB_COLLIERY_HAZARDS.GROUND_ROOM like '%'+#groundRoom#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="groundExplosion"> TB_COLLIERY_HAZARDS.GROUND_EXPLOSION like '%'+#groundExplosion#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="groundPrimer"> TB_COLLIERY_HAZARDS.GROUND_PRIMER like '%'+#groundPrimer#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="undergroundRoom"> TB_COLLIERY_HAZARDS.UNDERGROUND_ROOM like '%'+#undergroundRoom#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="undergroundExplosion"> TB_COLLIERY_HAZARDS.UNDERGROUND_EXPLOSION like '%'+#undergroundExplosion#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="undergroundPrimer"> TB_COLLIERY_HAZARDS.UNDERGROUND_PRIMER like '%'+#undergroundPrimer#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hasGasOutArea"> TB_COLLIERY_HAZARDS.HAS_GAS_OUT_AREA like '%'+#hasGasOutArea#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hasUndeadFire"> TB_COLLIERY_HAZARDS.HAS_UNDEAD_FIRE like '%'+#hasUndeadFire#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="windComplex"> TB_COLLIERY_HAZARDS.WIND_COMPLEX like '%'+#windComplex#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="totalStreetAmount"> TB_COLLIERY_HAZARDS.TOTAL_STREET_AMOUNT like '%'+#totalStreetAmount#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="totalHardDegree"> TB_COLLIERY_HAZARDS.TOTAL_HARD_DEGREE like '%'+#totalHardDegree#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hasUnderWaterWork"> TB_COLLIERY_HAZARDS.HAS_UNDER_WATER_WORK like '%'+#hasUnderWaterWork#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="isUnderBulidingWork"> TB_COLLIERY_HAZARDS.IS_UNDER_BULIDING_WORK like '%'+#isUnderBulidingWork#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="isEffected"> TB_COLLIERY_HAZARDS.IS_EFFECTED like '%'+#isEffected#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="deadWoundNum"> TB_COLLIERY_HAZARDS.DEAD_WOUND_NUM like '%'+#deadWoundNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="slightWoundNum"> TB_COLLIERY_HAZARDS.SLIGHT_WOUND_NUM like '%'+#slightWoundNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="badWoundNum"> TB_COLLIERY_HAZARDS.BAD_WOUND_NUM like '%'+#badWoundNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="deadNum"> TB_COLLIERY_HAZARDS.DEAD_NUM like '%'+#deadNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="explosionAccident"> TB_COLLIERY_HAZARDS.EXPLOSION_ACCIDENT like '%'+#explosionAccident#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fireAccident"> TB_COLLIERY_HAZARDS.FIRE_ACCIDENT like '%'+#fireAccident#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="waterAccident"> TB_COLLIERY_HAZARDS.WATER_ACCIDENT like '%'+#waterAccident#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gasAccident"> TB_COLLIERY_HAZARDS.GAS_ACCIDENT like '%'+#gasAccident#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="otherAccident"> TB_COLLIERY_HAZARDS.OTHER_ACCIDENT like '%'+#otherAccident#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zfjEquip"> TB_COLLIERY_HAZARDS.ZFJ_EQUIP like '%'+#zfjEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jsEquip"> TB_COLLIERY_HAZARDS.JS_EQUIP like '%'+#jsEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zpsbEquip"> TB_COLLIERY_HAZARDS.ZPSB_EQUIP like '%'+#zpsbEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tfsEquip"> TB_COLLIERY_HAZARDS.TFS_EQUIP like '%'+#tfsEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jctsEquip"> TB_COLLIERY_HAZARDS.JCTS_EQUIP like '%'+#jctsEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dsssjEquip"> TB_COLLIERY_HAZARDS.DSSSJ_EQUIP like '%'+#dsssjEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="wscfEquip"> TB_COLLIERY_HAZARDS.WSCF_EQUIP like '%'+#wscfEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="aqjcEquip"> TB_COLLIERY_HAZARDS.AQJC_EQUIP like '%'+#aqjcEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="sensorNum"> TB_COLLIERY_HAZARDS.SENSOR_NUM like '%'+#sensorNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bsdjEquip"> TB_COLLIERY_HAZARDS.BSDJ_EQUIP like '%'+#bsdjEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="wjyEquip"> TB_COLLIERY_HAZARDS.WJY_EQUIP like '%'+#wjyEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zjqEquip"> TB_COLLIERY_HAZARDS.ZJQ_EQUIP like '%'+#zjqEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jxgydlEquip"> TB_COLLIERY_HAZARDS.JXGYDL_EQUIP like '%'+#jxgydlEquip#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="inspectorNum"> TB_COLLIERY_HAZARDS.INSPECTOR_NUM like '%'+#inspectorNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="blasterNum"> TB_COLLIERY_HAZARDS.BLASTER_NUM like '%'+#blasterNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="driverNum"> TB_COLLIERY_HAZARDS.DRIVER_NUM like '%'+#driverNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="electricianNum"> TB_COLLIERY_HAZARDS.ELECTRICIAN_NUM like '%'+#electricianNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="safeManageManNum"> TB_COLLIERY_HAZARDS.SAFE_MANAGE_MAN_NUM like '%'+#safeManageManNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="safeManNum"> TB_COLLIERY_HAZARDS.SAFE_MAN_NUM like '%'+#safeManNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="highLevelNum"> TB_COLLIERY_HAZARDS.HIGH_LEVEL_NUM like '%'+#highLevelNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="middleLevelNum"> TB_COLLIERY_HAZARDS.MIDDLE_LEVEL_NUM like '%'+#middleLevelNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="lowLevelNum"> TB_COLLIERY_HAZARDS.LOW_LEVEL_NUM like '%'+#lowLevelNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="undergroundWorkerNum"> TB_COLLIERY_HAZARDS.UNDERGROUND_WORKER_NUM like '%'+#undergroundWorkerNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="peasantPercent"> TB_COLLIERY_HAZARDS.PEASANT_PERCENT like '%'+#peasantPercent#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="mainDesc"> TB_COLLIERY_HAZARDS.MAIN_DESC like '%'+#mainDesc#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remark"> TB_COLLIERY_HAZARDS.REMARK like '%'+#remark#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="saveMan"> TB_COLLIERY_HAZARDS.SAVE_MAN like '%'+#saveMan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="contactPhone"> TB_COLLIERY_HAZARDS.CONTACT_PHONE like '%'+#contactPhone#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="saveTime"> TB_COLLIERY_HAZARDS.SAVE_TIME like '%'+#saveTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_ENTERPRISE.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- 添加 -->
+	<insert id="insert" parameterClass="com.ay.hazards.colliery.pojo.CollieryHazards">
+  		INSERT INTO TB_COLLIERY_HAZARDS(
+				
+				DWDM,
+				NAME,
+				ADDRESS,
+				POSTCODE,
+				CHARGE_PERSON,
+				CHARGE_PERSON_PHONE,
+				LEGAL_COMPANY,
+				BULID_DATE,
+				DESIGN_ABLITY,
+				REAL_OUTPUT,
+				BRAND,
+				WORK_PERSON_NUM,
+				FIXED_ASSETS,
+				YEAR_PROFIT,
+				KT_STYLE,
+				TF_STYLE,
+				FF_STYLE,
+				TS_STYLE,
+				GD_STYLE,
+				ZCMCQJ,
+				ZCMCHD,
+				KJKCSD,
+				SCCQGS,
+				HCGZMGS,
+				JJGZMGS,
+				GZMHC_STYLE,
+				HEIGHT,
+				ZYLM_STYLE,
+				ZYZH_STYLE,
+				DBCL_STYLE,
+				GAS_LEVEL,
+				PYROPHORISITY,
+				EXPLOSIVITY,
+				CONTAIN_WATER,
+				COMPLEX_DEGREE,
+				WATER_THREAT,
+				HARM_DEGREE,
+				COAL_OCURRENCE,
+				STABILITY,
+				RELATIVE_COMING_AMOUNT,
+				ABSOLUTE_COMING_AMOUNT,
+				PYROPHORISITY_PERIOD,
+				RECENT_MONTH_GAS_OVER_TIME,
+				RECENT_YEAR_GAS_OVER_TIME,
+				RECENT_COAL_PYROPHORISITY_TIME,
+				RECENT_REPAIR_TIME,
+				RECENT_ELEC_REPAIR_TIME,
+				TOTAL_DUST,
+				BREATH_DUST,
+				TOTAL_INTAKE_AMOUNT,
+				EFFECT_INTAKE_AMOUNT,
+				_WATER_IN_M_A_X,
+				_WATER_OUT_M_A_X,
+				POOL_VOLUMN,
+				PIPE_LENGTH,
+				GROUND_ROOM,
+				GROUND_EXPLOSION,
+				GROUND_PRIMER,
+				UNDERGROUND_ROOM,
+				UNDERGROUND_EXPLOSION,
+				UNDERGROUND_PRIMER,
+				HAS_GAS_OUT_AREA,
+				HAS_UNDEAD_FIRE,
+				WIND_COMPLEX,
+				TOTAL_STREET_AMOUNT,
+				TOTAL_HARD_DEGREE,
+				HAS_UNDER_WATER_WORK,
+				IS_UNDER_BULIDING_WORK,
+				IS_EFFECTED,
+				DEAD_WOUND_NUM,
+				SLIGHT_WOUND_NUM,
+				BAD_WOUND_NUM,
+				DEAD_NUM,
+				EXPLOSION_ACCIDENT,
+				FIRE_ACCIDENT,
+				WATER_ACCIDENT,
+				GAS_ACCIDENT,
+				OTHER_ACCIDENT,
+				ZFJ_EQUIP,
+				JS_EQUIP,
+				ZPSB_EQUIP,
+				TFS_EQUIP,
+				JCTS_EQUIP,
+				DSSSJ_EQUIP,
+				WSCF_EQUIP,
+				AQJC_EQUIP,
+				SENSOR_NUM,
+				BSDJ_EQUIP,
+				WJY_EQUIP,
+				ZJQ_EQUIP,
+				JXGYDL_EQUIP,
+				INSPECTOR_NUM,
+				BLASTER_NUM,
+				DRIVER_NUM,
+				ELECTRICIAN_NUM,
+				SAFE_MANAGE_MAN_NUM,
+				SAFE_MAN_NUM,
+				HIGH_LEVEL_NUM,
+				MIDDLE_LEVEL_NUM,
+				LOW_LEVEL_NUM,
+				UNDERGROUND_WORKER_NUM,
+				PEASANT_PERCENT,
+				MAIN_DESC,
+				REMARK,
+				SAVE_MAN,
+				CONTACT_PHONE,
+				SAVE_TIME,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#dwdm#,
+				#name#,
+				#address#,
+				#postcode#,
+				#chargePerson#,
+				#chargePersonPhone#,
+				#legalCompany#,
+				#bulidDate#,
+				#designAblity#,
+				#realOutput#,
+				#brand#,
+				#workPersonNum#,
+				#fixedAssets#,
+				#yearProfit#,
+				#ktStyle#,
+				#tfStyle#,
+				#ffStyle#,
+				#tsStyle#,
+				#gdStyle#,
+				#zcmcqj#,
+				#zcmchd#,
+				#kjkcsd#,
+				#sccqgs#,
+				#hcgzmgs#,
+				#jjgzmgs#,
+				#gzmhcStyle#,
+				#height#,
+				#zylmStyle#,
+				#zyzhStyle#,
+				#dbclStyle#,
+				#gasLevel#,
+				#pyrophorisity#,
+				#explosivity#,
+				#containWater#,
+				#complexDegree#,
+				#waterThreat#,
+				#harmDegree#,
+				#coalOcurrence#,
+				#stability#,
+				#relativeComingAmount#,
+				#absoluteComingAmount#,
+				#pyrophorisityPeriod#,
+				#recentMonthGasOverTime#,
+				#recentYearGasOverTime#,
+				#recentCoalPyrophorisityTime#,
+				#recentRepairTime#,
+				#recentElecRepairTime#,
+				#totalDust#,
+				#breathDust#,
+				#totalIntakeAmount#,
+				#effectIntakeAmount#,
+				#WaterInMAX#,
+				#WaterOutMAX#,
+				#poolVolumn#,
+				#pipeLength#,
+				#groundRoom#,
+				#groundExplosion#,
+				#groundPrimer#,
+				#undergroundRoom#,
+				#undergroundExplosion#,
+				#undergroundPrimer#,
+				#hasGasOutArea#,
+				#hasUndeadFire#,
+				#windComplex#,
+				#totalStreetAmount#,
+				#totalHardDegree#,
+				#hasUnderWaterWork#,
+				#isUnderBulidingWork#,
+				#isEffected#,
+				#deadWoundNum#,
+				#slightWoundNum#,
+				#badWoundNum#,
+				#deadNum#,
+				#explosionAccident#,
+				#fireAccident#,
+				#waterAccident#,
+				#gasAccident#,
+				#otherAccident#,
+				#zfjEquip#,
+				#jsEquip#,
+				#zpsbEquip#,
+				#tfsEquip#,
+				#jctsEquip#,
+				#dsssjEquip#,
+				#wscfEquip#,
+				#aqjcEquip#,
+				#sensorNum#,
+				#bsdjEquip#,
+				#wjyEquip#,
+				#zjqEquip#,
+				#jxgydlEquip#,
+				#inspectorNum#,
+				#blasterNum#,
+				#driverNum#,
+				#electricianNum#,
+				#safeManageManNum#,
+				#safeManNum#,
+				#highLevelNum#,
+				#middleLevelNum#,
+				#lowLevelNum#,
+				#undergroundWorkerNum#,
+				#peasantPercent#,
+				#mainDesc#,
+				#remark#,
+				#saveMan#,
+				#contactPhone#,
+				#saveTime#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- 删除单条数据 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_COLLIERY_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- 通过ID获取信息-->
+	<select id="getById" resultClass="com.ay.hazards.colliery.pojo.CollieryHazards" parameterClass="java.lang.String">
+ 		SELECT 
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_COLLIERY_HAZARDS.DWDM AS dwdm,
+			TB_COLLIERY_HAZARDS.NAME AS name,
+			TB_COLLIERY_HAZARDS.ADDRESS AS address,
+			TB_COLLIERY_HAZARDS.POSTCODE AS postcode,
+			TB_COLLIERY_HAZARDS.CHARGE_PERSON AS chargePerson,
+			TB_COLLIERY_HAZARDS.CHARGE_PERSON_PHONE AS chargePersonPhone,
+			TB_COLLIERY_HAZARDS.LEGAL_COMPANY AS legalCompany,
+			TB_COLLIERY_HAZARDS.BULID_DATE AS bulidDate,
+			TB_COLLIERY_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_COLLIERY_HAZARDS.REAL_OUTPUT AS realOutput,
+			TB_COLLIERY_HAZARDS.BRAND AS brand,
+			TB_COLLIERY_HAZARDS.WORK_PERSON_NUM AS workPersonNum,
+			TB_COLLIERY_HAZARDS.FIXED_ASSETS AS fixedAssets,
+			TB_COLLIERY_HAZARDS.YEAR_PROFIT AS yearProfit,
+			TB_COLLIERY_HAZARDS.KT_STYLE AS ktStyle,
+			TB_COLLIERY_HAZARDS.TF_STYLE AS tfStyle,
+			TB_COLLIERY_HAZARDS.FF_STYLE AS ffStyle,
+			TB_COLLIERY_HAZARDS.TS_STYLE AS tsStyle,
+			TB_COLLIERY_HAZARDS.GD_STYLE AS gdStyle,
+			TB_COLLIERY_HAZARDS.ZCMCQJ AS zcmcqj,
+			TB_COLLIERY_HAZARDS.ZCMCHD AS zcmchd,
+			TB_COLLIERY_HAZARDS.KJKCSD AS kjkcsd,
+			TB_COLLIERY_HAZARDS.SCCQGS AS sccqgs,
+			TB_COLLIERY_HAZARDS.HCGZMGS AS hcgzmgs,
+			TB_COLLIERY_HAZARDS.JJGZMGS AS jjgzmgs,
+			TB_COLLIERY_HAZARDS.GZMHC_STYLE AS gzmhcStyle,
+			TB_COLLIERY_HAZARDS.HEIGHT AS height,
+			TB_COLLIERY_HAZARDS.ZYLM_STYLE AS zylmStyle,
+			TB_COLLIERY_HAZARDS.ZYZH_STYLE AS zyzhStyle,
+			TB_COLLIERY_HAZARDS.DBCL_STYLE AS dbclStyle,
+			TB_COLLIERY_HAZARDS.GAS_LEVEL AS gasLevel,
+			TB_COLLIERY_HAZARDS.PYROPHORISITY AS pyrophorisity,
+			TB_COLLIERY_HAZARDS.EXPLOSIVITY AS explosivity,
+			TB_COLLIERY_HAZARDS.CONTAIN_WATER AS containWater,
+			TB_COLLIERY_HAZARDS.COMPLEX_DEGREE AS complexDegree,
+			TB_COLLIERY_HAZARDS.WATER_THREAT AS waterThreat,
+			TB_COLLIERY_HAZARDS.HARM_DEGREE AS harmDegree,
+			TB_COLLIERY_HAZARDS.COAL_OCURRENCE AS coalOcurrence,
+			TB_COLLIERY_HAZARDS.STABILITY AS stability,
+			TB_COLLIERY_HAZARDS.RELATIVE_COMING_AMOUNT AS relativeComingAmount,
+			TB_COLLIERY_HAZARDS.ABSOLUTE_COMING_AMOUNT AS absoluteComingAmount,
+			TB_COLLIERY_HAZARDS.PYROPHORISITY_PERIOD AS pyrophorisityPeriod,
+			TB_COLLIERY_HAZARDS.RECENT_MONTH_GAS_OVER_TIME AS recentMonthGasOverTime,
+			TB_COLLIERY_HAZARDS.RECENT_YEAR_GAS_OVER_TIME AS recentYearGasOverTime,
+			TB_COLLIERY_HAZARDS.RECENT_COAL_PYROPHORISITY_TIME AS recentCoalPyrophorisityTime,
+			TB_COLLIERY_HAZARDS.RECENT_REPAIR_TIME AS recentRepairTime,
+			TB_COLLIERY_HAZARDS.RECENT_ELEC_REPAIR_TIME AS recentElecRepairTime,
+			TB_COLLIERY_HAZARDS.TOTAL_DUST AS totalDust,
+			TB_COLLIERY_HAZARDS.BREATH_DUST AS breathDust,
+			TB_COLLIERY_HAZARDS.TOTAL_INTAKE_AMOUNT AS totalIntakeAmount,
+			TB_COLLIERY_HAZARDS.EFFECT_INTAKE_AMOUNT AS effectIntakeAmount,
+			TB_COLLIERY_HAZARDS._WATER_IN_M_A_X AS WaterInMAX,
+			TB_COLLIERY_HAZARDS._WATER_OUT_M_A_X AS WaterOutMAX,
+			TB_COLLIERY_HAZARDS.POOL_VOLUMN AS poolVolumn,
+			TB_COLLIERY_HAZARDS.PIPE_LENGTH AS pipeLength,
+			TB_COLLIERY_HAZARDS.GROUND_ROOM AS groundRoom,
+			TB_COLLIERY_HAZARDS.GROUND_EXPLOSION AS groundExplosion,
+			TB_COLLIERY_HAZARDS.GROUND_PRIMER AS groundPrimer,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_ROOM AS undergroundRoom,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_EXPLOSION AS undergroundExplosion,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_PRIMER AS undergroundPrimer,
+			TB_COLLIERY_HAZARDS.HAS_GAS_OUT_AREA AS hasGasOutArea,
+			TB_COLLIERY_HAZARDS.HAS_UNDEAD_FIRE AS hasUndeadFire,
+			TB_COLLIERY_HAZARDS.WIND_COMPLEX AS windComplex,
+			TB_COLLIERY_HAZARDS.TOTAL_STREET_AMOUNT AS totalStreetAmount,
+			TB_COLLIERY_HAZARDS.TOTAL_HARD_DEGREE AS totalHardDegree,
+			TB_COLLIERY_HAZARDS.HAS_UNDER_WATER_WORK AS hasUnderWaterWork,
+			TB_COLLIERY_HAZARDS.IS_UNDER_BULIDING_WORK AS isUnderBulidingWork,
+			TB_COLLIERY_HAZARDS.IS_EFFECTED AS isEffected,
+			TB_COLLIERY_HAZARDS.DEAD_WOUND_NUM AS deadWoundNum,
+			TB_COLLIERY_HAZARDS.SLIGHT_WOUND_NUM AS slightWoundNum,
+			TB_COLLIERY_HAZARDS.BAD_WOUND_NUM AS badWoundNum,
+			TB_COLLIERY_HAZARDS.DEAD_NUM AS deadNum,
+			TB_COLLIERY_HAZARDS.EXPLOSION_ACCIDENT AS explosionAccident,
+			TB_COLLIERY_HAZARDS.FIRE_ACCIDENT AS fireAccident,
+			TB_COLLIERY_HAZARDS.WATER_ACCIDENT AS waterAccident,
+			TB_COLLIERY_HAZARDS.GAS_ACCIDENT AS gasAccident,
+			TB_COLLIERY_HAZARDS.OTHER_ACCIDENT AS otherAccident,
+			TB_COLLIERY_HAZARDS.ZFJ_EQUIP AS zfjEquip,
+			TB_COLLIERY_HAZARDS.JS_EQUIP AS jsEquip,
+			TB_COLLIERY_HAZARDS.ZPSB_EQUIP AS zpsbEquip,
+			TB_COLLIERY_HAZARDS.TFS_EQUIP AS tfsEquip,
+			TB_COLLIERY_HAZARDS.JCTS_EQUIP AS jctsEquip,
+			TB_COLLIERY_HAZARDS.DSSSJ_EQUIP AS dsssjEquip,
+			TB_COLLIERY_HAZARDS.WSCF_EQUIP AS wscfEquip,
+			TB_COLLIERY_HAZARDS.AQJC_EQUIP AS aqjcEquip,
+			TB_COLLIERY_HAZARDS.SENSOR_NUM AS sensorNum,
+			TB_COLLIERY_HAZARDS.BSDJ_EQUIP AS bsdjEquip,
+			TB_COLLIERY_HAZARDS.WJY_EQUIP AS wjyEquip,
+			TB_COLLIERY_HAZARDS.ZJQ_EQUIP AS zjqEquip,
+			TB_COLLIERY_HAZARDS.JXGYDL_EQUIP AS jxgydlEquip,
+			TB_COLLIERY_HAZARDS.INSPECTOR_NUM AS inspectorNum,
+			TB_COLLIERY_HAZARDS.BLASTER_NUM AS blasterNum,
+			TB_COLLIERY_HAZARDS.DRIVER_NUM AS driverNum,
+			TB_COLLIERY_HAZARDS.ELECTRICIAN_NUM AS electricianNum,
+			TB_COLLIERY_HAZARDS.SAFE_MANAGE_MAN_NUM AS safeManageManNum,
+			TB_COLLIERY_HAZARDS.SAFE_MAN_NUM AS safeManNum,
+			TB_COLLIERY_HAZARDS.HIGH_LEVEL_NUM AS highLevelNum,
+			TB_COLLIERY_HAZARDS.MIDDLE_LEVEL_NUM AS middleLevelNum,
+			TB_COLLIERY_HAZARDS.LOW_LEVEL_NUM AS lowLevelNum,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_WORKER_NUM AS undergroundWorkerNum,
+			TB_COLLIERY_HAZARDS.PEASANT_PERCENT AS peasantPercent,
+			TB_COLLIERY_HAZARDS.MAIN_DESC AS mainDesc,
+			TB_COLLIERY_HAZARDS.REMARK AS remark,
+			TB_COLLIERY_HAZARDS.SAVE_MAN AS saveMan,
+			TB_COLLIERY_HAZARDS.CONTACT_PHONE AS contactPhone,
+			TB_COLLIERY_HAZARDS.SAVE_TIME AS saveTime,
+			
+			TB_COLLIERY_HAZARDS.ID AS id,
+			TB_COLLIERY_HAZARDS.STATUS AS status,
+			TB_COLLIERY_HAZARDS.CREATED AS created,
+			TB_COLLIERY_HAZARDS.CREATE_TIME AS createTime,
+			TB_COLLIERY_HAZARDS.UPDATED AS updated,
+			TB_COLLIERY_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_COLLIERY_HAZARDS
+		LEFT JOIN TB_ENTERPRISE
+		ON TB_ENTERPRISE.ID = TB_COLLIERY_HAZARDS.DWDM
+  		where 
+ 	 		TB_COLLIERY_HAZARDS.ID=#id#
+	</select>
+	<!-- 更新 -->
+	<update id="update" parameterClass="com.ay.hazards.colliery.pojo.CollieryHazards">
+		UPDATE TB_COLLIERY_HAZARDS 
+		<dynamic prepend="set">
+			
+			<isNotNull prepend="," property="dwdm"> DWDM=#dwdm#</isNotNull>
+			<isNotNull prepend="," property="name"> NAME=#name#</isNotNull>
+			<isNotNull prepend="," property="address"> ADDRESS=#address#</isNotNull>
+			<isNotNull prepend="," property="postcode"> POSTCODE=#postcode#</isNotNull>
+			<isNotNull prepend="," property="chargePerson"> CHARGE_PERSON=#chargePerson#</isNotNull>
+			<isNotNull prepend="," property="chargePersonPhone"> CHARGE_PERSON_PHONE=#chargePersonPhone#</isNotNull>
+			<isNotNull prepend="," property="legalCompany"> LEGAL_COMPANY=#legalCompany#</isNotNull>
+			<isNotNull prepend="," property="bulidDate"> BULID_DATE=#bulidDate#</isNotNull>
+			<isNotNull prepend="," property="designAblity"> DESIGN_ABLITY=#designAblity#</isNotNull>
+			<isNotNull prepend="," property="realOutput"> REAL_OUTPUT=#realOutput#</isNotNull>
+			<isNotNull prepend="," property="brand"> BRAND=#brand#</isNotNull>
+			<isNotNull prepend="," property="workPersonNum"> WORK_PERSON_NUM=#workPersonNum#</isNotNull>
+			<isNotNull prepend="," property="fixedAssets"> FIXED_ASSETS=#fixedAssets#</isNotNull>
+			<isNotNull prepend="," property="yearProfit"> YEAR_PROFIT=#yearProfit#</isNotNull>
+			<isNotNull prepend="," property="ktStyle"> KT_STYLE=#ktStyle#</isNotNull>
+			<isNotNull prepend="," property="tfStyle"> TF_STYLE=#tfStyle#</isNotNull>
+			<isNotNull prepend="," property="ffStyle"> FF_STYLE=#ffStyle#</isNotNull>
+			<isNotNull prepend="," property="tsStyle"> TS_STYLE=#tsStyle#</isNotNull>
+			<isNotNull prepend="," property="gdStyle"> GD_STYLE=#gdStyle#</isNotNull>
+			<isNotNull prepend="," property="zcmcqj"> ZCMCQJ=#zcmcqj#</isNotNull>
+			<isNotNull prepend="," property="zcmchd"> ZCMCHD=#zcmchd#</isNotNull>
+			<isNotNull prepend="," property="kjkcsd"> KJKCSD=#kjkcsd#</isNotNull>
+			<isNotNull prepend="," property="sccqgs"> SCCQGS=#sccqgs#</isNotNull>
+			<isNotNull prepend="," property="hcgzmgs"> HCGZMGS=#hcgzmgs#</isNotNull>
+			<isNotNull prepend="," property="jjgzmgs"> JJGZMGS=#jjgzmgs#</isNotNull>
+			<isNotNull prepend="," property="gzmhcStyle"> GZMHC_STYLE=#gzmhcStyle#</isNotNull>
+			<isNotNull prepend="," property="height"> HEIGHT=#height#</isNotNull>
+			<isNotNull prepend="," property="zylmStyle"> ZYLM_STYLE=#zylmStyle#</isNotNull>
+			<isNotNull prepend="," property="zyzhStyle"> ZYZH_STYLE=#zyzhStyle#</isNotNull>
+			<isNotNull prepend="," property="dbclStyle"> DBCL_STYLE=#dbclStyle#</isNotNull>
+			<isNotNull prepend="," property="gasLevel"> GAS_LEVEL=#gasLevel#</isNotNull>
+			<isNotNull prepend="," property="pyrophorisity"> PYROPHORISITY=#pyrophorisity#</isNotNull>
+			<isNotNull prepend="," property="explosivity"> EXPLOSIVITY=#explosivity#</isNotNull>
+			<isNotNull prepend="," property="containWater"> CONTAIN_WATER=#containWater#</isNotNull>
+			<isNotNull prepend="," property="complexDegree"> COMPLEX_DEGREE=#complexDegree#</isNotNull>
+			<isNotNull prepend="," property="waterThreat"> WATER_THREAT=#waterThreat#</isNotNull>
+			<isNotNull prepend="," property="harmDegree"> HARM_DEGREE=#harmDegree#</isNotNull>
+			<isNotNull prepend="," property="coalOcurrence"> COAL_OCURRENCE=#coalOcurrence#</isNotNull>
+			<isNotNull prepend="," property="stability"> STABILITY=#stability#</isNotNull>
+			<isNotNull prepend="," property="relativeComingAmount"> RELATIVE_COMING_AMOUNT=#relativeComingAmount#</isNotNull>
+			<isNotNull prepend="," property="absoluteComingAmount"> ABSOLUTE_COMING_AMOUNT=#absoluteComingAmount#</isNotNull>
+			<isNotNull prepend="," property="pyrophorisityPeriod"> PYROPHORISITY_PERIOD=#pyrophorisityPeriod#</isNotNull>
+			<isNotNull prepend="," property="recentMonthGasOverTime"> RECENT_MONTH_GAS_OVER_TIME=#recentMonthGasOverTime#</isNotNull>
+			<isNotNull prepend="," property="recentYearGasOverTime"> RECENT_YEAR_GAS_OVER_TIME=#recentYearGasOverTime#</isNotNull>
+			<isNotNull prepend="," property="recentCoalPyrophorisityTime"> RECENT_COAL_PYROPHORISITY_TIME=#recentCoalPyrophorisityTime#</isNotNull>
+			<isNotNull prepend="," property="recentRepairTime"> RECENT_REPAIR_TIME=#recentRepairTime#</isNotNull>
+			<isNotNull prepend="," property="recentElecRepairTime"> RECENT_ELEC_REPAIR_TIME=#recentElecRepairTime#</isNotNull>
+			<isNotNull prepend="," property="totalDust"> TOTAL_DUST=#totalDust#</isNotNull>
+			<isNotNull prepend="," property="breathDust"> BREATH_DUST=#breathDust#</isNotNull>
+			<isNotNull prepend="," property="totalIntakeAmount"> TOTAL_INTAKE_AMOUNT=#totalIntakeAmount#</isNotNull>
+			<isNotNull prepend="," property="effectIntakeAmount"> EFFECT_INTAKE_AMOUNT=#effectIntakeAmount#</isNotNull>
+			<isNotNull prepend="," property="WaterInMAX"> _WATER_IN_M_A_X=#WaterInMAX#</isNotNull>
+			<isNotNull prepend="," property="WaterOutMAX"> _WATER_OUT_M_A_X=#WaterOutMAX#</isNotNull>
+			<isNotNull prepend="," property="poolVolumn"> POOL_VOLUMN=#poolVolumn#</isNotNull>
+			<isNotNull prepend="," property="pipeLength"> PIPE_LENGTH=#pipeLength#</isNotNull>
+			<isNotNull prepend="," property="groundRoom"> GROUND_ROOM=#groundRoom#</isNotNull>
+			<isNotNull prepend="," property="groundExplosion"> GROUND_EXPLOSION=#groundExplosion#</isNotNull>
+			<isNotNull prepend="," property="groundPrimer"> GROUND_PRIMER=#groundPrimer#</isNotNull>
+			<isNotNull prepend="," property="undergroundRoom"> UNDERGROUND_ROOM=#undergroundRoom#</isNotNull>
+			<isNotNull prepend="," property="undergroundExplosion"> UNDERGROUND_EXPLOSION=#undergroundExplosion#</isNotNull>
+			<isNotNull prepend="," property="undergroundPrimer"> UNDERGROUND_PRIMER=#undergroundPrimer#</isNotNull>
+			<isNotNull prepend="," property="hasGasOutArea"> HAS_GAS_OUT_AREA=#hasGasOutArea#</isNotNull>
+			<isNotNull prepend="," property="hasUndeadFire"> HAS_UNDEAD_FIRE=#hasUndeadFire#</isNotNull>
+			<isNotNull prepend="," property="windComplex"> WIND_COMPLEX=#windComplex#</isNotNull>
+			<isNotNull prepend="," property="totalStreetAmount"> TOTAL_STREET_AMOUNT=#totalStreetAmount#</isNotNull>
+			<isNotNull prepend="," property="totalHardDegree"> TOTAL_HARD_DEGREE=#totalHardDegree#</isNotNull>
+			<isNotNull prepend="," property="hasUnderWaterWork"> HAS_UNDER_WATER_WORK=#hasUnderWaterWork#</isNotNull>
+			<isNotNull prepend="," property="isUnderBulidingWork"> IS_UNDER_BULIDING_WORK=#isUnderBulidingWork#</isNotNull>
+			<isNotNull prepend="," property="isEffected"> IS_EFFECTED=#isEffected#</isNotNull>
+			<isNotNull prepend="," property="deadWoundNum"> DEAD_WOUND_NUM=#deadWoundNum#</isNotNull>
+			<isNotNull prepend="," property="slightWoundNum"> SLIGHT_WOUND_NUM=#slightWoundNum#</isNotNull>
+			<isNotNull prepend="," property="badWoundNum"> BAD_WOUND_NUM=#badWoundNum#</isNotNull>
+			<isNotNull prepend="," property="deadNum"> DEAD_NUM=#deadNum#</isNotNull>
+			<isNotNull prepend="," property="explosionAccident"> EXPLOSION_ACCIDENT=#explosionAccident#</isNotNull>
+			<isNotNull prepend="," property="fireAccident"> FIRE_ACCIDENT=#fireAccident#</isNotNull>
+			<isNotNull prepend="," property="waterAccident"> WATER_ACCIDENT=#waterAccident#</isNotNull>
+			<isNotNull prepend="," property="gasAccident"> GAS_ACCIDENT=#gasAccident#</isNotNull>
+			<isNotNull prepend="," property="otherAccident"> OTHER_ACCIDENT=#otherAccident#</isNotNull>
+			<isNotNull prepend="," property="zfjEquip"> ZFJ_EQUIP=#zfjEquip#</isNotNull>
+			<isNotNull prepend="," property="jsEquip"> JS_EQUIP=#jsEquip#</isNotNull>
+			<isNotNull prepend="," property="zpsbEquip"> ZPSB_EQUIP=#zpsbEquip#</isNotNull>
+			<isNotNull prepend="," property="tfsEquip"> TFS_EQUIP=#tfsEquip#</isNotNull>
+			<isNotNull prepend="," property="jctsEquip"> JCTS_EQUIP=#jctsEquip#</isNotNull>
+			<isNotNull prepend="," property="dsssjEquip"> DSSSJ_EQUIP=#dsssjEquip#</isNotNull>
+			<isNotNull prepend="," property="wscfEquip"> WSCF_EQUIP=#wscfEquip#</isNotNull>
+			<isNotNull prepend="," property="aqjcEquip"> AQJC_EQUIP=#aqjcEquip#</isNotNull>
+			<isNotNull prepend="," property="sensorNum"> SENSOR_NUM=#sensorNum#</isNotNull>
+			<isNotNull prepend="," property="bsdjEquip"> BSDJ_EQUIP=#bsdjEquip#</isNotNull>
+			<isNotNull prepend="," property="wjyEquip"> WJY_EQUIP=#wjyEquip#</isNotNull>
+			<isNotNull prepend="," property="zjqEquip"> ZJQ_EQUIP=#zjqEquip#</isNotNull>
+			<isNotNull prepend="," property="jxgydlEquip"> JXGYDL_EQUIP=#jxgydlEquip#</isNotNull>
+			<isNotNull prepend="," property="inspectorNum"> INSPECTOR_NUM=#inspectorNum#</isNotNull>
+			<isNotNull prepend="," property="blasterNum"> BLASTER_NUM=#blasterNum#</isNotNull>
+			<isNotNull prepend="," property="driverNum"> DRIVER_NUM=#driverNum#</isNotNull>
+			<isNotNull prepend="," property="electricianNum"> ELECTRICIAN_NUM=#electricianNum#</isNotNull>
+			<isNotNull prepend="," property="safeManageManNum"> SAFE_MANAGE_MAN_NUM=#safeManageManNum#</isNotNull>
+			<isNotNull prepend="," property="safeManNum"> SAFE_MAN_NUM=#safeManNum#</isNotNull>
+			<isNotNull prepend="," property="highLevelNum"> HIGH_LEVEL_NUM=#highLevelNum#</isNotNull>
+			<isNotNull prepend="," property="middleLevelNum"> MIDDLE_LEVEL_NUM=#middleLevelNum#</isNotNull>
+			<isNotNull prepend="," property="lowLevelNum"> LOW_LEVEL_NUM=#lowLevelNum#</isNotNull>
+			<isNotNull prepend="," property="undergroundWorkerNum"> UNDERGROUND_WORKER_NUM=#undergroundWorkerNum#</isNotNull>
+			<isNotNull prepend="," property="peasantPercent"> PEASANT_PERCENT=#peasantPercent#</isNotNull>
+			<isNotNull prepend="," property="mainDesc"> MAIN_DESC=#mainDesc#</isNotNull>
+			<isNotNull prepend="," property="remark"> REMARK=#remark#</isNotNull>
+			<isNotNull prepend="," property="saveMan"> SAVE_MAN=#saveMan#</isNotNull>
+			<isNotNull prepend="," property="contactPhone"> CONTACT_PHONE=#contactPhone#</isNotNull>
+			<isNotNull prepend="," property="saveTime"> SAVE_TIME=#saveTime#</isNotNull>
+			
+			<isNotNull prepend="," property="id"> ID=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> STATUS=#status#</isNotNull>
+			<isNotNull prepend="," property="created"> CREATED=#created#</isNotNull>
+			<isNotNull prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotNull>
+			<isNotNull prepend="," property="updated"> UPDATED=#updated#</isNotNull>
+			<isNotNull prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotNull>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 查找list-->
+	<select id="find" resultClass="com.ay.hazards.colliery.pojo.CollieryHazards" parameterClass="java.util.Map">
+ 		SELECT
+ 			dbo.FN_HASMAP(TB_COLLIERY_HAZARDS.ID) as hasMap,
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_COLLIERY_HAZARDS.DWDM AS dwdm,
+			TB_COLLIERY_HAZARDS.NAME AS name,
+			TB_COLLIERY_HAZARDS.ADDRESS AS address,
+			TB_COLLIERY_HAZARDS.POSTCODE AS postcode,
+			TB_COLLIERY_HAZARDS.CHARGE_PERSON AS chargePerson,
+			TB_COLLIERY_HAZARDS.CHARGE_PERSON_PHONE AS chargePersonPhone,
+			TB_COLLIERY_HAZARDS.LEGAL_COMPANY AS legalCompany,
+			TB_COLLIERY_HAZARDS.BULID_DATE AS bulidDate,
+			TB_COLLIERY_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_COLLIERY_HAZARDS.REAL_OUTPUT AS realOutput,
+			TB_COLLIERY_HAZARDS.BRAND AS brand,
+			TB_COLLIERY_HAZARDS.WORK_PERSON_NUM AS workPersonNum,
+			TB_COLLIERY_HAZARDS.FIXED_ASSETS AS fixedAssets,
+			TB_COLLIERY_HAZARDS.YEAR_PROFIT AS yearProfit,
+			TB_COLLIERY_HAZARDS.KT_STYLE AS ktStyle,
+			TB_COLLIERY_HAZARDS.TF_STYLE AS tfStyle,
+			TB_COLLIERY_HAZARDS.FF_STYLE AS ffStyle,
+			TB_COLLIERY_HAZARDS.TS_STYLE AS tsStyle,
+			TB_COLLIERY_HAZARDS.GD_STYLE AS gdStyle,
+			TB_COLLIERY_HAZARDS.ZCMCQJ AS zcmcqj,
+			TB_COLLIERY_HAZARDS.ZCMCHD AS zcmchd,
+			TB_COLLIERY_HAZARDS.KJKCSD AS kjkcsd,
+			TB_COLLIERY_HAZARDS.SCCQGS AS sccqgs,
+			TB_COLLIERY_HAZARDS.HCGZMGS AS hcgzmgs,
+			TB_COLLIERY_HAZARDS.JJGZMGS AS jjgzmgs,
+			TB_COLLIERY_HAZARDS.GZMHC_STYLE AS gzmhcStyle,
+			TB_COLLIERY_HAZARDS.HEIGHT AS height,
+			TB_COLLIERY_HAZARDS.ZYLM_STYLE AS zylmStyle,
+			TB_COLLIERY_HAZARDS.ZYZH_STYLE AS zyzhStyle,
+			TB_COLLIERY_HAZARDS.DBCL_STYLE AS dbclStyle,
+			TB_COLLIERY_HAZARDS.GAS_LEVEL AS gasLevel,
+			TB_COLLIERY_HAZARDS.PYROPHORISITY AS pyrophorisity,
+			TB_COLLIERY_HAZARDS.EXPLOSIVITY AS explosivity,
+			TB_COLLIERY_HAZARDS.CONTAIN_WATER AS containWater,
+			TB_COLLIERY_HAZARDS.COMPLEX_DEGREE AS complexDegree,
+			TB_COLLIERY_HAZARDS.WATER_THREAT AS waterThreat,
+			TB_COLLIERY_HAZARDS.HARM_DEGREE AS harmDegree,
+			TB_COLLIERY_HAZARDS.COAL_OCURRENCE AS coalOcurrence,
+			TB_COLLIERY_HAZARDS.STABILITY AS stability,
+			TB_COLLIERY_HAZARDS.RELATIVE_COMING_AMOUNT AS relativeComingAmount,
+			TB_COLLIERY_HAZARDS.ABSOLUTE_COMING_AMOUNT AS absoluteComingAmount,
+			TB_COLLIERY_HAZARDS.PYROPHORISITY_PERIOD AS pyrophorisityPeriod,
+			TB_COLLIERY_HAZARDS.RECENT_MONTH_GAS_OVER_TIME AS recentMonthGasOverTime,
+			TB_COLLIERY_HAZARDS.RECENT_YEAR_GAS_OVER_TIME AS recentYearGasOverTime,
+			TB_COLLIERY_HAZARDS.RECENT_COAL_PYROPHORISITY_TIME AS recentCoalPyrophorisityTime,
+			TB_COLLIERY_HAZARDS.RECENT_REPAIR_TIME AS recentRepairTime,
+			TB_COLLIERY_HAZARDS.RECENT_ELEC_REPAIR_TIME AS recentElecRepairTime,
+			TB_COLLIERY_HAZARDS.TOTAL_DUST AS totalDust,
+			TB_COLLIERY_HAZARDS.BREATH_DUST AS breathDust,
+			TB_COLLIERY_HAZARDS.TOTAL_INTAKE_AMOUNT AS totalIntakeAmount,
+			TB_COLLIERY_HAZARDS.EFFECT_INTAKE_AMOUNT AS effectIntakeAmount,
+			TB_COLLIERY_HAZARDS._WATER_IN_M_A_X AS WaterInMAX,
+			TB_COLLIERY_HAZARDS._WATER_OUT_M_A_X AS WaterOutMAX,
+			TB_COLLIERY_HAZARDS.POOL_VOLUMN AS poolVolumn,
+			TB_COLLIERY_HAZARDS.PIPE_LENGTH AS pipeLength,
+			TB_COLLIERY_HAZARDS.GROUND_ROOM AS groundRoom,
+			TB_COLLIERY_HAZARDS.GROUND_EXPLOSION AS groundExplosion,
+			TB_COLLIERY_HAZARDS.GROUND_PRIMER AS groundPrimer,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_ROOM AS undergroundRoom,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_EXPLOSION AS undergroundExplosion,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_PRIMER AS undergroundPrimer,
+			TB_COLLIERY_HAZARDS.HAS_GAS_OUT_AREA AS hasGasOutArea,
+			TB_COLLIERY_HAZARDS.HAS_UNDEAD_FIRE AS hasUndeadFire,
+			TB_COLLIERY_HAZARDS.WIND_COMPLEX AS windComplex,
+			TB_COLLIERY_HAZARDS.TOTAL_STREET_AMOUNT AS totalStreetAmount,
+			TB_COLLIERY_HAZARDS.TOTAL_HARD_DEGREE AS totalHardDegree,
+			TB_COLLIERY_HAZARDS.HAS_UNDER_WATER_WORK AS hasUnderWaterWork,
+			TB_COLLIERY_HAZARDS.IS_UNDER_BULIDING_WORK AS isUnderBulidingWork,
+			TB_COLLIERY_HAZARDS.IS_EFFECTED AS isEffected,
+			TB_COLLIERY_HAZARDS.DEAD_WOUND_NUM AS deadWoundNum,
+			TB_COLLIERY_HAZARDS.SLIGHT_WOUND_NUM AS slightWoundNum,
+			TB_COLLIERY_HAZARDS.BAD_WOUND_NUM AS badWoundNum,
+			TB_COLLIERY_HAZARDS.DEAD_NUM AS deadNum,
+			TB_COLLIERY_HAZARDS.EXPLOSION_ACCIDENT AS explosionAccident,
+			TB_COLLIERY_HAZARDS.FIRE_ACCIDENT AS fireAccident,
+			TB_COLLIERY_HAZARDS.WATER_ACCIDENT AS waterAccident,
+			TB_COLLIERY_HAZARDS.GAS_ACCIDENT AS gasAccident,
+			TB_COLLIERY_HAZARDS.OTHER_ACCIDENT AS otherAccident,
+			TB_COLLIERY_HAZARDS.ZFJ_EQUIP AS zfjEquip,
+			TB_COLLIERY_HAZARDS.JS_EQUIP AS jsEquip,
+			TB_COLLIERY_HAZARDS.ZPSB_EQUIP AS zpsbEquip,
+			TB_COLLIERY_HAZARDS.TFS_EQUIP AS tfsEquip,
+			TB_COLLIERY_HAZARDS.JCTS_EQUIP AS jctsEquip,
+			TB_COLLIERY_HAZARDS.DSSSJ_EQUIP AS dsssjEquip,
+			TB_COLLIERY_HAZARDS.WSCF_EQUIP AS wscfEquip,
+			TB_COLLIERY_HAZARDS.AQJC_EQUIP AS aqjcEquip,
+			TB_COLLIERY_HAZARDS.SENSOR_NUM AS sensorNum,
+			TB_COLLIERY_HAZARDS.BSDJ_EQUIP AS bsdjEquip,
+			TB_COLLIERY_HAZARDS.WJY_EQUIP AS wjyEquip,
+			TB_COLLIERY_HAZARDS.ZJQ_EQUIP AS zjqEquip,
+			TB_COLLIERY_HAZARDS.JXGYDL_EQUIP AS jxgydlEquip,
+			TB_COLLIERY_HAZARDS.INSPECTOR_NUM AS inspectorNum,
+			TB_COLLIERY_HAZARDS.BLASTER_NUM AS blasterNum,
+			TB_COLLIERY_HAZARDS.DRIVER_NUM AS driverNum,
+			TB_COLLIERY_HAZARDS.ELECTRICIAN_NUM AS electricianNum,
+			TB_COLLIERY_HAZARDS.SAFE_MANAGE_MAN_NUM AS safeManageManNum,
+			TB_COLLIERY_HAZARDS.SAFE_MAN_NUM AS safeManNum,
+			TB_COLLIERY_HAZARDS.HIGH_LEVEL_NUM AS highLevelNum,
+			TB_COLLIERY_HAZARDS.MIDDLE_LEVEL_NUM AS middleLevelNum,
+			TB_COLLIERY_HAZARDS.LOW_LEVEL_NUM AS lowLevelNum,
+			TB_COLLIERY_HAZARDS.UNDERGROUND_WORKER_NUM AS undergroundWorkerNum,
+			TB_COLLIERY_HAZARDS.PEASANT_PERCENT AS peasantPercent,
+			TB_COLLIERY_HAZARDS.MAIN_DESC AS mainDesc,
+			TB_COLLIERY_HAZARDS.REMARK AS remark,
+			TB_COLLIERY_HAZARDS.SAVE_MAN AS saveMan,
+			TB_COLLIERY_HAZARDS.CONTACT_PHONE AS contactPhone,
+			TB_COLLIERY_HAZARDS.SAVE_TIME AS saveTime,
+			
+			TB_COLLIERY_HAZARDS.ID AS id,
+			TB_COLLIERY_HAZARDS.STATUS AS status,
+			TB_COLLIERY_HAZARDS.CREATED AS created,
+			TB_COLLIERY_HAZARDS.CREATE_TIME AS createTime,
+			TB_COLLIERY_HAZARDS.UPDATED AS updated,
+			TB_COLLIERY_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_COLLIERY_HAZARDS
+		LEFT JOIN TB_ENTERPRISE
+		ON TB_ENTERPRISE.ID = TB_COLLIERY_HAZARDS.DWDM
+		WHERE
+			TB_COLLIERY_HAZARDS.STATUS = '1'
+		<include refid="CollieryHazards.mapWhereClause"/>
+	</select>
+	<!-- 计数-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_COLLIERY_HAZARDS
+		LEFT JOIN TB_ENTERPRISE
+		ON TB_ENTERPRISE.ID = TB_COLLIERY_HAZARDS.DWDM
+		WHERE
+			TB_COLLIERY_HAZARDS.STATUS = '1' 
+		<include refid="CollieryHazards.mapWhereClause"/>
+	</select>
+	<!-- 批量删除 -->
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_COLLIERY_HAZARDS
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

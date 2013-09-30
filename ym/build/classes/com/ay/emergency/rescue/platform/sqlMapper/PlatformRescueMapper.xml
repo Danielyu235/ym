@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="PlatformRescue">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_PLATFORM_RESCUE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_PLATFORM_RESCUE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_PLATFORM_RESCUE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_PLATFORM_RESCUE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_PLATFORM_RESCUE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_PLATFORM_RESCUE.UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="alarmPeople"> TB_PLATFORM_RESCUE.ALARM_PEOPLE like '%'+#alarmPeople#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="alarmPeopleTel"> TB_PLATFORM_RESCUE.ALARM_PEOPLE_TEL like '%'+#alarmPeopleTel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bigAccidentTypes"> TB_PLATFORM_RESCUE.BIG_ACCIDENT_TYPES like '%'+#bigAccidentTypes#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="smallAccidentTypes"> TB_PLATFORM_RESCUE.SMALL_ACCIDENT_TYPES like '%'+#smallAccidentTypes#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentOfTime"> TB_PLATFORM_RESCUE.ACCIDENT_OF_TIME like '%'+#accidentOfTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentOfPlace"> TB_PLATFORM_RESCUE.ACCIDENT_OF_PLACE like '%'+#accidentOfPlace#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentDescription"> TB_PLATFORM_RESCUE.ACCIDENT_DESCRIPTION like '%'+#accidentDescription#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="alarm"> TB_PLATFORM_RESCUE.ALARM like '%'+#alarm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="alarmTel"> TB_PLATFORM_RESCUE.ALARM_TEL like '%'+#alarmTel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="explain">TB_PLATFORM_RESCUE.EXPLAIN like '%'+#explain#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="deathToll"> TB_PLATFORM_RESCUE.DEATH_TOLL like '%'+#deathToll#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="injuredToll"> TB_PLATFORM_RESCUE.INJURED_TOLL like '%'+#injuredToll#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="disappearToll"> TB_PLATFORM_RESCUE.DISAPPEAR_TOLL like '%'+#disappearToll#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hospitalToll"> TB_PLATFORM_RESCUE.HOSPITAL_TOLL like '%'+#hospitalToll#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="evacuatedToll"> TB_PLATFORM_RESCUE.EVACUATED_TOLL like '%'+#evacuatedToll#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="evacuptedPlace"> TB_PLATFORM_RESCUE.EVACUPTED_PLACE like '%'+#evacuptedPlace#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="situation"> TB_PLATFORM_RESCUE.SITUATION like '%'+#situation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remarks"> TB_PLATFORM_RESCUE.REMARKS like '%'+#remarks#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="state"> state like '%'+#state#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.rescue.platform.pojo.PlatformRescue">
+  		INSERT INTO TB_PLATFORM_RESCUE(
+				
+				ALARM_PEOPLE,
+				ALARM_PEOPLE_TEL,
+				BIG_ACCIDENT_TYPES,
+				SMALL_ACCIDENT_TYPES,
+				ACCIDENT_OF_TIME,
+				ACCIDENT_OF_PLACE,
+				ACCIDENT_DESCRIPTION,
+				ALARM,
+				ALARM_TEL,
+				EXPLAIN,
+				DEATH_TOLL,
+				INJURED_TOLL,
+				DISAPPEAR_TOLL,
+				HOSPITAL_TOLL,
+				EVACUATED_TOLL,
+				EVACUPTED_PLACE,
+				SITUATION,
+				REMARKS,
+				[ORDER],
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#alarmPeople#,
+				#alarmPeopleTel#,
+				#bigAccidentTypes#,
+				#smallAccidentTypes#,
+				#accidentOfTime#,
+				#accidentOfPlace#,
+				#accidentDescription#,
+				#alarm#,
+				#alarmTel#,
+				#explain#,
+				#deathToll#,
+				#injuredToll#,
+				#disappearToll#,
+				#hospitalToll#,
+				#evacuatedToll#,
+				#evacuptedPlace#,
+				#situation#,
+				#remarks#,
+				#order#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_PLATFORM_RESCUE SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.rescue.platform.pojo.PlatformRescue" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_PLATFORM_RESCUE.ALARM_PEOPLE AS alarmPeople,
+			TB_PLATFORM_RESCUE.ALARM_PEOPLE_TEL AS alarmPeopleTel,
+			TB_PLATFORM_RESCUE.BIG_ACCIDENT_TYPES AS bigAccidentTypes,
+			TB_PLATFORM_RESCUE.SMALL_ACCIDENT_TYPES AS smallAccidentTypes,
+			dbo.FN_codeToText(TB_PLATFORM_RESCUE.BIG_ACCIDENT_TYPES) as bigText,
+			dbo.FN_codeToText(TB_PLATFORM_RESCUE.SMALL_ACCIDENT_TYPES) as smallText,
+			TB_PLATFORM_RESCUE.ACCIDENT_OF_TIME AS accidentOfTime,
+			TB_PLATFORM_RESCUE.ACCIDENT_OF_PLACE AS accidentOfPlace,
+			TB_PLATFORM_RESCUE.ACCIDENT_DESCRIPTION AS accidentDescription,
+			TB_PLATFORM_RESCUE.ALARM AS alarm,
+			TB_PLATFORM_RESCUE.ALARM_TEL AS alarmTel,
+			TB_PLATFORM_RESCUE.EXPLAIN AS explain,
+			TB_PLATFORM_RESCUE.DEATH_TOLL AS deathToll,
+			TB_PLATFORM_RESCUE.INJURED_TOLL AS injuredToll,
+			TB_PLATFORM_RESCUE.DISAPPEAR_TOLL AS disappearToll,
+			TB_PLATFORM_RESCUE.HOSPITAL_TOLL AS hospitalToll,
+			TB_PLATFORM_RESCUE.EVACUATED_TOLL AS evacuatedToll,
+			TB_PLATFORM_RESCUE.EVACUPTED_PLACE AS evacuptedPlace,
+			TB_PLATFORM_RESCUE.SITUATION AS situation,
+			TB_PLATFORM_RESCUE.REMARKS AS remarks,
+			TB_PLATFORM_RESCUE.STATE AS state,
+			TB_PLATFORM_RESCUE.[ORDER] AS [order],
+			
+			TB_PLATFORM_RESCUE.ID AS id,
+			TB_PLATFORM_RESCUE.STATUS AS status,
+			TB_PLATFORM_RESCUE.CREATED AS created,
+			TB_PLATFORM_RESCUE.CREATE_TIME AS createTime,
+			TB_PLATFORM_RESCUE.UPDATED AS updated,
+			TB_PLATFORM_RESCUE.UPDATE_TIME as updateTime
+		from
+		TB_PLATFORM_RESCUE
+  		where 
+ 	 		TB_PLATFORM_RESCUE.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.rescue.platform.pojo.PlatformRescue">
+		UPDATE TB_PLATFORM_RESCUE 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="alarmPeople"> ALARM_PEOPLE=#alarmPeople#</isNotEmpty>
+			<isNotEmpty prepend="," property="alarmPeopleTel"> ALARM_PEOPLE_TEL=#alarmPeopleTel#</isNotEmpty>
+			<isNotEmpty prepend="," property="bigAccidentTypes"> BIG_ACCIDENT_TYPES=#bigAccidentTypes#</isNotEmpty>
+			<isNotEmpty prepend="," property="smallAccidentTypes"> SMALL_ACCIDENT_TYPES=#smallAccidentTypes#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentOfTime"> ACCIDENT_OF_TIME=#accidentOfTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentOfPlace"> ACCIDENT_OF_PLACE=#accidentOfPlace#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentDescription"> ACCIDENT_DESCRIPTION=#accidentDescription#</isNotEmpty>
+			<isNotEmpty prepend="," property="alarm"> ALARM=#alarm#</isNotEmpty>
+			<isNotEmpty prepend="," property="alarmTel"> ALARM_TEL=#alarmTel#</isNotEmpty>
+			<isNotEmpty prepend="," property="explain"> EXPLAIN=#explain#</isNotEmpty>
+			<isNotEmpty prepend="," property="deathToll"> DEATH_TOLL=#deathToll#</isNotEmpty>
+			<isNotEmpty prepend="," property="injuredToll"> INJURED_TOLL=#injuredToll#</isNotEmpty>
+			<isNotEmpty prepend="," property="disappearToll"> DISAPPEAR_TOLL=#disappearToll#</isNotEmpty>
+			<isNotEmpty prepend="," property="hospitalToll"> HOSPITAL_TOLL=#hospitalToll#</isNotEmpty>
+			<isNotEmpty prepend="," property="evacuatedToll"> EVACUATED_TOLL=#evacuatedToll#</isNotEmpty>
+			<isNotEmpty prepend="," property="evacuptedPlace"> EVACUPTED_PLACE=#evacuptedPlace#</isNotEmpty>
+			<isNotEmpty prepend="," property="situation"> SITUATION=#situation#</isNotEmpty>
+			<isNotEmpty prepend="," property="remarks"> REMARKS=#remarks#</isNotEmpty>
+			<isNotEmpty prepend="," property="order"> [ORDER]=#order#</isNotEmpty>
+			<isNotEmpty prepend="," property="state"> STATE=#state#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.rescue.platform.pojo.PlatformRescue" parameterClass="java.util.Map">
+ 		SELECT  ALARM_PEOPLE AS alarmPeople, ALARM_PEOPLE_TEL AS alarmPeopleTel, BIG_ACCIDENT_TYPES AS bigAccidentTypes, 
+                      SMALL_ACCIDENT_TYPES AS smallAccidentTypes, dbo.FN_codeToText(BIG_ACCIDENT_TYPES) AS bigText, dbo.FN_codeToText(SMALL_ACCIDENT_TYPES) 
+                      AS smallText, ACCIDENT_OF_TIME AS accidentOfTime, ACCIDENT_OF_PLACE AS accidentOfPlace, ACCIDENT_DESCRIPTION AS accidentDescription, ALARM, 
+                      ALARM_TEL AS alarmTel, EXPLAIN, DEATH_TOLL AS deathToll, INJURED_TOLL AS injuredToll, DISAPPEAR_TOLL AS disappearToll, HOSPITAL_TOLL AS hospitalToll, 
+                      EVACUATED_TOLL AS evacuatedToll, EVACUPTED_PLACE AS evacuptedPlace, SITUATION, REMARKS, STATE, ID, STATUS, CREATED, CREATE_TIME AS createTime, 
+                      UPDATED, UPDATE_TIME AS updateTime
+		FROM         dbo.TB_PLATFORM_RESCUE
+		WHERE     (STATUS = 1)
+		<include refid="PlatformRescue.mapWhereClause"/>
+		ORDER BY createtime DESC
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) FROM dbo.TB_PLATFORM_RESCUE 
+ 		where 
+ 		status =1
+		<include refid="PlatformRescue.mapWhereClause"/>
+	</select>
+	
+	<select id="findType" resultClass="java.lang.String">
+		SELECT data_name FROM dev_data WHERE status = 1 AND type_id = 'sglx'	
+	</select>
+		
+</sqlMap>

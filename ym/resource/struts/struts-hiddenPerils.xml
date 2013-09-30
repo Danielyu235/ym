@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!--干部走动隐患模块-->
+  <package name="hiddenPerils" extends="struts-default" namespace="/hiddenPerils">
+    <action name="hiddenPerilsAction" class="com.ay.hiddenPerils.action.HiddenPerilsAction"/>
+  </package>
+  <!--添加隐患模块-->
+  <package name="perilsData" extends="struts-default" namespace="/perilsData">
+    <action name="perilsDataAction" class="com.ay.hiddenPerils.action.PerilsDataAction"/>
+  </package>
+  <!--事故调查模块-->
+  <package name="accidentSurvery" extends="struts-default" namespace="/accidentSurvery">
+    <action name="accidentSurveryAction" class="com.ay.emergency.rescue.accidentsurvey.action.AccidentSurveryAction"/>
+  </package>
+  <!--事故总结报告模块-->
+  <package name="accidentConclusion" extends="struts-default" namespace="/accidentConclusion">
+    <action name="accidentConclusionAction" class="com.ay.emergency.rescue.accidentconclusion.action.AccidentConclusionAction"/>
+  </package>
+</struts>

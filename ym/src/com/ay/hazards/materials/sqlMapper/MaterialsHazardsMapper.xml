@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_HAZHARDS_MATERIALS-->
+<sqlMap namespace="materials">
+	<!-- add Condition TB_HAZHARDS_MATERIALS-->
+	<resultMap class="com.ay.hazards.materials.pojo.MaterialsHazards" id="th">
+		<result property="materials.id" column="materials.id" />
+		<result property="materials.name" column="materials.name"/>
+		<result property="materials.type" column="materials.type"/>
+		<result property="materials.thresholdQuantity" column="materials.thresholdQuantity"/>
+		<result property="fid" column="fid"/>
+		<result property="materialsId" column="materialsId"/>
+		<result property="wzmc" column="wzmc"/>
+		<result property="xcwzzl" column="xcwzzl"/>
+		<result property="gygczdwzl" column="gygczdwzl"/>
+		<result property="ccdwzl" column="ccdwzl"/>
+		<result property="fqwzl" column="fqwzl"/>
+		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="created" column="created"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updated" column="updated"/>
+		<result property="updateTime" column="updateTime"/>
+	</resultMap>
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> id=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> status=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> created=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> create_time=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> updated=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> update_time=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fid"> fid=#fid#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wzmc"> wzmc=#wzmc#</isNotEmpty>
+			<isNotEmpty prepend="and" property="xcwzzl"> xcwzzl=#xcwzzl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gygczdwzl"> gygczdwzl=#gygczdwzl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ccdwzl"> ccdwzl=#ccdwzl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fqwzl"> fqwzl=#fqwzl#</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.materials.pojo.MaterialsHazards">
+  		insert into  TB_HAZHARDS_MATERIALS(
+				ID,
+				STATUS,
+				MATERIALS_ID,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME,
+				FID,
+				WZMC,
+				XCWZZL,
+				GYGCZDWZL,
+				CCDWZL,
+				FQWZL) values(
+				#id#,
+				#status#,
+				#materialsId#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#,
+				#fid#,
+				#wzmc#,
+				#xcwzzl#,
+				#gygczdwzl#,
+				#ccdwzl#,
+				#fqwzl#)</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		update TB_HAZHARDS_MATERIALS set status='0' 
+  		where 
+ 	 		id=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById"  resultMap="th" parameterClass="java.lang.String">
+ 		select 
+				VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				TB_HAZHARDS_MATERIALS.id,
+				TB_HAZHARDS_MATERIALS.status,
+				TB_HAZHARDS_MATERIALS.created,
+				TB_HAZHARDS_MATERIALS.create_time as createTime,
+				TB_HAZHARDS_MATERIALS.updated,
+				TB_HAZHARDS_MATERIALS.update_time as updateTime,
+				TB_HAZHARDS_MATERIALS.fid,
+				TB_HAZHARDS_MATERIALS.MATERIALS_ID as materialsId,
+				TB_HAZHARDS_MATERIALS.wzmc,
+				TB_HAZHARDS_MATERIALS.xcwzzl,
+				TB_HAZHARDS_MATERIALS.gygczdwzl,
+				TB_HAZHARDS_MATERIALS.ccdwzl,
+				TB_HAZHARDS_MATERIALS.fqwzl
+			from
+			TB_HAZHARDS_MATERIALS
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_HAZHARDS_MATERIALS.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		TB_HAZHARDS_MATERIALS.id=#id#</select>
+ 	 		
+	<select id="findByPid"  resultMap="th" parameterClass="java.lang.String">
+ 		select 
+				VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				TB_HAZHARDS_MATERIALS.id,
+				TB_HAZHARDS_MATERIALS.status,
+				TB_HAZHARDS_MATERIALS.created,
+				TB_HAZHARDS_MATERIALS.create_time as createTime,
+				TB_HAZHARDS_MATERIALS.updated,
+				TB_HAZHARDS_MATERIALS.update_time as updateTime,
+				TB_HAZHARDS_MATERIALS.fid,
+				TB_HAZHARDS_MATERIALS.MATERIALS_ID as materialsId,
+				TB_HAZHARDS_MATERIALS.wzmc,
+				TB_HAZHARDS_MATERIALS.xcwzzl,
+				TB_HAZHARDS_MATERIALS.gygczdwzl,
+				TB_HAZHARDS_MATERIALS.ccdwzl,
+				TB_HAZHARDS_MATERIALS.fqwzl
+			from
+			TB_HAZHARDS_MATERIALS
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_HAZHARDS_MATERIALS.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		TB_HAZHARDS_MATERIALS.fid=#value#
+ 	 	AND TB_HAZHARDS_MATERIALS.status='1' 
+ 	 </select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.materials.pojo.MaterialsHazards">
+		update   TB_HAZHARDS_MATERIALS 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="id"> id=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> status=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="materialsId"> MATERIALS_ID=#materialsId#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> created=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> create_time=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> updated=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> update_time=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="fid"> fid=#fid#</isNotEmpty>
+			<isNotEmpty prepend="," property="wzmc"> wzmc=#wzmc#</isNotEmpty>
+			<isNotEmpty prepend="," property="xcwzzl"> xcwzzl=#xcwzzl#</isNotEmpty>
+			<isNotEmpty prepend="," property="gygczdwzl"> gygczdwzl=#gygczdwzl#</isNotEmpty>
+			<isNotEmpty prepend="," property="ccdwzl"> ccdwzl=#ccdwzl#</isNotEmpty>
+			<isNotEmpty prepend="," property="fqwzl"> fqwzl=#fqwzl#</isNotEmpty>
+		</dynamic>
+  		where 
+ 	 		TB_HAZHARDS_MATERIALS.id=#id#
+	</update>
+	<!-- add method find-->
+	<select id="find" resultMap="th" parameterClass="java.util.Map">
+ 		select 
+	 			VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				TB_HAZHARDS_MATERIALS.id,
+				TB_HAZHARDS_MATERIALS.status,
+				TB_HAZHARDS_MATERIALS.created,
+				TB_HAZHARDS_MATERIALS.create_time as createTime,
+				TB_HAZHARDS_MATERIALS.updated,
+				TB_HAZHARDS_MATERIALS.update_time as updateTime,
+				TB_HAZHARDS_MATERIALS.fid,
+				TB_HAZHARDS_MATERIALS.MATERIALS_ID as materialsId,
+				TB_HAZHARDS_MATERIALS.wzmc,
+				TB_HAZHARDS_MATERIALS.xcwzzl,
+				TB_HAZHARDS_MATERIALS.gygczdwzl,
+				TB_HAZHARDS_MATERIALS.ccdwzl,
+				TB_HAZHARDS_MATERIALS.fqwzl
+			from
+			TB_HAZHARDS_MATERIALS
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_HAZHARDS_MATERIALS.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		 TB_HAZHARDS_MATERIALS.status='1' 
+		<include refid="materials.mapWhereClause"/>
+	</select>
+	
+	<select id="findList" resultMap="th" parameterClass="java.lang.String">
+		select 
+				VIEW_MATERIALS.ID as 'materials.id',
+				VIEW_MATERIALS.NAME as 'materials.name',
+				VIEW_MATERIALS.TYPE as 'materials.type',
+				VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+				TB_HAZHARDS_MATERIALS.id,
+				TB_HAZHARDS_MATERIALS.status,
+				TB_HAZHARDS_MATERIALS.created,
+				TB_HAZHARDS_MATERIALS.create_time as createTime,
+				TB_HAZHARDS_MATERIALS.updated,
+				TB_HAZHARDS_MATERIALS.update_time as updateTime,
+				TB_HAZHARDS_MATERIALS.fid,
+				TB_HAZHARDS_MATERIALS.MATERIALS_ID as materialsId,
+				TB_HAZHARDS_MATERIALS.wzmc,
+				TB_HAZHARDS_MATERIALS.xcwzzl,
+				TB_HAZHARDS_MATERIALS.gygczdwzl,
+				TB_HAZHARDS_MATERIALS.ccdwzl,
+				TB_HAZHARDS_MATERIALS.fqwzl
+			from
+			TB_HAZHARDS_MATERIALS
+			LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_HAZHARDS_MATERIALS.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		 TB_HAZHARDS_MATERIALS.status='1' and TB_HAZHARDS_MATERIALS.fid =#fid#
+	</select>
+	
+
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select count(*) 
+			from
+			TB_HAZHARDS_MATERIALS
+  		where 
+ 	 		 status='1' 
+		<include refid="materials.mapWhereClause"/>
+	</select>
+</sqlMap>

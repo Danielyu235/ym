@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 救援专家 -->
+<package extends="struts-default" name="rescueExpert" namespace="/rescueExpert">
+<action class="com.ay.emergency.resource.expert.action.ExpertResourceAction" name="rescueExpertAction"/>
+</package>
+</struts>

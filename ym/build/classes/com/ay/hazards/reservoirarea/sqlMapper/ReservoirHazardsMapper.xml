@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--库房sqlMapper-->
+<sqlMap namespace="ReservoirHazards">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_RESERVOIR_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_RESERVOIR_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_RESERVOIR_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_RESERVOIR_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_RESERVOIR_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_RESERVOIR_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="areaId"> TB_RESERVOIR_HAZARDS.AREA_ID like '%'+#areaId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="no"> TB_RESERVOIR_HAZARDS.NO like '%'+#no#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_RESERVOIR_HAZARDS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="style"> TB_RESERVOIR_HAZARDS.STYLE like '%'+#style#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="structure"> TB_RESERVOIR_HAZARDS.STRUCTURE like '%'+#structure#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="useYearTime"> TB_RESERVOIR_HAZARDS.USE_YEAR_TIME like '%'+#useYearTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="buildTime"> TB_RESERVOIR_HAZARDS.BUILD_TIME like '%'+#buildTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="area"> TB_RESERVOIR_HAZARDS.AREA like '%'+#area#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hasFireWall"> TB_RESERVOIR_HAZARDS.HAS_FIRE_WALL like '%'+#hasFireWall#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="explosionEquipment"> TB_RESERVOIR_HAZARDS.EXPLOSION_EQUIPMENT like '%'+#explosionEquipment#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="explosionExplosive"> TB_RESERVOIR_HAZARDS.EXPLOSION_EXPLOSIVE like '%'+#explosionExplosive#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="explosionMaterials"> TB_RESERVOIR_HAZARDS.EXPLOSION_MATERIALS like '%'+#explosionMaterials#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="firecracker"> TB_RESERVOIR_HAZARDS.FIRECRACKER like '%'+#firecracker#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="liquidLess"> TB_RESERVOIR_HAZARDS.LIQUID_LESS like '%'+#liquidLess#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="liquidMore"> TB_RESERVOIR_HAZARDS.LIQUID_MORE like '%'+#liquidMore#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gasLess"> TB_RESERVOIR_HAZARDS.GAS_LESS like '%'+#gasLess#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="gasMore"> TB_RESERVOIR_HAZARDS.GAS_MORE like '%'+#gasMore#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="poisonMost"> TB_RESERVOIR_HAZARDS.POISON_MOST like '%'+#poisonMost#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="poisonMore"> TB_RESERVOIR_HAZARDS.POISON_MORE like '%'+#poisonMore#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="poisonLittle"> TB_RESERVOIR_HAZARDS.POISON_LITTLE like '%'+#poisonLittle#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- 添加 -->
+	<insert id="insert" parameterClass="com.ay.hazards.reservoirarea.pojo.ReservoirHazards">
+  		INSERT INTO TB_RESERVOIR_HAZARDS(
+				
+				AREA_ID,
+				NO,
+				NAME,
+				STYLE,
+				STRUCTURE,
+				USE_YEAR_TIME,
+				BUILD_TIME,
+				AREA,
+				HAS_FIRE_WALL,
+				EXPLOSION_EQUIPMENT,
+				EXPLOSION_EXPLOSIVE,
+				EXPLOSION_MATERIALS,
+				FIRECRACKER,
+				LIQUID_LESS,
+				LIQUID_MORE,
+				GAS_LESS,
+				GAS_MORE,
+				POISON_MOST,
+				POISON_MORE,
+				POISON_LITTLE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#areaId#,
+				#no#,
+				#name#,
+				#style#,
+				#structure#,
+				#useYearTime#,
+				#buildTime#,
+				#area#,
+				#hasFireWall#,
+				#explosionEquipment#,
+				#explosionExplosive#,
+				#explosionMaterials#,
+				#firecracker#,
+				#liquidLess#,
+				#liquidMore#,
+				#gasLess#,
+				#gasMore#,
+				#poisonMost#,
+				#poisonMore#,
+				#poisonLittle#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- 删除单条数据 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_RESERVOIR_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- 通过ID获取信息-->
+	<select id="getById" resultClass="com.ay.hazards.reservoirarea.pojo.ReservoirHazards" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_RESERVOIR_HAZARDS.AREA_ID AS areaId,
+			TB_RESERVOIR_HAZARDS.NO AS no,
+			TB_RESERVOIR_HAZARDS.NAME AS name,
+			TB_RESERVOIR_HAZARDS.STYLE AS style,
+			TB_RESERVOIR_HAZARDS.STRUCTURE AS structure,
+			TB_RESERVOIR_HAZARDS.USE_YEAR_TIME AS useYearTime,
+			TB_RESERVOIR_HAZARDS.BUILD_TIME AS buildTime,
+			TB_RESERVOIR_HAZARDS.AREA AS area,
+			TB_RESERVOIR_HAZARDS.HAS_FIRE_WALL AS hasFireWall,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_EQUIPMENT AS explosionEquipment,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_EXPLOSIVE AS explosionExplosive,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_MATERIALS AS explosionMaterials,
+			TB_RESERVOIR_HAZARDS.FIRECRACKER AS firecracker,
+			TB_RESERVOIR_HAZARDS.LIQUID_LESS AS liquidLess,
+			TB_RESERVOIR_HAZARDS.LIQUID_MORE AS liquidMore,
+			TB_RESERVOIR_HAZARDS.GAS_LESS AS gasLess,
+			TB_RESERVOIR_HAZARDS.GAS_MORE AS gasMore,
+			TB_RESERVOIR_HAZARDS.POISON_MOST AS poisonMost,
+			TB_RESERVOIR_HAZARDS.POISON_MORE AS poisonMore,
+			TB_RESERVOIR_HAZARDS.POISON_LITTLE AS poisonLittle,
+			
+			TB_RESERVOIR_HAZARDS.ID AS id,
+			TB_RESERVOIR_HAZARDS.STATUS AS status,
+			TB_RESERVOIR_HAZARDS.CREATED AS created,
+			TB_RESERVOIR_HAZARDS.CREATE_TIME AS createTime,
+			TB_RESERVOIR_HAZARDS.UPDATED AS updated,
+			TB_RESERVOIR_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_RESERVOIR_HAZARDS
+  		where 
+ 	 		TB_RESERVOIR_HAZARDS.ID=#id#
+	</select>
+	<select id="findByPid" resultClass="com.ay.hazards.reservoirarea.pojo.ReservoirHazards" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_RESERVOIR_HAZARDS.AREA_ID AS areaId,
+			TB_RESERVOIR_HAZARDS.NO AS no,
+			TB_RESERVOIR_HAZARDS.NAME AS name,
+			TB_RESERVOIR_HAZARDS.STYLE AS style,
+			TB_RESERVOIR_HAZARDS.STRUCTURE AS structure,
+			TB_RESERVOIR_HAZARDS.USE_YEAR_TIME AS useYearTime,
+			TB_RESERVOIR_HAZARDS.BUILD_TIME AS buildTime,
+			TB_RESERVOIR_HAZARDS.AREA AS area,
+			TB_RESERVOIR_HAZARDS.HAS_FIRE_WALL AS hasFireWall,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_EQUIPMENT AS explosionEquipment,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_EXPLOSIVE AS explosionExplosive,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_MATERIALS AS explosionMaterials,
+			TB_RESERVOIR_HAZARDS.FIRECRACKER AS firecracker,
+			TB_RESERVOIR_HAZARDS.LIQUID_LESS AS liquidLess,
+			TB_RESERVOIR_HAZARDS.LIQUID_MORE AS liquidMore,
+			TB_RESERVOIR_HAZARDS.GAS_LESS AS gasLess,
+			TB_RESERVOIR_HAZARDS.GAS_MORE AS gasMore,
+			TB_RESERVOIR_HAZARDS.POISON_MOST AS poisonMost,
+			TB_RESERVOIR_HAZARDS.POISON_MORE AS poisonMore,
+			TB_RESERVOIR_HAZARDS.POISON_LITTLE AS poisonLittle,
+			
+			TB_RESERVOIR_HAZARDS.ID AS id,
+			TB_RESERVOIR_HAZARDS.STATUS AS status,
+			TB_RESERVOIR_HAZARDS.CREATED AS created,
+			TB_RESERVOIR_HAZARDS.CREATE_TIME AS createTime,
+			TB_RESERVOIR_HAZARDS.UPDATED AS updated,
+			TB_RESERVOIR_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_RESERVOIR_HAZARDS
+  		where 
+ 	 		TB_RESERVOIR_HAZARDS.AREA_ID=#value#
+ 	 	AND TB_RESERVOIR_HAZARDS.STATUS = '1'
+	</select>
+	<!-- 更新 -->
+	<update id="update" parameterClass="com.ay.hazards.reservoirarea.pojo.ReservoirHazards">
+		UPDATE TB_RESERVOIR_HAZARDS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="areaId"> AREA_ID=#areaId#</isNotEmpty>
+			<isNotEmpty prepend="," property="no"> NO=#no#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="style"> STYLE=#style#</isNotEmpty>
+			<isNotEmpty prepend="," property="structure"> STRUCTURE=#structure#</isNotEmpty>
+			<isNotEmpty prepend="," property="useYearTime"> USE_YEAR_TIME=#useYearTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="buildTime"> BUILD_TIME=#buildTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="area"> AREA=#area#</isNotEmpty>
+			<isNotEmpty prepend="," property="hasFireWall"> HAS_FIRE_WALL=#hasFireWall#</isNotEmpty>
+			<isNotEmpty prepend="," property="explosionEquipment"> EXPLOSION_EQUIPMENT=#explosionEquipment#</isNotEmpty>
+			<isNotEmpty prepend="," property="explosionExplosive"> EXPLOSION_EXPLOSIVE=#explosionExplosive#</isNotEmpty>
+			<isNotEmpty prepend="," property="explosionMaterials"> EXPLOSION_MATERIALS=#explosionMaterials#</isNotEmpty>
+			<isNotEmpty prepend="," property="firecracker"> FIRECRACKER=#firecracker#</isNotEmpty>
+			<isNotEmpty prepend="," property="liquidLess"> LIQUID_LESS=#liquidLess#</isNotEmpty>
+			<isNotEmpty prepend="," property="liquidMore"> LIQUID_MORE=#liquidMore#</isNotEmpty>
+			<isNotEmpty prepend="," property="gasLess"> GAS_LESS=#gasLess#</isNotEmpty>
+			<isNotEmpty prepend="," property="gasMore"> GAS_MORE=#gasMore#</isNotEmpty>
+			<isNotEmpty prepend="," property="poisonMost"> POISON_MOST=#poisonMost#</isNotEmpty>
+			<isNotEmpty prepend="," property="poisonMore"> POISON_MORE=#poisonMore#</isNotEmpty>
+			<isNotEmpty prepend="," property="poisonLittle"> POISON_LITTLE=#poisonLittle#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 查找list-->
+	<select id="find" resultClass="com.ay.hazards.reservoirarea.pojo.ReservoirHazards" parameterClass="java.util.Map">
+ 		SELECT
+			TB_ENTERPRISE.CORP_NAME AS 'reservoirArea.corpName',
+			TB_RESERVOIR_AREA_HAZARDS.DWDM AS 'reservoirArea.dwdm',
+			TB_RESERVOIR_AREA_HAZARDS.NO AS 'reservoirArea.no',
+			TB_RESERVOIR_AREA_HAZARDS.NAME AS 'reservoirArea.name',
+			TB_RESERVOIR_AREA_HAZARDS.LOCATION AS 'reservoirArea.location',
+			TB_RESERVOIR_AREA_HAZARDS.ENVIRONMENT AS 'reservoirArea.environment',
+			TB_RESERVOIR_AREA_HAZARDS.AREA AS 'reservoirArea.area',
+			TB_RESERVOIR_AREA_HAZARDS.SIZE AS 'reservoirArea.size',
+			TB_RESERVOIR_AREA_HAZARDS.SAVE_MAN AS 'reservoirArea.saveMan',
+			TB_RESERVOIR_AREA_HAZARDS.CONTACT_PHONE AS 'reservoirArea.contactPhone',
+			TB_RESERVOIR_AREA_HAZARDS.SAVE_TIME AS 'reservoirArea.saveTime',
+			
+			TB_RESERVOIR_AREA_HAZARDS.ID AS 'reservoirArea.id',
+			TB_RESERVOIR_AREA_HAZARDS.STATUS AS 'reservoirArea.status',
+			TB_RESERVOIR_AREA_HAZARDS.CREATED AS 'reservoirArea.created',
+			TB_RESERVOIR_AREA_HAZARDS.CREATE_TIME AS 'reservoirArea.createTime',
+			TB_RESERVOIR_AREA_HAZARDS.UPDATED AS 'reservoirArea.updated',
+			TB_RESERVOIR_AREA_HAZARDS.UPDATE_TIME AS 'reservoirArea.updateTime',
+
+
+			TB_RESERVOIR_HAZARDS.AREA_ID AS areaId,
+			TB_RESERVOIR_HAZARDS.NO AS no,
+			TB_RESERVOIR_HAZARDS.NAME AS name,
+			TB_RESERVOIR_HAZARDS.STYLE AS style,
+			TB_RESERVOIR_HAZARDS.STRUCTURE AS structure,
+			TB_RESERVOIR_HAZARDS.USE_YEAR_TIME AS useYearTime,
+			TB_RESERVOIR_HAZARDS.BUILD_TIME AS buildTime,
+			TB_RESERVOIR_HAZARDS.AREA AS area,
+			TB_RESERVOIR_HAZARDS.HAS_FIRE_WALL AS hasFireWall,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_EQUIPMENT AS explosionEquipment,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_EXPLOSIVE AS explosionExplosive,
+			TB_RESERVOIR_HAZARDS.EXPLOSION_MATERIALS AS explosionMaterials,
+			TB_RESERVOIR_HAZARDS.FIRECRACKER AS firecracker,
+			TB_RESERVOIR_HAZARDS.LIQUID_LESS AS liquidLess,
+			TB_RESERVOIR_HAZARDS.LIQUID_MORE AS liquidMore,
+			TB_RESERVOIR_HAZARDS.GAS_LESS AS gasLess,
+			TB_RESERVOIR_HAZARDS.GAS_MORE AS gasMore,
+			TB_RESERVOIR_HAZARDS.POISON_MOST AS poisonMost,
+			TB_RESERVOIR_HAZARDS.POISON_MORE AS poisonMore,
+			TB_RESERVOIR_HAZARDS.POISON_LITTLE AS poisonLittle,
+			
+			TB_RESERVOIR_HAZARDS.ID AS id,
+			TB_RESERVOIR_HAZARDS.STATUS AS status,
+			TB_RESERVOIR_HAZARDS.CREATED AS created,
+			TB_RESERVOIR_HAZARDS.CREATE_TIME AS createTime,
+			TB_RESERVOIR_HAZARDS.UPDATED AS updated,
+			TB_RESERVOIR_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_RESERVOIR_HAZARDS
+		LEFT JOIN TB_RESERVOIR_AREA_HAZARDS
+		ON TB_RESERVOIR_AREA_HAZARDS.ID = TB_RESERVOIR_HAZARDS.AREA_ID
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_RESERVOIR_AREA_HAZARDS.DWDM = TB_ENTERPRISE.ID
+		WHERE
+			TB_RESERVOIR_HAZARDS.STATUS = '1'
+		<include refid="ReservoirHazards.mapWhereClause"/>
+	</select>
+	<!-- 计数-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_RESERVOIR_HAZARDS
+		WHERE
+			TB_RESERVOIR_HAZARDS.STATUS = '1' 
+		<include refid="ReservoirHazards.mapWhereClause"/>
+	</select>
+	<!-- 批量删除 -->
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_RESERVOIR_HAZARDS
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Hazards">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> VIEW_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> VIEW_HAZARDS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dwdm"> VIEW_HAZARDS.DWDM like '%'+#dwdm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="type"> VIEW_HAZARDS.TYPE like '%'+#type#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> VIEW_HAZARDS.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="info"> VIEW_HAZARDS.INFO = #info#</isNotEmpty>
+			<isNotEmpty prepend="and" property="reason"> VIEW_HAZARDS.REASON like '%'+#reason#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<select id="getById" resultClass="com.ay.hazards.all.pojo.Hazards" parameterClass="java.lang.String">
+ 		SELECT 
+			VIEW_HAZARDS.ID AS id,
+			VIEW_HAZARDS.NAME AS name,
+			VIEW_HAZARDS.DWDM AS dwdm,
+			VIEW_HAZARDS.TYPE AS type,
+			VIEW_HAZARDS.CORP_NAME AS corpName,
+			VIEW_HAZARDS.NAME_SPACE AS nameSpace,
+			VIEW_HAZARDS.INFO AS info,
+			VIEW_HAZARDS.REASON AS reason
+		from
+		VIEW_HAZARDS
+  		where 
+ 	 		VIEW_HAZARDS.ID=#id#
+	</select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hazards.all.pojo.Hazards" parameterClass="java.util.Map">
+ 		SELECT
+			VIEW_HAZARDS.ID AS id,
+			VIEW_HAZARDS.NAME AS name,
+			VIEW_HAZARDS.DWDM AS dwdm,
+			VIEW_HAZARDS.TYPE AS type,
+			VIEW_HAZARDS.CORP_NAME AS corpName,
+			VIEW_HAZARDS.NAME_SPACE AS nameSpace,
+			VIEW_HAZARDS.INFO AS info,
+			VIEW_HAZARDS.REASON AS reason
+		FROM
+			VIEW_HAZARDS
+		WHERE 1=1
+		<include refid="Hazards.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			VIEW_HAZARDS
+		WHERE 1=1
+		<include refid="Hazards.mapWhereClause"/>
+	</select>
+</sqlMap>

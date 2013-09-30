@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+  <!--采煤系统模块-->  
+  <bean id="coalMiningSysThemeDao" class="com.ay.colliery.theme.CoalMiningSysTheme.dao.CoalMiningSysThemeDao" parent="baseDao"/>  
+  <bean id="coalMiningSysThemeService" class="com.ay.colliery.theme.CoalMiningSysTheme.service.CoalMiningSysThemeService"> 
+    <property name="dao" ref="coalMiningSysThemeDao"/> 
+  </bean>  
+  <!--掘进系统模块-->  
+  <bean id="tunnellingSysThemeDao" class="com.ay.colliery.theme.TunnellingSysTheme.dao.TunnellingSysThemeDao" parent="baseDao"/>  
+  <bean id="tunnellingSysThemeService" class="com.ay.colliery.theme.TunnellingSysTheme.service.TunnellingSysThemeService"> 
+    <property name="dao" ref="tunnellingSysThemeDao"/> 
+  </bean>  
+  <!--机电系统模块-->  
+  <bean id="machineElectricSysThemeDao" class="com.ay.colliery.theme.MachineElectricSysTheme.dao.MachineElectricSysThemeDao" parent="baseDao"/>  
+  <bean id="machineElectricSysThemeService" class="com.ay.colliery.theme.MachineElectricSysTheme.service.MachineElectricSysThemeService"> 
+    <property name="dao" ref="machineElectricSysThemeDao"/> 
+  </bean>  
+  <!--运输系统模块-->  
+  <bean id="aThreeAntiSysThemeDao" class="com.ay.colliery.theme.AThreeAntiSysTheme.dao.AThreeAntiSysThemeDao" parent="baseDao"/>  
+  <bean id="aThreeAntiSysThemeService" class="com.ay.colliery.theme.AThreeAntiSysTheme.service.AThreeAntiSysThemeService"> 
+    <property name="dao" ref="aThreeAntiSysThemeDao"/> 
+  </bean>  
+  <!--地面设施系统模块-->  
+  <bean id="floorFacilitiesSysThemeDao" class="com.ay.colliery.theme.FloorFacilitiesSysTheme.dao.FloorFacilitiesSysThemeDao" parent="baseDao"/>  
+  <bean id="floorFacilitiesSysThemeService" class="com.ay.colliery.theme.FloorFacilitiesSysTheme.service.FloorFacilitiesSysThemeService"> 
+    <property name="dao" ref="floorFacilitiesSysThemeDao"/> 
+  </bean>  
+  <!--岗位要领维护模块-->  
+  <bean id="essentialsDao" class="com.ay.essentials.dao.EssentialsDao" parent="baseDao"/>  
+  <bean id="essentialsService" class="com.ay.essentials.service.EssentialsService"> 
+    <property name="dao" ref="essentialsDao"/> 
+  </bean>  
+  <!--采煤系统主题模块-->  
+  <bean id="coalztDao" class="com.ay.themezt.coalzt.dao.CoalztDao" parent="baseDao"/>  
+  <bean id="coalztService" class="com.ay.themezt.coalzt.service.CoalztService"> 
+    <property name="dao" ref="coalztDao"/> 
+  </bean>  
+  <!--原煤产量模块-->  
+  <bean id="coalOutputDao" class="com.ay.themezt.coalzt.dao.CoalOutputDao" parent="baseDao"/>  
+  <bean id="coalOutputService" class="com.ay.themezt.coalzt.service.CoalOutputService"> 
+    <property name="dao" ref="coalOutputDao"/> 
+  </bean>  
+  <bean id="electDao" class="com.ay.elect.dao.ElectDao" parent="baseDao"/>  
+  <bean id="electService" class="com.ay.elect.service.ElectService"> 
+    <property name="dao" ref="electDao"/> 
+  </bean>  
+  <!--运输系统数据入口模块-->
+  <bean id="tranDao" class="com.ay.tran.dao.TranDao" parent="baseDao"/>
+  <bean id="tranService" class="com.ay.tran.service.TranService">
+    <property name="dao" ref="tranDao"/>
+  </bean>
+</beans>

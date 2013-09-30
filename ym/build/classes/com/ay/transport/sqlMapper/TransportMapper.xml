@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Transport">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_TRANSPORT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_TRANSPORT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_TRANSPORT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_TRANSPORT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_TRANSPORT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_TRANSPORT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="corpKey"> TB_TRANSPORT.CORP_KEY like '%'+#corpKey#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_TRANSPORT.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_TRANSPORT.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_TRANSPORT.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="station"> TB_TRANSPORT.STATION like '%'+#station#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="craft"> TB_TRANSPORT.CRAFT like '%'+#craft#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.transport.pojo.Transport">
+  		INSERT INTO TB_TRANSPORT(
+				
+				CORP_KEY,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				STATION,
+				CRAFT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpKey#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#station#,
+				#craft#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_TRANSPORT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.transport.pojo.Transport" parameterClass="java.lang.String">
+ 		<!--SELECT 
+			
+			TB_TRANSPORT.CORP_KEY AS corpKey,
+			TB_TRANSPORT.DANGEROUS AS dangerous,
+			TB_TRANSPORT.LOSS AS loss,
+			TB_TRANSPORT.STEP AS step,
+			TB_TRANSPORT.STATION AS station,
+			TB_TRANSPORT.CRAFT AS craft,
+			
+			TB_TRANSPORT.ID AS id,
+			TB_TRANSPORT.STATUS AS status,
+			TB_TRANSPORT.CREATED AS created,
+			TB_TRANSPORT.CREATE_TIME AS createTime,
+			TB_TRANSPORT.UPDATED AS updated,
+			TB_TRANSPORT.UPDATE_TIME as updateTime
+		from
+		TB_TRANSPORT
+  		where 
+ 	 		TB_TRANSPORT.ID=#id#
+ 	 	-->
+ 	 	SELECT 
+			VIEW_TRANSPORT.CORP_KEY AS corpKey,
+			VIEW_TRANSPORT.DANGEROUS AS dangerous,
+			VIEW_TRANSPORT.LOSS AS loss,
+			VIEW_TRANSPORT.STEP AS step,
+			VIEW_TRANSPORT.STATION AS station,
+			VIEW_TRANSPORT.CRAFT AS craft,
+			dbo.FN_codeToText(VIEW_TRANSPORT.CRAFT) as craftTypeName,
+			VIEW_TRANSPORT.ID AS id,
+			VIEW_TRANSPORT.STATUS AS status,
+			VIEW_TRANSPORT.CREATED AS created,
+			VIEW_TRANSPORT.CREATE_TIME AS createTime,
+			VIEW_TRANSPORT.UPDATED AS updated,
+			VIEW_TRANSPORT.UPDATE_TIME as updateTime,
+			
+			VIEW_TRANSPORT.CZYL AS czyl,
+			VIEW_TRANSPORT.KSYD AS ksyd,
+			VIEW_TRANSPORT.SGAL AS sgal,
+			VIEW_TRANSPORT.SSZY AS sszy,
+			VIEW_TRANSPORT.SSGZ AS ssgz,
+			dbo.FN_codeToText(VIEW_TRANSPORT.sszy) as sszyByType,
+			dbo.FN_codeToText(VIEW_TRANSPORT.ssgz) as ssgzByType
+		FROM
+		VIEW_TRANSPORT 
+  		where 
+ 	 		VIEW_TRANSPORT.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.transport.pojo.Transport">
+		UPDATE TB_TRANSPORT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="corpKey"> CORP_KEY=#corpKey#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="station"> STATION=#station#</isNotEmpty>
+			<isNotEmpty prepend="," property="craft"> CRAFT=#craft#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.transport.pojo.Transport" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_TRANSPORT.CORP_KEY AS corpKey,
+			TB_TRANSPORT.DANGEROUS AS dangerous,
+			TB_TRANSPORT.LOSS AS loss,
+			TB_TRANSPORT.STEP AS step,
+			TB_TRANSPORT.STATION AS station,
+			TB_TRANSPORT.CRAFT AS craft,
+			dbo.FN_codeToText(TB_TRANSPORT.CRAFT) as craftTypeName,
+			TB_TRANSPORT.ID AS id,
+			TB_TRANSPORT.STATUS AS status,
+			TB_TRANSPORT.CREATED AS created,
+			TB_TRANSPORT.CREATE_TIME AS createTime,
+			TB_TRANSPORT.UPDATED AS updated,
+			TB_TRANSPORT.UPDATE_TIME AS updateTime
+		FROM
+			TB_TRANSPORT
+		WHERE
+			TB_TRANSPORT.STATUS = '1'
+		<include refid="Transport.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_TRANSPORT
+		WHERE
+			TB_TRANSPORT.STATUS = '1' 
+		<include refid="Transport.mapWhereClause"/>
+	</select>
+	
+		<select id="flist" resultClass="com.ay.transport.pojo.Transport" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_TRANSPORT.CORP_KEY AS corpKey,
+			TB_TRANSPORT.DANGEROUS AS dangerous,
+			TB_TRANSPORT.LOSS AS loss,
+			TB_TRANSPORT.STEP AS step,
+			TB_TRANSPORT.STATION AS station,
+			TB_TRANSPORT.CRAFT AS craft,
+			dbo.FN_codeToText(TB_TRANSPORT.CRAFT) as craftTypeName,
+			TB_TRANSPORT.ID AS id,
+			TB_TRANSPORT.STATUS AS status,
+			TB_TRANSPORT.CREATED AS created,
+			TB_TRANSPORT.CREATE_TIME AS createTime,
+			TB_TRANSPORT.UPDATED AS updated,
+			TB_TRANSPORT.UPDATE_TIME AS updateTime
+		FROM
+			TB_TRANSPORT
+		WHERE
+			TB_TRANSPORT.STATUS = '1'
+		<include refid="Transport.mapWhereClause"/>
+	</select>
+</sqlMap>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="QuestionCredit">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_QUESTION_CREDIT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_QUESTION_CREDIT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_QUESTION_CREDIT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_QUESTION_CREDIT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_QUESTION_CREDIT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_QUESTION_CREDIT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="qsTypeId"> TB_QUESTION_CREDIT.QS_TYPE_ID like '%'+#qsTypeId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="qsName"> TB_QUESTION_CREDIT.QS_NAME like '%'+#qsName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="optionA"> TB_QUESTION_CREDIT.OPTION_A like '%'+#optionA#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="optionB"> TB_QUESTION_CREDIT.OPTION_B like '%'+#optionB#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="optionC"> TB_QUESTION_CREDIT.OPTION_C like '%'+#optionC#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="optionD"> TB_QUESTION_CREDIT.OPTION_D like '%'+#optionD#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="optionE"> TB_QUESTION_CREDIT.OPTION_E like '%'+#optionE#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="qsAnswer"> TB_QUESTION_CREDIT.QS_ANSWER like '%'+#qsAnswer#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="qsUser"> TB_QUESTION_CREDIT.QS_USER like '%'+#qsUser#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="remarks"> TB_QUESTION_CREDIT.REMARKS like '%'+#remarks#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="quartersTypeId"> TB_QUESTION_CREDIT.QUARTERS_TYPE_ID like '%'+#quartersTypeId#+'%'</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.credit.examine.questionManage.pojo.QuestionCredit">
+  		INSERT INTO TB_QUESTION_CREDIT(
+				
+				QS_TYPE_ID,
+				QS_NAME,
+				OPTION_A,
+				OPTION_B,
+				OPTION_C,
+				OPTION_D,
+				OPTION_E,
+				QS_ANSWER,
+				QS_USER,
+				REMARKS,
+				QUARTERS_TYPE_ID,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#qsTypeId#,
+				#qsName#,
+				#optionA#,
+				#optionB#,
+				#optionC#,
+				#optionD#,
+				#optionE#,
+				#qsAnswer#,
+				#qsUser#,
+				#remarks#,
+				#quartersTypeId#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_QUESTION_CREDIT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.credit.examine.questionManage.pojo.QuestionCredit" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_QUESTION_CREDIT.QS_TYPE_ID AS qsTypeId,
+			TB_QUESTION_CREDIT.QS_NAME AS qsName,
+			TB_QUESTION_CREDIT.OPTION_A AS optionA,
+			TB_QUESTION_CREDIT.OPTION_B AS optionB,
+			TB_QUESTION_CREDIT.OPTION_C AS optionC,
+			TB_QUESTION_CREDIT.OPTION_D AS optionD,
+			TB_QUESTION_CREDIT.OPTION_E AS optionE,
+			TB_QUESTION_CREDIT.QS_ANSWER AS qsAnswer,
+			TB_QUESTION_CREDIT.QS_USER AS qsUser,
+			TB_QUESTION_CREDIT.REMARKS AS remarks,
+			TB_QUESTION_CREDIT.QUARTERS_TYPE_ID as quartersTypeId,
+			dbo.FN_codeToText(TB_QUESTION_CREDIT.QUARTERS_TYPE_ID) as quartersTypeName,
+			TB_QUESTION_CREDIT.ID AS id,
+			TB_QUESTION_CREDIT.STATUS AS status,
+			TB_QUESTION_CREDIT.CREATED AS created,
+			TB_QUESTION_CREDIT.CREATE_TIME AS createTime,
+			TB_QUESTION_CREDIT.UPDATED AS updated,
+			TB_QUESTION_CREDIT.UPDATE_TIME as updateTime
+		from
+		TB_QUESTION_CREDIT
+  		where 
+ 	 		TB_QUESTION_CREDIT.ID=#id#
+	</select>
+	
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.credit.examine.questionManage.pojo.QuestionCredit">
+		UPDATE TB_QUESTION_CREDIT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="qsTypeId"> QS_TYPE_ID=#qsTypeId#</isNotEmpty>
+			<isNotEmpty prepend="," property="qsName"> QS_NAME=#qsName#</isNotEmpty>
+			<isNotEmpty prepend="," property="optionA"> OPTION_A=#optionA#</isNotEmpty>
+			<isNotEmpty prepend="," property="optionB"> OPTION_B=#optionB#</isNotEmpty>
+			<isNotEmpty prepend="," property="optionC"> OPTION_C=#optionC#</isNotEmpty>
+			<isNotEmpty prepend="," property="optionD"> OPTION_D=#optionD#</isNotEmpty>
+			<isNotEmpty prepend="," property="optionE"> OPTION_E=#optionE#</isNotEmpty>
+			<isNotEmpty prepend="," property="qsAnswer"> QS_ANSWER=#qsAnswer#</isNotEmpty>
+			<isNotEmpty prepend="," property="qsUser"> QS_USER=#qsUser#</isNotEmpty>
+			<isNotEmpty prepend="," property="remarks"> REMARKS=#remarks#</isNotEmpty>
+			<isNotEmpty prepend="," property="quartersTypeId"> QUARTERS_TYPE_ID=#quartersTypeId#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.credit.examine.questionManage.pojo.QuestionCredit" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_QUESTION_CREDIT.QS_TYPE_ID AS qsTypeId,
+			TB_QUESTION_CREDIT.QS_NAME AS qsName,
+			TB_QUESTION_CREDIT.OPTION_A AS optionA,
+			TB_QUESTION_CREDIT.OPTION_B AS optionB,
+			TB_QUESTION_CREDIT.OPTION_C AS optionC,
+			TB_QUESTION_CREDIT.OPTION_D AS optionD,
+			TB_QUESTION_CREDIT.OPTION_E AS optionE,
+			TB_QUESTION_CREDIT.QS_ANSWER AS qsAnswer,
+			TB_QUESTION_CREDIT.QS_USER AS qsUser,
+			TB_QUESTION_CREDIT.REMARKS AS remarks,
+			TB_QUESTION_CREDIT.QUARTERS_TYPE_ID as quartersTypeId,
+			dbo.FN_codeToText(TB_QUESTION_CREDIT.QUARTERS_TYPE_ID) as quartersTypeName,
+			
+			TB_QUESTION_CREDIT.ID AS id,
+			TB_QUESTION_CREDIT.STATUS AS status,
+			TB_QUESTION_CREDIT.CREATED AS created,
+			TB_QUESTION_CREDIT.CREATE_TIME AS createTime,
+			TB_QUESTION_CREDIT.UPDATED AS updated,
+			TB_QUESTION_CREDIT.UPDATE_TIME AS updateTime
+		FROM
+			TB_QUESTION_CREDIT
+		WHERE
+			TB_QUESTION_CREDIT.STATUS = '1' 
+		<include refid="QuestionCredit.mapWhereClause"/>
+		order by quartersTypeName
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_QUESTION_CREDIT
+		WHERE
+			TB_QUESTION_CREDIT.STATUS = '1' 
+		<include refid="QuestionCredit.mapWhereClause"/>
+	</select>
+	<select id="findList" resultClass="com.ay.credit.examine.questionManage.pojo.QuestionCredit" parameterClass="java.util.Map">
+ 		select 
+			dbo.FN_codeToText(QUARTERS_TYPE_ID) as quartersTypeName, 
+			TB_QUESTION_CREDIT.QS_NAME as qsName,
+			TB_QUESTION_CREDIT.OPTION_A as optionA,
+			TB_QUESTION_CREDIT.OPTION_B as optionB,
+			TB_QUESTION_CREDIT.OPTION_C as optionC,
+			TB_QUESTION_CREDIT.OPTION_D as optionD,
+			TB_QUESTION_CREDIT.OPTION_E as optionE,
+			TB_QUESTION_CREDIT.QS_ANSWER AS qsAnswer,
+			TB_QUESTION_CREDIT.QS_USER as qsUser,
+			TB_QUESTION_CREDIT.QUARTERS_TYPE_ID as quartersTypeId,
+			TB_QUESTION_CREDIT.REMARKS as remarks,
+			m.QUESTION_NAME as qsTypeName,
+			TB_QUESTION_CREDIT.ID as id,
+			TB_QUESTION_CREDIT.STATUS as status,
+			TB_QUESTION_CREDIT.CREATED as created,
+			TB_QUESTION_CREDIT.CREATE_TIME as createTime,
+			TB_QUESTION_CREDIT.UPDATE_TIME as updateTime,
+			TB_QUESTION_CREDIT.UPDATED as upadted
+		from 
+			TB_QUESTION_CREDIT
+			inner join TB_QUESTION_MANAGE_CREDIT as m 
+			on m.ID = TB_QUESTION_CREDIT.QS_TYPE_ID
+			where TB_QUESTION_CREDIT.STATUS ='1'
+		<include refid="QuestionCredit.mapWhereClause"/>
+		order by qsTypeName
+	</select>
+	
+	<select id="countList" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		from 
+			TB_QUESTION_CREDIT
+			inner join TB_QUESTION_MANAGE_CREDIT as m 
+			on m.ID = TB_QUESTION_CREDIT.QS_TYPE_ID
+		where 
+		TB_QUESTION_CREDIT.STATUS ='1'
+		<include refid="QuestionCredit.mapWhereClause"/>
+	</select>
+</sqlMap>

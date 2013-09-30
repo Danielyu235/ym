@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Employee">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_EMPLOYEE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_EMPLOYEE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_EMPLOYEE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_EMPLOYEE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_EMPLOYEE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_EMPLOYEE.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="jobNum"> TB_EMPLOYEE.JOB_NUM like '%'+#jobNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_EMPLOYEE.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="major"> TB_EMPLOYEE.MAJOR like '%'+#major#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="post"> TB_EMPLOYEE.POST like '%'+#post#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="done"> TB_EMPLOYEE.DEPARTMENTF = #done#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dtwo"> TB_EMPLOYEE.DEPARTMENTS = #dtwo#</isNotEmpty>
+			<isNotEmpty prepend="and" property="idNumber"> TB_EMPLOYEE.IDNUMBER = #idNumber#</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.employee.pojo.Employee">
+  		INSERT INTO TB_EMPLOYEE(
+				
+				JOB_NUM,
+				NAME,
+				GENDER,
+				PASSPORT,
+				DATAOFBIRTH,
+				EDUCATION,
+				WORKTIME,
+				TRANSFERTIME,
+				DEPARTMENTF,
+				DEPARTMENTS,
+				MAJOR,
+				POST,
+				HOMETOWN,
+				HOMEADDRESS,
+				IDNUMBER,
+				CELLPHONENUMBER,
+				PHONENUMBER,
+				SALT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#jobNum#,
+				#name#,
+				#gender#,
+				#passport#,
+				#dateOfBirth#,
+				#education#,
+				#workTime#,
+				#transferTime#,
+				#done#,
+				#dtwo#,
+				#major#,
+				#post#,
+				#homeTown#,
+				#homeAddress#,
+				#idNumber#,
+				#cellPhoneNumber#,
+				#phoneNumber#,
+				#salt#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_EMPLOYEE SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.employee.pojo.Employee" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_EMPLOYEE.JOB_NUM AS jobNum,
+			TB_EMPLOYEE.NAME AS name,
+			TB_EMPLOYEE.MAJOR AS major,
+			TB_EMPLOYEE.POST AS post,
+			TB_EMPLOYEE.GENDER AS gender,
+			TB_EMPLOYEE.PASSPORT AS passport,
+			TB_EMPLOYEE.DATAOFBIRTH AS dateOfBirth,
+			TB_EMPLOYEE.EDUCATION AS education,
+			TB_EMPLOYEE.WORKTIME AS workTime,
+			TB_EMPLOYEE.TRANSFERTIME AS transferTime,
+			TB_EMPLOYEE.DEPARTMENTF AS done,
+			TB_EMPLOYEE.DEPARTMENTS AS dtwo,
+			
+			TB_EMPLOYEE.HOMETOWN AS homeTown,
+			TB_EMPLOYEE.HOMEADDRESS AS homeAddress,
+			TB_EMPLOYEE.IDNUMBER AS idNumber,
+			TB_EMPLOYEE.CELLPHONENUMBER AS cellPhoneNumber,
+			TB_EMPLOYEE.PHONENUMBER AS phoneNumber,
+			
+			dbo.FN_codeToText(TB_EMPLOYEE.MAJOR) as majorName,
+			dbo.FN_codeToText(TB_EMPLOYEE.POST) as postName,
+			dbo.FN_codeToText(TB_EMPLOYEE.DEPARTMENTF) as doneName,
+			dbo.FN_codeToText(TB_EMPLOYEE.DEPARTMENTS) as dtwoName,
+			dbo.FN_codeToText(TB_EMPLOYEE.GENDER) as genderName,
+			
+			TB_EMPLOYEE.ID AS id,
+			TB_EMPLOYEE.STATUS AS status,
+			TB_EMPLOYEE.CREATED AS created,
+			TB_EMPLOYEE.CREATE_TIME AS createTime,
+			TB_EMPLOYEE.UPDATED AS updated,
+			TB_EMPLOYEE.UPDATE_TIME as updateTime
+			
+		from
+		TB_EMPLOYEE
+  		where 
+ 	 		TB_EMPLOYEE.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.employee.pojo.Employee">
+		UPDATE TB_EMPLOYEE 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="jobNum"> JOB_NUM=#jobNum#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="major"> MAJOR=#major#</isNotEmpty>
+			<isNotEmpty prepend="," property="post"> POST=#post#</isNotEmpty>
+			<isNotEmpty prepend="," property="gender"> GENDER=#gender#</isNotEmpty>
+			<isNotEmpty prepend="," property="passport"> PASSPORT=#passport#</isNotEmpty>
+			<isNotEmpty prepend="," property="dateOfBirth"> DATAOFBIRTH=#dateOfBirth#</isNotEmpty>
+			<isNotEmpty prepend="," property="education"> EDUCATION=#education#</isNotEmpty>	
+			<isNotEmpty prepend="," property="workTime"> WORKTIME=#workTime#</isNotEmpty>	
+			<isNotEmpty prepend="," property="transferTime"> TRANSFERTIME=#transferTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="done"> DEPARTMENTF=#done#</isNotEmpty>
+			<isNotEmpty prepend="," property="dtwo"> DEPARTMENTS=#dtwo#</isNotEmpty>
+			<isNotEmpty prepend="," property="homeTown"> HOMETOWN=#homeTown#</isNotEmpty>
+			<isNotEmpty prepend="," property="homeAddress"> HOMEADDRESS=#homeAddress#</isNotEmpty>
+			<isNotEmpty prepend="," property="idNumber"> IDNUMBER=#idNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="cellPhoneNumber"> CELLPHONENUMBER=#cellPhoneNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="phoneNumber"> PHONENUMBER=#phoneNumber#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.employee.pojo.Employee" parameterClass="java.util.Map">
+ 		SELECT
+			TB_EMPLOYEE.JOB_NUM AS jobNum,
+			TB_EMPLOYEE.NAME AS name,
+			TB_EMPLOYEE.MAJOR AS major,
+			TB_EMPLOYEE.POST AS post,
+			TB_EMPLOYEE.GENDER AS gender,
+			TB_EMPLOYEE.PASSPORT AS passport,
+			TB_EMPLOYEE.DATAOFBIRTH AS dateOfBirth,
+			TB_EMPLOYEE.EDUCATION AS education,
+			TB_EMPLOYEE.WORKTIME AS workTime,
+			TB_EMPLOYEE.TRANSFERTIME AS transferTime,
+			TB_EMPLOYEE.DEPARTMENTF AS done,
+			TB_EMPLOYEE.DEPARTMENTS AS dtwo,
+			
+			TB_EMPLOYEE.HOMETOWN AS homeTown,
+			TB_EMPLOYEE.HOMEADDRESS AS homeAddress,
+			TB_EMPLOYEE.IDNUMBER AS idNumber,
+			TB_EMPLOYEE.CELLPHONENUMBER AS cellPhoneNumber,
+			TB_EMPLOYEE.PHONENUMBER AS phoneNumber,
+			
+			dbo.FN_codeToText(TB_EMPLOYEE.MAJOR) as majorName,
+			dbo.FN_codeToText(TB_EMPLOYEE.POST) as postName,
+			dbo.FN_codeToText(TB_EMPLOYEE.DEPARTMENTF) as doneName,
+			dbo.FN_codeToText(TB_EMPLOYEE.DEPARTMENTS) as dtwoName,
+			dbo.FN_codeToText(TB_EMPLOYEE.GENDER) as genderName,
+			
+			TB_EMPLOYEE.ID AS id,
+			TB_EMPLOYEE.STATUS AS status,
+			TB_EMPLOYEE.CREATED AS created,
+			TB_EMPLOYEE.CREATE_TIME AS createTime,
+			TB_EMPLOYEE.UPDATED AS updated,
+			TB_EMPLOYEE.UPDATE_TIME AS updateTime
+		FROM
+			TB_EMPLOYEE
+		WHERE
+			TB_EMPLOYEE.STATUS = '1'
+		<include refid="Employee.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_EMPLOYEE
+		WHERE
+			TB_EMPLOYEE.STATUS = '1' 
+		<include refid="Employee.mapWhereClause"/>
+	</select>
+	
+		<select id="queryName" resultClass="com.ay.employee.pojo.Employee" parameterClass="java.util.Map">
+ 		SELECT 
+			TB_EMPLOYEE.JOB_NUM AS jobNum,
+			TB_EMPLOYEE.NAME AS name,
+			TB_EMPLOYEE.MAJOR AS major,
+			TB_EMPLOYEE.POST AS post,
+
+
+			TB_EMPLOYEE.DEPARTMENTF AS done,
+			TB_EMPLOYEE.DEPARTMENTS AS dtwo,
+			
+			
+			dbo.FN_codeToText(TB_EMPLOYEE.MAJOR) as majorName,
+			dbo.FN_codeToText(TB_EMPLOYEE.POST) as postName,
+			dbo.FN_codeToText(TB_EMPLOYEE.DEPARTMENTF) as doneName,
+			dbo.FN_codeToText(TB_EMPLOYEE.DEPARTMENTS) as dtwoName,
+			dbo.FN_codeToText(TB_EMPLOYEE.GENDER) as genderName,
+			
+			TB_EMPLOYEE.ID AS id,
+			TB_EMPLOYEE.STATUS AS status,
+			SUBSTRING((dbo.CreateFirstLetter(name)),1,1) as first
+		FROM
+			TB_EMPLOYEE
+		WHERE
+			TB_EMPLOYEE.STATUS = '1' 
+		<include refid="Employee.mapWhereClause"/>
+			 order by first 
+	</select>
+</sqlMap>

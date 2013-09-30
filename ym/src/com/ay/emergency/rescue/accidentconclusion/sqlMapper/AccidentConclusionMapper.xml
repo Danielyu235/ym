@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="AccidentConclusion">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ACCIDENT_CONCLUSION.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ACCIDENT_CONCLUSION.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ACCIDENT_CONCLUSION.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ACCIDENT_CONCLUSION.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ACCIDENT_CONCLUSION.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ACCIDENT_CONCLUSION.UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="aid"> TB_ACCIDENT_CONCLUSION.ACCIDENT_ID=#aid#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="reportName"> TB_ACCIDENT_CONCLUSION.REPORT_NAME like '%'+#reportName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentInfo"> TB_ACCIDENT_CONCLUSION.ACCIDENT_INFO like '%'+#accidentInfo#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="type"> TB_ACCIDENT_CONCLUSION.TYPE like '%'+#type#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="happenTime"> TB_ACCIDENT_CONCLUSION.HAPPEN_TIME like '%'+#happenTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentAddress"> TB_ACCIDENT_CONCLUSION.ACCIDENT_ADDRESS like '%'+#accidentAddress#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentProcess"> TB_ACCIDENT_CONCLUSION.ACCIDENT_PROCESS like '%'+#accidentProcess#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="callPolice"> TB_ACCIDENT_CONCLUSION.CALL_POLICE like '%'+#callPolice#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="callPhone"> TB_ACCIDENT_CONCLUSION.CALL_PHONE like '%'+#callPhone#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="calledMan"> TB_ACCIDENT_CONCLUSION.CALLED_MAN like '%'+#calledMan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="calledTime"> TB_ACCIDENT_CONCLUSION.CALLED_TIME like '%'+#calledTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planName"> TB_ACCIDENT_CONCLUSION.PLAN_NAME like '%'+#planName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planLevel"> TB_ACCIDENT_CONCLUSION.PLAN_LEVEL like '%'+#planLevel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planType"> TB_ACCIDENT_CONCLUSION.PLAN_TYPE like '%'+#planType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="deadNum"> TB_ACCIDENT_CONCLUSION.DEAD_NUM like '%'+#deadNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="injuredNum"> TB_ACCIDENT_CONCLUSION.INJURED_NUM like '%'+#injuredNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="missingNum"> TB_ACCIDENT_CONCLUSION.MISSING_NUM like '%'+#missingNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hospitalNum"> TB_ACCIDENT_CONCLUSION.HOSPITAL_NUM like '%'+#hospitalNum#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="directLose"> TB_ACCIDENT_CONCLUSION.DIRECT_LOSE like '%'+#directLose#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="indirectLose"> TB_ACCIDENT_CONCLUSION.INDIRECT_LOSE like '%'+#indirectLose#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="accidentEvaluation"> TB_ACCIDENT_CONCLUSION.ACCIDENT_EVALUATION like '%'+#accidentEvaluation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="expertOpinion"> TB_ACCIDENT_CONCLUSION.EXPERT_OPINION like '%'+#expertOpinion#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="zzhOpinion"> TB_ACCIDENT_CONCLUSION.ZZH_OPINION like '%'+#zzhOpinion#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="note"> TB_ACCIDENT_CONCLUSION.NOTE like '%'+#note#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.emergency.rescue.accidentconclusion.pojo.AccidentConclusion">
+  		INSERT INTO TB_ACCIDENT_CONCLUSION(
+				
+				REPORT_NAME,
+				ACCIDENT_INFO,
+				TYPE,
+				HAPPEN_TIME,
+				ACCIDENT_ADDRESS,
+				ACCIDENT_PROCESS,
+				CALL_POLICE,
+				CALL_PHONE,
+				CALLED_MAN,
+				CALLED_TIME,
+				PLAN_NAME,
+				PLAN_LEVEL,
+				PLAN_TYPE,
+				DEAD_NUM,
+				INJURED_NUM,
+				MISSING_NUM,
+				HOSPITAL_NUM,
+				DIRECT_LOSE,
+				INDIRECT_LOSE,
+				ACCIDENT_EVALUATION,
+				EXPERT_OPINION,
+				ZZH_OPINION,
+				NOTE,
+				ACCIDENT_ID,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#reportName#,
+				#accidentInfo#,
+				#type#,
+				#happenTime#,
+				#accidentAddress#,
+				#accidentProcess#,
+				#callPolice#,
+				#callPhone#,
+				#calledMan#,
+				#calledTime#,
+				#planName#,
+				#planLevel#,
+				#planType#,
+				#deadNum#,
+				#injuredNum#,
+				#missingNum#,
+				#hospitalNum#,
+				#directLose#,
+				#indirectLose#,
+				#accidentEvaluation#,
+				#expertOpinion#,
+				#zzhOpinion#,
+				#note#,
+				#aid#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ACCIDENT_CONCLUSION SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.emergency.rescue.accidentconclusion.pojo.AccidentConclusion" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_ACCIDENT_CONCLUSION.REPORT_NAME AS reportName,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_INFO AS accidentInfo,
+			TB_ACCIDENT_CONCLUSION.TYPE AS type,
+			TB_ACCIDENT_CONCLUSION.HAPPEN_TIME AS happenTime,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_ADDRESS AS accidentAddress,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_PROCESS AS accidentProcess,
+			TB_ACCIDENT_CONCLUSION.CALL_POLICE AS callPolice,
+			TB_ACCIDENT_CONCLUSION.CALL_PHONE AS callPhone,
+			TB_ACCIDENT_CONCLUSION.CALLED_MAN AS calledMan,
+			TB_ACCIDENT_CONCLUSION.CALLED_TIME AS calledTime,
+			TB_ACCIDENT_CONCLUSION.PLAN_NAME AS planName,
+			TB_ACCIDENT_CONCLUSION.PLAN_LEVEL AS planLevel,
+			TB_ACCIDENT_CONCLUSION.PLAN_TYPE AS planType,
+			TB_ACCIDENT_CONCLUSION.DEAD_NUM AS deadNum,
+			TB_ACCIDENT_CONCLUSION.INJURED_NUM AS injuredNum,
+			TB_ACCIDENT_CONCLUSION.MISSING_NUM AS missingNum,
+			TB_ACCIDENT_CONCLUSION.HOSPITAL_NUM AS hospitalNum,
+			TB_ACCIDENT_CONCLUSION.DIRECT_LOSE AS directLose,
+			TB_ACCIDENT_CONCLUSION.INDIRECT_LOSE AS indirectLose,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_EVALUATION AS accidentEvaluation,
+			TB_ACCIDENT_CONCLUSION.EXPERT_OPINION AS expertOpinion,
+			TB_ACCIDENT_CONCLUSION.ZZH_OPINION AS zzhOpinion,
+			TB_ACCIDENT_CONCLUSION.NOTE AS note,
+			
+			TB_ACCIDENT_CONCLUSION.ID AS id,
+			TB_ACCIDENT_CONCLUSION.STATUS AS status,
+			TB_ACCIDENT_CONCLUSION.CREATED AS created,
+			TB_ACCIDENT_CONCLUSION.CREATE_TIME AS createTime,
+			TB_ACCIDENT_CONCLUSION.UPDATED AS updated,
+			TB_ACCIDENT_CONCLUSION.UPDATE_TIME as updateTime
+		from
+		TB_ACCIDENT_CONCLUSION
+  		where 
+ 	 		TB_ACCIDENT_CONCLUSION.ACCIDENT_ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.emergency.rescue.accidentconclusion.pojo.AccidentConclusion">
+		UPDATE TB_ACCIDENT_CONCLUSION 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="reportName"> REPORT_NAME=#reportName#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentInfo"> ACCIDENT_INFO=#accidentInfo#</isNotEmpty>
+			<isNotEmpty prepend="," property="type"> TYPE=#type#</isNotEmpty>
+			<isNotEmpty prepend="," property="happenTime"> HAPPEN_TIME=#happenTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentAddress"> ACCIDENT_ADDRESS=#accidentAddress#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentProcess"> ACCIDENT_PROCESS=#accidentProcess#</isNotEmpty>
+			<isNotEmpty prepend="," property="callPolice"> CALL_POLICE=#callPolice#</isNotEmpty>
+			<isNotEmpty prepend="," property="callPhone"> CALL_PHONE=#callPhone#</isNotEmpty>
+			<isNotEmpty prepend="," property="calledMan"> CALLED_MAN=#calledMan#</isNotEmpty>
+			<isNotEmpty prepend="," property="calledTime"> CALLED_TIME=#calledTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="planName"> PLAN_NAME=#planName#</isNotEmpty>
+			<isNotEmpty prepend="," property="planLevel"> PLAN_LEVEL=#planLevel#</isNotEmpty>
+			<isNotEmpty prepend="," property="planType"> PLAN_TYPE=#planType#</isNotEmpty>
+			<isNotEmpty prepend="," property="deadNum"> DEAD_NUM=#deadNum#</isNotEmpty>
+			<isNotEmpty prepend="," property="injuredNum"> INJURED_NUM=#injuredNum#</isNotEmpty>
+			<isNotEmpty prepend="," property="missingNum"> MISSING_NUM=#missingNum#</isNotEmpty>
+			<isNotEmpty prepend="," property="hospitalNum"> HOSPITAL_NUM=#hospitalNum#</isNotEmpty>
+			<isNotEmpty prepend="," property="directLose"> DIRECT_LOSE=#directLose#</isNotEmpty>
+			<isNotEmpty prepend="," property="indirectLose"> INDIRECT_LOSE=#indirectLose#</isNotEmpty>
+			<isNotEmpty prepend="," property="accidentEvaluation"> ACCIDENT_EVALUATION=#accidentEvaluation#</isNotEmpty>
+			<isNotEmpty prepend="," property="expertOpinion"> EXPERT_OPINION=#expertOpinion#</isNotEmpty>
+			<isNotEmpty prepend="," property="zzhOpinion"> ZZH_OPINION=#zzhOpinion#</isNotEmpty>
+			<isNotEmpty prepend="," property="note"> NOTE=#note#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.emergency.rescue.accidentconclusion.pojo.AccidentConclusion" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_ACCIDENT_CONCLUSION.REPORT_NAME AS reportName,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_INFO AS accidentInfo,
+			TB_ACCIDENT_CONCLUSION.TYPE AS type,
+			TB_ACCIDENT_CONCLUSION.HAPPEN_TIME AS happenTime,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_ADDRESS AS accidentAddress,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_PROCESS AS accidentProcess,
+			TB_ACCIDENT_CONCLUSION.CALL_POLICE AS callPolice,
+			TB_ACCIDENT_CONCLUSION.CALL_PHONE AS callPhone,
+			TB_ACCIDENT_CONCLUSION.CALLED_MAN AS calledMan,
+			TB_ACCIDENT_CONCLUSION.CALLED_TIME AS calledTime,
+			TB_ACCIDENT_CONCLUSION.PLAN_NAME AS planName,
+			TB_ACCIDENT_CONCLUSION.PLAN_LEVEL AS planLevel,
+			TB_ACCIDENT_CONCLUSION.PLAN_TYPE AS planType,
+			TB_ACCIDENT_CONCLUSION.DEAD_NUM AS deadNum,
+			TB_ACCIDENT_CONCLUSION.INJURED_NUM AS injuredNum,
+			TB_ACCIDENT_CONCLUSION.MISSING_NUM AS missingNum,
+			TB_ACCIDENT_CONCLUSION.HOSPITAL_NUM AS hospitalNum,
+			TB_ACCIDENT_CONCLUSION.DIRECT_LOSE AS directLose,
+			TB_ACCIDENT_CONCLUSION.INDIRECT_LOSE AS indirectLose,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_EVALUATION AS accidentEvaluation,
+			TB_ACCIDENT_CONCLUSION.EXPERT_OPINION AS expertOpinion,
+			TB_ACCIDENT_CONCLUSION.ZZH_OPINION AS zzhOpinion,
+			TB_ACCIDENT_CONCLUSION.NOTE AS note,
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_ID AS aid,
+			
+			TB_ACCIDENT_CONCLUSION.ID AS id,
+			TB_ACCIDENT_CONCLUSION.STATUS AS status,
+			TB_ACCIDENT_CONCLUSION.CREATED AS created,
+			TB_ACCIDENT_CONCLUSION.CREATE_TIME AS createTime,
+			TB_ACCIDENT_CONCLUSION.UPDATED AS updated,
+			TB_ACCIDENT_CONCLUSION.UPDATE_TIME AS updateTime
+		FROM
+			TB_ACCIDENT_CONCLUSION
+		WHERE
+			TB_ACCIDENT_CONCLUSION.STATUS = '1'
+		<include refid="AccidentConclusion.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ACCIDENT_CONCLUSION
+		WHERE
+			TB_ACCIDENT_CONCLUSION.STATUS = '1' 
+		<include refid="AccidentConclusion.mapWhereClause"/>
+	</select>
+	
+	<select id="countByAid" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ACCIDENT_CONCLUSION
+		WHERE
+			TB_ACCIDENT_CONCLUSION.ACCIDENT_ID = #aid#
+		AND
+			TB_ACCIDENT_CONCLUSION.STATUS = '1'  
+	</select>
+</sqlMap>

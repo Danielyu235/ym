@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--include标签用于将Struts2应用模块化时引入其他配置文件-->
+	<include file="struts/struts-dev.xml"/>
+	<include file="struts/struts-sys.xml" />
+	<include file="struts/struts-login.xml" />
+	<!--应急资源-->
+	<include file="struts/struts-resource.xml" />
+	<!-- msds库 -->
+	<include file="struts/struts-msds.xml" />
+    <!-- Add packages here -->
+     <!-- 应急预案——综合预案/现场处置方案 -->
+	<include file="struts/struts-plan.xml" />
+    <!-- 应急资源——救援专家 -->
+	<include file="struts/struts-expert.xml" />
+	<!-- 应急资源——避难场所 -->
+	<include file="struts/struts-shelter.xml" />
+	<!-- 应急资源——运输保障 -->
+	<include file="struts/struts-transport.xml" />
+	<!-- 应急资源——通讯保障 -->
+	<include file="struts/struts-communication.xml" />
+	<!-- 应急资源——技术支持 -->
+	<include file="struts/struts-technical.xml" />
+	<!-- 安全知识库 -->
+	<include file="struts/struts-knowlbase.xml" />
+	<!-- 企业信息 -->
+	<include file="struts/struts-enterprise.xml" />
+	<!-- 重大危险源 -->
+	<include file="struts/struts-hazards.xml" />
+	<!-- 通讯录 -->
+	<include file="struts/struts-people.xml" />
+	<!-- 危化品危险源 -->
+	<include file="struts/struts-dangerplace.xml" />
+	<!-- 危化品危险源 -->
+	<include file="struts/struts-dangercargo.xml" />
+	<!-- 题型维护 -->
+	<include file="struts/struts-question.xml" />
+	<!-- 公共部分 -->
+	<include file="struts/struts-public.xml" />
+	<!-- 煤矿安全主题 -->
+	<include file="struts/struts-theme.xml" />
+	<!-- 通风安全专业 -->
+	<include file="struts/struts-ventilation.xml" />
+	<!-- 岗位操作要领维护 -->
+	<include file="struts/struts-essentials.xml" />
+	<!-- 人员日常状态 -->
+	<include file="struts/struts-dailyStatus.xml" />
+	<!-- 人员基本信息状态 -->
+	<include file="struts/struts-employee.xml" />
+	<!-- 人员日常状态 ,人员考勤与奖罚-->
+	<!-- 人员职业健康 -->
+	<include file="struts/struts-safe.xml" />
+	<include file="struts/struts-platform.xml" /> 
+	<!-- 干部走动隐患 -->
+	<include file="struts/struts-hiddenPerils.xml"></include>
+	<!--启动应急救援平台模块-->
+	<include file="struts/struts-rescue.xml"></include>
+	<!--隐患模块-->
+	<include file="struts/struts-hiddenDanger.xml"></include>
+		<!--群众登记模块-->
+	<include file="struts/struts-masses.xml"></include>
+		<!--安全指标模块-->
+	<include file="struts/struts-safeTarget.xml"></include>
+</struts>

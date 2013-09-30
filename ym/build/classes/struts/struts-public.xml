@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  <constant name="struts.i18n.encoding" value="UTF-8"/>
+  <constant name="struts.objectFactory" value="spring"/>
+  <!--公共部分模块-->
+  <package name="publicPart" extends="struts-default" namespace="/publicPart">
+    <action name="publicPartAction" class="com.ay.emergency.plan.publicPart.action.PublicPartAction">
+    	<result name="exp" type="chain">
+			<param name="namespace">/excel</param>
+			<param name="actionName ">excel_exp</param>
+		</result>
+    </action>
+  </package>
+</struts>

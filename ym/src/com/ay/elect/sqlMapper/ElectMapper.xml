@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Elect">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_ELECT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_ELECT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_ELECT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_ELECT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_ELECT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_ELECT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="xm"> TB_ELECT.XM like '%'+#xm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dl"> TB_ELECT.DL like '%'+#dl#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="df"> TB_ELECT.DF like '%'+#df#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dh"> TB_ELECT.DH like '%'+#dh#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dmdf"> TB_ELECT.DMDF like '%'+#dmdf#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fgb"> TB_ELECT.FGB like '%'+#fgb#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="jhdj"> TB_ELECT.JHDJ like '%'+#jhdj#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ysrq"> TB_ELECT.YSRQ like '%'+#ysrq#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ysType"> TB_ELECT.YSTYPE=#ysType#</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.elect.pojo.Elect">
+  		INSERT INTO TB_ELECT(
+				XM,
+				DL,
+				DF,
+				DH,
+				DMDF,
+				FGB,
+				JHDJ,
+				YSRQ,
+				YSTYPE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#xm#,
+				#dl#,
+				#df#,
+				#dh#,
+				#dmdf#,
+				#fgb#,
+				#jhdj#,
+				#ysrq#,
+				#ysType#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_ELECT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.elect.pojo.Elect" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_ELECT.XM AS xm,
+			dbo.FN_codeToText(TB_ELECT.XM) as xmType,
+			TB_ELECT.DL AS dl,
+			TB_ELECT.DF AS df,
+			TB_ELECT.DH AS dh,
+			TB_ELECT.DMDF AS dmdf,
+			TB_ELECT.FGB AS fgb,
+			TB_ELECT.JHDJ AS jhdj,
+			TB_ELECT.YSRQ AS ysrq,
+			TB_ELECT.YSTYPE AS ysType,
+			
+			TB_ELECT.ID AS id,
+			TB_ELECT.STATUS AS status,
+			TB_ELECT.CREATED AS created,
+			TB_ELECT.CREATE_TIME AS createTime,
+			TB_ELECT.UPDATED AS updated,
+			TB_ELECT.UPDATE_TIME as updateTime
+		from
+		TB_ELECT
+  		where 
+ 	 		TB_ELECT.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.elect.pojo.Elect">
+		UPDATE TB_ELECT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="xm"> XM=#xm#</isNotEmpty>
+			<isNotEmpty prepend="," property="dl"> DL=#dl#</isNotEmpty>
+			<isNotEmpty prepend="," property="df"> DF=#df#</isNotEmpty>
+			<isNotEmpty prepend="," property="dh"> DH=#dh#</isNotEmpty>
+			<isNotEmpty prepend="," property="dmdf"> DMDF=#dmdf#</isNotEmpty>
+			<isNotEmpty prepend="," property="fgb"> FGB=#fgb#</isNotEmpty>
+			<isNotEmpty prepend="," property="jhdj"> JHDJ=#jhdj#</isNotEmpty>
+			<isNotEmpty prepend="," property="ysrq"> YSRQ=#ysrq#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.elect.pojo.Elect" parameterClass="java.util.Map">
+ 		SELECT
+			TB_ELECT.XM AS xm,
+			dbo.FN_codeToText(TB_ELECT.XM) as xmType,
+			TB_ELECT.DL AS dl,
+			TB_ELECT.DF AS df,
+			TB_ELECT.DH AS dh,
+			TB_ELECT.DMDF AS dmdf,
+			TB_ELECT.FGB AS fgb,
+			TB_ELECT.JHDJ AS jhdj,
+			TB_ELECT.YSRQ AS ysrq,
+			TB_ELECT.YSTYPE AS ysType,
+			
+			TB_ELECT.ID AS id,
+			TB_ELECT.STATUS AS status,
+			TB_ELECT.CREATED AS created,
+			TB_ELECT.CREATE_TIME AS createTime,
+			TB_ELECT.UPDATED AS updated,
+			TB_ELECT.UPDATE_TIME AS updateTime
+		FROM
+			TB_ELECT
+		WHERE
+			TB_ELECT.STATUS = '1'
+		<include refid="Elect.mapWhereClause"/>
+	</select>
+	
+	<resultMap class="com.ay.elect.pojo.ElectMonth" id="sumColumns">
+		<result property="xmType" column="xmType"/>
+		<result property="y" column="y"/>
+		<result property="e" column="e"/>
+		<result property="s" column="s"/>
+		<result property="s" column="s"/>
+		<result property="si" column="si"/>
+		<result property="w" column="w"/>
+		<result property="l" column="l"/>
+		<result property="q" column="q"/>
+		<result property="b" column="b"/>
+		<result property="j" column="j"/>
+		<result property="shi" column="shi"/>
+		<result property="sy" column="sy"/>
+		<result property="se" column="se"/>
+		<result property="ysrq" column="ysrq"/>
+	</resultMap>
+	
+	<!-- 机电系统部门电耗月统计 -->
+	<select id="getCol" resultMap ="sumColumns" parameterClass="java.lang.String">
+		SELECT  dbo.FN_codeToText(XM) as xmType,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '01' THEN DL ELSE 0 END) AS y,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '02' THEN DL ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '03' THEN DL ELSE 0 END )AS s,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '04' THEN DL ELSE 0 END) AS si, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '05' THEN DL ELSE 0 END )AS w,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '06' THEN DL ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '07' THEN DL ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '08' THEN DL ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '09' THEN DL ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '10' THEN DL ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '11' THEN DL ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '12' THEN DL ELSE 0 END) AS se,
+		   	SUBSTRING(YSRQ, 1, 4) AS YSRQ		
+		FROM (SELECT YSRQ,max(cast(DL as float))AS dl,XM AS xm FROM TB_ELECT WHERE YSTYPE='1' AND TB_ELECT.STATUS='1' GROUP BY YSRQ,XM,DL) AS t 
+		WHERE YSRQ like '%'+#ysrq#+'%' GROUP BY xm,SUBSTRING(YSRQ, 1, 4) 
+
+	</select>
+	
+	<!-- 机电系统部门峰谷比月统计 -->
+	<select id="getStaff" resultMap ="sumColumns" parameterClass="java.lang.String">
+		SELECT  dbo.FN_codeToText(XM) as xmType,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '01' THEN FGB ELSE 0 END) AS y,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '02' THEN FGB ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '03' THEN FGB ELSE 0 END )AS s,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '04' THEN FGB ELSE 0 END) AS si, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '05' THEN FGB ELSE 0 END )AS w,
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '06' THEN FGB ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '07' THEN FGB ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '08' THEN FGB ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '09' THEN FGB ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '10' THEN FGB ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '11' THEN FGB ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(YSRQ, 6, 2) WHEN '12' THEN FGB ELSE 0 END) AS se,
+		   	SUBSTRING(YSRQ, 1, 4) AS YSRQ		
+		FROM (SELECT YSRQ,max(cast(FGB as float))AS fgb,XM AS xm FROM TB_ELECT WHERE YSTYPE='1' AND TB_ELECT.STATUS='1' GROUP BY YSRQ,XM,FGB) AS t 
+		WHERE YSRQ like '%'+#ysrq#+'%' GROUP BY xm,SUBSTRING(YSRQ, 1, 4) 
+	</select>
+	
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_ELECT
+		WHERE
+			TB_ELECT.STATUS = '1' 
+		<include refid="Elect.mapWhereClause"/>
+	</select>
+</sqlMap>

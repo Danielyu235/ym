@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+                        " http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="LawKnowlbase">
+	<!-- 安全生产法规 -->
+	<typeAlias alias="law" type="com.ay.knowlbase.law.pojo.LawKnowlbase" />
+
+	<!-- list页面模糊查询语句 -->
+	<sql id="mapWhereClause">
+		<!-- 法规名称 -->
+		<isNotEmpty prepend="and" property="fgName">
+			fg_name like
+			'%$fgName$%'
+		</isNotEmpty>
+		<!-- 法规类型 -->
+		<isNotEmpty prepend="and" property="fgType">
+			fg_type like
+			'%$fgType$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="promArea">
+			prom_area like
+			'%$promArea$%'
+		</isNotEmpty>
+	</sql>
+
+	<!-- list分页查询 -->
+	<select id="find" resultClass="law">
+		SELECT
+		id AS id,
+		status,
+		created,
+		create_Time,
+		updated,
+		update_Time,
+		fg_num
+		as fgNum,
+		fg_name as fgName,
+		dbo.FN_codeToText(fg_type) as fgTypeId,
+		publish_time as publishTime,
+		implement_time as implementTime,
+		effective_time as effectiveTime,
+		prom_department as promDepartment,
+		dbo.FN_codeToText(prom_area) as promAreaId,
+		content,
+		attach_path as attachPath
+		FROM
+		TB_PRODUCTION_REGULATIONS
+		WHERE
+		status=1
+		<include refid="LawKnowlbase.mapWhereClause" />
+	</select>
+
+	<!-- 查询记录条数 -->
+	<select id="count" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+		select count(id)
+		from TB_PRODUCTION_REGULATIONS
+		where 1=1
+		and
+		status !=0
+		<include refid="LawKnowlbase.mapWhereClause" />
+	</select>
+
+	<!-- insert语句 -->
+	<insert id="insert" parameterClass="law">
+		INSERT INTO
+		TB_PRODUCTION_REGULATIONS (
+		id,
+		status,
+		created,
+		create_Time,
+		updated,
+		update_Time,
+		fg_num,
+		fg_name,
+		fg_type,
+		publish_time,
+		implement_time,
+		effective_time,
+		prom_department,
+		prom_area,
+		content,
+		attach_path
+		)
+		VALUES
+		(
+		#id#,
+		#status#,
+		#created#,
+		#createTime#,
+		#updated#,
+		#updateTime#,
+		#fgNum#,
+		#fgName#,
+		#fgType#,
+		#publishTime#,
+		#implementTime#,
+		#effectiveTime#,
+		#promDepartment#,
+		#promArea#,
+		#content#,
+		#attachPath#
+		)
+	</insert>
+
+	<!-- update语句 -->
+	<update id="update" parameterClass="law">
+		update TB_PRODUCTION_REGULATIONS
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="status"> status=#status#
+			</isNotNull>
+			<isNotNull prepend="," property="created"> created=#created#
+			</isNotNull>
+			<isNotNull prepend="," property="createTime"> create_time=#createTime#
+			</isNotNull>
+			<isNotNull prepend="," property="updated"> updated=#updated#
+			</isNotNull>
+			<isNotNull prepend="," property="updateTime"> update_time=#updateTime#
+			</isNotNull>
+			<isNotNull prepend="," property="fgNum"> fg_num=#fgNum#
+			</isNotNull>
+			<isNotNull prepend="," property="fgName"> fg_name=#fgName#
+			</isNotNull>
+			<isNotEmpty prepend="," property="fgType"> fg_type=#fgType#
+			</isNotEmpty>
+			<isNotNull prepend="," property="publishTime">
+				publish_time=#publishTime#
+			</isNotNull>
+			<isNotNull prepend="," property="implementTime">
+				implement_time=#implementTime#
+			</isNotNull>
+			<isNotNull prepend="," property="effectiveTime">
+				effective_time=#effectiveTime#
+			</isNotNull>
+			<isNotNull prepend="," property="promDepartment">
+				prom_department=#promDepartment#
+			</isNotNull>
+			<isNotEmpty prepend="," property="promAreaId"> prom_area=#promAreaId#
+			</isNotEmpty>
+			<isNotNull prepend="," property="content"> content=#content#
+			</isNotNull>
+			<isNotNull prepend="," property="attachPath">
+				attach_path=#attachPath#
+			</isNotNull>
+		</dynamic>
+		where
+		id=#id#
+	</update>
+
+	<!-- 根据ID查询 -->
+	<select id="getById" resultClass="law" parameterClass="java.lang.String">
+		SELECT
+		id
+		AS id,
+		status AS status,
+		created AS created,
+		create_time AS createTime,
+		updated AS updated,
+		update_time AS updateTime,
+		fg_num as fgNum,
+		fg_name
+		as fgName,
+		dbo.FN_codeToText(fg_type) as fgTypeId,
+		fg_type as fgType,
+		publish_time as publishTime,
+		implement_time as implementTime,
+		effective_time as effectiveTime,
+		prom_department as promDepartment,
+		dbo.FN_codeToText(prom_area) as promAreaId,
+		PROM_AREA as promArea,
+		content,
+		attach_path as attachPath
+		FROM
+		TB_PRODUCTION_REGULATIONS
+		WHERE
+
+		id=#id#
+		AND
+		status
+		!= 0
+
+	</select>
+
+	<!-- 删除语句 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		update
+		TB_PRODUCTION_REGULATIONS set status='0'
+		where
+		id=#id#
+	</delete>
+</sqlMap>

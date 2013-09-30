@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="PunishSafe">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_PUNISH_SAFE.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_PUNISH_SAFE.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_PUNISH_SAFE.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_PUNISH_SAFE.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_PUNISH_SAFE.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_PUNISH_SAFE.UPDATE_TIME=#updateTime#</isNotEmpty>		
+		
+			<isNotEmpty prepend="and" property="bfkrid"> TB_PUNISH_SAFE.BFKR_ID = #bfkrid#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrjobnum"> TB_EMPLOYEES.JOB_NUM like '%' + #bfkrjobnum# + '%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrjobnum"> TB_EMPLOYEES.IDNUMBER = #bfkridnumber#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrname"> TB_EMPLOYEES.NAME like '%' + #bfkrname# + '%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrpost"> TB_EMPLOYEES.POST = #bfkrpost#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrmajor"> TB_EMPLOYEES.MAJOR = #bfkrmajor#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrdtwo"> TB_EMPLOYEES.departmentf = #bfkrdone#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bfkrdtwo"> TB_EMPLOYEES.departments = #bfkrdtwo#</isNotEmpty>		
+			<isNotEmpty prepend="and" property="fksj"> TB_PUNISH_SAFE.FKSJ like '%' + #fksj# + '%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fkje"> TB_PUNISH_SAFE.FKJE like '%' + #fkje# + '%'</isNotEmpty>			
+		</isParameterPresent>
+	</sql>
+	
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.safe.punish.pojo.PunishSafe">
+  		INSERT INTO TB_PUNISH_SAFE(
+				
+				BFKR_ID,
+				FKSJ,
+				FKBC,
+				FKJE,
+				DD,
+				SY,
+				CFR_ID,
+				FKLX,
+				FKMX,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#bfkrid#,
+				#fksj#,
+				#fkbc#,
+				#fkje#,
+				#dd#,
+				#sy#,
+				#cfrid#,
+				#fklx#,
+				#fkmx#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	
+	<!-- add method delete-->	
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_PUNISH_SAFE SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#
+ 	</delete>
+ 	
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.safe.punish.pojo.PunishSafe" parameterClass="java.lang.String">
+ 		SELECT 
+			BFKR_ID AS bfkrid,
+			TB_EMPLOYEES.NAME AS bfkrname,
+			TB_EMPLOYEES.JOB_NUM AS bfkrjobnum,
+			dbo.FN_codeToText(MAJOR) AS bfkrmajor,   
+			dbo.FN_codeToText(POST) AS bfkrpost, 
+			dbo.FN_codeToText(DEPARTMENTF) AS bfkrdone, 
+			dbo.FN_codeToText(DEPARTMENTS) AS bfkrdtwo,
+			
+			FKSJ AS fksj,
+			FKBC AS fkbc,
+			FKJE AS fkje,
+			DD AS dd,
+			SY AS sy,
+			CFR_ID AS cfrid,
+			FKLX AS fklx,
+			FKMX AS fkmx,	
+			
+			TB_PUNISH_SAFE.ID AS id,
+			TB_PUNISH_SAFE.STATUS AS status,
+			TB_PUNISH_SAFE.CREATED AS created,
+			TB_PUNISH_SAFE.CREATE_TIME AS createTime,
+			TB_PUNISH_SAFE.UPDATED AS updated,
+			TB_PUNISH_SAFE.UPDATE_TIME as updateTime
+		FROM TB_PUNISH_SAFE INNER JOIN TB_EMPLOYEES ON TB_PUNISH_SAFE.BFKR_ID = TB_EMPLOYEES.ID
+  		WHERE 
+ 	 		TB_PUNISH_SAFE.ID = #id#
+	</select>
+	
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.safe.punish.pojo.PunishSafe">
+		UPDATE TB_PUNISH_SAFE 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="bfkrid"> BFKR_ID=#bfkrid#</isNotEmpty>
+			<isNotEmpty prepend="," property="fksj"> FKSJ=#fksj#</isNotEmpty>
+			<isNotEmpty prepend="," property="fkbc"> FKBC=#fkbc#</isNotEmpty>
+			<isNotEmpty prepend="," property="fkje"> FKJE=#fkje#</isNotEmpty>
+			<isNotEmpty prepend="," property="dd"> DD=#dd#</isNotEmpty>
+			<isNotEmpty prepend="," property="sy"> SY=#sy#</isNotEmpty>
+			<isNotEmpty prepend="," property="cfrid"> CFR_ID=#cfrid#</isNotEmpty>
+			<isNotEmpty prepend="," property="fklx"> FKLX=#fklx#</isNotEmpty>
+			<isNotEmpty prepend="," property="fkmx"> FKMX=#fkmx#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.safe.punish.pojo.PunishSafe" parameterClass="java.util.Map">	
+		SELECT 
+			BFKR_ID AS bfkrid,
+			TB_EMPLOYEES.NAME AS bfkrname,
+			TB_EMPLOYEES.JOB_NUM AS bfkrjobnum,
+			dbo.FN_codeToText(MAJOR) AS bfkrmajor,   
+			dbo.FN_codeToText(POST) AS bfkrpost, 
+			dbo.FN_codeToText(DEPARTMENTF) AS bfkrdone, 
+			dbo.FN_codeToText(DEPARTMENTS) AS bfkrdtwo,
+			
+			FKSJ AS fksj,
+			FKBC AS fkbc,
+			FKJE AS fkje,
+			DD AS dd,
+			SY AS sy,
+			CFR_ID AS cfrid,
+			FKLX AS fklx,
+			FKMX AS fkmx,			
+			
+			TB_PUNISH_SAFE.ID AS id,
+			TB_PUNISH_SAFE.STATUS AS status,
+			TB_PUNISH_SAFE.CREATED AS created,
+			TB_PUNISH_SAFE.CREATE_TIME AS createTime,
+			TB_PUNISH_SAFE.UPDATED AS updated,
+			TB_PUNISH_SAFE.UPDATE_TIME AS updateTime
+			
+		FROM TB_PUNISH_SAFE INNER JOIN TB_EMPLOYEES ON TB_PUNISH_SAFE.BFKR_ID = TB_EMPLOYEES.ID
+		WHERE TB_PUNISH_SAFE.STATUS = '1'
+		<include refid="PunishSafe.mapWhereClause"/>
+	</select>
+	
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM TB_PUNISH_SAFE INNER JOIN TB_EMPLOYEES ON TB_PUNISH_SAFE.BFKR_ID = TB_EMPLOYEES.ID
+		WHERE TB_PUNISH_SAFE.STATUS = '1'
+		<include refid="PunishSafe.mapWhereClause"/>
+	</select>
+</sqlMap>

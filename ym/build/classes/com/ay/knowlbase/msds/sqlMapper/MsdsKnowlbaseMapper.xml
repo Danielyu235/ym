@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_MSDS-->
+<sqlMap namespace="MsdsKnowlbase">
+	<!-- add Condition TB_MSDS-->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> id=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="zwm"> ZWM like '%$zwm$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="ywm"> YWM like '%$ywm$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzs"> FZS like '%$fzs$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fzl"> FZL like '%$fzl$%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="cas"> CAS=#cas#</isNotEmpty>
+			<isNotEmpty prepend="and" property="rtecs"> RTECS=#rtecs#</isNotEmpty>
+			<isNotEmpty prepend="and" property="un"> UN=#un#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wxhwbh"> WXHWBH=#wxhwbh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="imdg"> IMDG=#imdg#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wgyxz"> WGYXZ=#wgyxz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="zyyt"> ZYYT=#zyyt#</isNotEmpty>
+			<isNotEmpty prepend="and" property="rd"> RD=#rd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fd"> FD=#fd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="xdmds"> XDMDS=#xdmds#</isNotEmpty>
+			<isNotEmpty prepend="and" property="xdmdkq"> XDMDKQ=#xdmdkq#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bhzqs"> BHZQS=#bhzqs#</isNotEmpty>
+			<isNotEmpty prepend="and" property="rjx"> RJX=#rjx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="rsx"> RSX=#rsx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jghxfj"> JGHXFJ=#jghxfj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="sd"> SD=#sd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="zrwd"> ZRWD=#zrwd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bzxx"> BZXX=#bzxx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bzsx"> BZSX=#bzsx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wxtx"> WXTX=#wxtx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wxfjch"> WXFJCH=#wxfjch#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wdx"> WDX=#wdx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jhwh"> JHWH=#jhwh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jjw"> JJW=#jjw#</isNotEmpty>
+			<isNotEmpty prepend="and" property="mhff"> MHFF=#mhff#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wxxlb"> WXXLB=#wxxlb#</isNotEmpty>
+			<isNotEmpty prepend="and" property="wxhwbzbz"> WXHWBZBZ=#wxhwbzbz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bzlb"> BZLB=#bzlb#</isNotEmpty>
+			<isNotEmpty prepend="and" property="cyzysx"> CYZYSX=#cyzysx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jcxz"> JCXZ=#jcxz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="qrtj"> QRTJ=#qrtj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dx"> DX=#dx#</isNotEmpty>
+			<isNotEmpty prepend="and" property="jkwh"> JKWH=#jkwh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="pfjc"> PFJC=#pfjc#</isNotEmpty>
+			<isNotEmpty prepend="and" property="yjjc"> YJJC=#yjjc#</isNotEmpty>
+			<isNotEmpty prepend="and" property="xr"> XR=#xr#</isNotEmpty>
+			<isNotEmpty prepend="and" property="sr"> SR=#sr#</isNotEmpty>
+			<isNotEmpty prepend="and" property="gckz"> GCKZ=#gckz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="hxxtbh"> HXXTBH=#hxxtbh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="yjbh"> YJBH=#yjbh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="fhf"> FHF=#fhf#</isNotEmpty>
+			<isNotEmpty prepend="and" property="sfh"> SFH=#sfh#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ljwd"> LJWD=#ljwd#</isNotEmpty>
+			<isNotEmpty prepend="and" property="ljyl"> LJYL=#ljyl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="rsr"> RSR=#rsr#</isNotEmpty>
+			<isNotEmpty prepend="and" property="bmjctj"> BMJCTJ=#bmjctj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="xlcz"> XLCZ=#xlcz#</isNotEmpty>
+			<isNotEmpty prepend="and" property="qt"> QT=#qt#</isNotEmpty>
+			<isNotEmpty prepend="and" property="num"> NUM=#num#</isNotEmpty>
+			<isNotEmpty prepend="and" property="slxlglbj"> SLXLGLBJ=#slxlglbj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="slxlbtssbj"> SLXLBTSSBJ=#slxlbtssbj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="slxlyjssbj"> SLXLYJSSBJ=#slxlyjssbj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dlxlglbj"> DLXLGLBJ=#dlxlglbj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dlxlbtssbj"> DLXLBTSSBJ=#dlxlbtssbj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="dlxlyjssbj"> DLXLYJSSBJ=#dlxlyjssbj#</isNotEmpty>
+			<isNotEmpty prepend="and" property="zcljl"> ZCLJL=#zcljl#</isNotEmpty>
+			<isNotEmpty prepend="and" property="scljl"> SCLJL=#scljl#</isNotEmpty>
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.knowlbase.msds.pojo.MsdsKnowlbase">
+  		insert into  TB_MSDS(
+				ID,
+				ZWM,
+				YWM,
+				FZS,
+				FZL,
+				CAS,
+				RTECS,
+				UN,
+				WXHWBH,
+				IMDG,
+				WGYXZ,
+				ZYYT,
+				RD,
+				FD,
+				XDMDS,
+				XDMDKQ,
+				BHZQS,
+				RJX,
+				RSX,
+				JGHXFJ,
+				SD,
+				ZRWD,
+				BZXX,
+				BZSX,
+				WXTX,
+				WXFJCH,
+				WDX,
+				JHWH,
+				JJW,
+				MHFF,
+				WXXLB,
+				WXHWBZBZ,
+				BZLB,
+				CYZYSX,
+				JCXZ,
+				QRTJ,
+				DX,
+				JKWH,
+				PFJC,
+				YJJC,
+				XR,
+				SR,
+				GCKZ,
+				HXXTBH,
+				YJBH,
+				FHF,
+				SFH,
+				LJWD,
+				LJYL,
+				RSR,
+				BMJCTJ,
+				XLCZ,
+				QT,
+				NUM,
+				SLXLGLBJ,
+				SLXLBTSSBJ,
+				SLXLYJSSBJ,
+				DLXLGLBJ,
+				DLXLBTSSBJ,
+				DLXLYJSSBJ,
+				ZCLJL,
+				SCLJL,
+				STATUS) values(
+				#id#,
+				#zwm#,
+				#ywm#,
+				#fzs#,
+				#fzl#,
+				#cas#,
+				#rtecs#,
+				#un#,
+				#wxhwbh#,
+				#imdg#,
+				#wgyxz#,
+				#zyyt#,
+				#rd#,
+				#fd#,
+				#xdmds#,
+				#xdmdkq#,
+				#bhzqs#,
+				#rjx#,
+				#rsx#,
+				#jghxfj#,
+				#sd#,
+				#zrwd#,
+				#bzxx#,
+				#bzsx#,
+				#wxtx#,
+				#wxfjch#,
+				#wdx#,
+				#jhwh#,
+				#jjw#,
+				#mhff#,
+				#wxxlb#,
+				#wxhwbzbz#,
+				#bzlb#,
+				#cyzysx#,
+				#jcxz#,
+				#qrtj#,
+				#dx#,
+				#jkwh#,
+				#pfjc#,
+				#yjjc#,
+				#xr#,
+				#sr#,
+				#gckz#,
+				#hxxtbh#,
+				#yjbh#,
+				#fhf#,
+				#sfh#,
+				#ljwd#,
+				#ljyl#,
+				#rsr#,
+				#bmjctj#,
+				#xlcz#,
+				#qt#,
+				#num#,
+				#slxlglbj#,
+				#slxlbtssbj#,
+				#slxlyjssbj#,
+				#dlxlglbj#,
+				#dlxlbtssbj#,
+				#dlxlyjssbj#,
+				#zcljl#,
+				#scljl#,
+				#status#
+				)
+	</insert>
+	<!-- add method delete-->
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.knowlbase.msds.pojo.MsdsKnowlbase" parameterClass="java.lang.String">
+ 		select 
+				id,
+				ZWM,
+				ISNULL(YWM,'')as YWM,
+				ISNULL(FZS,'')as FZS,
+				ISNULL(FZL,'')as FZL,
+				ISNULL(CAS,'')as CAS,
+				ISNULL(RTECS,'')as RTECS,
+				ISNULL(UN,'')as UN,
+				ISNULL(WXHWBH,'')as WXHWBH,
+				ISNULL(IMDG,'')as IMDG,
+				ISNULL(WGYXZ,'')as WGYXZ,
+				ISNULL(ZYYT,'')as ZYYT,
+				ISNULL(RD,'')as RD,
+				ISNULL(FD,'')as FD,
+				ISNULL(XDMDS,'')as XDMDS,
+				ISNULL(XDMDKQ,'')as XDMDKQ,
+				ISNULL(BHZQS,'')as BHZQS,
+				ISNULL(RJX,'')as RJX,
+				ISNULL(RSX,'')as RSX,
+				ISNULL(JGHXFJ,'')as JGHXFJ,
+				ISNULL(SD,'')as SD,
+				ISNULL(ZRWD,'')as ZRWD,
+				ISNULL(BZXX,'')as BZXX,
+				ISNULL(BZSX,'')as BZSX,
+				ISNULL(WXTX,'')as WXTX,
+				ISNULL(WXFJCH,'')as WXFJCH,
+				ISNULL(WDX,'')as WDX,
+				ISNULL(JHWH,'')as JHWH,
+				ISNULL(JJW,'')as JJW,
+				ISNULL(MHFF,'')as MHFF,
+				ISNULL(WXXLB,'')as WXXLB,
+				ISNULL(WXHWBZBZ,'')as WXHWBZBZ,
+				ISNULL(BZLB,'')as BZLB,
+				ISNULL(CYZYSX,'')as CYZYSX,
+				ISNULL(JCXZ,'')as JCXZ,
+				ISNULL(QRTJ,'')as QRTJ,
+				ISNULL(DX,'')as DX,
+				ISNULL(JKWH,'')as JKWH,
+				ISNULL(PFJC,'')as PFJC,
+				ISNULL(YJJC,'')as YJJC,
+				ISNULL(XR,'')as XR,
+				ISNULL(SR,'')as SR,
+				ISNULL(GCKZ,'')as GCKZ,
+				ISNULL(HXXTBH,'')as HXXTBH,
+				ISNULL(YJBH,'')as YJBH,
+				ISNULL(FHF,'')as FHF,
+				ISNULL(SFH,'') as SFH,
+				ISNULL(LJWD,'') as LJWD,
+				ISNULL(LJYL,'') as LJYL,
+				ISNULL(RSR,'') as RSR,
+				ISNULL(BMJCTJ,'') as BMJCTJ,
+				ISNULL(XLCZ,'') as XLCZ,
+				ISNULL(QT,'') as QT,
+				ISNULL(NUM,'') as NUM,
+				ISNULL(SLXLGLBJ, '') as SLXLGLBJ,
+				ISNULL(SLXLBTSSBJ, '') as SLXLBTSSBJ,
+				ISNULL(SLXLYJSSBJ, '') as SLXLYJSSBJ,
+				ISNULL(DLXLGLBJ,'' ) as DLXLGLBJ,
+				ISNULL(DLXLBTSSBJ, '') as DLXLBTSSBJ,
+				ISNULL(DLXLYJSSBJ, '') as DLXLYJSSBJ,
+				ISNULL(ZCLJL,'' ) as ZCLJL,
+				ISNULL(SCLJL, '') as SCLJL
+			from
+			TB_MSDS
+  		where 
+ 	 		id=#id#</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.knowlbase.msds.pojo.MsdsKnowlbase">
+		update   TB_MSDS 
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="id"> id=#id#</isNotNull>
+			<isNotNull prepend="," property="zwm"> ZWM=#zwm#</isNotNull>
+			<isNotNull prepend="," property="ywm"> YWM=#ywm#</isNotNull>
+			<isNotNull prepend="," property="fzs"> FZS=#fzs#</isNotNull>
+			<isNotNull prepend="," property="fzl"> FZL=#fzl#</isNotNull>
+			<isNotNull prepend="," property="cas"> CAS=#cas#</isNotNull>
+			<isNotNull prepend="," property="rtecs"> RTECS=#rtecs#</isNotNull>
+			<isNotNull prepend="," property="un"> UN=#un#</isNotNull>
+			<isNotNull prepend="," property="wxhwbh"> WXHWBH=#wxhwbh#</isNotNull>
+			<isNotNull prepend="," property="imdg"> IMDG=#imdg#</isNotNull>
+			<isNotNull prepend="," property="wgyxz"> WGYXZ=#wgyxz#</isNotNull>
+			<isNotNull prepend="," property="zyyt"> ZYYT=#zyyt#</isNotNull>
+			<isNotNull prepend="," property="rd"> RD=#rd#</isNotNull>
+			<isNotNull prepend="," property="fd"> FD=#fd#</isNotNull>
+			<isNotNull prepend="," property="xdmds"> XDMDS=#xdmds#</isNotNull>
+			<isNotNull prepend="," property="xdmdkq"> XDMDKQ=#xdmdkq#</isNotNull>
+			<isNotNull prepend="," property="bhzqs"> BHZQS=#bhzqs#</isNotNull>
+			<isNotNull prepend="," property="rjx"> RJX=#rjx#</isNotNull>
+			<isNotNull prepend="," property="rsx"> RSX=#rsx#</isNotNull>
+			<isNotNull prepend="," property="jghxfj"> JGHXFJ=#jghxfj#</isNotNull>
+			<isNotNull prepend="," property="sd"> SD=#sd#</isNotNull>
+			<isNotNull prepend="," property="zrwd"> ZRWD=#zrwd#</isNotNull>
+			<isNotNull prepend="," property="bzxx"> BZXX=#bzxx#</isNotNull>
+			<isNotNull prepend="," property="bzsx"> BZSX=#bzsx#</isNotNull>
+			<isNotNull prepend="," property="wxtx"> WXTX=#wxtx#</isNotNull>
+			<isNotNull prepend="," property="wxfjch"> WXFJCH=#wxfjch#</isNotNull>
+			<isNotNull prepend="," property="wdx"> WDX=#wdx#</isNotNull>
+			<isNotNull prepend="," property="jhwh"> JHWH=#jhwh#</isNotNull>
+			<isNotNull prepend="," property="jjw"> JJW=#jjw#</isNotNull>
+			<isNotNull prepend="," property="mhff"> MHFF=#mhff#</isNotNull>
+			<isNotNull prepend="," property="wxxlb"> WXXLB=#wxxlb#</isNotNull>
+			<isNotNull prepend="," property="wxhwbzbz"> WXHWBZBZ=#wxhwbzbz#</isNotNull>
+			<isNotNull prepend="," property="bzlb"> BZLB=#bzlb#</isNotNull>
+			<isNotNull prepend="," property="cyzysx"> CYZYSX=#cyzysx#</isNotNull>
+			<isNotNull prepend="," property="jcxz"> JCXZ=#jcxz#</isNotNull>
+			<isNotNull prepend="," property="qrtj"> QRTJ=#qrtj#</isNotNull>
+			<isNotNull prepend="," property="dx"> DX=#dx#</isNotNull>
+			<isNotNull prepend="," property="jkwh"> JKWH=#jkwh#</isNotNull>
+			<isNotNull prepend="," property="pfjc"> PFJC=#pfjc#</isNotNull>
+			<isNotNull prepend="," property="yjjc"> YJJC=#yjjc#</isNotNull>
+			<isNotNull prepend="," property="xr"> XR=#xr#</isNotNull>
+			<isNotNull prepend="," property="sr"> SR=#sr#</isNotNull>
+			<isNotNull prepend="," property="gckz"> GCKZ=#gckz#</isNotNull>
+			<isNotNull prepend="," property="hxxtbh"> HXXTBH=#hxxtbh#</isNotNull>
+			<isNotNull prepend="," property="yjbh"> YJBH=#yjbh#</isNotNull>
+			<isNotNull prepend="," property="fhf"> FHF=#fhf#</isNotNull>
+			<isNotNull prepend="," property="sfh"> SFH=#sfh#</isNotNull>
+			<isNotNull prepend="," property="ljwd"> LJWD=#ljwd#</isNotNull>
+			<isNotNull prepend="," property="ljyl"> LJYL=#ljyl#</isNotNull>
+			<isNotNull prepend="," property="rsr"> RSR=#rsr#</isNotNull>
+			<isNotNull prepend="," property="bmjctj"> BMJCTJ=#bmjctj#</isNotNull>
+			<isNotNull prepend="," property="xlcz"> XLCZ=#xlcz#</isNotNull>
+			<isNotNull prepend="," property="qt"> QT=#qt#</isNotNull>
+			<isNotNull prepend="," property="num"> NUM=#num#</isNotNull>
+			<isNotNull prepend="," property="slxlglbj"> SLXLGLBJ=#slxlglbj#</isNotNull>
+			<isNotNull prepend="," property="slxlbtssbj"> SLXLBTSSBJ=#slxlbtssbj#</isNotNull>
+			<isNotNull prepend="," property="slxlyjssbj"> SLXLYJSSBJ=#slxlyjssbj#</isNotNull>
+			<isNotNull prepend="," property="dlxlglbj"> DLXLGLBJ=#dlxlglbj#</isNotNull>
+			<isNotNull prepend="," property="dlxlbtssbj"> DLXLBTSSBJ=#dlxlbtssbj#</isNotNull>
+			<isNotNull prepend="," property="dlxlyjssbj"> DLXLYJSSBJ=#dlxlyjssbj#</isNotNull>
+			<isNotNull prepend="," property="zcljl"> ZCLJL=#zcljl#</isNotNull>
+			<isNotNull prepend="," property="scljl"> SCLJL=#scljl#</isNotNull>
+		</dynamic>
+  		where 
+ 	 		id=#id#
+	</update>
+	<!-- add method findAll-->
+	<select id="findAll" resultClass="com.ay.knowlbase.msds.pojo.MsdsKnowlbase" parameterClass="com.ay.knowlbase.msds.pojo.MsdsKnowlbase">
+ 		select 
+				id,
+				ZWM,
+				YWM,
+				FZS,
+				FZL,
+				CAS,
+				RTECS,
+				UN,
+				WXHWBH,
+				IMDG,
+				WGYXZ,
+				ZYYT,
+				RD,
+				FD,
+				XDMDS,
+				XDMDKQ,
+				BHZQS,
+				RJX,
+				RSX,
+				JGHXFJ,
+				SD,
+				ZRWD,
+				BZXX,
+				BZSX,
+				WXTX,
+				WXFJCH,
+				WDX,
+				JHWH,
+				JJW,
+				MHFF,
+				WXXLB,
+				WXHWBZBZ,
+				BZLB,
+				CYZYSX,
+				JCXZ,
+				QRTJ,
+				DX,
+				JKWH,
+				PFJC,
+				YJJC,
+				XR,
+				SR,
+				GCKZ,
+				HXXTBH,
+				YJBH,
+				FHF,
+				SFH,
+				LJWD,
+				LJYL,
+				RSR,
+				BMJCTJ,
+				XLCZ,
+				QT,
+				NUM,
+				SLXLGLBJ,
+				SLXLBTSSBJ,
+				SLXLYJSSBJ,
+				DLXLGLBJ,
+				DLXLBTSSBJ,
+				DLXLYJSSBJ,
+				ZCLJL,
+				SCLJL
+			from
+			TB_MSDS
+			where status='1' 
+        </select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.knowlbase.msds.pojo.MsdsKnowlbase" parameterClass="java.util.Map">
+ 		select 
+				id,
+				ZWM,
+				YWM,
+				FZS,
+				FZL,
+				CAS,
+				RTECS,
+				UN,
+				WXHWBH,
+				IMDG,
+				WGYXZ,
+				ZYYT,
+				RD,
+				FD,
+				XDMDS,
+				XDMDKQ,
+				BHZQS,
+				RJX,
+				RSX,
+				JGHXFJ,
+				SD,
+				ZRWD,
+				BZXX,
+				BZSX,
+				WXTX,
+				WXFJCH,
+				WDX,
+				JHWH,
+				JJW,
+				MHFF,
+				WXXLB,
+				WXHWBZBZ,
+				BZLB,
+				CYZYSX,
+				JCXZ,
+				QRTJ,
+				DX,
+				JKWH,
+				PFJC,
+				YJJC,
+				XR,
+				SR,
+				GCKZ,
+				HXXTBH,
+				YJBH,
+				FHF,
+				SFH,
+				LJWD,
+				LJYL,
+				RSR,
+				BMJCTJ,
+				XLCZ,
+				QT,
+				NUM,
+				SLXLGLBJ,
+				SLXLBTSSBJ,
+				SLXLYJSSBJ,
+				DLXLGLBJ,
+				DLXLBTSSBJ,
+				DLXLYJSSBJ,
+				ZCLJL,
+				SCLJL
+			from
+			TB_MSDS
+			where  status='1' 
+		<include refid="MsdsKnowlbase.mapWhereClause"/>
+	</select>
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		UPDATE dbo.TB_MSDS
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	</statement>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select count(*) 
+			from
+			TB_MSDS
+			where status='1'
+		<include refid="MsdsKnowlbase.mapWhereClause"/>
+	</select>
+</sqlMap>

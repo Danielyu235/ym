@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Coalzt">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_COALZT.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_COALZT.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_COALZT.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_COALZT.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_COALZT.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_COALZT.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="serialVersionUID"> TB_COALZT.SERIAL_VERSION_U_I_D like '%'+#serialVersionUID#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="month"> TB_COALZT.MONTH like '%'+#month#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="group_type"> TB_COALZT.GROUP_type like '%'+#group_type#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planYield"> TB_COALZT.PLAN_YIELD like '%'+#planYield#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dailyOutput"> TB_COALZT.DAILY_OUTPUT like '%'+#dailyOutput#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="struggleYield"> TB_COALZT.STRUGGLE_YIELD like '%'+#struggleYield#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="footagePlan"> TB_COALZT.FOOTAGE_PLAN like '%'+#footagePlan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="footageDaily"> TB_COALZT.FOOTAGE_DAILY like '%'+#footageDaily#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="fstruggleYield"> TB_COALZT.FSTRUGGLE_YIELD like '%'+#fstruggleYield#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="workingFace"> TB_COALZT.WORKING_FACE like '%'+#workingFace#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="staffEfficiency"> TB_COALZT._STAFF_EFFICIENCY like '%'+#StaffEfficiency#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="recoveryRatio"> TB_COALZT.RECOVERY_RATIO like '%'+#recoveryRatio#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="boutiqueCoalOne"> TB_COALZT.BOUTIQUE_COAL_ONE like '%'+#boutiqueCoalOne#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="boutiqueCoalTwo"> TB_COALZT.BOUTIQUE_COAL_TWO like '%'+#boutiqueCoalTwo#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="carbonBlock"> TB_COALZT.CARBON_BLOCK like '%'+#carbonBlock#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="smalls"> TB_COALZT.SMALLS like '%'+#smalls#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="type"> TB_COALZT.TYPE like '%'+#type#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<resultMap class="com.ay.themezt.coalzt.pojo.CoalMiningGraph" id="sumColumns">
+		<result property="group_type" column="group_type"/>
+		<result property="y" column="y"/>
+		<result property="e" column="e"/>
+		<result property="s" column="s"/>
+		<result property="s" column="s"/>
+		<result property="si" column="si"/>
+		<result property="w" column="w"/>
+		<result property="l" column="l"/>
+		<result property="q" column="q"/>
+		<result property="b" column="b"/>
+		<result property="j" column="j"/>
+		<result property="shi" column="shi"/>
+		<result property="sy" column="sy"/>
+		<result property="se" column="se"/>
+		<result property="month" column="month"/>
+	</resultMap>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.themezt.coalzt.pojo.Coalzt">
+  		INSERT INTO TB_COALZT(
+				MONTH,
+				group_type,
+				PLAN_YIELD,
+				DAILY_OUTPUT,
+				STRUGGLE_YIELD,
+				FOOTAGE_PLAN,
+				FOOTAGE_DAILY,
+				FSTRUGGLE_YIELD,
+				WORKING_FACE,
+				STAFF_EFFICIENCY,
+				RECOVERY_RATIO,
+				BOUTIQUE_COAL_ONE,
+				BOUTIQUE_COAL_TWO,
+				CARBON_BLOCK,
+				SMALLS,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#month#,
+				#group_type#,
+				#planYield#,
+				#dailyOutput#,
+				#struggleYield#,
+				#footagePlan#,
+				#footageDaily#,
+				#fstruggleYield#,
+				#workingFace#,
+				#staffEfficiency#,
+				#recoveryRatio#,
+				#boutiqueCoalOne#,
+				#boutiqueCoalTwo#,
+				#carbonBlock#,
+				#smalls#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_COALZT SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_COALZT.MONTH AS month,
+			TB_COALZT.GROUP_type as group_type,
+			TB_COALZT.PLAN_YIELD AS planYield,
+			TB_COALZT.DAILY_OUTPUT AS dailyOutput,
+			TB_COALZT.STRUGGLE_YIELD AS struggleYield,
+			TB_COALZT.FOOTAGE_PLAN AS footagePlan,
+			TB_COALZT.FOOTAGE_DAILY AS footageDaily,
+			TB_COALZT.FSTRUGGLE_YIELD AS fstruggleYield,
+			TB_COALZT.WORKING_FACE AS workingFace,
+			TB_COALZT.STAFF_EFFICIENCY AS staffEfficiency,
+			TB_COALZT.RECOVERY_RATIO AS recoveryRatio,
+			TB_COALZT.BOUTIQUE_COAL_ONE AS boutiqueCoalOne,
+			TB_COALZT.BOUTIQUE_COAL_TWO AS boutiqueCoalTwo,
+			TB_COALZT.CARBON_BLOCK AS carbonBlock,
+			TB_COALZT.SMALLS AS smalls,
+			
+			TB_COALZT.ID AS id,
+			TB_COALZT.STATUS AS status,
+			TB_COALZT.CREATED AS created,
+			TB_COALZT.CREATE_TIME AS createTime,
+			TB_COALZT.UPDATED AS updated,
+			TB_COALZT.UPDATE_TIME as updateTime
+		from
+		TB_COALZT
+  		where 
+ 	 		TB_COALZT.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.themezt.coalzt.pojo.Coalzt">
+		UPDATE TB_COALZT 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="month"> MONTH=#month#</isNotEmpty>
+			<isNotEmpty prepend="," property="group_type"> group_type=#group_type#</isNotEmpty>
+			<isNotEmpty prepend="," property="planYield"> PLAN_YIELD=#planYield#</isNotEmpty>
+			<isNotEmpty prepend="," property="dailyOutput"> DAILY_OUTPUT=#dailyOutput#</isNotEmpty>
+			<isNotEmpty prepend="," property="struggleYield"> STRUGGLE_YIELD=#struggleYield#</isNotEmpty>
+			<isNotEmpty prepend="," property="footagePlan"> FOOTAGE_PLAN=#footagePlan#</isNotEmpty>
+			<isNotEmpty prepend="," property="footageDaily"> FOOTAGE_DAILY=#footageDaily#</isNotEmpty>
+			<isNotEmpty prepend="," property="fstruggleYield"> FSTRUGGLE_YIELD=#fstruggleYield#</isNotEmpty>
+			<isNotEmpty prepend="," property="workingFace"> WORKING_FACE=#workingFace#</isNotEmpty>
+			<isNotEmpty prepend="," property="staffEfficiency"> STAFF_EFFICIENCY=#staffEfficiency#</isNotEmpty>
+			<isNotEmpty prepend="," property="recoveryRatio"> RECOVERY_RATIO=#recoveryRatio#</isNotEmpty>
+			<isNotEmpty prepend="," property="boutiqueCoalOne"> BOUTIQUE_COAL_ONE=#boutiqueCoalOne#</isNotEmpty>
+			<isNotEmpty prepend="," property="boutiqueCoalTwo"> BOUTIQUE_COAL_TWO=#boutiqueCoalTwo#</isNotEmpty>
+			<isNotEmpty prepend="," property="carbonBlock"> CARBON_BLOCK=#carbonBlock#</isNotEmpty>
+			<isNotEmpty prepend="," property="smalls"> SMALLS=#smalls#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 掘进尺煤产量和进尺计划-->
+	<select id="getTunne" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.lang.String">
+ 		SELECT
+			TB_COALZT.MONTH AS month,
+			TB_COALZT.GROUP_type as group_type,
+				TB_COALZT.PLAN_YIELD AS planYield,
+			TB_COALZT.DAILY_OUTPUT AS dailyOutput,
+			TB_COALZT.STRUGGLE_YIELD AS struggleYield,
+			TB_COALZT.FOOTAGE_PLAN AS footagePlan,
+			TB_COALZT.FOOTAGE_DAILY AS footageDaily,
+			TB_COALZT.FSTRUGGLE_YIELD AS fstruggleYield
+		FROM
+			TB_COALZT
+		WHERE
+			TB_COALZT.STATUS = '1' and  TB_COALZT.TYPE like '%12%' and MONTH like '%'+#month#+'%' order by GROUP_type collate Chinese_PRC_Stroke_CS_AS_KS_WS
+	</select>
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_COALZT.MONTH AS month,
+			TB_COALZT.GROUP_type as group_type,
+			TB_COALZT.PLAN_YIELD AS planYield,
+			TB_COALZT.DAILY_OUTPUT AS dailyOutput,
+			TB_COALZT.STRUGGLE_YIELD AS struggleYield,
+			TB_COALZT.FOOTAGE_PLAN AS footagePlan,
+			TB_COALZT.FOOTAGE_DAILY AS footageDaily,
+			TB_COALZT.FSTRUGGLE_YIELD AS fstruggleYield,
+			TB_COALZT.WORKING_FACE AS workingFace,
+			TB_COALZT.STAFF_EFFICIENCY AS staffEfficiency,
+			TB_COALZT.RECOVERY_RATIO AS recoveryRatio,
+			TB_COALZT.BOUTIQUE_COAL_ONE AS boutiqueCoalOne,
+			TB_COALZT.BOUTIQUE_COAL_TWO AS boutiqueCoalTwo,
+			TB_COALZT.CARBON_BLOCK AS carbonBlock,
+			TB_COALZT.SMALLS AS smalls,
+			
+			TB_COALZT.ID AS id,
+			TB_COALZT.STATUS AS status,
+			TB_COALZT.CREATED AS created,
+			TB_COALZT.CREATE_TIME AS createTime,
+			TB_COALZT.UPDATED AS updated,
+			TB_COALZT.UPDATE_TIME AS updateTime
+		FROM
+			TB_COALZT
+		WHERE
+			TB_COALZT.STATUS = '1'
+		<include refid="Coalzt.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_COALZT
+		WHERE
+			TB_COALZT.STATUS = '1' 
+		<include refid="Coalzt.mapWhereClause"/>
+	</select>
+	
+	<select id="getMonthlyData" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.util.Map">
+		SELECT
+			TB_COALZT.MONTH AS month,
+			TB_COALZT.GROUP_type as group_type,
+			TB_COALZT.RECOVERY_RATIO AS recoveryRatio
+		FROM	
+			TB_COALZT
+		WHERE
+			TB_COALZT.GROUP_type LIKE '%综%'
+		AND
+			TB_COALZT.STATUS = '1'	
+			<isNotEmpty prepend="and" property="month"> TB_COALZT.MONTH = #month#</isNotEmpty>
+			<isNotEmpty prepend="and" property="year"> TB_COALZT.MONTH LIKE #year# + '%'</isNotEmpty>
+		ORDER BY 
+			TB_COALZT.MONTH	, TB_COALZT.GROUP_type collate Chinese_PRC_Stroke_CS_AS_KS_WS
+	</select>
+	<!--掘进人员效率  -->
+	<select id="getStaff" resultMap ="sumColumns" parameterClass = "java.lang.String">
+		SELECT     GROUP_type as group_type, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '01' THEN STAFF_EFFICIENCY ELSE 0 END) AS y,
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '02' THEN STAFF_EFFICIENCY ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '03' THEN STAFF_EFFICIENCY ELSE 0 END )AS s,
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '04' THEN STAFF_EFFICIENCY ELSE 0 END) AS si, 
+			max( CASE SUBSTRING(MONTH, 6, 2) WHEN '05' THEN STAFF_EFFICIENCY ELSE 0 END )AS w,
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '06' THEN STAFF_EFFICIENCY ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '07' THEN STAFF_EFFICIENCY ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(MONTH, 6, 2) WHEN '08' THEN STAFF_EFFICIENCY ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '09' THEN STAFF_EFFICIENCY ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '10' THEN STAFF_EFFICIENCY ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '11' THEN STAFF_EFFICIENCY  ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(MONTH, 6, 2) WHEN '12' THEN STAFF_EFFICIENCY  ELSE 0 END) AS se,
+		   	SUBSTRING(MONTH, 1, 4) AS month
+		from (select MONTH, max( cast(STAFF_EFFICIENCY AS float))as STAFF_EFFICIENCY ,GROUP_type from TB_COALZT where TYPE like '%2%' and TB_COALZT.STATUS = '1' group by MONTH,GROUP_type,STAFF_EFFICIENCY) 
+		as t where MONTH like '%'+#month#+'%'  GROUP BY GROUP_type,SUBSTRING(MONTH, 1, 4) order by  GROUP_type collate Chinese_PRC_Stroke_CS_AS_KS_WS
+	</select>
+	<select id="getKindData" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.util.Map">
+		SELECT 
+			TB_COALZT.BOUTIQUE_COAL_ONE AS boutiqueCoalOne,
+			TB_COALZT.BOUTIQUE_COAL_TWO AS boutiqueCoalTwo,
+			TB_COALZT.CARBON_BLOCK AS carbonBlock,
+			TB_COALZT.SMALLS AS smalls,
+			TB_COALZT.MONTH AS month,
+			TB_COALZT.GROUP_type as group_type
+		FROM
+			TB_COALZT
+		WHERE
+			TYPE LIKE '%1%'	
+		AND
+			TB_COALZT.STATUS = '1'	
+			<isNotEmpty prepend="AND" property="month"> TB_COALZT.MONTH = #month#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="group"> TB_COALZT.GROUP_type = #group#</isNotEmpty>
+	</select>
+	
+	<select id="yield" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.util.Map">
+		SELECT
+			TB_COALZT.PLAN_YIELD AS planYield,
+			TB_COALZT.GROUP_type as group_type,
+			TB_COALZT.MONTH AS month
+		FROM
+			TB_COALZT
+		WHERE	
+			TB_COALZT.STATUS = '1'
+		AND 
+			TB_COALZT.GROUP_type NOT LIKE '开%'		
+			<isNotEmpty prepend="AND" property="month"> TB_COALZT.MONTH = #month#</isNotEmpty>
+		ORDER BY 
+			TB_COALZT.GROUP_type collate Chinese_PRC_Stroke_CS_AS_KS_WS	
+	</select>
+	
+	<select id="yearChartsData" resultClass="com.ay.themezt.coalzt.pojo.Coalzt" parameterClass="java.util.Map">
+		SELECT 
+			MONTH AS month,
+			SUM(CAST(BOUTIQUE_COAL_ONE AS INT)) AS boutiqueCoalOne,
+			SUM(CAST(BOUTIQUE_COAL_TWO AS INT)) AS boutiqueCoalTwo,
+			SUM(CAST(CARBON_BLOCK AS INT)) AS carbonBlock,
+			SUM(CAST(SMALLS AS INT)) AS smalls
+		FROM TB_COALZT 
+			WHERE TB_COALZT.STATUS = '1' AND TB_COALZT.GROUP_type NOT LIKE '开%' AND MONTH LIKE '%' + #month# + '%'
+			GROUP BY MONTH
+	</select>
+</sqlMap>

@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ background:#dce8ec}
+table{ margin:20px 0 0 0; border:1px #63bbe9 solid; background:#63bbe9}
+table tr td{ background:#f1f4f5;}
+table tr th{ height:32px; line-height:32px; background:#018dc1; color:#fff;}

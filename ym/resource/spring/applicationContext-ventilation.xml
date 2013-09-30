@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  <!--通风安全专业模块-->  
+  <bean id="ventilationDao" class="com.ay.ventilation.dao.VentilationDao" parent="baseDao"/>  
+  <bean id="ventilationService" class="com.ay.ventilation.service.VentilationService"> 
+    <property name="dao" ref="ventilationDao"/> 
+  </bean>  
+  <!--岗位要领维护模块-->  
+  <bean id="essentialsDao" class="com.ay.essentials.dao.EssentialsDao" parent="baseDao"/>  
+  <bean id="essentialsService" class="com.ay.essentials.service.EssentialsService"> 
+    <property name="dao" ref="essentialsDao"/> 
+  </bean>  
+  <!--地测专业模块-->  
+  <bean id="geologicalDao" class="com.ay.geological.dao.GeologicalDao" parent="baseDao"/>  
+  <bean id="geologicalService" class="com.ay.geological.service.GeologicalService"> 
+    <property name="dao" ref="geologicalDao"/> 
+  </bean>  
+  <!--采煤专业模块-->  
+  <bean id="coalDao" class="com.ay.coal.dao.CoalDao" parent="baseDao"/>  
+  <bean id="coalService" class="com.ay.coal.service.CoalService"> 
+    <property name="dao" ref="coalDao"/> 
+  </bean>  
+  <!--掘进专业模块-->  
+  <bean id="steepDao" class="com.ay.steep.dao.SteepDao" parent="baseDao"/>  
+  <bean id="steepService" class="com.ay.steep.service.SteepService"> 
+    <property name="dao" ref="steepDao"/> 
+  </bean>  
+  <!--机电专业模块-->  
+  <bean id="electromechanicalDao" class="com.ay.electromechanical.dao.ElectromechanicalDao" parent="baseDao"/>  
+  <bean id="electromechanicalService" class="com.ay.electromechanical.service.ElectromechanicalService"> 
+    <property name="dao" ref="electromechanicalDao"/> 
+  </bean>  
+  <!--运输专业模块-->  
+  <bean id="transportDao" class="com.ay.transport.dao.TransportDao" parent="baseDao"/>  
+  <bean id="transportService" class="com.ay.transport.service.TransportService"> 
+    <property name="dao" ref="transportDao"/> 
+  </bean>  
+  <!--洗煤专业模块-->
+  <bean id="washDao" class="com.ay.wash.dao.WashDao" parent="baseDao"/>
+  <bean id="washService" class="com.ay.wash.service.WashService">
+    <property name="dao" ref="washDao"/>
+  </bean>
+</beans>

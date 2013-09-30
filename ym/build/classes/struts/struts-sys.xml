@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="system-default" extends="struts-default" abstract="true">
+		<interceptors>
+			<interceptor name="exceptionInterceptor" class="com.ay.framework.filter.ExceptionInterceptor"></interceptor>
+			<interceptor-stack name="sysStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="sysStack"></default-interceptor-ref>
+		<global-results>
+			<result name="exception">/common/exception.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="com.ay.framework.exception.SystemException"
+				result="exception" />
+		</global-exception-mappings>
+	</package>
+	<!--###################################开发工具所有的功能#######################################-->
+	<!-- 菜单管理-->
+	<package name="dept" extends="struts-default" namespace="/dept">
+		<action name="deptAction" class="com.ay.jfds.sys.action.DepartmentAction">
+		</action>
+	</package>
+	<package name="user" extends="struts-default" namespace="/user">
+		<action name="userAction" class="com.ay.jfds.sys.action.UserAction">
+			<result name="exp" type="chain">
+				<param name="namespace">/excel</param>
+				<param name="actionName ">excel_exp</param>
+			</result>
+			<result name="imp" type="chain">
+				<param name="namespace">/excel</param>
+				<param name="actionName ">excel_imp</param>
+			</result>
+		</action>
+		<action name="userUpdateAction" class="com.ay.jfds.sys.action.UserUpdateAction">
+		</action>
+	</package>
+	<!-- 用户组管理-->
+	<package name="sysGroup" extends="struts-default" namespace="/sysGroup">
+		<action name="sysGroup" class="com.ay.jfds.sys.action.SysGroupAction">
+		</action>
+	</package>
+	<!-- 角色权限管理-->
+	<package name="sysRole" extends="struts-default" namespace="/sysRole">
+		<action name="sysRole" class="com.ay.jfds.sys.action.SysRoleAction">
+		</action>
+	</package>
+	
+	<!-- 数据权限管理 -->
+	<package name="sysRoleData" extends="struts-default" namespace="/sysRoleData">
+		<action name="sysRoleData" class="com.ay.jfds.sys.action.SysRoleDataAction">
+		</action>
+	</package>
+	<!-- 查看一个用户下的所有能操作的MenuOperation -->
+	<package name="menuOptPermission" extends="struts-default" namespace="/menuOptPermission">
+		<action name="menuOptPermission" class="com.ay.jfds.sys.action.MenuOptPermissionAction"></action>
+	</package>
+
+	 <!-- 系统参数设置 -->
+	 <package name="sysParameter" extends="struts-default" namespace="/sysParameter">
+	 	<action name="sysParameterAction" class="com.ay.jfds.sys.action.SysParameterAction">
+	 		<result name="sysParameter">/jsp/sys/para/SysParam.jsp</result>
+	 	</action>
+	 </package>
+	 
+	 <package name="coreAction" extends="system-default" namespace="/core">
+	 	<action name="coreAction" class="com.ay.jfds.core.CoreAction">
+	 		<result name="corePage">/jsp/core/core.jsp</result>
+	 		<result name="noPermission">/common/403.jsp</result>
+	 		<result name="exp" type="chain">
+				<param name="namespace">/excel</param>
+				<param name="actionName ">excel_exp</param>
+			</result>
+			<result name="imp" type="chain">
+				<param name="namespace">/excel</param>
+				<param name="actionName ">excel_imp</param>
+			</result>
+	 	</action>
+	 </package>
+	 
+	 <!-- 上传方法 -->
+	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"
+		name="requestParser" class="com.ay.framework.core.utils.web.struts.upload.MultiPartProcessRequest"
+		scope="default" optional="true" />
+	<constant name="struts.multipart.handler" value="requestParser" />
+	
+	<!--设置上传文件允许的最大字节数  -->
+	<constant name="struts.multipart.maxSize" value="104857600"/>
+	
+	 <package name="fileUploadGenera" extends="struts-default" namespace="/fileUpload">
+<!-- 	 	上传文件 -->
+	 	<action name="upload" class="com.ay.jfds.sys.action.UploadFileAction" >
+		    <interceptor-ref name="defaultStack"> 
+		        <!-- 配置允许上传的文件大小，单位字节 --> 
+		        <param name="fileUpload.maximumSize">104857600</param> 
+		    </interceptor-ref>  
+	 		<result name="success" type="stream">
+	 			<param name="contentType">text/plain</param>
+	 			<param name="inputName">advice</param>
+	 		</result>
+	 	</action>
+<!-- 	 	获得文件上传进度 -->
+	 	<action name="process" class="com.ay.jfds.sys.action.ProgressAction" >
+	 		<result name="success" type="stream">
+	 			<param name="contentType">text/plain</param>
+	 			<param name="inputName">process</param>
+	 		</result>
+	 	</action>
+	 	
+<!-- 	 	文件下载 -->
+	 	<action name="download" class="com.ay.jfds.sys.action.UploadFileAction" method="downloadFile">
+	 		<result name="success" type="stream">
+	 			<param name="contentType">application/octet-stream</param>
+	 			<param name="inputName">downloadFile</param>
+                <param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+                <param name="bufferSize">8192</param>
+                <param name="contentCharSet">utf-8</param>
+	 		</result>
+	 		<result name="error" type="stream">
+	 			<param name="contentType">text/plain</param>
+	 			<param name="inputName">advice</param>
+	 		</result>
+	 	</action>
+	 	
+<!-- 	 	文件列表 -->
+	 	<action name="fileList" class="com.ay.jfds.sys.action.UploadFileAction" method="fileList"></action>
+	 	
+<!-- 	 	文件删除 -->
+	 	<action name="removeFile" class="com.ay.jfds.sys.action.UploadFileAction" method="removeFile">
+	 		<result name="success" type="stream">
+	 			<param name="contentType">text/plain</param>
+	 			<param name="inputName">advice</param>
+	 		</result>
+	 	</action>
+	 </package>
+</struts>    

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="HiddenPerils">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_HIDDEN_PERILS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status">  TB_HIDDEN_PERILS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_HIDDEN_PERILS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_HIDDEN_PERILS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_HIDDEN_PERILS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_HIDDEN_PERILS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="discoveryTime"> TB_HIDDEN_DANGERS.DISCOVERY_TIME LIKE '%'+#discoveryTime#+'%'</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="cadresId"> TB_HIDDEN_PERILS.CADRES_ID like '%'+#cadresId#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_HIDDEN_PERILS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="cadresLevel"> TB_HIDDEN_PERILS.CADRES_LEVEL like '%'+#cadresLevel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="position"> TB_HIDDEN_PERILS.POSITION like '%'+#position#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="department"> TB_HIDDEN_PERILS.DEPARTMENT like '%'+#department#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="htAddress"> TB_HIDDEN_PERILS.HT_ADDRESS like '%'+#htAddress#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="htDepartment"> TB_HIDDEN_PERILS.HT_DEPARTMENT like '%'+#htDepartment#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="task"> TB_HIDDEN_PERILS.TASK like '%'+#task#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="shift"> TB_HIDDEN_PERILS.SHIFT like '%'+#shift#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="walkDate"> TB_HIDDEN_PERILS.WALK_DATE like '%'+#walkDate#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="state"> TB_HIDDEN_PERILS.STATE like '%'+#state#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="listedDate"> TB_HIDDEN_PERILS.LISTED_DATE like '%'+#listedDate#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hiddenPerils.pojo.HiddenPerils">
+  		INSERT INTO TB_HIDDEN_PERILS(
+				
+				CADRES_ID,
+				NAME,
+				CADRES_LEVEL,
+				POSITION,
+				DEPARTMENT,
+				HT_ADDRESS,
+				HT_DEPARTMENT,
+				TASK,
+				SHIFT,
+				WALK_DATE,
+				STATE,
+				LISTED_DATE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#cadresId#,
+				#name#,
+				#cadresLevel#,
+				#position#,
+				#department#,
+				#htAddress#,
+				#htDepartment#,
+				#task#,
+				#shift#,
+				#walkDate#,
+				#state#,
+				#listedDate#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_HIDDEN_PERILS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.hiddenPerils.pojo.HiddenPerils" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_HIDDEN_PERILS.CADRES_ID AS cadresId,
+			TB_HIDDEN_PERILS.NAME AS Name,
+			TB_HIDDEN_PERILS.CADRES_LEVEL AS cadresLevel,
+			TB_HIDDEN_PERILS.POSITION AS position,
+			TB_HIDDEN_PERILS.DEPARTMENT AS department,
+			TB_HIDDEN_PERILS.HT_ADDRESS AS htAddress,
+			TB_HIDDEN_PERILS.HT_DEPARTMENT AS htDepartment,
+			TB_HIDDEN_PERILS.TASK AS task,
+			TB_HIDDEN_PERILS.SHIFT AS shift,
+			TB_HIDDEN_PERILS.WALK_DATE AS walkDate,
+			TB_HIDDEN_PERILS.STATE AS state,
+			TB_HIDDEN_PERILS.LISTED_DATE AS listedDate,
+			
+			TB_HIDDEN_PERILS.ID AS id,
+			TB_HIDDEN_PERILS.STATUS AS status,
+			TB_HIDDEN_PERILS.CREATED AS created,
+			TB_HIDDEN_PERILS.CREATE_TIME AS createTime,
+			TB_HIDDEN_PERILS.UPDATED AS updated,
+			TB_HIDDEN_PERILS.UPDATE_TIME as updateTime
+		from
+		TB_HIDDEN_PERILS
+  		where 
+ 	 		TB_HIDDEN_PERILS.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hiddenPerils.pojo.HiddenPerils">
+		UPDATE TB_HIDDEN_PERILS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="cadresId"> CADRES_ID=#cadresId#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="cadresLevel"> CADRES_LEVEL=#cadresLevel#</isNotEmpty>
+			<isNotEmpty prepend="," property="position"> POSITION=#position#</isNotEmpty>
+			<isNotEmpty prepend="," property="department"> DEPARTMENT=#department#</isNotEmpty>
+			<isNotEmpty prepend="," property="htAddress"> HT_ADDRESS=#htAddress#</isNotEmpty>
+			<isNotEmpty prepend="," property="htDepartment"> HT_DEPARTMENT=#htDepartment#</isNotEmpty>
+			<isNotEmpty prepend="," property="task"> TASK=#task#</isNotEmpty>
+			<isNotEmpty prepend="," property="shift"> SHIFT=#shift#</isNotEmpty>
+			<isNotEmpty prepend="," property="walkDate"> WALK_DATE=#walkDate#</isNotEmpty>
+			<isNotEmpty prepend="," property="state"> STATE=#state#</isNotEmpty>
+			<isNotEmpty prepend="," property="listedDate"> LISTED_DATE=#listedDate#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.hiddenPerils.pojo.HiddenPerils" parameterClass="java.util.Map">
+ 		
+	SELECT
+			TB_HIDDEN_PERILS.CADRES_ID AS cadresId,
+			TB_HIDDEN_PERILS.NAME AS Name,
+			TB_HIDDEN_PERILS.CADRES_LEVEL AS cadresLevel,
+			TB_HIDDEN_PERILS.POSITION AS position,
+			TB_HIDDEN_PERILS.DEPARTMENT AS department,
+			TB_HIDDEN_PERILS.HT_ADDRESS AS htAddress,
+			TB_HIDDEN_PERILS.HT_DEPARTMENT AS htDepartment,
+			TB_HIDDEN_PERILS.TASK AS task,
+			TB_HIDDEN_PERILS.SHIFT AS shift,
+			TB_HIDDEN_PERILS.WALK_DATE AS walkDate,
+			case (select COUNT(1) from TB_HIDDEN_DANGERS WHERE
+			TB_HIDDEN_DANGERS.STATUS = '1' and 
+            TB_HIDDEN_DANGERS.FIND_PEOPLE__ID = TB_HIDDEN_PERILS.ID) 
+			when 0 then '未录入' else '已录入' end as state,
+			TB_HIDDEN_PERILS.LISTED_DATE AS listedDate,
+			
+			TB_HIDDEN_PERILS.ID AS id,
+			TB_HIDDEN_PERILS.STATUS AS status,
+			TB_HIDDEN_PERILS.CREATED AS created,
+			TB_HIDDEN_PERILS.CREATE_TIME AS createTime,
+			TB_HIDDEN_PERILS.UPDATED AS updated,
+			TB_HIDDEN_PERILS.UPDATE_TIME AS updateTime
+		FROM
+			TB_HIDDEN_PERILS
+		WHERE
+			TB_HIDDEN_PERILS.STATUS = '1'
+			
+		<include refid="HiddenPerils.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_HIDDEN_PERILS
+		WHERE
+			TB_HIDDEN_PERILS.STATUS = '1' 
+		<include refid="HiddenPerils.mapWhereClause"/>
+	</select>
+	<select id="findPerils" resultClass="com.ay.hiddenPerils.pojo.HiddenPerils" parameterClass="java.util.Map">
+		SELECT
+			TB_HIDDEN_PERILS.CADRES_ID AS cadresId,
+			TB_HIDDEN_PERILS.NAME AS Name,
+			TB_HIDDEN_PERILS.CADRES_LEVEL AS cadresLevel,
+			TB_HIDDEN_PERILS.POSITION AS position,
+			TB_HIDDEN_PERILS.DEPARTMENT AS department,
+			TB_HIDDEN_PERILS.HT_ADDRESS AS htAddress,
+			TB_HIDDEN_PERILS.HT_DEPARTMENT AS htDepartment,
+			TB_HIDDEN_PERILS.TASK AS task,
+			TB_HIDDEN_PERILS.SHIFT AS shift,
+			TB_HIDDEN_PERILS.WALK_DATE AS walkDate,
+			TB_HIDDEN_PERILS.LISTED_DATE AS listedDate,
+			TB_HIDDEN_DANGERS.SPECIALTY AS major,
+			TB_HIDDEN_DANGERS.HIDDEN_TYPE as level,
+			TB_HIDDEN_DANGERS.THREE_COLOR_FORM as color,
+            TB_HIDDEN_DANGERS.MEASURE  as measure,
+            TB_HIDDEN_DANGERS.CORRECTION_REPORT as report,
+            TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE as people,
+            TB_HIDDEN_DANGERS.ID as hiddenId,
+         
+			TB_HIDDEN_PERILS.ID AS id,
+			TB_HIDDEN_PERILS.STATUS AS status,
+			TB_HIDDEN_PERILS.CREATED AS created,
+			TB_HIDDEN_PERILS.CREATE_TIME AS createTime,
+			TB_HIDDEN_PERILS.UPDATED AS updated,
+			TB_HIDDEN_PERILS.UPDATE_TIME AS updateTime
+		FROM
+			TB_HIDDEN_PERILS
+		 inner join TB_HIDDEN_DANGERS on TB_HIDDEN_DANGERS.FIND_PEOPLE__ID = TB_HIDDEN_PERILS.ID WHERE
+			TB_HIDDEN_DANGERS.STATUS = '1' 
+		<include refid="HiddenPerils.mapWhereClause"/>
+	</select>
+	
+	<select id="getPie" resultClass="com.ay.hiddenPerils.pojo.HiddenPerils" parameterClass="java.util.Map">
+	    SELECT
+			COUNT(*) AS ts,TB_HIDDEN_DANGERS.HIDDEN_TYPE AS hiddenType
+		FROM
+			TB_HIDDEN_PERILS
+		INNER JOIN 
+			TB_HIDDEN_DANGERS 
+		ON 
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__ID = TB_HIDDEN_PERILS.ID 
+		WHERE
+			TB_HIDDEN_PERILS.STATUS != '0' 
+		<include refid="HiddenPerils.mapWhereClause"/>
+			GROUP BY TB_HIDDEN_DANGERS.HIDDEN_TYPE
+	</select>
+	
+	<select id="findPerils2" resultClass="com.ay.hiddenPerils.pojo.HiddenPerils" parameterClass="java.util.Map">
+		SELECT
+			TB_HIDDEN_PERILS.CADRES_ID AS cadresId,
+			TB_HIDDEN_PERILS.NAME AS Name,
+			TB_HIDDEN_PERILS.CADRES_LEVEL AS cadresLevel,
+			TB_HIDDEN_PERILS.POSITION AS position,
+			TB_HIDDEN_PERILS.DEPARTMENT AS department,
+			TB_HIDDEN_PERILS.HT_ADDRESS AS htAddress,
+			TB_HIDDEN_PERILS.HT_DEPARTMENT AS htDepartment,
+			TB_HIDDEN_PERILS.TASK AS task,
+			TB_HIDDEN_PERILS.SHIFT AS shift,
+			TB_HIDDEN_PERILS.WALK_DATE AS walkDate,
+			TB_HIDDEN_PERILS.LISTED_DATE AS listedDate,
+			TB_HIDDEN_DANGERS.SPECIALTY AS major,
+			TB_HIDDEN_DANGERS.HIDDEN_TYPE as level,
+			TB_HIDDEN_DANGERS.THREE_COLOR_FORM as color,
+            TB_HIDDEN_DANGERS.MEASURE  as measure,
+            TB_HIDDEN_DANGERS.CORRECTION_REPORT as report,
+            TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE as people,
+            TB_HIDDEN_DANGERS.ID as hiddenId,
+         
+			TB_HIDDEN_PERILS.ID AS id,
+			TB_HIDDEN_PERILS.STATUS AS status,
+			TB_HIDDEN_PERILS.CREATED AS created,
+			TB_HIDDEN_PERILS.CREATE_TIME AS createTime,
+			TB_HIDDEN_PERILS.UPDATED AS updated,
+			TB_HIDDEN_PERILS.UPDATE_TIME AS updateTime
+		FROM
+			TB_HIDDEN_PERILS
+		 inner join TB_HIDDEN_DANGERS on TB_HIDDEN_DANGERS.FIND_PEOPLE__ID = TB_HIDDEN_PERILS.ID 
+		<include refid="HiddenPerils.mapWhereClause"/>
+	</select>
+	<select id="countPerils" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+				FROM
+			TB_HIDDEN_PERILS
+		 inner join TB_HIDDEN_DANGERS on TB_HIDDEN_DANGERS.FIND_PEOPLE__ID = TB_HIDDEN_PERILS.ID WHERE
+			TB_HIDDEN_PERILS.STATUS = '1' 
+		<include refid="HiddenPerils.mapWhereClause"/>
+	</select>
+	<update id="updatePerils" parameterClass="com.ay.hiddenPerils.pojo.PerilsData">
+		UPDATE TB_HIDDEN_DANGERS 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+</sqlMap>

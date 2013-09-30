@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="Steep">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_STEEP.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_STEEP.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_STEEP.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_STEEP.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_STEEP.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_STEEP.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="corpKey"> TB_STEEP.CORP_KEY like '%'+#corpKey#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dangerous"> TB_STEEP.DANGEROUS like '%'+#dangerous#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="loss"> TB_STEEP.LOSS like '%'+#loss#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="step"> TB_STEEP.STEP like '%'+#step#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="station"> TB_STEEP.STATION like '%'+#station#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="craft"> TB_STEEP.CRAFT like '%'+#craft#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.steep.pojo.Steep">
+  		INSERT INTO TB_STEEP(
+				
+				CORP_KEY,
+				DANGEROUS,
+				LOSS,
+				STEP,
+				STATION,
+				CRAFT,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#corpKey#,
+				#dangerous#,
+				#loss#,
+				#step#,
+				#station#,
+				#craft#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_STEEP SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.steep.pojo.Steep" parameterClass="java.lang.String">
+ 		<!--SELECT 
+			
+			TB_STEEP.CORP_KEY AS corpKey,
+			TB_STEEP.DANGEROUS AS dangerous,
+			TB_STEEP.LOSS AS loss,
+			TB_STEEP.STEP AS step,
+			TB_STEEP.STATION AS station,
+			TB_STEEP.CRAFT AS craft,
+			
+			TB_STEEP.ID AS id,
+			TB_STEEP.STATUS AS status,
+			TB_STEEP.CREATED AS created,
+			TB_STEEP.CREATE_TIME AS createTime,
+			TB_STEEP.UPDATED AS updated,
+			TB_STEEP.UPDATE_TIME as updateTime
+		from
+		TB_STEEP
+  		where 
+ 	 		TB_STEEP.ID=#id#
+ 	 	-->
+ 	 	SELECT 
+			VIEW_STEEP.CORP_KEY AS corpKey,
+			VIEW_STEEP.DANGEROUS AS dangerous,
+			VIEW_STEEP.LOSS AS loss,
+			VIEW_STEEP.STEP AS step,
+			VIEW_STEEP.STATION AS station,
+			VIEW_STEEP.CRAFT AS craft,
+			dbo.FN_codeToText(VIEW_STEEP.CRAFT) as craftTypeName,
+			VIEW_STEEP.ID AS id,
+			VIEW_STEEP.STATUS AS status,
+			VIEW_STEEP.CREATED AS created,
+			VIEW_STEEP.CREATE_TIME AS createTime,
+			VIEW_STEEP.UPDATED AS updated,
+			VIEW_STEEP.UPDATE_TIME as updateTime,
+			
+			VIEW_STEEP.CZYL AS czyl,
+			VIEW_STEEP.KSYD AS ksyd,
+			VIEW_STEEP.SGAL AS sgal,
+			VIEW_STEEP.SSZY AS sszy,
+			VIEW_STEEP.SSGZ AS ssgz,
+			dbo.FN_codeToText(VIEW_STEEP.sszy) as sszyByType,
+			dbo.FN_codeToText(VIEW_STEEP.ssgz) as ssgzByType
+		FROM
+		VIEW_STEEP 
+  		where 
+ 	 		VIEW_STEEP.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.steep.pojo.Steep">
+		UPDATE TB_STEEP 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="corpKey"> CORP_KEY=#corpKey#</isNotEmpty>
+			<isNotEmpty prepend="," property="dangerous"> DANGEROUS=#dangerous#</isNotEmpty>
+			<isNotEmpty prepend="," property="loss"> LOSS=#loss#</isNotEmpty>
+			<isNotEmpty prepend="," property="step"> STEP=#step#</isNotEmpty>
+			<isNotEmpty prepend="," property="station"> STATION=#station#</isNotEmpty>
+			<isNotEmpty prepend="," property="craft"> CRAFT=#craft#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.steep.pojo.Steep" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_STEEP.CORP_KEY AS corpKey,
+			TB_STEEP.DANGEROUS AS dangerous,
+			TB_STEEP.LOSS AS loss,
+			TB_STEEP.STEP AS step,
+			TB_STEEP.STATION AS station,
+			TB_STEEP.CRAFT AS craft,
+			dbo.FN_codeToText(TB_STEEP.CRAFT) as craftTypeName,
+			TB_STEEP.ID AS id,
+			TB_STEEP.STATUS AS status,
+			TB_STEEP.CREATED AS created,
+			TB_STEEP.CREATE_TIME AS createTime,
+			TB_STEEP.UPDATED AS updated,
+			TB_STEEP.UPDATE_TIME AS updateTime
+		FROM
+			TB_STEEP
+		WHERE
+			TB_STEEP.STATUS = '1'
+		<include refid="Steep.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_STEEP
+		WHERE
+			TB_STEEP.STATUS = '1' 
+		<include refid="Steep.mapWhereClause"/>
+	</select>
+	<select id="flist" resultClass="com.ay.steep.pojo.Steep" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_STEEP.CORP_KEY AS corpKey,
+			TB_STEEP.DANGEROUS AS dangerous,
+			TB_STEEP.LOSS AS loss,
+			TB_STEEP.STEP AS step,
+			TB_STEEP.STATION AS station,
+			TB_STEEP.CRAFT AS craft,
+			dbo.FN_codeToText(TB_STEEP.CRAFT) as craftTypeName,
+			TB_STEEP.ID AS id,
+			TB_STEEP.STATUS AS status,
+			TB_STEEP.CREATED AS created,
+			TB_STEEP.CREATE_TIME AS createTime,
+			TB_STEEP.UPDATED AS updated,
+			TB_STEEP.UPDATE_TIME AS updateTime
+		FROM
+			TB_STEEP
+		WHERE
+			TB_STEEP.STATUS = '1'
+		<include refid="Steep.mapWhereClause"/>
+	</select>
+</sqlMap>

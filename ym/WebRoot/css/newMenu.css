@@ -1,0 +1,151 @@
+#nav UL {
+PADDING-RIGHT: 0px;
+PADDING-LEFT: 0px; 
+Z-INDEX: 100; 
+BACKGROUND: #999999; 
+PADDING-BOTTOM: 0px; 
+MARGIN: 0px; 
+FONT: 10px arial, verdana, sans-serif; 
+PADDING-TOP: 0px; 
+LIST-STYLE-TYPE: none; 
+POSITION: relative;
+}
+*{border:none;}
+a{ border:none;}
+a:hover{ border:none;}
+a:link{text-decoration:none; }
+a:visited{text-decoration:none; }
+#nav {
+PADDING-RIGHT: 0px; 
+PADDING-LEFT: 1px; 
+BACKGROUND:url(../images/ul_repear.jpg) repeat-x;
+PADDING-BOTTOM:1px; 
+WIDTH: 100%; 
+PADDING-TOP: 0px; 
+HEIGHT: 33px;
+MARGIN-TOP:0px;
+POSITION: relative; FONT: 12px arial, verdana, sans-serif;
+LIST-STYLE-TYPE: none;
+
+text-align:center;
+}
+.lee {}
+.lee a{ color:#FFF;
+        background:none;
+		padding:0px 0px;
+		margin-right:10px;}
+#nav TABLE {
+BORDER-COLLAPSE: collapse
+}
+#nav li ul{ margin:10px 0 0;
+            background:#2473e3;
+
+           }
+#nav LI {
+FLOAT: left;
+}
+#nav LI LI {
+FLOAT: none;  background:url(../images/lia_bor.gif) center bottom no-repeat; height:31px;
+}
+#nav LI A LI {
+FLOAT: left
+}
+#nav LI A { padding:0 23px; 
+DISPLAY: block; 
+
+FONT-WEIGHT: bold; 
+FLOAT: left; 
+PADDING-BOTTOM: 0px; 
+BACKGROUND:url(../images/li_cur.png) no-repeat right center;
+/*BORDER-LEFT: #528e34 1px solid;*/
+ COLOR: #fff;
+  LINE-HEIGHT: 33px; 
+  WHITE-SPACE: nowrap;
+   HEIGHT: 33px; 
+   TEXT-DECORATION: none;
+   border:none; font-size:14px;
+}
+#nav LI LI A { text-align:left;
+FLOAT: none; 
+LINE-HEIGHT: 30px;
+HEIGHT: 30px;
+background:#006;
+color:#fff;
+}
+#nav LI:hover {
+Z-INDEX: 100; POSITION: relative
+}
+#nav A:hover {
+Z-INDEX: 100; BORDER-LEFT: #779e25 1px solid; COLOR: #fff; POSITION: relative;
+}
+/*一级菜单的a:hover*/
+#nav LI:hover > A {
+COLOR: #fff;
+border:none; background:#448afe;
+}
+#nav :hover UL {
+Z-INDEX: 300; LEFT: 0px; TOP: 23px;
+}
+#nav A:hover UL {
+LEFT: -1px
+}
+#nav UL {
+ POSITION: absolute; TOP: -9999px
+}
+/*bug===================================border*/
+#nav LI:hover LI:hover > UL {
+LEFT: 0px; MARGIN-LEFT: 100%; TOP: 0px; background:#2473e3; 
+}
+#nav LI:hover > UL UL { LEFT: 0px; WIDTH: auto; POSITION: absolute; TOP: -9999px;background:#FFF; margin:0px;
+}
+/*2级a:hover*/
+#nav LI:hover LI> A {
+height:28px;
+width:126px;
+/*background:url(../templets/template_2/top/erji_a.png) no-repeat;*/
+background:#2473e3 url(../images/lia_hov.png) 6px center no-repeat;
+COLOR:#fff; font-weight:normal; font-weight:bold; font-size:13px;
+}
+#nav LI:hover LI:hover > A {
+BACKGROUND:#448afe url(../images/lia_hov.png) 6px center no-repeat;
+COLOR: #fff; font-weight:bold; font-size:13px;
+}
+/*3级*/
+#nav LI:hover LI LI> A {
+height:28px;
+width:126x;
+background:#2473e3 url(../images/lia_hov.png) 6px center no-repeat;
+COLOR:#fff;
+
+}
+#nav LI:hover LI:hover LI:hover > A {
+BACKGROUND:#448afe url(../images/lia_hov.png) 6px center no-repeat;
+COLOR: #fff
+}
+#nav LI A:hover UL LI A:hover {
+BACKGROUND: #000;
+}
+#nav A:hover A:hover UL {
+LEFT: 100%; TOP: 0px
+}
+#nav A:hover A:hover A:hover UL {
+LEFT: 100%; TOP: 0px
+}
+#nav A:hover A:hover A:hover A:hover UL {
+LEFT: 100%; TOP: 0px
+}
+#nav A:hover A:hover A:hover A:hover A:hover UL {
+LEFT: 100%; TOP: 0px
+}
+#nav A:hover UL UL {
+POSITION: absolute; TOP: -9999px
+}
+#nav A:hover A:hover UL UL {
+POSITION: absolute; TOP: -9999px
+}
+#nav A:hover A:hover A:hover UL UL {
+POSITION: absolute; TOP: -9999px
+}
+#nav A:hover A:hover A:hover A:hover UL UL {
+POSITION: absolute; TOP: -9999px
+}

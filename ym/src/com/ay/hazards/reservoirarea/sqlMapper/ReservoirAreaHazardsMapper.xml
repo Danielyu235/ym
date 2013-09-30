@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--库区sqlMapper-->
+<sqlMap namespace="ReservoirAreaHazards">
+	<resultMap class="com.ay.hazards.reservoirarea.pojo.ReservoirAreaHazards" id="rah">
+		<result property="corpName" column="corpName"/>
+		<result property="dwdm" column="dwdm"/>
+		<result property="no" column="no"/>
+		<result property="name" column="name"/>
+		<result property="location" column="location"/>
+		<result property="environment" column="environment"/>
+		<result property="area" column="area"/>
+		<result property="size" column="size"/>
+		<result property="saveMan" column="saveMan"/>
+		<result property="contactPhone" column="contactPhone"/>
+		<result property="saveTime" column="saveTime"/>
+					
+		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="created" column="created"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updated" column="updated"/>
+		<result property="updateTime" column="updateTime"/>
+		<result property="reservoirs" column="id" select="ReservoirHazards.findByPid"/>
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_RESERVOIR_AREA_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_RESERVOIR_AREA_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_RESERVOIR_AREA_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_RESERVOIR_AREA_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_RESERVOIR_AREA_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_RESERVOIR_AREA_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="dwdm"> TB_RESERVOIR_AREA_HAZARDS.DWDM like '%'+#dwdm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="no"> TB_RESERVOIR_AREA_HAZARDS.NO like '%'+#no#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="name"> TB_RESERVOIR_AREA_HAZARDS.NAME like '%'+#name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="location"> TB_RESERVOIR_AREA_HAZARDS.LOCATION like '%'+#location#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="environment"> TB_RESERVOIR_AREA_HAZARDS.ENVIRONMENT like '%'+#environment#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="area"> TB_RESERVOIR_AREA_HAZARDS.AREA like '%'+#area#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="size"> TB_RESERVOIR_AREA_HAZARDS.SIZE like '%'+#size#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="saveMan"> TB_RESERVOIR_AREA_HAZARDS.SAVE_MAN like '%'+#saveMan#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="contactPhone"> TB_RESERVOIR_AREA_HAZARDS.CONTACT_PHONE like '%'+#contactPhone#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="saveTime"> TB_RESERVOIR_AREA_HAZARDS.SAVE_TIME like '%'+#saveTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="corpName"> TB_ENTERPRISE.CORP_NAME like '%'+#corpName#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- 添加 -->
+	<insert id="insert" parameterClass="com.ay.hazards.reservoirarea.pojo.ReservoirAreaHazards">
+  		INSERT INTO TB_RESERVOIR_AREA_HAZARDS(
+				
+				DWDM,
+				NO,
+				NAME,
+				LOCATION,
+				ENVIRONMENT,
+				AREA,
+				SIZE,
+				SAVE_MAN,
+				CONTACT_PHONE,
+				SAVE_TIME,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#dwdm#,
+				#no#,
+				#name#,
+				#location#,
+				#environment#,
+				#area#,
+				#size#,
+				#saveMan#,
+				#contactPhone#,
+				#saveTime#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- 删除单条数据 -->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_RESERVOIR_AREA_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- 通过ID获取信息-->
+	<select id="getById" resultMap="rah" parameterClass="java.lang.String">
+ 		SELECT 
+			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_RESERVOIR_AREA_HAZARDS.DWDM AS dwdm,
+			TB_RESERVOIR_AREA_HAZARDS.NO AS no,
+			TB_RESERVOIR_AREA_HAZARDS.NAME AS name,
+			TB_RESERVOIR_AREA_HAZARDS.LOCATION AS location,
+			TB_RESERVOIR_AREA_HAZARDS.ENVIRONMENT AS environment,
+			TB_RESERVOIR_AREA_HAZARDS.AREA AS area,
+			(select count(1) from TB_RESERVOIR_HAZARDS where TB_RESERVOIR_HAZARDS.AREA_ID = TB_RESERVOIR_AREA_HAZARDS.ID and TB_RESERVOIR_HAZARDS.STATUS='1') AS size,
+			TB_RESERVOIR_AREA_HAZARDS.SAVE_MAN AS saveMan,
+			TB_RESERVOIR_AREA_HAZARDS.CONTACT_PHONE AS contactPhone,
+			TB_RESERVOIR_AREA_HAZARDS.SAVE_TIME AS saveTime,
+			
+			TB_RESERVOIR_AREA_HAZARDS.ID AS id,
+			TB_RESERVOIR_AREA_HAZARDS.STATUS AS status,
+			TB_RESERVOIR_AREA_HAZARDS.CREATED AS created,
+			TB_RESERVOIR_AREA_HAZARDS.CREATE_TIME AS createTime,
+			TB_RESERVOIR_AREA_HAZARDS.UPDATED AS updated,
+			TB_RESERVOIR_AREA_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_RESERVOIR_AREA_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_RESERVOIR_AREA_HAZARDS.DWDM = TB_ENTERPRISE.ID
+  		where 
+ 	 		TB_RESERVOIR_AREA_HAZARDS.ID=#id#
+	</select>
+	<!-- 更新 -->
+	<update id="update" parameterClass="com.ay.hazards.reservoirarea.pojo.ReservoirAreaHazards">
+		UPDATE TB_RESERVOIR_AREA_HAZARDS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="dwdm"> DWDM=#dwdm#</isNotEmpty>
+			<isNotEmpty prepend="," property="no"> NO=#no#</isNotEmpty>
+			<isNotEmpty prepend="," property="name"> NAME=#name#</isNotEmpty>
+			<isNotEmpty prepend="," property="location"> LOCATION=#location#</isNotEmpty>
+			<isNotEmpty prepend="," property="environment"> ENVIRONMENT=#environment#</isNotEmpty>
+			<isNotEmpty prepend="," property="area"> AREA=#area#</isNotEmpty>
+			<isNotEmpty prepend="," property="size"> SIZE=#size#</isNotEmpty>
+			<isNotEmpty prepend="," property="saveMan"> SAVE_MAN=#saveMan#</isNotEmpty>
+			<isNotEmpty prepend="," property="contactPhone"> CONTACT_PHONE=#contactPhone#</isNotEmpty>
+			<isNotEmpty prepend="," property="saveTime"> SAVE_TIME=#saveTime#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- 查找list-->
+	<select id="find" resultClass="com.ay.hazards.reservoirarea.pojo.ReservoirAreaHazards" parameterClass="java.util.Map">
+ 		SELECT
+ 			dbo.FN_HASMAP(TB_RESERVOIR_AREA_HAZARDS.ID) as hasMap,
+ 			TB_ENTERPRISE.CORP_NAME AS corpName,
+			TB_RESERVOIR_AREA_HAZARDS.DWDM AS dwdm,
+			TB_RESERVOIR_AREA_HAZARDS.NO AS no,
+			TB_RESERVOIR_AREA_HAZARDS.NAME AS name,
+			TB_RESERVOIR_AREA_HAZARDS.LOCATION AS location,
+			TB_RESERVOIR_AREA_HAZARDS.ENVIRONMENT AS environment,
+			TB_RESERVOIR_AREA_HAZARDS.AREA AS area,
+			(select count(1) from TB_RESERVOIR_HAZARDS where TB_RESERVOIR_HAZARDS.AREA_ID = TB_RESERVOIR_AREA_HAZARDS.ID and TB_RESERVOIR_HAZARDS.STATUS='1') AS size,
+			TB_RESERVOIR_AREA_HAZARDS.SAVE_MAN AS saveMan,
+			TB_RESERVOIR_AREA_HAZARDS.CONTACT_PHONE AS contactPhone,
+			TB_RESERVOIR_AREA_HAZARDS.SAVE_TIME AS saveTime,
+			
+			TB_RESERVOIR_AREA_HAZARDS.ID AS id,
+			TB_RESERVOIR_AREA_HAZARDS.STATUS AS status,
+			TB_RESERVOIR_AREA_HAZARDS.CREATED AS created,
+			TB_RESERVOIR_AREA_HAZARDS.CREATE_TIME AS createTime,
+			TB_RESERVOIR_AREA_HAZARDS.UPDATED AS updated,
+			TB_RESERVOIR_AREA_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_RESERVOIR_AREA_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_RESERVOIR_AREA_HAZARDS.DWDM = TB_ENTERPRISE.ID
+		WHERE
+			TB_RESERVOIR_AREA_HAZARDS.STATUS = '1'
+		<include refid="ReservoirAreaHazards.mapWhereClause"/>
+	</select>
+	<!-- 计数-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_RESERVOIR_AREA_HAZARDS
+		LEFT JOIN TB_ENTERPRISE ON
+		TB_RESERVOIR_AREA_HAZARDS.DWDM = TB_ENTERPRISE.ID
+		WHERE
+			TB_RESERVOIR_AREA_HAZARDS.STATUS = '1' 
+		<include refid="ReservoirAreaHazards.mapWhereClause"/>
+	</select>
+	<!-- 批量删除 -->
+	<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_RESERVOIR_AREA_HAZARDS
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ID=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

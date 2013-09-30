@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="TunnellingSysTheme">
+	<resultMap class="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingGraph" id="sumColumn">
+	<result property="tunnllingGroupName" column="tunnllingGroupName"/>
+		<result property="y" column="y"/>
+		<result property="e" column="e"/>
+		<result property="s" column="s"/>
+		<result property="s" column="s"/>
+		<result property="si" column="si"/>
+		<result property="w" column="w"/>
+		<result property="l" column="l"/>
+		<result property="q" column="q"/>
+		<result property="b" column="b"/>
+		<result property="j" column="j"/>
+		<result property="shi" column="shi"/>
+		<result property="sy" column="sy"/>
+		<result property="se" column="se"/>
+		<result property="tunnllingDate" column="tunnllingDate"/>
+	</resultMap>
+	<resultMap class="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingSysTheme" id="sumPie">
+		<result property="realityTunnlling" column="realityTunnlling"/>
+		<result property="planTunnlling" column="planTunnlling"/>
+		<result property="tunnllingGroupID" column="tunnllingGroupID"/>
+		<result property="tunnllingGroupName" column="tunnllingGroupName"/>
+	</resultMap>
+	<resultMap class="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingSysTheme" id="avgCoal">
+		<result property="realityTunnlling" column="realityTunnlling"/>
+		<result property="planTunnlling" column="planTunnlling"/>
+		<result property="tunnllingDate" column="tunnllingDate"/>
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_TUNNELLING_SYS_THEME.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_TUNNELLING_SYS_THEME.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_TUNNELLING_SYS_THEME.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_TUNNELLING_SYS_THEME.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_TUNNELLING_SYS_THEME.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_TUNNELLING_SYS_THEME.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="tunnllingGroupID"> TB_TUNNELLING_SYS_THEME.TUNNLLING_GROUP_I_D like '%'+#tunnllingGroupID#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="realityTunnlling"> TB_TUNNELLING_SYS_THEME.REALITY_TUNNLLING like '%'+#realityTunnlling#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="planTunnlling"> TB_TUNNELLING_SYS_THEME.PLAN_TUNNLLING like '%'+#planTunnlling#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tunnllingDate"> TB_TUNNELLING_SYS_THEME.TUNNLLING_DATE like '%'+#tunnllingDate#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingSysTheme">
+  		INSERT INTO TB_TUNNELLING_SYS_THEME(
+				
+				TUNNLLING_GROUP_I_D,
+				REALITY_TUNNLLING,
+				PLAN_TUNNLLING,
+				TUNNLLING_DATE,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#tunnllingGroupID#,
+				#realityTunnlling#,
+				#planTunnlling#,
+				#tunnllingDate#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_TUNNELLING_SYS_THEME SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingSysTheme" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_TUNNELLING_SYS_THEME.TUNNLLING_GROUP_I_D AS tunnllingGroupID,
+			TB_TUNNELLING_SYS_THEME.REALITY_TUNNLLING AS realityTunnlling,
+			TB_TUNNELLING_SYS_THEME.PLAN_TUNNLLING AS planTunnlling,
+			TB_TUNNELLING_SYS_THEME.TUNNLLING_DATE AS tunnllingDate,
+			dbo.FN_codeToText(TB_TUNNELLING_SYS_THEME.TUNNLLING_GROUP_I_D) as tunnllingGroupName,
+			
+			TB_TUNNELLING_SYS_THEME.ID AS id,
+			TB_TUNNELLING_SYS_THEME.STATUS AS status,
+			TB_TUNNELLING_SYS_THEME.CREATED AS created,
+			TB_TUNNELLING_SYS_THEME.CREATE_TIME AS createTime,
+			TB_TUNNELLING_SYS_THEME.UPDATED AS updated,
+			TB_TUNNELLING_SYS_THEME.UPDATE_TIME as updateTime
+		from
+		TB_TUNNELLING_SYS_THEME
+  		where 
+ 	 		TB_TUNNELLING_SYS_THEME.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingSysTheme">
+		UPDATE TB_TUNNELLING_SYS_THEME 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="tunnllingGroupID"> TUNNLLING_GROUP_I_D=#tunnllingGroupID#</isNotEmpty>
+			<isNotEmpty prepend="," property="realityTunnlling"> REALITY_TUNNLLING=#realityTunnlling#</isNotEmpty>
+			<isNotEmpty prepend="," property="planTunnlling"> PLAN_TUNNLLING=#planTunnlling#</isNotEmpty>
+			<isNotEmpty prepend="," property="tunnllingDate"> TUNNLLING_DATE=#tunnllingDate#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.colliery.theme.TunnellingSysTheme.pojo.TunnellingSysTheme" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_TUNNELLING_SYS_THEME.TUNNLLING_GROUP_I_D AS tunnllingGroupID,
+			TB_TUNNELLING_SYS_THEME.REALITY_TUNNLLING AS realityTunnlling,
+			TB_TUNNELLING_SYS_THEME.PLAN_TUNNLLING AS planTunnlling,
+			TB_TUNNELLING_SYS_THEME.TUNNLLING_DATE AS tunnllingDate,
+			dbo.FN_codeToText(TB_TUNNELLING_SYS_THEME.TUNNLLING_GROUP_I_D) as tunnllingGroupName,
+			
+			TB_TUNNELLING_SYS_THEME.ID AS id,
+			TB_TUNNELLING_SYS_THEME.STATUS AS status,
+			TB_TUNNELLING_SYS_THEME.CREATED AS created,
+			TB_TUNNELLING_SYS_THEME.CREATE_TIME AS createTime,
+			TB_TUNNELLING_SYS_THEME.UPDATED AS updated,
+			TB_TUNNELLING_SYS_THEME.UPDATE_TIME AS updateTime
+		FROM
+			TB_TUNNELLING_SYS_THEME
+		WHERE
+			TB_TUNNELLING_SYS_THEME.STATUS = '1'
+		<include refid="TunnellingSysTheme.mapWhereClause"/>
+		order by tunnllingGroupID
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_TUNNELLING_SYS_THEME
+		WHERE
+			TB_TUNNELLING_SYS_THEME.STATUS = '1' 
+		<include refid="TunnellingSysTheme.mapWhereClause"/>
+	</select>
+	<!-- 查询系统  柱形图  -->
+	<select id="sum" resultMap ="sumColumn" parameterClass = "java.lang.String">
+		select * from VI_TUNNLING where tunnllingDate like '%'+#date#+'%'
+	</select>
+	<!-- 查询系统  饼图  -->
+	<select id="sumPie" resultMap ="sumPie" parameterClass = "java.lang.String">
+		select
+			sum(convert(numeric(7,2),REALITY_TUNNLLING)) as realityTunnlling,
+			sum(convert(numeric(7,2),PLAN_TUNNLLING)) as planTunnlling,
+			dbo.FN_codeToText(TUNNLLING_GROUP_I_D) as tunnllingGroupName ,
+			TUNNLLING_GROUP_I_D as tunnllingGroupID 
+			from dbo.TB_TUNNELLING_SYS_THEME 
+			where STATUS = '1' and TUNNLLING_DATE like '%'+#date#+'%'
+			group by TUNNLLING_GROUP_I_D;
+	</select>
+	<!-- 查询系统  折线图-->
+	<select id="avgCoal" resultMap ="avgCoal" parameterClass = "java.lang.String">
+	select 
+		round(avg(convert(numeric(7,2),REALITY_TUNNLLING)),2)as realityTunnlling,
+		round(avg(convert(numeric(7,2),PLAN_TUNNLLING)),2) as planTunnlling,
+		SUBSTRING(TUNNLLING_DATE,6,2)as tunnllingDate 
+		from dbo.TB_TUNNELLING_SYS_THEME 
+		where STATUS = '1' and TUNNLLING_DATE like '%'+#date#+'%'
+		group by SUBSTRING(TUNNLLING_DATE,6,2);
+	</select> 
+</sqlMap>

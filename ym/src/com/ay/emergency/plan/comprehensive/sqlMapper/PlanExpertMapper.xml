@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_ENERGENCY_PLAN-->
+<sqlMap namespace="planExp">
+<typeAlias alias="plan" type="com.ay.emergency.plan.comprehensive.pojo.PlanExpert"/>
+
+	<sql id="mapWhereClause">
+	<isParameterPresent>
+		<isNotEmpty prepend="and" property="id"> pn.ID = #id# </isNotEmpty>
+	</isParameterPresent>
+	</sql>
+	<!--查选list方法  -->
+	<select id="find" resultClass="plan" parameterClass="java.util.Map">
+	select * from dbo.VI_PLAN_EXPERT
+		where 
+			1 = 1
+			and id=#id#
+	</select>
+	
+	<!-- 根据条件查询条数 -->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select  
+			COUNT(*)
+			from dbo.TB_PLAN_EXPERT as pn 
+			inner join TB_ENERGENCY_PLAN as ep on ep.ID = pn.ID 
+			inner join TB_RESCUE_EXPERT as re on re.ID = pn.EXPID
+		where 
+			1 = 1
+			and pn.id=#id#
+	</select>
+	
+	<!-- 新增关联信息 -->
+	<insert id="insert" parameterClass="plan">
+		insert into TB_PLAN_EXPERT(
+		ID,
+		EXPID,
+		[ROLE]) values(
+		#id#,
+		#expId#,
+		#role#)
+	</insert>
+	
+	<!-- 根据专家ID 删除关联表信息 -->
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_PLAN_EXPERT
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   ExpId=#ids[]#
+			</iterate>
+	</statement>
+	
+	<statement id="deleteRoles" parameterClass="java.lang.String">
+		DELETE TB_PLAN_EXPERT
+		$where$
+	</statement>
+</sqlMap>

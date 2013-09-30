@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--add by iBatisTool TB_ENERGENCY_PLAN-->
+<sqlMap namespace="planResource">
+<typeAlias alias="planRes" type="com.ay.emergency.plan.comprehensive.pojo.PlanResource"/>
+
+	<sql id="mapWhereClause">
+	<isParameterPresent>
+		<isNotEmpty prepend="and" property="id"> ID = #id# </isNotEmpty>
+	</isParameterPresent>
+	</sql>
+	<!--查选list方法  -->
+	<select id="find" resultClass="planRes" parameterClass="java.util.Map">
+		select  
+			ID as id,
+			[TYPE] as type,
+			NAME as name,
+			RESID as resId,
+			STATUS,
+			CREATED,
+			CREATE_DEPT as cREATEDDEPT,
+			CREATE_TIME as cREATETIME,
+			UPDATED,
+			UPDATE_TIME as uPDATETIME
+			from dbo.VI_PLAN_RESOURCE 
+		where 
+			1 = 1
+			and ID=#id#
+	</select>
+
+	<!-- 根据条件查询条数 -->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		select  
+			COUNT(*)
+			from dbo.VI_PLAN_RESOURCE
+		where 
+			1 = 1
+			and ID=#id#
+	</select>
+	
+	<!-- 新增关联信息 -->
+	<insert id="insert" parameterClass="planRes">
+		insert into TB_PLAN_RESOURCE(
+		ID,
+		RESID,
+		[TYPE]) values(
+		#id#,
+		#resId#,
+		#type#)
+	</insert>
+	
+	<!-- 根据专家ID 删除关联表信息 -->
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 DELETE TB_PLAN_RESOURCE
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   RESID=#ids[]#
+			</iterate>
+	</statement>
+		<select id="resList" resultClass="planRes" parameterClass="java.lang.String">
+ 		select  
+			ID as id,
+			[TYPE] as type,
+			NAME as name,
+			RESID as resId,
+			STATUS,
+			CREATED,
+			CREATE_DEPT as cREATEDDEPT,
+			CREATE_TIME as cREATETIME,
+			UPDATED,
+			UPDATE_TIME as uPDATETIME
+			from dbo.VI_PLAN_RESOURCE 
+		where 
+			1 = 1
+			and ID=#id#
+	</select>
+</sqlMap>

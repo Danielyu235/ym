@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="HiddenDanger">
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_HIDDEN_DANGERS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_HIDDEN_DANGERS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_HIDDEN_DANGERS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_HIDDEN_DANGERS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_HIDDEN_DANGERS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_HIDDEN_DANGERS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="findPeople_Id"> TB_HIDDEN_DANGERS.FIND_PEOPLE__ID like '%'+#findPeople_Id#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="findPeople_Name"> TB_HIDDEN_DANGERS.FIND_PEOPLE__NAME like '%'+#findPeople_Name#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="findPeople_Department"> TB_HIDDEN_DANGERS.FIND_PEOPLE__DEPARTMENT like '%'+#findPeople_Department#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="findPeople_Position"> TB_HIDDEN_DANGERS.FIND_PEOPLE__POSITION like '%'+#findPeople_Position#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="discoveryTime"> TB_HIDDEN_DANGERS.DISCOVERY_TIME like '%'+#discoveryTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="location"> TB_HIDDEN_DANGERS.LOCATION like '%'+#location#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="specialty"> TB_HIDDEN_DANGERS.SPECIALTY like '%'+#specialty#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkLine"> TB_HIDDEN_DANGERS.CHECK_LINE like '%'+#checkLine#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkLocation"> TB_HIDDEN_DANGERS.CHECK_LOCATION like '%'+#checkLocation#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkItem"> TB_HIDDEN_DANGERS.CHECK_ITEM like '%'+#checkItem#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkLabel"> TB_HIDDEN_DANGERS.CHECK_LABEL like '%'+#checkLabel#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hiddenContent"> TB_HIDDEN_DANGERS.HIDDEN_CONTENT like '%'+#hiddenContent#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="hiddenType"> TB_HIDDEN_DANGERS.HIDDEN_TYPE like '%'+#hiddenType#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="threeColorForm"> TB_HIDDEN_DANGERS.THREE_COLOR_FORM like '%'+#threeColorForm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="measure"> TB_HIDDEN_DANGERS.MEASURE like '%'+#measure#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="correctivePeople"> TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE like '%'+#correctivePeople#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="correctivePeopleUnits"> TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_UNITS like '%'+#correctivePeopleUnits#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="correctivePeopleName"> TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_NAME like '%'+#correctivePeopleName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="deadline"> TB_HIDDEN_DANGERS.DEADLINE like '%'+#deadline#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="correctionReport"> TB_HIDDEN_DANGERS.CORRECTION_REPORT like '%'+#correctionReport#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="completionTime"> TB_HIDDEN_DANGERS.COMPLETION_TIME like '%'+#completionTime#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="followUp"> TB_HIDDEN_DANGERS.FOLLOW_UP like '%'+#followUp#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.danger.pojo.HiddenDanger">
+  		INSERT INTO TB_HIDDEN_DANGERS(
+				
+				FIND_PEOPLE__ID,
+				FIND_PEOPLE__NAME,
+				FIND_PEOPLE__DEPARTMENT,
+				FIND_PEOPLE__POSITION,
+				DISCOVERY_TIME,
+				LOCATION,
+				SPECIALTY,
+				CHECK_LINE,
+				CHECK_LOCATION,
+				CHECK_ITEM,
+				CHECK_LABEL,
+				HIDDEN_CONTENT,
+				HIDDEN_TYPE,
+				THREE_COLOR_FORM,
+				MEASURE,
+				CORRECTIVE_PEOPLE,
+				CORRECTIVE_PEOPLE_UNITS,
+				CORRECTIVE_PEOPLE_NAME,
+				DEADLINE,
+				CORRECTION_REPORT,
+				COMPLETION_TIME,
+				FOLLOW_UP,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				
+				#findPeople_Id#,
+				#findPeople_Name#,
+				#findPeople_Department#,
+				#findPeople_Position#,
+				#discoveryTime#,
+				#location#,
+				#specialty#,
+				#checkLine#,
+				#checkLocation#,
+				#checkItem#,
+				#checkLabel#,
+				#hiddenContent#,
+				#hiddenType#,
+				#threeColorForm#,
+				#measure#,
+				
+				#correctivePeople#,
+				#correctivePeopleUnits#,
+				#correctivePeopleName#,
+				#deadline#,
+				#correctionReport#,
+				#completionTime#,
+				#followUp#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_HIDDEN_DANGERS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultClass="com.ay.danger.pojo.HiddenDanger" parameterClass="java.lang.String">
+ 		SELECT 
+			
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__ID AS findPeople_Id,
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__NAME AS findPeople_Name,
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__DEPARTMENT AS findPeople_Department,
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__POSITION AS findPeople_Position,
+			TB_HIDDEN_DANGERS.DISCOVERY_TIME AS discoveryTime,
+			TB_HIDDEN_DANGERS.LOCATION AS location,
+			TB_HIDDEN_DANGERS.SPECIALTY AS specialty,
+			TB_HIDDEN_DANGERS.CHECK_LINE AS checkLine,
+			TB_HIDDEN_DANGERS.CHECK_LOCATION AS checkLocation,
+			TB_HIDDEN_DANGERS.CHECK_ITEM AS checkItem,
+			TB_HIDDEN_DANGERS.CHECK_LABEL AS checkLabel,
+			TB_HIDDEN_DANGERS.HIDDEN_CONTENT AS hiddenContent,
+			TB_HIDDEN_DANGERS.HIDDEN_TYPE AS hiddenType,
+			TB_HIDDEN_DANGERS.THREE_COLOR_FORM AS threeColorForm,
+			TB_HIDDEN_DANGERS.MEASURE AS measure,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_ID AS correctivePeople_Id,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE AS correctivePeople,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_UNITS AS correctivePeopleUnits,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_NAME AS correctivePeopleName,
+			TB_HIDDEN_DANGERS.DEADLINE AS deadline,
+			TB_HIDDEN_DANGERS.CORRECTION_REPORT AS correctionReport,
+			TB_HIDDEN_DANGERS.COMPLETION_TIME AS completionTime,
+			TB_HIDDEN_DANGERS.FOLLOW_UP AS followUp,
+			
+			TB_HIDDEN_DANGERS.ID AS id,
+			TB_HIDDEN_DANGERS.STATUS AS status,
+			TB_HIDDEN_DANGERS.CREATED AS created,
+			TB_HIDDEN_DANGERS.CREATE_TIME AS createTime,
+			TB_HIDDEN_DANGERS.UPDATED AS updated,
+			TB_HIDDEN_DANGERS.UPDATE_TIME as updateTime
+		from
+		TB_HIDDEN_DANGERS
+  		where 
+ 	 		TB_HIDDEN_DANGERS.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.danger.pojo.HiddenDanger">
+		UPDATE TB_HIDDEN_DANGERS 
+		<dynamic prepend="set">
+			
+			<isNotEmpty prepend="," property="findPeople_Id"> FIND_PEOPLE__ID=#findPeople_Id#</isNotEmpty>
+			<isNotEmpty prepend="," property="findPeople_Name"> FIND_PEOPLE__NAME=#findPeople_Name#</isNotEmpty>
+			<isNotEmpty prepend="," property="findPeople_Department"> FIND_PEOPLE__DEPARTMENT=#findPeople_Department#</isNotEmpty>
+			<isNotEmpty prepend="," property="findPeople_Position"> FIND_PEOPLE__POSITION=#findPeople_Position#</isNotEmpty>
+			<isNotEmpty prepend="," property="discoveryTime"> DISCOVERY_TIME=#discoveryTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="location"> LOCATION=#location#</isNotEmpty>
+			<isNotEmpty prepend="," property="specialty"> SPECIALTY=#specialty#</isNotEmpty>
+			<isNotEmpty prepend="," property="checkLine"> CHECK_LINE=#checkLine#</isNotEmpty>
+			<isNotEmpty prepend="," property="checkLocation"> CHECK_LOCATION=#checkLocation#</isNotEmpty>
+			<isNotEmpty prepend="," property="checkItem"> CHECK_ITEM=#checkItem#</isNotEmpty>
+			<isNotEmpty prepend="," property="checkLabel"> CHECK_LABEL=#checkLabel#</isNotEmpty>
+			<isNotEmpty prepend="," property="hiddenContent"> HIDDEN_CONTENT=#hiddenContent#</isNotEmpty>
+			<isNotEmpty prepend="," property="hiddenType"> HIDDEN_TYPE=#hiddenType#</isNotEmpty>
+			<isNotEmpty prepend="," property="threeColorForm"> THREE_COLOR_FORM=#threeColorForm#</isNotEmpty>
+			<isNotEmpty prepend="," property="measure"> MEASURE=#measure#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="correctivePeople_Id"> CORRECTIVE_PEOPLE_ID=#correctivePeople_Id#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeople"> CORRECTIVE_PEOPLE=#correctivePeople#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeopleUnits"> CORRECTIVE_PEOPLE_UNITS=#correctivePeopleUnits#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctivePeopleName"> CORRECTIVE_PEOPLE_NAME=#correctivePeopleName#</isNotEmpty>
+			<isNotEmpty prepend="," property="deadline"> DEADLINE=#deadline#</isNotEmpty>
+			<isNotEmpty prepend="," property="correctionReport"> CORRECTION_REPORT=#correctionReport#</isNotEmpty>
+			<isNotEmpty prepend="," property="completionTime"> COMPLETION_TIME=#completionTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="followUp"> FOLLOW_UP=#followUp#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<resultMap class="com.ay.danger.pojo.HiddenDangerMonth" id="sumColumns">
+		<result property="specialtyType" column="specialtyType"/>
+		<result property="y" column="y"/>
+		<result property="e" column="e"/>
+		<result property="s" column="s"/>
+		<result property="s" column="s"/>
+		<result property="si" column="si"/>
+		<result property="w" column="w"/>
+		<result property="l" column="l"/>
+		<result property="q" column="q"/>
+		<result property="b" column="b"/>
+		<result property="j" column="j"/>
+		<result property="shi" column="shi"/>
+		<result property="sy" column="sy"/>
+		<result property="se" column="se"/>
+		<result property="discoveryTime" column="discoveryTime"/>
+	</resultMap>
+	
+	<!-- 安全管理系统主题月统计 -->
+	<select id="getStaff" resultMap ="sumColumns" parameterClass="java.lang.String">
+		SELECT		
+			dbo.FN_codeToText(specialty) as specialtyType,
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '01' THEN num ELSE 0 END) AS y,
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '02' THEN num ELSE 0 END )AS e, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '03' THEN num ELSE 0 END )AS s,
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '04' THEN num ELSE 0 END) AS si, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '05' THEN num ELSE 0 END )AS w,
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '06' THEN num ELSE 0 END )AS l, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '07' THEN num ELSE 0 END )AS q,
+		    max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '08' THEN num ELSE 0 END) AS b, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '09' THEN num ELSE 0 END )AS j, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '10' THEN num ELSE 0 END )AS shi, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '11' THEN num ELSE 0 END )AS sy, 
+			max(CASE SUBSTRING(discoveryTime, 6, 2) WHEN '12' THEN num ELSE 0 END) AS se,
+		   	SUBSTRING(discoveryTime, 1, 4) AS discoveryTime		
+		FROM (SELECT max(SUBSTRING(discoveryTime, 1, 7)) as discoveryTime, COUNT(*) AS num,specialty AS specialty FROM VIEW_HIDDEN_DANGERS GROUP BY specialty) AS t 
+		WHERE discoveryTime like '%'+#discoveryTime#+'%' GROUP BY specialty,SUBSTRING(discoveryTime, 1, 4)
+	</select>
+	
+	<!-- add method find-->
+	<select id="find" resultClass="com.ay.danger.pojo.HiddenDanger" parameterClass="java.util.Map">
+ 		SELECT
+			
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__ID AS findPeople_Id,
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__NAME AS findPeople_Name,
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__DEPARTMENT AS findPeople_Department,
+			TB_HIDDEN_DANGERS.FIND_PEOPLE__POSITION AS findPeople_Position,
+			TB_HIDDEN_DANGERS.DISCOVERY_TIME AS discoveryTime,
+			TB_HIDDEN_DANGERS.LOCATION AS location,
+			TB_HIDDEN_DANGERS.SPECIALTY AS specialty,
+			TB_HIDDEN_DANGERS.CHECK_LINE AS checkLine,
+			TB_HIDDEN_DANGERS.CHECK_LOCATION AS checkLocation,
+			TB_HIDDEN_DANGERS.CHECK_ITEM AS checkItem,
+			TB_HIDDEN_DANGERS.CHECK_LABEL AS checkLabel,
+			TB_HIDDEN_DANGERS.HIDDEN_CONTENT AS hiddenContent,
+			TB_HIDDEN_DANGERS.HIDDEN_TYPE AS hiddenType,
+			TB_HIDDEN_DANGERS.THREE_COLOR_FORM AS threeColorForm,
+			TB_HIDDEN_DANGERS.MEASURE AS measure,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_ID AS correctivePeople_Id,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE AS correctivePeople,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_UNITS AS correctivePeopleUnits,
+			TB_HIDDEN_DANGERS.CORRECTIVE_PEOPLE_NAME AS correctivePeopleName,
+			TB_HIDDEN_DANGERS.DEADLINE AS deadline,
+			TB_HIDDEN_DANGERS.CORRECTION_REPORT AS correctionReport,
+			TB_HIDDEN_DANGERS.COMPLETION_TIME AS completionTime,
+			TB_HIDDEN_DANGERS.FOLLOW_UP AS followUp,
+			
+			TB_HIDDEN_DANGERS.ID AS id,
+			TB_HIDDEN_DANGERS.STATUS AS status,
+			TB_HIDDEN_DANGERS.CREATED AS created,
+			TB_HIDDEN_DANGERS.CREATE_TIME AS createTime,
+			TB_HIDDEN_DANGERS.UPDATED AS updated,
+			TB_HIDDEN_DANGERS.UPDATE_TIME AS updateTime
+		FROM
+			TB_HIDDEN_DANGERS
+		WHERE
+			TB_HIDDEN_DANGERS.STATUS = '1'
+		<include refid="HiddenDanger.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_HIDDEN_DANGERS
+		WHERE
+			TB_HIDDEN_DANGERS.STATUS = '1' 
+		<include refid="HiddenDanger.mapWhereClause"/>
+	</select>
+</sqlMap>

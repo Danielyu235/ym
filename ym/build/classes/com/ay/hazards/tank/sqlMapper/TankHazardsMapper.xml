@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!--sqlMapper-->
+<sqlMap namespace="TankHazards">
+	<resultMap class="com.ay.hazards.tank.pojo.TankHazards" id="th">
+		<result property="materials.id" column="materials.id" />
+		<result property="materials.name" column="materials.name" />
+		<result property="materials.type" column="materials.type" />
+		<result property="materials.thresholdQuantity" column="materials.thresholdQuantity" />
+		<result property="tankNumber" column="tankNumber" />
+		<result property="tankAraeID" column="tankAraeID" />
+		<result property="tankName" column="tankName" />
+		<result property="tankForm" column="tankForm" />
+		<result property="tankShape" column="tankShape" />
+		<result property="installShape" column="installShape" />
+		<result property="tankMaterial" column="tankMaterial" />
+		<result property="nominalDiameter" column="nominalDiameter" />
+		<result property="volume" column="volume" />
+		<result property="materialsId" column="materialsId" />
+		<result property="keepMatterName" column="keepMatterName" />
+		<result property="matterState" column="matterState" />
+		<result property="maxKeep" column="maxKeep" />
+		<result property="designAblity" column="designAblity" />
+		<result property="realAblity" column="realAblity" />
+		<result property="designTemperature" column="designTemperature" />
+		<result property="realTemperature" column="realTemperature" />
+		<result property="designedServiceLife" column="designedServiceLife" />
+		<result property="operationDate" column="operationDate" />
+		<result property="feedingMode" column="feedingMode" />
+		<result property="dischargingMode" column="dischargingMode" />
+		<result property="feedingDiameter" column="feedingDiameter" />
+		<result property="feedingDesignAblity" column="feedingDesignAblity" />
+		<result property="feedingRealAblity" column="feedingRealAblity" />
+		<result property="discharginDiameter" column="discharginDiameter" />
+		<result property="discharginDesignAblity" column="discharginDesignAblity" />
+		<result property="discharginRealAblity" column="discharginRealAblity" />
+		<result property="id" column="id" />
+		<result property="status" column="status" />
+		<result property="created" column="created" />
+		<result property="createTime" column="createTime" />
+		<result property="updated" column="updated" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="mapWhereClause">
+		<isParameterPresent>
+			<isNotEmpty prepend="and" property="id"> TB_TANK_HAZARDS.ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="and" property="status"> TB_TANK_HAZARDS.STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="and" property="created"> TB_TANK_HAZARDS.CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime"> TB_TANK_HAZARDS.CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updated"> TB_TANK_HAZARDS.UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="and" property="updateTime"> TB_TANK_HAZARDS.UPDATE_TIME=#updateTime#</isNotEmpty>
+			
+			
+			<isNotEmpty prepend="and" property="tankNumber"> TB_TANK_HAZARDS.TANK_NUMBER like '%'+#tankNumber#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tankAraeID"> TB_TANK_HAZARDS.TANK_ARAE_I_D like '%'+#tankAraeID#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tankName"> TB_TANK_HAZARDS.TANK_NAME like '%'+#tankName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tankForm"> TB_TANK_HAZARDS.TANK_FORM like '%'+#tankForm#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tankShape"> TB_TANK_HAZARDS.TANK_SHAPE like '%'+#tankShape#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="installShape"> TB_TANK_HAZARDS.INSTALL_SHAPE like '%'+#installShape#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="tankMaterial"> TB_TANK_HAZARDS.TANK_MATERIAL like '%'+#tankMaterial#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="nominalDiameter"> TB_TANK_HAZARDS.NOMINAL_DIAMETER like '%'+#nominalDiameter#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="volume"> TB_TANK_HAZARDS.VOLUME like '%'+#volume#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="keepMatterName"> TB_TANK_HAZARDS.KEEP_MATTER_NAME like '%'+#keepMatterName#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="matterState"> TB_TANK_HAZARDS.MATTER_STATE like '%'+#matterState#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="maxKeep"> TB_TANK_HAZARDS.MAX_KEEP like '%'+#maxKeep#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designAblity"> TB_TANK_HAZARDS.DESIGN_ABLITY like '%'+#designAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="realAblity"> TB_TANK_HAZARDS.REAL_ABLITY like '%'+#realAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designTemperature"> TB_TANK_HAZARDS.DESIGN_TEMPERATURE like '%'+#designTemperature#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="realTemperature"> TB_TANK_HAZARDS.REAL_TEMPERATURE like '%'+#realTemperature#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="designedServiceLife"> TB_TANK_HAZARDS.DESIGNED_SERVICE_LIFE like '%'+#designedServiceLife#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="operationDate"> TB_TANK_HAZARDS.OPERATION_DATE like '%'+#operationDate#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="feedingMode"> TB_TANK_HAZARDS.FEEDING_MODE like '%'+#feedingMode#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="dischargingMode"> TB_TANK_HAZARDS.DISCHARGING_MODE like '%'+#dischargingMode#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="feedingDiameter"> TB_TANK_HAZARDS.FEEDING_DIAMETER like '%'+#feedingDiameter#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="feedingDesignAblity"> TB_TANK_HAZARDS.FEEDING_DESIGN_ABLITY like '%'+#feedingDesignAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="feedingRealAblity"> TB_TANK_HAZARDS.FEEDING_REAL_ABLITY like '%'+#feedingRealAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="discharginDiameter"> TB_TANK_HAZARDS.DISCHARGIN_DIAMETER like '%'+#discharginDiameter#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="discharginDesignAblity"> TB_TANK_HAZARDS.DISCHARGIN_DESIGN_ABLITY like '%'+#discharginDesignAblity#+'%'</isNotEmpty>
+			<isNotEmpty prepend="and" property="discharginRealAblity"> TB_TANK_HAZARDS.DISCHARGIN_REAL_ABLITY like '%'+#discharginRealAblity#+'%'</isNotEmpty>
+			
+		</isParameterPresent>
+	</sql>
+	<!-- add method insert-->
+	<insert id="insert" parameterClass="com.ay.hazards.tank.pojo.TankHazards">
+  		INSERT INTO TB_TANK_HAZARDS(
+				MATERIALS_ID,
+				TANK_NUMBER,
+				TANK_ARAE_I_D,
+				TANK_NAME,
+				TANK_FORM,
+				TANK_SHAPE,
+				INSTALL_SHAPE,
+				TANK_MATERIAL,
+				NOMINAL_DIAMETER,
+				VOLUME,
+				KEEP_MATTER_NAME,
+				MATTER_STATE,
+				MAX_KEEP,
+				DESIGN_ABLITY,
+				REAL_ABLITY,
+				DESIGN_TEMPERATURE,
+				REAL_TEMPERATURE,
+				DESIGNED_SERVICE_LIFE,
+				OPERATION_DATE,
+				FEEDING_MODE,
+				DISCHARGING_MODE,
+				FEEDING_DIAMETER,
+				FEEDING_DESIGN_ABLITY,
+				FEEDING_REAL_ABLITY,
+				DISCHARGIN_DIAMETER,
+				DISCHARGIN_DESIGN_ABLITY,
+				DISCHARGIN_REAL_ABLITY,
+				
+				ID,
+				STATUS,
+				CREATED,
+				CREATE_TIME,
+				UPDATED,
+				UPDATE_TIME) values(
+				#materialsId#,
+				#tankNumber#,
+				#tankAraeID#,
+				#tankName#,
+				#tankForm#,
+				#tankShape#,
+				#installShape#,
+				#tankMaterial#,
+				#nominalDiameter#,
+				#volume#,
+				#keepMatterName#,
+				#matterState#,
+				#maxKeep#,
+				#designAblity#,
+				#realAblity#,
+				#designTemperature#,
+				#realTemperature#,
+				#designedServiceLife#,
+				#operationDate#,
+				#feedingMode#,
+				#dischargingMode#,
+				#feedingDiameter#,
+				#feedingDesignAblity#,
+				#feedingRealAblity#,
+				#discharginDiameter#,
+				#discharginDesignAblity#,
+				#discharginRealAblity#,
+				
+				#id#,
+				#status#,
+				#created#,
+				#createTime#,
+				#updated#,
+				#updateTime#)
+	</insert>
+	<!-- add method delete-->
+	<delete id="delete" parameterClass="java.lang.String">
+		UPDATE TB_TANK_HAZARDS SET STATUS='0' 
+  		WHERE 
+ 	 		ID=#id#</delete>
+	<!-- add method getById-->
+	<select id="getById" resultMap="th" parameterClass="java.lang.String">
+ 		SELECT 
+ 			VIEW_MATERIALS.ID as 'materials.id',
+			VIEW_MATERIALS.NAME as 'materials.name',
+			VIEW_MATERIALS.TYPE as 'materials.type',
+			VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+			TB_TANK_HAZARDS.TANK_NUMBER AS tankNumber,
+			TB_TANK_HAZARDS.TANK_ARAE_I_D AS tankAraeID,
+			TB_TANK_HAZARDS.TANK_NAME AS tankName,
+			TB_TANK_HAZARDS.TANK_FORM AS tankForm,
+			TB_TANK_HAZARDS.TANK_SHAPE AS tankShape,
+			TB_TANK_HAZARDS.INSTALL_SHAPE AS installShape,
+			TB_TANK_HAZARDS.TANK_MATERIAL AS tankMaterial,
+			TB_TANK_HAZARDS.NOMINAL_DIAMETER AS nominalDiameter,
+			TB_TANK_HAZARDS.VOLUME AS volume,
+			TB_TANK_HAZARDS.MATERIALS_ID AS materialsId,
+			TB_TANK_HAZARDS.KEEP_MATTER_NAME AS keepMatterName,
+			TB_TANK_HAZARDS.MATTER_STATE AS matterState,
+			TB_TANK_HAZARDS.MAX_KEEP AS maxKeep,
+			TB_TANK_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_TANK_HAZARDS.REAL_ABLITY AS realAblity,
+			TB_TANK_HAZARDS.DESIGN_TEMPERATURE AS designTemperature,
+			TB_TANK_HAZARDS.REAL_TEMPERATURE AS realTemperature,
+			TB_TANK_HAZARDS.DESIGNED_SERVICE_LIFE AS designedServiceLife,
+			TB_TANK_HAZARDS.OPERATION_DATE AS operationDate,
+			TB_TANK_HAZARDS.FEEDING_MODE AS feedingMode,
+			TB_TANK_HAZARDS.DISCHARGING_MODE AS dischargingMode,
+			TB_TANK_HAZARDS.FEEDING_DIAMETER AS feedingDiameter,
+			TB_TANK_HAZARDS.FEEDING_DESIGN_ABLITY AS feedingDesignAblity,
+			TB_TANK_HAZARDS.FEEDING_REAL_ABLITY AS feedingRealAblity,
+			TB_TANK_HAZARDS.DISCHARGIN_DIAMETER AS discharginDiameter,
+			TB_TANK_HAZARDS.DISCHARGIN_DESIGN_ABLITY AS discharginDesignAblity,
+			TB_TANK_HAZARDS.DISCHARGIN_REAL_ABLITY AS discharginRealAblity,
+			
+			TB_TANK_HAZARDS.ID AS id,
+			TB_TANK_HAZARDS.STATUS AS status,
+			TB_TANK_HAZARDS.CREATED AS created,
+			TB_TANK_HAZARDS.CREATE_TIME AS createTime,
+			TB_TANK_HAZARDS.UPDATED AS updated,
+			TB_TANK_HAZARDS.UPDATE_TIME as updateTime
+		from
+		TB_TANK_HAZARDS
+		LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_TANK_HAZARDS.MATERIALS_ID = VIEW_MATERIALS.ID
+  		where 
+ 	 		TB_TANK_HAZARDS.ID=#id#
+	</select>
+	<!-- add method update-->
+	<update id="update" parameterClass="com.ay.hazards.tank.pojo.TankHazards">
+		UPDATE TB_TANK_HAZARDS 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="materialsId"> MATERIALS_ID=#materialsId#</isNotEmpty>
+			<isNotEmpty prepend="," property="tankNumber"> TANK_NUMBER=#tankNumber#</isNotEmpty>
+			<isNotEmpty prepend="," property="tankAraeID"> TANK_ARAE_I_D=#tankAraeID#</isNotEmpty>
+			<isNotEmpty prepend="," property="tankName"> TANK_NAME=#tankName#</isNotEmpty>
+			<isNotEmpty prepend="," property="tankForm"> TANK_FORM=#tankForm#</isNotEmpty>
+			<isNotEmpty prepend="," property="tankShape"> TANK_SHAPE=#tankShape#</isNotEmpty>
+			<isNotEmpty prepend="," property="installShape"> INSTALL_SHAPE=#installShape#</isNotEmpty>
+			<isNotEmpty prepend="," property="tankMaterial"> TANK_MATERIAL=#tankMaterial#</isNotEmpty>
+			<isNotEmpty prepend="," property="nominalDiameter"> NOMINAL_DIAMETER=#nominalDiameter#</isNotEmpty>
+			<isNotEmpty prepend="," property="volume"> VOLUME=#volume#</isNotEmpty>
+			<isNotEmpty prepend="," property="keepMatterName"> KEEP_MATTER_NAME=#keepMatterName#</isNotEmpty>
+			<isNotEmpty prepend="," property="matterState"> MATTER_STATE=#matterState#</isNotEmpty>
+			<isNotEmpty prepend="," property="maxKeep"> MAX_KEEP=#maxKeep#</isNotEmpty>
+			<isNotEmpty prepend="," property="designAblity"> DESIGN_ABLITY=#designAblity#</isNotEmpty>
+			<isNotEmpty prepend="," property="realAblity"> REAL_ABLITY=#realAblity#</isNotEmpty>
+			<isNotEmpty prepend="," property="designTemperature"> DESIGN_TEMPERATURE=#designTemperature#</isNotEmpty>
+			<isNotEmpty prepend="," property="realTemperature"> REAL_TEMPERATURE=#realTemperature#</isNotEmpty>
+			<isNotEmpty prepend="," property="designedServiceLife"> DESIGNED_SERVICE_LIFE=#designedServiceLife#</isNotEmpty>
+			<isNotEmpty prepend="," property="operationDate"> OPERATION_DATE=#operationDate#</isNotEmpty>
+			<isNotEmpty prepend="," property="feedingMode"> FEEDING_MODE=#feedingMode#</isNotEmpty>
+			<isNotEmpty prepend="," property="dischargingMode"> DISCHARGING_MODE=#dischargingMode#</isNotEmpty>
+			<isNotEmpty prepend="," property="feedingDiameter"> FEEDING_DIAMETER=#feedingDiameter#</isNotEmpty>
+			<isNotEmpty prepend="," property="feedingDesignAblity"> FEEDING_DESIGN_ABLITY=#feedingDesignAblity#</isNotEmpty>
+			<isNotEmpty prepend="," property="feedingRealAblity"> FEEDING_REAL_ABLITY=#feedingRealAblity#</isNotEmpty>
+			<isNotEmpty prepend="," property="discharginDiameter"> DISCHARGIN_DIAMETER=#discharginDiameter#</isNotEmpty>
+			<isNotEmpty prepend="," property="discharginDesignAblity"> DISCHARGIN_DESIGN_ABLITY=#discharginDesignAblity#</isNotEmpty>
+			<isNotEmpty prepend="," property="discharginRealAblity"> DISCHARGIN_REAL_ABLITY=#discharginRealAblity#</isNotEmpty>
+			
+			<isNotEmpty prepend="," property="id"> ID=#id#</isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status#</isNotEmpty>
+			<isNotEmpty prepend="," property="created"> CREATED=#created#</isNotEmpty>
+			<isNotEmpty prepend="," property="createTime"> CREATE_TIME=#createTime#</isNotEmpty>
+			<isNotEmpty prepend="," property="updated"> UPDATED=#updated#</isNotEmpty>
+			<isNotEmpty prepend="," property="updateTime"> UPDATE_TIME=#updateTime#</isNotEmpty>
+		</dynamic>
+  		WHERE 
+ 	 		ID=#id#
+	</update>
+	
+	<select id="findByPId" resultMap="th" parameterClass="java.lang.String">
+ 		SELECT
+			VIEW_MATERIALS.ID as 'materials.id',
+			VIEW_MATERIALS.NAME as 'materials.name',
+			VIEW_MATERIALS.TYPE as 'materials.type',
+			VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+			TB_TANK_HAZARDS.TANK_NUMBER AS tankNumber,
+			TB_TANK_HAZARDS.TANK_ARAE_I_D AS tankAraeID,
+			TB_TANK_HAZARDS.TANK_NAME AS tankName,
+			TB_TANK_HAZARDS.TANK_FORM AS tankForm,
+			TB_TANK_HAZARDS.TANK_SHAPE AS tankShape,
+			TB_TANK_HAZARDS.INSTALL_SHAPE AS installShape,
+			TB_TANK_HAZARDS.TANK_MATERIAL AS tankMaterial,
+			TB_TANK_HAZARDS.NOMINAL_DIAMETER AS nominalDiameter,
+			TB_TANK_HAZARDS.VOLUME AS volume,
+			TB_TANK_HAZARDS.MATERIALS_ID AS materialsId,
+			TB_TANK_HAZARDS.KEEP_MATTER_NAME AS keepMatterName,
+			TB_TANK_HAZARDS.MATTER_STATE AS matterState,
+			TB_TANK_HAZARDS.MAX_KEEP AS maxKeep,
+			TB_TANK_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_TANK_HAZARDS.REAL_ABLITY AS realAblity,
+			TB_TANK_HAZARDS.DESIGN_TEMPERATURE AS designTemperature,
+			TB_TANK_HAZARDS.REAL_TEMPERATURE AS realTemperature,
+			TB_TANK_HAZARDS.DESIGNED_SERVICE_LIFE AS designedServiceLife,
+			TB_TANK_HAZARDS.OPERATION_DATE AS operationDate,
+			TB_TANK_HAZARDS.FEEDING_MODE AS feedingMode,
+			TB_TANK_HAZARDS.DISCHARGING_MODE AS dischargingMode,
+			TB_TANK_HAZARDS.FEEDING_DIAMETER AS feedingDiameter,
+			TB_TANK_HAZARDS.FEEDING_DESIGN_ABLITY AS feedingDesignAblity,
+			TB_TANK_HAZARDS.FEEDING_REAL_ABLITY AS feedingRealAblity,
+			TB_TANK_HAZARDS.DISCHARGIN_DIAMETER AS discharginDiameter,
+			TB_TANK_HAZARDS.DISCHARGIN_DESIGN_ABLITY AS discharginDesignAblity,
+			TB_TANK_HAZARDS.DISCHARGIN_REAL_ABLITY AS discharginRealAblity,
+			
+			TB_TANK_HAZARDS.ID AS id,
+			TB_TANK_HAZARDS.STATUS AS status,
+			TB_TANK_HAZARDS.CREATED AS created,
+			TB_TANK_HAZARDS.CREATE_TIME AS createTime,
+			TB_TANK_HAZARDS.UPDATED AS updated,
+			TB_TANK_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_TANK_HAZARDS
+		LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_TANK_HAZARDS.MATERIALS_ID = VIEW_MATERIALS.ID
+		WHERE
+			TB_TANK_HAZARDS.STATUS = '1'
+		AND TB_TANK_HAZARDS.TANK_ARAE_I_D = #value# 
+	</select>
+	<!-- add method find-->
+	<select id="find" resultMap="th" parameterClass="java.util.Map">
+ 		SELECT
+			VIEW_MATERIALS.ID as 'materials.id',
+			VIEW_MATERIALS.NAME as 'materials.name',
+			VIEW_MATERIALS.TYPE as 'materials.type',
+			VIEW_MATERIALS.THRESHOLD_QUANTITY as 'materials.thresholdQuantity',
+			TB_TANK_HAZARDS.TANK_NUMBER AS tankNumber,
+			TB_TANK_HAZARDS.TANK_ARAE_I_D AS tankAraeID,
+			TB_TANK_HAZARDS.TANK_NAME AS tankName,
+			TB_TANK_HAZARDS.TANK_FORM AS tankForm,
+			TB_TANK_HAZARDS.TANK_SHAPE AS tankShape,
+			TB_TANK_HAZARDS.INSTALL_SHAPE AS installShape,
+			TB_TANK_HAZARDS.TANK_MATERIAL AS tankMaterial,
+			TB_TANK_HAZARDS.NOMINAL_DIAMETER AS nominalDiameter,
+			TB_TANK_HAZARDS.VOLUME AS volume,
+			TB_TANK_HAZARDS.MATERIALS_ID AS materialsId,
+			TB_TANK_HAZARDS.KEEP_MATTER_NAME AS keepMatterName,
+			TB_TANK_HAZARDS.MATTER_STATE AS matterState,
+			TB_TANK_HAZARDS.MAX_KEEP AS maxKeep,
+			TB_TANK_HAZARDS.DESIGN_ABLITY AS designAblity,
+			TB_TANK_HAZARDS.REAL_ABLITY AS realAblity,
+			TB_TANK_HAZARDS.DESIGN_TEMPERATURE AS designTemperature,
+			TB_TANK_HAZARDS.REAL_TEMPERATURE AS realTemperature,
+			TB_TANK_HAZARDS.DESIGNED_SERVICE_LIFE AS designedServiceLife,
+			TB_TANK_HAZARDS.OPERATION_DATE AS operationDate,
+			TB_TANK_HAZARDS.FEEDING_MODE AS feedingMode,
+			TB_TANK_HAZARDS.DISCHARGING_MODE AS dischargingMode,
+			TB_TANK_HAZARDS.FEEDING_DIAMETER AS feedingDiameter,
+			TB_TANK_HAZARDS.FEEDING_DESIGN_ABLITY AS feedingDesignAblity,
+			TB_TANK_HAZARDS.FEEDING_REAL_ABLITY AS feedingRealAblity,
+			TB_TANK_HAZARDS.DISCHARGIN_DIAMETER AS discharginDiameter,
+			TB_TANK_HAZARDS.DISCHARGIN_DESIGN_ABLITY AS discharginDesignAblity,
+			TB_TANK_HAZARDS.DISCHARGIN_REAL_ABLITY AS discharginRealAblity,
+			
+			TB_TANK_HAZARDS.ID AS id,
+			TB_TANK_HAZARDS.STATUS AS status,
+			TB_TANK_HAZARDS.CREATED AS created,
+			TB_TANK_HAZARDS.CREATE_TIME AS createTime,
+			TB_TANK_HAZARDS.UPDATED AS updated,
+			TB_TANK_HAZARDS.UPDATE_TIME AS updateTime
+		FROM
+			TB_TANK_HAZARDS
+		LEFT JOIN
+		VIEW_MATERIALS ON
+		TB_TANK_HAZARDS.MATERIALS_ID = VIEW_MATERIALS.ID
+		WHERE
+			TB_TANK_HAZARDS.STATUS = '1'
+		<include refid="TankHazards.mapWhereClause"/>
+	</select>
+	<!-- add method count-->
+	<select id="count" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+ 		SELECT COUNT(*) 
+		FROM
+			TB_TANK_HAZARDS
+		WHERE
+			TB_TANK_HAZARDS.STATUS = '1' 
+		<include refid="TankHazards.mapWhereClause"/>
+	</select>
+		<statement id="deleteList" parameterClass="java.util.List">
+	 		 UPDATE TB_TANK_HAZARDS
+		   	 SET status=0
+			<iterate prepend="WHERE"  open="(" close=")"
+			  conjunction="OR">
+			   id=#ids[]#
+			</iterate>
+	</statement>
+</sqlMap>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <!-- 指标体系 -->
+  <package extends="struts-default" name="safeTarget" namespace="/">
+    <action class="com.ay.safetarget.action.SafeTargetAction" name="safeTargetAction">
+      <result name="safetarget">/selectafter.jsp</result>
+      <result name="firetarget">/fireafter.jsp</result>
+    </action>
+  </package>
+</struts>

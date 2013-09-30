@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" default-lazy-init="true">  
+  <!--员工基本信息模块-->  
+  <bean id="employeesDao" class="com.ay.employee.dao.EmployeesDao" parent="baseDao"/>  
+  <bean id="employeesService" class="com.ay.employee.service.EmployeesService"> 
+    <property name="dao" ref="employeesDao"/> 
+  </bean>  
+  <!--评分管理模块-->
+  <bean id="scoreManagementDao" class="com.ay.scoremanagement.dao.ScoreManagementDao" parent="baseDao"/>
+  <bean id="scoreManagementService" class="com.ay.scoremanagement.service.ScoreManagementService">
+    <property name="dao" ref="scoreManagementDao"/>
+  </bean>
+</beans>
